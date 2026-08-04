@@ -3,355 +3,1469 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 110;
+	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		0051257FB2E8B94189439A56 /* NetworkInfoRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA52861EB697FD6BF136C6A /* NetworkInfoRow.swift */; };
+		00786C6220D79FE00D346D4A /* SystemDeviceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8D3FC935B4D99726F6CC47 /* SystemDeviceProvider.swift */; };
+		00982857FF93CFEBC19CE89F /* NetworkSnapshotRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0839652F731456FD41375E /* NetworkSnapshotRepository.swift */; };
+		00DE26992872E8624D5569D4 /* ThreeColumnToolNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C243B34E2646F278205FD31D /* ThreeColumnToolNavigationView.swift */; };
+		01C5E2F416BDAA3EA3E06C52 /* SecurityScopedSSHKeyFolderStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F6B18DF4AE88C398D82C5F /* SecurityScopedSSHKeyFolderStore.swift */; };
+		0215D8E0B07235FDC3E1F51B /* NetworkSnapshotRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7964692682D3B2BA128346 /* NetworkSnapshotRecord.swift */; };
+		05F31E7638D6F38E2F5DE2D8 /* SSHKeyPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD43245FED194D5D2676BA6 /* SSHKeyPair.swift */; };
+		06E36E2EB705470787C57203 /* PublicIPAddressClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 613825FBCF371AAEF5C50045 /* PublicIPAddressClient.swift */; };
+		06FF52983D4AA16A291FAD90 /* PlatformAvailabilityBadges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068B5412AE0377DC1B030D34 /* PlatformAvailabilityBadges.swift */; };
+		0A7FD3155417C4C3BFB1793A /* NetworkInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E9A70E2AA762BC89B1108E /* NetworkInfoView.swift */; };
+		0B532B50DF7FAAA4A6C72A50 /* ToolRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09FEDFF9AC030734060D785 /* ToolRegistry.swift */; };
+		116316EF6DD885DC06CF23C0 /* ToolPlatform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DAE6574E349860CCECFEDB /* ToolPlatform.swift */; };
+		1298E0EDE0747AAB683C6FFA /* ToolRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09FEDFF9AC030734060D785 /* ToolRegistry.swift */; };
+		144ACB7AE8F7E6F822B5E058 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6A8BDAFE9860DE3BA5E6E63 /* Assets.xcassets */; };
+		15A0673273203EF8EFF80D80 /* SSHKeysPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840DFE2587B04635E57C17DE /* SSHKeysPlugin.swift */; };
+		15A2AFE5966C4C7BD2D616E1 /* NetworkInfoPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73D4E1AFE4F1B694CFCBD55 /* NetworkInfoPlugin.swift */; };
+		1684F9540A4986DE674CB9A3 /* CoreWLANWiFiScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E74AFBAAF9C353F5981D03 /* CoreWLANWiFiScanner.swift */; };
+		1725DF34953034778DFB5FEE /* SSHKeyGeneratorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1DF3173F6D3B336164FE22 /* SSHKeyGeneratorView.swift */; };
+		17A7D8BE787305A7EC23F62C /* SystemSSHKeyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E8D3D1B5C8D15796C21E8C /* SystemSSHKeyManager.swift */; };
+		180342FDFDE44FDBF80575F7 /* DeviceStoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DB69B90FF76B773D1834D9 /* DeviceStoring.swift */; };
+		18BD24F6F8217CA2ED5B4932 /* DeviceStoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DB69B90FF76B773D1834D9 /* DeviceStoring.swift */; };
+		1A28F44B53308F514CF015DF /* ToolPouchLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3664562A15795EA055869A /* ToolPouchLayout.swift */; };
+		1AC43F92862B763AC25EA6DF /* SSHKeyPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD43245FED194D5D2676BA6 /* SSHKeyPair.swift */; };
+		1B4631A86B67A7A6BFE175C4 /* ScreenHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FA0D56E5D5E69642D8427A /* ScreenHeader.swift */; };
+		1B97BD63FEFF48C9A98D2F67 /* NetworkInfoPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73D4E1AFE4F1B694CFCBD55 /* NetworkInfoPlugin.swift */; };
+		1D90E7D32D616F296A3533BA /* CopyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800CC3CC149F184FED2DA6C4 /* CopyButton.swift */; };
+		1E665E8D810506B89EB8C63A /* WiFiScanAuthorizing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C47458686DEDC5F46989160 /* WiFiScanAuthorizing.swift */; };
+		1EB629169E18643EB41F1CEC /* NetworkInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA215E876FB90EF78DDF7FD /* NetworkInfoViewModel.swift */; };
+		1F2EFA02FB78D3846BFC483D /* ToolPlatform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DAE6574E349860CCECFEDB /* ToolPlatform.swift */; };
+		1F76A5757D7FC46F08AF3D27 /* SystemDeviceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8D3FC935B4D99726F6CC47 /* SystemDeviceProvider.swift */; };
+		209F358EC7E4C67DB58A07D4 /* NetworkSnapshotRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7964692682D3B2BA128346 /* NetworkSnapshotRecord.swift */; };
+		22F6A0FCD702FDDB804DB16D /* CoreLocationWiFiScanAuthorizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B23E488E61D65E44716E050 /* CoreLocationWiFiScanAuthorizer.swift */; };
+		239A0DAD68E416FCC77B7F0D /* ToolCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E733BEC952E47417A2A2BB /* ToolCategory.swift */; };
+		24235128B86DCCA4C51D13A5 /* SecurityScopedSSHKeyFolderStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F6B18DF4AE88C398D82C5F /* SecurityScopedSSHKeyFolderStore.swift */; };
+		282D3F2BE8F36A65BFFBB401 /* ScreenHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FA0D56E5D5E69642D8427A /* ScreenHeader.swift */; };
+		28CD599E1641E54FF7D6FC66 /* DeviceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F74BC189247B422900D1512 /* DeviceRepository.swift */; };
+		2A3582F43895298F3B942D87 /* WiFiScannerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231DDE71DEC4A7FDBBE3ECDF /* WiFiScannerPlugin.swift */; };
+		2A8AC3722A3E5DBBEE5C1993 /* NetworkInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA215E876FB90EF78DDF7FD /* NetworkInfoViewModel.swift */; };
+		2B47333BB5809B0449884334 /* ToolCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97EDA481D4D7D4168B49A97 /* ToolCategoryView.swift */; };
+		2C57184E32094FF36867B6FF /* WatchRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60D9D80DDAEE87F50A0CA28 /* WatchRootView.swift */; };
+		2C5C83A7F33D028EB4ED9886 /* SSHKeyAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269BC573505014B0850537B7 /* SSHKeyAlgorithm.swift */; };
+		2EC88311F2FA268228C84EC9 /* NetworkSnapshotCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B4905FA429F9A69EA42030 /* NetworkSnapshotCard.swift */; };
+		31270D267C182E8D5B5F91AC /* ToolPouchMobileApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA655FB1A90B0BE32860CA44 /* ToolPouchMobileApp.swift */; };
+		31DB78FFB0BDC74AFD796D35 /* NetworkSnapshotCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B4905FA429F9A69EA42030 /* NetworkSnapshotCard.swift */; };
+		332D2A3C42B074D637BBEFE9 /* NetworkInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E9A70E2AA762BC89B1108E /* NetworkInfoView.swift */; };
+		33343032B6985278382D2B70 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6A8BDAFE9860DE3BA5E6E63 /* Assets.xcassets */; };
+		337F5C5447D4C496D4F48365 /* NetworkInfoCollecting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389C80ADDC1698181A5ACEE8 /* NetworkInfoCollecting.swift */; };
+		3422B535E9360FB1E460194C /* ToolTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10ED5908365A774462E04218 /* ToolTile.swift */; };
+		344B02EE120F28D412BFBEBC /* CurrentDeviceProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE962C93DF0F1957BEEE87BA /* CurrentDeviceProviding.swift */; };
+		3A151E6CACAB5C54CA4F28E3 /* CompactToolNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6DCDD6E504FA0A155CE1C5 /* CompactToolNavigationView.swift */; };
+		3A2E7D6E1740D41632698C25 /* AdaptiveGlassGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = E637C4DC67B3DD861918D253 /* AdaptiveGlassGrid.swift */; };
+		3A323F1DEB7DA0895600A64F /* LocalNetworkInfoProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DA9A1A268CE0EB67C77005 /* LocalNetworkInfoProviding.swift */; };
+		3AD4447F379CC72F18B096C7 /* DeviceRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06AA0D829C6830E286FDDCA /* DeviceRecord.swift */; };
+		3E2A41412A3B63260AADE17A /* DeviceKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164CC9FCBC142A35264B35B2 /* DeviceKind.swift */; };
+		3F805199F0FA762910FF800B /* CopyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800CC3CC149F184FED2DA6C4 /* CopyButton.swift */; };
+		406F4E687ED7D3AC0AE78050 /* NetworkInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E9A70E2AA762BC89B1108E /* NetworkInfoView.swift */; };
+		4077049FA466FDB8421C857E /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8E5DAE35E23D3110464A3F /* Device.swift */; };
+		41137BDBDB46A48E3FD20131 /* NetworkConnectionKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DE1400A6CF3F3656B0A996 /* NetworkConnectionKind.swift */; };
+		428EFE74BFE1FF1A2AD08CFD /* NetworkSnapshotStoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CDE5D27C1075AC7F50FD58 /* NetworkSnapshotStoring.swift */; };
+		42EE9B61A5A186613DAEBF01 /* ToolRegistryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1E9F5F6CB93B69D8D9CCF5 /* ToolRegistryTests.swift */; };
+		43B769876A3EAE075A2B73AA /* SSHKeyManaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5180691BB279D3D1070D3EE /* SSHKeyManaging.swift */; };
+		468258A3247A6B78743A947C /* SSHKeyGeneratorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1DF3173F6D3B336164FE22 /* SSHKeyGeneratorView.swift */; };
+		46E3B5C2487724C84570D22F /* SSHKeysViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A980B0D5EFAD5956EBE83012 /* SSHKeysViewModel.swift */; };
+		4996F8704350AFD12B42B721 /* CopyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800CC3CC149F184FED2DA6C4 /* CopyButton.swift */; };
+		4C383F06312A68F6DE88A050 /* CurrentDeviceProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE962C93DF0F1957BEEE87BA /* CurrentDeviceProviding.swift */; };
+		4C9EF4C707C35E428DBC8F42 /* NetworkInfoField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FB5C88192D4AA72D86A6F7 /* NetworkInfoField.swift */; };
+		4F69A898277D34E9CC448234 /* DeviceKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164CC9FCBC142A35264B35B2 /* DeviceKind.swift */; };
+		54277B652E4ABA2C0DEE5B5F /* ToolRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09FEDFF9AC030734060D785 /* ToolRegistry.swift */; };
+		54D98146F9B921773B280805 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167154D785DBC4023998195A /* SettingsView.swift */; };
+		56CEF4327FC9241D4A678574 /* SSHKeysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ECA7F131E1C24329B43A94 /* SSHKeysView.swift */; };
+		57BE81046CC5004C2D611C32 /* LocalNetworkInfoProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DA9A1A268CE0EB67C77005 /* LocalNetworkInfoProviding.swift */; };
+		58BEF5E51931B6B176ED8040 /* PlatformAvailabilityBadges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068B5412AE0377DC1B030D34 /* PlatformAvailabilityBadges.swift */; };
+		5A0F7CFB256FF925E584F7A7 /* RecentDevicesCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0795992790521E5BF10EE6 /* RecentDevicesCard.swift */; };
+		5AAAC0786446242A8F399FCC /* ToolDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8C7F47CD104903A1C8E3BB /* ToolDefinition.swift */; };
+		5B4A1FA6FB3A9931D3412540 /* DeviceStoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DB69B90FF76B773D1834D9 /* DeviceStoring.swift */; };
+		5BD34F1B922C027CFB5216CD /* WiFiScanning.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD183E5DDD24365712DF12AE /* WiFiScanning.swift */; };
+		5E003CE6955C5A6159B2882D /* WiFiScanAuthorizing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C47458686DEDC5F46989160 /* WiFiScanAuthorizing.swift */; };
+		5EBA0005B141A7572649FA41 /* SSHKeysPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840DFE2587B04635E57C17DE /* SSHKeysPlugin.swift */; };
+		5F19562C13FDA12FB6DC76AB /* ToolPlatform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DAE6574E349860CCECFEDB /* ToolPlatform.swift */; };
+		5F199BA207BFCEE5E0AC245B /* SystemLocalNetworkInfoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91A05C7D22AD616E18145C8 /* SystemLocalNetworkInfoProvider.swift */; };
+		61D02E234E29BDBB76AFBE0E /* DeviceKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164CC9FCBC142A35264B35B2 /* DeviceKind.swift */; };
+		676F5BC41C5BEE25D741CD34 /* SystemSSHKeyManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF1143194B31D435351C5A4 /* SystemSSHKeyManagerTests.swift */; };
+		6882AD2A40401E7FC61C3F8D /* NetworkInfoPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73D4E1AFE4F1B694CFCBD55 /* NetworkInfoPlugin.swift */; };
+		68EC2ECC01E8D17C066F5797 /* SSHKeyGenerationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD209DD3E7B409475BC75677 /* SSHKeyGenerationRequest.swift */; };
+		6A0D59998858E2052209D509 /* CoreLocationWiFiScanAuthorizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B23E488E61D65E44716E050 /* CoreLocationWiFiScanAuthorizer.swift */; };
+		6A2D968B3CF1D51EA6F09947 /* SSHKeyManaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5180691BB279D3D1070D3EE /* SSHKeyManaging.swift */; };
+		6C6E9562FBAB3EB7240A332D /* AppRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F123208D540B6F39E30ADFB /* AppRoute.swift */; };
+		6DF7CB4FE6D103CCEC494089 /* AppDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED60A6037EA8081E403E1B9D /* AppDependencies.swift */; };
+		7120FAB7E3505FDB58126CA7 /* NetworkInfoHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DE4EB0157569E7E4C84647B /* NetworkInfoHeader.swift */; };
+		71C2F29840A8792499C7EA90 /* ToolPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04A0860CA86A74688E0C1BC /* ToolPlugin.swift */; };
+		733659AA81DFB2F2B0681848 /* SystemLocalNetworkInfoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91A05C7D22AD616E18145C8 /* SystemLocalNetworkInfoProvider.swift */; };
+		751130CDBFC2A72DEC7BDDBA /* SSHKeysViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A980B0D5EFAD5956EBE83012 /* SSHKeysViewModel.swift */; };
+		774F4E1159843B52A2CAB8C3 /* SSHKeyFolderAccessing.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8358CA68FA245C6C2F3E119 /* SSHKeyFolderAccessing.swift */; };
+		77A30DE2852457B727916827 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652A219FC27D38FB8350614F /* DashboardView.swift */; };
+		78CD1B3EB3B58940EC41C9EE /* PublicIPAddressClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 613825FBCF371AAEF5C50045 /* PublicIPAddressClient.swift */; };
+		78DFB4AFE2166467643263DF /* NetworkConnectionKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DE1400A6CF3F3656B0A996 /* NetworkConnectionKind.swift */; };
+		78EC6A0FFC95142B1E65B67D /* SystemClipboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBF1212FA8AC55E2EAA0C8D /* SystemClipboard.swift */; };
+		790D633EEABB702F07153C59 /* WiFiScannerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E1FC80540C5393C219837F /* WiFiScannerViewModel.swift */; };
+		7A134F7F94B9CF3362BD3058 /* WiFiScanning.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD183E5DDD24365712DF12AE /* WiFiScanning.swift */; };
+		7A403244134E1D0280AC15DD /* AppPreferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3207B6715EC802F3AB4AF7AE /* AppPreferenceKey.swift */; };
+		7A65FB1FC1C7543977B92695 /* ToolExecutionBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CB05F150518589EE236F1B /* ToolExecutionBackend.swift */; };
+		7B620CF8375E7E48884F635E /* CurrentDeviceProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE962C93DF0F1957BEEE87BA /* CurrentDeviceProviding.swift */; };
+		7DBB76CD8032F7A8F34A8F3B /* SystemClipboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBF1212FA8AC55E2EAA0C8D /* SystemClipboard.swift */; };
+		7E47F0D38B8220ECAD0BC8AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6A8BDAFE9860DE3BA5E6E63 /* Assets.xcassets */; };
+		7E858E0AA8700B36D2C93A7A /* WiFiScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C544F3B6073C2E3E87BF6FF /* WiFiScannerView.swift */; };
+		7FB2177EE85D4AA3625455BB /* NetworkInfoHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DE4EB0157569E7E4C84647B /* NetworkInfoHeader.swift */; };
+		825511454638980CDE46ADED /* CompactToolNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6DCDD6E504FA0A155CE1C5 /* CompactToolNavigationView.swift */; };
+		829B5B38F0FB497A42DFFBC9 /* ToolExecutionBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CB05F150518589EE236F1B /* ToolExecutionBackend.swift */; };
+		86DA73A5A863ED9C044AEAC2 /* ToolDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8C7F47CD104903A1C8E3BB /* ToolDefinition.swift */; };
+		885CFD9CCBFB65AEC75AF20A /* SystemLocalNetworkInfoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91A05C7D22AD616E18145C8 /* SystemLocalNetworkInfoProvider.swift */; };
+		88E23B7C959723DDBFDB9CFF /* MenuBarRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153E7086FF1D7522B52E1556 /* MenuBarRootView.swift */; };
+		890A0F3EAFD50CDE7186EEE4 /* NetworkInfoCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFE2C69164860B77C1CE118 /* NetworkInfoCollector.swift */; };
+		8CB93445A799C9F8A0459CA0 /* SystemSSHKeyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E8D3D1B5C8D15796C21E8C /* SystemSSHKeyManager.swift */; };
+		8DC4C508EBF96C180F95DCF2 /* ToolCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E733BEC952E47417A2A2BB /* ToolCategory.swift */; };
+		8F83848D7AFC2C9F4132E688 /* DeviceRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06AA0D829C6830E286FDDCA /* DeviceRecord.swift */; };
+		8F87646E0B069956C24A58D9 /* NetworkSnapshotStoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CDE5D27C1075AC7F50FD58 /* NetworkSnapshotStoring.swift */; };
+		91D33B7F8F5ED8E2E76A2F6E /* AdaptiveMobileRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B4B04244B5446F1606D3C1 /* AdaptiveMobileRootView.swift */; };
+		93D48E21F01B9902926A1B7B /* ToolPouchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34E890EF011E9EE5FFC9E11 /* ToolPouchApp.swift */; };
+		96DF1957BCA3BE0E32EB6DAB /* ScreenHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FA0D56E5D5E69642D8427A /* ScreenHeader.swift */; };
+		9788FFED97E5750BABD269B5 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167154D785DBC4023998195A /* SettingsView.swift */; };
+		98FDD0BA10836DB64A37D198 /* WiFiNetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1779F66361F5662740C4F6FA /* WiFiNetworkTests.swift */; };
+		99D7455D64BAF693420D6496 /* NetworkInfoCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFE2C69164860B77C1CE118 /* NetworkInfoCollector.swift */; };
+		99E62B06F6C4D8FCE4A268ED /* PersistenceContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD21195E15DB2FA21697E47B /* PersistenceContainer.swift */; };
+		9A9B12573ED76B653B2D122A /* SSHKeyGenerationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD209DD3E7B409475BC75677 /* SSHKeyGenerationRequest.swift */; };
+		9B669353643BF8DF7FEC1161 /* NetworkInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA215E876FB90EF78DDF7FD /* NetworkInfoViewModel.swift */; };
+		9CA23FA85BF8E1A086F784FE /* WiFiScanning.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD183E5DDD24365712DF12AE /* WiFiScanning.swift */; };
+		9E1F04AD98AC26BBA8FE9724 /* LocalNetworkInfoProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DA9A1A268CE0EB67C77005 /* LocalNetworkInfoProviding.swift */; };
+		9E7A8C2CCB6928909BD918A2 /* AppDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED60A6037EA8081E403E1B9D /* AppDependencies.swift */; };
+		9F58817599CA7E9F8A6C55A3 /* WiFiNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDFD56325BA8DA558567EAF /* WiFiNetwork.swift */; };
+		A05A26FB2C778F68DD37BF32 /* DeviceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F74BC189247B422900D1512 /* DeviceRepository.swift */; };
+		A0666CEEBF146DFA2551690E /* ToolPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04A0860CA86A74688E0C1BC /* ToolPlugin.swift */; };
+		A35AC47C08B4A047F7CBFA1D /* NetworkInfoRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA52861EB697FD6BF136C6A /* NetworkInfoRow.swift */; };
+		A48866FCF15E8C531993F648 /* SSHKeyPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD43245FED194D5D2676BA6 /* SSHKeyPair.swift */; };
+		A64B0F940B3E41FC0B9AB92F /* toolpouchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7D13A38BE946CA312E7939 /* toolpouchUITests.swift */; };
+		A7154A51CF20FCE11569E275 /* SystemSSHKeyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E8D3D1B5C8D15796C21E8C /* SystemSSHKeyManager.swift */; };
+		A79A953BF171341F1B00ED43 /* AppNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486E0B5DA572E325C37A08E8 /* AppNavigationBar.swift */; };
+		AA58AABDC74972A41F577299 /* SSHKeyGeneratorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1DF3173F6D3B336164FE22 /* SSHKeyGeneratorView.swift */; };
+		AA8FA6A254FC851CF9FE8C79 /* NetworkInfoField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FB5C88192D4AA72D86A6F7 /* NetworkInfoField.swift */; };
+		AB916832C9B0B40E56E222F9 /* ToolTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10ED5908365A774462E04218 /* ToolTile.swift */; };
+		ABC3CE4504C17DF3AB30D9AA /* AppPreferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3207B6715EC802F3AB4AF7AE /* AppPreferenceKey.swift */; };
+		ABCA694C43FD80F2E527813B /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652A219FC27D38FB8350614F /* DashboardView.swift */; };
+		ACC666929E0EF60531C12F60 /* SSHKeyGenerationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD209DD3E7B409475BC75677 /* SSHKeyGenerationRequest.swift */; };
+		AD7B2D8ED728160091567729 /* ToolDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8C7F47CD104903A1C8E3BB /* ToolDefinition.swift */; };
+		AD8429815FEE1C9573ECE6C5 /* AppNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486E0B5DA572E325C37A08E8 /* AppNavigationBar.swift */; };
+		ADCB7F29150FF64C0D04D52A /* NetworkSnapshotRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 613472AD1F3CD0C844757235 /* NetworkSnapshotRepositoryTests.swift */; };
+		AEDC23E685A4369E474CCD59 /* PublicIPAddressClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 613825FBCF371AAEF5C50045 /* PublicIPAddressClient.swift */; };
+		AEE625E3CE05F15DD14E7B2A /* AppDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED60A6037EA8081E403E1B9D /* AppDependencies.swift */; };
+		B093B59C67E948D6CB1E5C77 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8E5DAE35E23D3110464A3F /* Device.swift */; };
+		B0F2A7C71341956FE857203B /* NetworkInfoSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A55F53A385628990EFBB758 /* NetworkInfoSnapshot.swift */; };
+		B2AB4CA3EC86AA903E2C6623 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF8CBBAF423DFECF978F7B1 /* AppDelegate.swift */; };
+		B5459CE50C22A60532F90047 /* AppRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F123208D540B6F39E30ADFB /* AppRoute.swift */; };
+		B72FD2641F288E2A9A981931 /* AdaptiveGlassGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = E637C4DC67B3DD861918D253 /* AdaptiveGlassGrid.swift */; };
+		B73435A8CB44B85F75445D36 /* WiFiScannerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E1FC80540C5393C219837F /* WiFiScannerViewModel.swift */; };
+		B83E627CCB1667A6451FC509 /* NetworkInfoCollecting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389C80ADDC1698181A5ACEE8 /* NetworkInfoCollecting.swift */; };
+		BA827A24028012A0B9E95DD1 /* NetworkInfoCollecting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389C80ADDC1698181A5ACEE8 /* NetworkInfoCollecting.swift */; };
+		BB2092BAA442031D5C03FD6B /* WiFiScannerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231DDE71DEC4A7FDBBE3ECDF /* WiFiScannerPlugin.swift */; };
+		BB5B2C643DEA11B05A613C00 /* CoreWLANWiFiScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E74AFBAAF9C353F5981D03 /* CoreWLANWiFiScanner.swift */; };
+		BCBC4B05E55A6CF0BB304F64 /* SSHKeyFolderAccessing.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8358CA68FA245C6C2F3E119 /* SSHKeyFolderAccessing.swift */; };
+		BD4B3EE1981215720BE3E1B9 /* ToolCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97EDA481D4D7D4168B49A97 /* ToolCategoryView.swift */; };
+		BEA82F959DED3CAECFBDEA36 /* NetworkInfoHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DE4EB0157569E7E4C84647B /* NetworkInfoHeader.swift */; };
+		BEBA1D76B84D403A7E1BCC73 /* ToolTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10ED5908365A774462E04218 /* ToolTile.swift */; };
+		BF955729E87D37E33AD81E10 /* ToolCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97EDA481D4D7D4168B49A97 /* ToolCategoryView.swift */; };
+		BFB6CF9F59252D2C36FFD7D0 /* NetworkInfoSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A55F53A385628990EFBB758 /* NetworkInfoSnapshot.swift */; };
+		C0755BC2CFC0D89A8D5DB9CF /* PlatformAvailabilityBadges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068B5412AE0377DC1B030D34 /* PlatformAvailabilityBadges.swift */; };
+		C0992B92CFF4E1E727E157C8 /* StatusItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C25843D6261F583C4E5C70D /* StatusItemController.swift */; };
+		C13DE540427E96E37AF35BCF /* SystemClipboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBF1212FA8AC55E2EAA0C8D /* SystemClipboard.swift */; };
+		C1BA0843564046B7BD2B50BA /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77ADDC55F188549017A4FC6 /* MainWindowController.swift */; };
+		C2A3CC69E33118F04CF948C7 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167154D785DBC4023998195A /* SettingsView.swift */; };
+		C42851FFF75E5805EB4A4AB1 /* AppNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486E0B5DA572E325C37A08E8 /* AppNavigationBar.swift */; };
+		C7F7E9B880808FA421CB7993 /* NetworkInfoRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA52861EB697FD6BF136C6A /* NetworkInfoRow.swift */; };
+		C997C1B329407750FD065015 /* SSHKeyManaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5180691BB279D3D1070D3EE /* SSHKeyManaging.swift */; };
+		CA0FCC3C9D49568422FFB64C /* ThreeColumnToolNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C243B34E2646F278205FD31D /* ThreeColumnToolNavigationView.swift */; };
+		CA85FB64B5F6FD9E4A69419D /* NetworkInfoField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FB5C88192D4AA72D86A6F7 /* NetworkInfoField.swift */; };
+		CB2594379B352898CA742676 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652A219FC27D38FB8350614F /* DashboardView.swift */; };
+		CB2B03C7D6033EB6B6E35170 /* SSHKeyFolderAccessing.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8358CA68FA245C6C2F3E119 /* SSHKeyFolderAccessing.swift */; };
+		CD94AA35F1F870FE3D8FAD47 /* WiFiNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDFD56325BA8DA558567EAF /* WiFiNetwork.swift */; };
+		CDA832BC30A5A5F83B27EB3D /* DeviceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F74BC189247B422900D1512 /* DeviceRepository.swift */; };
+		CEA80FEE501AFA5FD07DF729 /* WiFiScannerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231DDE71DEC4A7FDBBE3ECDF /* WiFiScannerPlugin.swift */; };
+		CEBECCE1027E414675403673 /* ToolCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E733BEC952E47417A2A2BB /* ToolCategory.swift */; };
+		D0E7C879812759B4D743C21B /* NetworkSnapshotRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7964692682D3B2BA128346 /* NetworkSnapshotRecord.swift */; };
+		D3086114888E25B15D3DDC88 /* WiFiScannerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E1FC80540C5393C219837F /* WiFiScannerViewModel.swift */; };
+		D33EE39B6DD2A8E6252C1764 /* ToolPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04A0860CA86A74688E0C1BC /* ToolPlugin.swift */; };
+		D410F8BA4F5A4BD21B17AE42 /* WiFiScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C544F3B6073C2E3E87BF6FF /* WiFiScannerView.swift */; };
+		D577EAC537407E10CD5ACF70 /* NetworkSnapshotRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0839652F731456FD41375E /* NetworkSnapshotRepository.swift */; };
+		DA3BB61C85DD54C5F1FB6239 /* CompactToolNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6DCDD6E504FA0A155CE1C5 /* CompactToolNavigationView.swift */; };
+		DD56F6C7F19626D56C4AD725 /* SecurityScopedSSHKeyFolderStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F6B18DF4AE88C398D82C5F /* SecurityScopedSSHKeyFolderStore.swift */; };
+		DE68615AD1B77F5C4D50AA12 /* ToolPouchWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6D06D4FD65DEA2EFBE51DC /* ToolPouchWatchApp.swift */; };
+		DF4A0D136C7AE473A44A394A /* ThreeColumnToolNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C243B34E2646F278205FD31D /* ThreeColumnToolNavigationView.swift */; };
+		DFD29A1229297453A9B0CDC4 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8E5DAE35E23D3110464A3F /* Device.swift */; };
+		E0E6D5DFA63DFE1C527017CC /* NetworkConnectionKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DE1400A6CF3F3656B0A996 /* NetworkConnectionKind.swift */; };
+		E18739CB88A905ACFDCD2F9F /* AppPreferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3207B6715EC802F3AB4AF7AE /* AppPreferenceKey.swift */; };
+		E549D4A9F1A0406556049D5C /* AdaptiveGlassGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = E637C4DC67B3DD861918D253 /* AdaptiveGlassGrid.swift */; };
+		E579046C62FFC80C6B08BA89 /* NetworkSnapshotCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B4905FA429F9A69EA42030 /* NetworkSnapshotCard.swift */; };
+		E78E54C6DBC89EFE49B938A3 /* SSHKeyAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269BC573505014B0850537B7 /* SSHKeyAlgorithm.swift */; };
+		E8571E799753686AC1067335 /* WiFiScanAuthorizing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C47458686DEDC5F46989160 /* WiFiScanAuthorizing.swift */; };
+		E8A94992DB381062A248D104 /* SSHKeysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ECA7F131E1C24329B43A94 /* SSHKeysView.swift */; };
+		EB3832E54696325C45D9CB7E /* ToolPouchLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3664562A15795EA055869A /* ToolPouchLayout.swift */; };
+		EDBC9DDE61DB088552EB9058 /* RecentDevicesCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0795992790521E5BF10EE6 /* RecentDevicesCard.swift */; };
+		EE150DCDB7CE318D7181A903 /* RecentDevicesCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0795992790521E5BF10EE6 /* RecentDevicesCard.swift */; };
+		EF685479F2F1E43EB1163D53 /* ToolExecutionBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CB05F150518589EE236F1B /* ToolExecutionBackend.swift */; };
+		EFFCC806B55503683C6C316E /* DeviceRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06AA0D829C6830E286FDDCA /* DeviceRecord.swift */; };
+		F018E9955580F998D89FE553 /* SSHKeysViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A980B0D5EFAD5956EBE83012 /* SSHKeysViewModel.swift */; };
+		F140D4069A012EFD1470823B /* NetworkInfoCollectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D49D6F3EB8DBDD7DDEA6D2 /* NetworkInfoCollectorTests.swift */; };
+		F145BAE4E9CF84FEEA01147D /* WiFiScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C544F3B6073C2E3E87BF6FF /* WiFiScannerView.swift */; };
+		F14B495ED2E7C0B8B204E3F4 /* NetworkInfoSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A55F53A385628990EFBB758 /* NetworkInfoSnapshot.swift */; };
+		F1AF9C281F8FA80EB0E4BAF2 /* CoreWLANWiFiScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E74AFBAAF9C353F5981D03 /* CoreWLANWiFiScanner.swift */; };
+		F57777F9C56FD564EF72D739 /* NetworkInfoCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFE2C69164860B77C1CE118 /* NetworkInfoCollector.swift */; };
+		F70F97AF8EDDFC8031B24965 /* PersistenceContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD21195E15DB2FA21697E47B /* PersistenceContainer.swift */; };
+		F75870C3F3DD07FD47369ACE /* CoreLocationWiFiScanAuthorizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B23E488E61D65E44716E050 /* CoreLocationWiFiScanAuthorizer.swift */; };
+		F7F83FB2AE66ED1E12CA9A1E /* SSHKeysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ECA7F131E1C24329B43A94 /* SSHKeysView.swift */; };
+		F869D30C1258B38CBBC508A6 /* SSHKeysPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840DFE2587B04635E57C17DE /* SSHKeysPlugin.swift */; };
+		FC02516D945A9CCD382E8F5F /* WiFiNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDFD56325BA8DA558567EAF /* WiFiNetwork.swift */; };
+		FC36322C47C21386D8BD8632 /* SSHKeyAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269BC573505014B0850537B7 /* SSHKeyAlgorithm.swift */; };
+		FD0FED97247E82D1D17AD81E /* ToolPouchLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3664562A15795EA055869A /* ToolPouchLayout.swift */; };
+		FDBB142D70815C58EC7D8546 /* NetworkSnapshotStoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CDE5D27C1075AC7F50FD58 /* NetworkSnapshotStoring.swift */; };
+		FE33F336CF25370890E63047 /* SystemDeviceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8D3FC935B4D99726F6CC47 /* SystemDeviceProvider.swift */; };
+		FE4C3B285E7E890329A52579 /* NetworkSnapshotRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0839652F731456FD41375E /* NetworkSnapshotRepository.swift */; };
+		FF0DB948F6336E5D61AE54DC /* AppRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F123208D540B6F39E30ADFB /* AppRoute.swift */; };
+		FFA3420F960A8690714955EB /* PersistenceContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD21195E15DB2FA21697E47B /* PersistenceContainer.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
-		5EEBD0253018BA3A0049C899 /* PBXContainerItemProxy */ = {
+		25DB6E37EEB23E6CDCDA308A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 5EEBD00B3018BA3A0049C899 /* Project object */;
+			containerPortal = 3EF4D52CBB9880093EF673CC /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 5EEBD0123018BA3A0049C899;
+			remoteGlobalIDString = 14726780809B4D2608DD15A2;
 			remoteInfo = toolpouch;
 		};
-		5EEBD02F3018BA3A0049C899 /* PBXContainerItemProxy */ = {
+		5C1760561C7C10828D0FA845 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 5EEBD00B3018BA3A0049C899 /* Project object */;
+			containerPortal = 3EF4D52CBB9880093EF673CC /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 5EEBD0123018BA3A0049C899;
+			remoteGlobalIDString = 14726780809B4D2608DD15A2;
 			remoteInfo = toolpouch;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		5EEBD0133018BA3A0049C899 /* toolpouch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = toolpouch.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		5EEBD0243018BA3A0049C899 /* toolpouchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = toolpouchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		5EEBD02E3018BA3A0049C899 /* toolpouchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = toolpouchUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		01B4905FA429F9A69EA42030 /* NetworkSnapshotCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSnapshotCard.swift; sourceTree = "<group>"; };
+		053DD5B5A84D23307A1B22EB /* ToolPouch.macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ToolPouch.macOS.entitlements; sourceTree = "<group>"; };
+		068B5412AE0377DC1B030D34 /* PlatformAvailabilityBadges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformAvailabilityBadges.swift; sourceTree = "<group>"; };
+		0A1E9F5F6CB93B69D8D9CCF5 /* ToolRegistryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolRegistryTests.swift; sourceTree = "<group>"; };
+		0DBF1212FA8AC55E2EAA0C8D /* SystemClipboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemClipboard.swift; sourceTree = "<group>"; };
+		10ED5908365A774462E04218 /* ToolTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolTile.swift; sourceTree = "<group>"; };
+		153E7086FF1D7522B52E1556 /* MenuBarRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarRootView.swift; sourceTree = "<group>"; };
+		164CC9FCBC142A35264B35B2 /* DeviceKind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceKind.swift; sourceTree = "<group>"; };
+		167154D785DBC4023998195A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		1779F66361F5662740C4F6FA /* WiFiNetworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFiNetworkTests.swift; sourceTree = "<group>"; };
+		1BF8CBBAF423DFECF978F7B1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		1CA215E876FB90EF78DDF7FD /* NetworkInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkInfoViewModel.swift; sourceTree = "<group>"; };
+		1DFE2C69164860B77C1CE118 /* NetworkInfoCollector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkInfoCollector.swift; sourceTree = "<group>"; };
+		1FF1143194B31D435351C5A4 /* SystemSSHKeyManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemSSHKeyManagerTests.swift; sourceTree = "<group>"; };
+		231DDE71DEC4A7FDBBE3ECDF /* WiFiScannerPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFiScannerPlugin.swift; sourceTree = "<group>"; };
+		24D49D6F3EB8DBDD7DDEA6D2 /* NetworkInfoCollectorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkInfoCollectorTests.swift; sourceTree = "<group>"; };
+		269BC573505014B0850537B7 /* SSHKeyAlgorithm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSHKeyAlgorithm.swift; sourceTree = "<group>"; };
+		2F123208D540B6F39E30ADFB /* AppRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRoute.swift; sourceTree = "<group>"; };
+		2F8C7F47CD104903A1C8E3BB /* ToolDefinition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolDefinition.swift; sourceTree = "<group>"; };
+		2F8D3FC935B4D99726F6CC47 /* SystemDeviceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemDeviceProvider.swift; sourceTree = "<group>"; };
+		30B4B04244B5446F1606D3C1 /* AdaptiveMobileRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptiveMobileRootView.swift; sourceTree = "<group>"; };
+		3207B6715EC802F3AB4AF7AE /* AppPreferenceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPreferenceKey.swift; sourceTree = "<group>"; };
+		32DAE6574E349860CCECFEDB /* ToolPlatform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolPlatform.swift; sourceTree = "<group>"; };
+		389C80ADDC1698181A5ACEE8 /* NetworkInfoCollecting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkInfoCollecting.swift; sourceTree = "<group>"; };
+		3B23E488E61D65E44716E050 /* CoreLocationWiFiScanAuthorizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreLocationWiFiScanAuthorizer.swift; sourceTree = "<group>"; };
+		3C47458686DEDC5F46989160 /* WiFiScanAuthorizing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFiScanAuthorizing.swift; sourceTree = "<group>"; };
+		3F74BC189247B422900D1512 /* DeviceRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceRepository.swift; sourceTree = "<group>"; };
+		45DE1400A6CF3F3656B0A996 /* NetworkConnectionKind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConnectionKind.swift; sourceTree = "<group>"; };
+		47ECA7F131E1C24329B43A94 /* SSHKeysView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSHKeysView.swift; sourceTree = "<group>"; };
+		486E0B5DA572E325C37A08E8 /* AppNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigationBar.swift; sourceTree = "<group>"; };
+		4C544F3B6073C2E3E87BF6FF /* WiFiScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFiScannerView.swift; sourceTree = "<group>"; };
+		4D6D06D4FD65DEA2EFBE51DC /* ToolPouchWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolPouchWatchApp.swift; sourceTree = "<group>"; };
+		4F1DF3173F6D3B336164FE22 /* SSHKeyGeneratorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSHKeyGeneratorView.swift; sourceTree = "<group>"; };
+		4FA52861EB697FD6BF136C6A /* NetworkInfoRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkInfoRow.swift; sourceTree = "<group>"; };
+		613472AD1F3CD0C844757235 /* NetworkSnapshotRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSnapshotRepositoryTests.swift; sourceTree = "<group>"; };
+		613825FBCF371AAEF5C50045 /* PublicIPAddressClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicIPAddressClient.swift; sourceTree = "<group>"; };
+		652A219FC27D38FB8350614F /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
+		6B6DCDD6E504FA0A155CE1C5 /* CompactToolNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactToolNavigationView.swift; sourceTree = "<group>"; };
+		71CB05F150518589EE236F1B /* ToolExecutionBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolExecutionBackend.swift; sourceTree = "<group>"; };
+		76E74AFBAAF9C353F5981D03 /* CoreWLANWiFiScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreWLANWiFiScanner.swift; sourceTree = "<group>"; };
+		78FA0D56E5D5E69642D8427A /* ScreenHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenHeader.swift; sourceTree = "<group>"; };
+		7A55F53A385628990EFBB758 /* NetworkInfoSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkInfoSnapshot.swift; sourceTree = "<group>"; };
+		800CC3CC149F184FED2DA6C4 /* CopyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyButton.swift; sourceTree = "<group>"; };
+		80F6B18DF4AE88C398D82C5F /* SecurityScopedSSHKeyFolderStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityScopedSSHKeyFolderStore.swift; sourceTree = "<group>"; };
+		815CC1B8FA221C74F665DDF3 /* toolpouch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = toolpouch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		840DFE2587B04635E57C17DE /* SSHKeysPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSHKeysPlugin.swift; sourceTree = "<group>"; };
+		8AD43245FED194D5D2676BA6 /* SSHKeyPair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSHKeyPair.swift; sourceTree = "<group>"; };
+		8C25843D6261F583C4E5C70D /* StatusItemController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusItemController.swift; sourceTree = "<group>"; };
+		90E1FC80540C5393C219837F /* WiFiScannerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFiScannerViewModel.swift; sourceTree = "<group>"; };
+		92E733BEC952E47417A2A2BB /* ToolCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolCategory.swift; sourceTree = "<group>"; };
+		9DE4EB0157569E7E4C84647B /* NetworkInfoHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkInfoHeader.swift; sourceTree = "<group>"; };
+		A73D4E1AFE4F1B694CFCBD55 /* NetworkInfoPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkInfoPlugin.swift; sourceTree = "<group>"; };
+		A980B0D5EFAD5956EBE83012 /* SSHKeysViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSHKeysViewModel.swift; sourceTree = "<group>"; };
+		AA655FB1A90B0BE32860CA44 /* ToolPouchMobileApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolPouchMobileApp.swift; sourceTree = "<group>"; };
+		AB7964692682D3B2BA128346 /* NetworkSnapshotRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSnapshotRecord.swift; sourceTree = "<group>"; };
+		AD0839652F731456FD41375E /* NetworkSnapshotRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSnapshotRepository.swift; sourceTree = "<group>"; };
+		B04A0860CA86A74688E0C1BC /* ToolPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolPlugin.swift; sourceTree = "<group>"; };
+		B34E890EF011E9EE5FFC9E11 /* ToolPouchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolPouchApp.swift; sourceTree = "<group>"; };
+		B60D9D80DDAEE87F50A0CA28 /* WatchRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchRootView.swift; sourceTree = "<group>"; };
+		B6A8BDAFE9860DE3BA5E6E63 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B6CDE5D27C1075AC7F50FD58 /* NetworkSnapshotStoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSnapshotStoring.swift; sourceTree = "<group>"; };
+		B9DB69B90FF76B773D1834D9 /* DeviceStoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceStoring.swift; sourceTree = "<group>"; };
+		BD21195E15DB2FA21697E47B /* PersistenceContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceContainer.swift; sourceTree = "<group>"; };
+		BE0795992790521E5BF10EE6 /* RecentDevicesCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentDevicesCard.swift; sourceTree = "<group>"; };
+		BF8E5DAE35E23D3110464A3F /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
+		C243B34E2646F278205FD31D /* ThreeColumnToolNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeColumnToolNavigationView.swift; sourceTree = "<group>"; };
+		C77ADDC55F188549017A4FC6 /* MainWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
+		C80F35597746325EAB898004 /* toolpouchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = toolpouchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD3664562A15795EA055869A /* ToolPouchLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolPouchLayout.swift; sourceTree = "<group>"; };
+		CE962C93DF0F1957BEEE87BA /* CurrentDeviceProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentDeviceProviding.swift; sourceTree = "<group>"; };
+		CEDFD56325BA8DA558567EAF /* WiFiNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFiNetwork.swift; sourceTree = "<group>"; };
+		D0E9A70E2AA762BC89B1108E /* NetworkInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkInfoView.swift; sourceTree = "<group>"; };
+		D2DA9A1A268CE0EB67C77005 /* LocalNetworkInfoProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNetworkInfoProviding.swift; sourceTree = "<group>"; };
+		D48FEED1313015B7E483AA3D /* toolpouchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = toolpouchUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D97EDA481D4D7D4168B49A97 /* ToolCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolCategoryView.swift; sourceTree = "<group>"; };
+		DA7D13A38BE946CA312E7939 /* toolpouchUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = toolpouchUITests.swift; sourceTree = "<group>"; };
+		DD209DD3E7B409475BC75677 /* SSHKeyGenerationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSHKeyGenerationRequest.swift; sourceTree = "<group>"; };
+		E3E8D3D1B5C8D15796C21E8C /* SystemSSHKeyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemSSHKeyManager.swift; sourceTree = "<group>"; };
+		E5180691BB279D3D1070D3EE /* SSHKeyManaging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSHKeyManaging.swift; sourceTree = "<group>"; };
+		E637C4DC67B3DD861918D253 /* AdaptiveGlassGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptiveGlassGrid.swift; sourceTree = "<group>"; };
+		E91A05C7D22AD616E18145C8 /* SystemLocalNetworkInfoProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemLocalNetworkInfoProvider.swift; sourceTree = "<group>"; };
+		EABA8D9B6F8966BF9B9C182F /* toolpouchMobile.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = toolpouchMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC61600DADE362B8D4D38F80 /* toolpouchWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = toolpouchWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED60A6037EA8081E403E1B9D /* AppDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDependencies.swift; sourceTree = "<group>"; };
+		F06AA0D829C6830E286FDDCA /* DeviceRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceRecord.swift; sourceTree = "<group>"; };
+		F09FEDFF9AC030734060D785 /* ToolRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolRegistry.swift; sourceTree = "<group>"; };
+		F8358CA68FA245C6C2F3E119 /* SSHKeyFolderAccessing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSHKeyFolderAccessing.swift; sourceTree = "<group>"; };
+		F8FB5C88192D4AA72D86A6F7 /* NetworkInfoField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkInfoField.swift; sourceTree = "<group>"; };
+		FD183E5DDD24365712DF12AE /* WiFiScanning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFiScanning.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		5EEBD0343018BA3A0049C899 /* Exceptions for "toolpouch" folder in "toolpouch" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
+/* Begin PBXGroup section */
+		005F11DDCEE1AE7CF91955EC /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				9E4E0A51740FF92935FC2F98 /* Presentation */,
 			);
-			target = 5EEBD0123018BA3A0049C899 /* toolpouch */;
+			path = Dashboard;
+			sourceTree = "<group>";
 		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		5EEBD0153018BA3A0049C899 /* toolpouch */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				5EEBD0343018BA3A0049C899 /* Exceptions for "toolpouch" folder in "toolpouch" target */,
+		0101C5D639B9DE32B0151CD0 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				EA4ADD14DDB29823FEBFEB3F /* Presentation */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		0569D282F9B4C788ECE2352E /* macOS */ = {
+			isa = PBXGroup;
+			children = (
+				2AC95EC7389ED87C102F57F1 /* Application */,
+				396704B4C07DAEF382862E54 /* MenuBar */,
+				CEC92BEC4D7A94A02ECE9565 /* Window */,
+			);
+			path = macOS;
+			sourceTree = "<group>";
+		};
+		096CC8BB361FDA16154DA019 /* toolpouchTests */ = {
+			isa = PBXGroup;
+			children = (
+				24D49D6F3EB8DBDD7DDEA6D2 /* NetworkInfoCollectorTests.swift */,
+				613472AD1F3CD0C844757235 /* NetworkSnapshotRepositoryTests.swift */,
+				1FF1143194B31D435351C5A4 /* SystemSSHKeyManagerTests.swift */,
+				0A1E9F5F6CB93B69D8D9CCF5 /* ToolRegistryTests.swift */,
+				1779F66361F5662740C4F6FA /* WiFiNetworkTests.swift */,
+			);
+			path = toolpouchTests;
+			sourceTree = "<group>";
+		};
+		0C9E275DB225186D1663E997 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				6B6DCDD6E504FA0A155CE1C5 /* CompactToolNavigationView.swift */,
+				C243B34E2646F278205FD31D /* ThreeColumnToolNavigationView.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		11C707698206CF01B18D4DCC /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				B7FB4D341DB04F35C4CC5978 /* Devices */,
+				B7F1079888D9688BFBBC6DD8 /* Preferences */,
+				B04827E18281AFF6A34FB8B9 /* Tools */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		1376ED3D5C2F8308DEE982CC /* Clipboard */ = {
+			isa = PBXGroup;
+			children = (
+				0DBF1212FA8AC55E2EAA0C8D /* SystemClipboard.swift */,
+			);
+			path = Clipboard;
+			sourceTree = "<group>";
+		};
+		1A310EC5A293D47452100AFF /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				1376ED3D5C2F8308DEE982CC /* Clipboard */,
+				8F2E02458AD56640417B284C /* Devices */,
+				0C9E275DB225186D1663E997 /* Navigation */,
+				714FEBF759D9F79D3B2CE87F /* Network */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		27C5D1EECED801E6DFD0C4D9 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				3B23E488E61D65E44716E050 /* CoreLocationWiFiScanAuthorizer.swift */,
+				76E74AFBAAF9C353F5981D03 /* CoreWLANWiFiScanner.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		2AC0CCC6970BA676041F733C /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				F8FB5C88192D4AA72D86A6F7 /* NetworkInfoField.swift */,
+				9DE4EB0157569E7E4C84647B /* NetworkInfoHeader.swift */,
+				4FA52861EB697FD6BF136C6A /* NetworkInfoRow.swift */,
+				D0E9A70E2AA762BC89B1108E /* NetworkInfoView.swift */,
+				1CA215E876FB90EF78DDF7FD /* NetworkInfoViewModel.swift */,
+				01B4905FA429F9A69EA42030 /* NetworkSnapshotCard.swift */,
+				BE0795992790521E5BF10EE6 /* RecentDevicesCard.swift */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		2AC95EC7389ED87C102F57F1 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				1BF8CBBAF423DFECF978F7B1 /* AppDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		2BD2C5E31241AA891D775EBC /* watchOS */ = {
+			isa = PBXGroup;
+			children = (
+				4D6D06D4FD65DEA2EFBE51DC /* ToolPouchWatchApp.swift */,
+			);
+			path = watchOS;
+			sourceTree = "<group>";
+		};
+		2C3DFD07ECB8E7B16ABFC4FB /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				CEDFD56325BA8DA558567EAF /* WiFiNetwork.swift */,
+				3C47458686DEDC5F46989160 /* WiFiScanAuthorizing.swift */,
+				FD183E5DDD24365712DF12AE /* WiFiScanning.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		33AEC774654E1E096581D272 /* Infrastructure */ = {
+			isa = PBXGroup;
+			children = (
+				756FD6FBA1BE449CEBEDE84A /* Persistence */,
+			);
+			path = Infrastructure;
+			sourceTree = "<group>";
+		};
+		33E3ABB0DA0DCE04F822E91E /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				D2DA9A1A268CE0EB67C77005 /* LocalNetworkInfoProviding.swift */,
+				1DFE2C69164860B77C1CE118 /* NetworkInfoCollector.swift */,
+				613825FBCF371AAEF5C50045 /* PublicIPAddressClient.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		3556513703094BEF17F51456 /* watchOS */ = {
+			isa = PBXGroup;
+			children = (
+				4AF2BFA29E12915A9E5F0328 /* Navigation */,
+			);
+			path = watchOS;
+			sourceTree = "<group>";
+		};
+		396704B4C07DAEF382862E54 /* MenuBar */ = {
+			isa = PBXGroup;
+			children = (
+				153E7086FF1D7522B52E1556 /* MenuBarRootView.swift */,
+				8C25843D6261F583C4E5C70D /* StatusItemController.swift */,
+			);
+			path = MenuBar;
+			sourceTree = "<group>";
+		};
+		44B555790B10D6F1F4E2294A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				815CC1B8FA221C74F665DDF3 /* toolpouch.app */,
+				EABA8D9B6F8966BF9B9C182F /* toolpouchMobile.app */,
+				C80F35597746325EAB898004 /* toolpouchTests.xctest */,
+				D48FEED1313015B7E483AA3D /* toolpouchUITests.xctest */,
+				EC61600DADE362B8D4D38F80 /* toolpouchWatch.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		45B0B9F85D0F4737478C7953 /* Platform */ = {
+			isa = PBXGroup;
+			children = (
+				9E1C07B4EF33E439086AF516 /* iOS */,
+				0569D282F9B4C788ECE2352E /* macOS */,
+				1A310EC5A293D47452100AFF /* Shared */,
+				3556513703094BEF17F51456 /* watchOS */,
+			);
+			path = Platform;
+			sourceTree = "<group>";
+		};
+		4AF2BFA29E12915A9E5F0328 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				B60D9D80DDAEE87F50A0CA28 /* WatchRootView.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		507EF58A142CE6717EA396C3 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				AA655FB1A90B0BE32860CA44 /* ToolPouchMobileApp.swift */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		5764C452A9F0F677E7CCBD1F /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				269BC573505014B0850537B7 /* SSHKeyAlgorithm.swift */,
+				F8358CA68FA245C6C2F3E119 /* SSHKeyFolderAccessing.swift */,
+				DD209DD3E7B409475BC75677 /* SSHKeyGenerationRequest.swift */,
+				E5180691BB279D3D1070D3EE /* SSHKeyManaging.swift */,
+				8AD43245FED194D5D2676BA6 /* SSHKeyPair.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		5C1E5E8475BEA8E3A9C09443 /* toolpouchUITests */ = {
+			isa = PBXGroup;
+			children = (
+				DA7D13A38BE946CA312E7939 /* toolpouchUITests.swift */,
+			);
+			path = toolpouchUITests;
+			sourceTree = "<group>";
+		};
+		5F5B0CE657E516D14E532255 /* Plugins */ = {
+			isa = PBXGroup;
+			children = (
+				B04A0860CA86A74688E0C1BC /* ToolPlugin.swift */,
+			);
+			path = Plugins;
+			sourceTree = "<group>";
+		};
+		6DC480851817804E5EB5E6E9 = {
+			isa = PBXGroup;
+			children = (
+				8BA759C81EB45E85E966005F /* toolpouch */,
+				096CC8BB361FDA16154DA019 /* toolpouchTests */,
+				5C1E5E8475BEA8E3A9C09443 /* toolpouchUITests */,
+				44B555790B10D6F1F4E2294A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6FF50D89946766DE4AA735FB /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				45DE1400A6CF3F3656B0A996 /* NetworkConnectionKind.swift */,
+				389C80ADDC1698181A5ACEE8 /* NetworkInfoCollecting.swift */,
+				7A55F53A385628990EFBB758 /* NetworkInfoSnapshot.swift */,
+				B6CDE5D27C1075AC7F50FD58 /* NetworkSnapshotStoring.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		714FEBF759D9F79D3B2CE87F /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				E91A05C7D22AD616E18145C8 /* SystemLocalNetworkInfoProvider.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		719FC33C3068DED4FDC7F0A2 /* Style */ = {
+			isa = PBXGroup;
+			children = (
+				CD3664562A15795EA055869A /* ToolPouchLayout.swift */,
+			);
+			path = Style;
+			sourceTree = "<group>";
+		};
+		756FD6FBA1BE449CEBEDE84A /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				F06AA0D829C6830E286FDDCA /* DeviceRecord.swift */,
+				3F74BC189247B422900D1512 /* DeviceRepository.swift */,
+				B9DB69B90FF76B773D1834D9 /* DeviceStoring.swift */,
+				AB7964692682D3B2BA128346 /* NetworkSnapshotRecord.swift */,
+				AD0839652F731456FD41375E /* NetworkSnapshotRepository.swift */,
+				BD21195E15DB2FA21697E47B /* PersistenceContainer.swift */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
+		75868E193B4315953D986F01 /* NetworkInfo */ = {
+			isa = PBXGroup;
+			children = (
+				33E3ABB0DA0DCE04F822E91E /* Data */,
+				6FF50D89946766DE4AA735FB /* Domain */,
+				D28A27A9E89142672303FC73 /* Plugin */,
+				2AC0CCC6970BA676041F733C /* Presentation */,
+			);
+			path = NetworkInfo;
+			sourceTree = "<group>";
+		};
+		856F739F5C1F9E71025D5017 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				4C544F3B6073C2E3E87BF6FF /* WiFiScannerView.swift */,
+				90E1FC80540C5393C219837F /* WiFiScannerViewModel.swift */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		8BA759C81EB45E85E966005F /* toolpouch */ = {
+			isa = PBXGroup;
+			children = (
+				B6A8BDAFE9860DE3BA5E6E63 /* Assets.xcassets */,
+				053DD5B5A84D23307A1B22EB /* ToolPouch.macOS.entitlements */,
+				B62FD1BF629DBBF2AFA09311 /* App */,
+				EE2E4FCB87CC449DC14F4EB7 /* Applications */,
+				11C707698206CF01B18D4DCC /* Core */,
+				A8D88001D153213694B72DB6 /* DesignSystem */,
+				B75F1978FACC32C62756A3EA /* Features */,
+				33AEC774654E1E096581D272 /* Infrastructure */,
+				45B0B9F85D0F4737478C7953 /* Platform */,
 			);
 			path = toolpouch;
 			sourceTree = "<group>";
 		};
-		5EEBD0273018BA3A0049C899 /* toolpouchTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = toolpouchTests;
-			sourceTree = "<group>";
-		};
-		5EEBD0313018BA3A0049C899 /* toolpouchUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = toolpouchUITests;
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
-
-/* Begin PBXFrameworksBuildPhase section */
-		5EEBD0103018BA3A0049C899 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			files = (
-			);
-		};
-		5EEBD0213018BA3A0049C899 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			files = (
-			);
-		};
-		5EEBD02B3018BA3A0049C899 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			files = (
-			);
-		};
-/* End PBXFrameworksBuildPhase section */
-
-/* Begin PBXGroup section */
-		5EEBD00A3018BA3A0049C899 = {
+		8F2E02458AD56640417B284C /* Devices */ = {
 			isa = PBXGroup;
 			children = (
-				5EEBD0153018BA3A0049C899 /* toolpouch */,
-				5EEBD0273018BA3A0049C899 /* toolpouchTests */,
-				5EEBD0313018BA3A0049C899 /* toolpouchUITests */,
-				5EEBD0143018BA3A0049C899 /* Products */,
+				2F8D3FC935B4D99726F6CC47 /* SystemDeviceProvider.swift */,
 			);
+			path = Devices;
 			sourceTree = "<group>";
 		};
-		5EEBD0143018BA3A0049C899 /* Products */ = {
+		9E1C07B4EF33E439086AF516 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				5EEBD0133018BA3A0049C899 /* toolpouch.app */,
-				5EEBD0243018BA3A0049C899 /* toolpouchTests.xctest */,
-				5EEBD02E3018BA3A0049C899 /* toolpouchUITests.xctest */,
+				E3DD5F760862EF3A5919C87E /* Navigation */,
 			);
-			name = Products;
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		9E4E0A51740FF92935FC2F98 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				652A219FC27D38FB8350614F /* DashboardView.swift */,
+				D97EDA481D4D7D4168B49A97 /* ToolCategoryView.swift */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		A8D88001D153213694B72DB6 /* DesignSystem */ = {
+			isa = PBXGroup;
+			children = (
+				ACE0F9D9E51B744DC32A58E0 /* Components */,
+				719FC33C3068DED4FDC7F0A2 /* Style */,
+			);
+			path = DesignSystem;
+			sourceTree = "<group>";
+		};
+		ACE0F9D9E51B744DC32A58E0 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				E637C4DC67B3DD861918D253 /* AdaptiveGlassGrid.swift */,
+				486E0B5DA572E325C37A08E8 /* AppNavigationBar.swift */,
+				800CC3CC149F184FED2DA6C4 /* CopyButton.swift */,
+				068B5412AE0377DC1B030D34 /* PlatformAvailabilityBadges.swift */,
+				78FA0D56E5D5E69642D8427A /* ScreenHeader.swift */,
+				10ED5908365A774462E04218 /* ToolTile.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		B04827E18281AFF6A34FB8B9 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				92E733BEC952E47417A2A2BB /* ToolCategory.swift */,
+				2F8C7F47CD104903A1C8E3BB /* ToolDefinition.swift */,
+				71CB05F150518589EE236F1B /* ToolExecutionBackend.swift */,
+				32DAE6574E349860CCECFEDB /* ToolPlatform.swift */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		B62FD1BF629DBBF2AFA09311 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				ED60A6037EA8081E403E1B9D /* AppDependencies.swift */,
+				2F123208D540B6F39E30ADFB /* AppRoute.swift */,
+				B34E890EF011E9EE5FFC9E11 /* ToolPouchApp.swift */,
+				F09FEDFF9AC030734060D785 /* ToolRegistry.swift */,
+				5F5B0CE657E516D14E532255 /* Plugins */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		B75F1978FACC32C62756A3EA /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				005F11DDCEE1AE7CF91955EC /* Dashboard */,
+				75868E193B4315953D986F01 /* NetworkInfo */,
+				0101C5D639B9DE32B0151CD0 /* Settings */,
+				C2AB3C54B5D6E8B2A868F9DB /* SSHKeys */,
+				D5083986937AA49BF0E93DE4 /* WiFiScanner */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		B7F1079888D9688BFBBC6DD8 /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				3207B6715EC802F3AB4AF7AE /* AppPreferenceKey.swift */,
+			);
+			path = Preferences;
+			sourceTree = "<group>";
+		};
+		B7FB4D341DB04F35C4CC5978 /* Devices */ = {
+			isa = PBXGroup;
+			children = (
+				CE962C93DF0F1957BEEE87BA /* CurrentDeviceProviding.swift */,
+				BF8E5DAE35E23D3110464A3F /* Device.swift */,
+				164CC9FCBC142A35264B35B2 /* DeviceKind.swift */,
+			);
+			path = Devices;
+			sourceTree = "<group>";
+		};
+		C2AB3C54B5D6E8B2A868F9DB /* SSHKeys */ = {
+			isa = PBXGroup;
+			children = (
+				D14725606BB8D0BF166E7A33 /* Data */,
+				5764C452A9F0F677E7CCBD1F /* Domain */,
+				FF6359E9F5D7FDEA9A8961F7 /* Plugin */,
+				ED8809B46550635683EFFC5D /* Presentation */,
+			);
+			path = SSHKeys;
+			sourceTree = "<group>";
+		};
+		CEC92BEC4D7A94A02ECE9565 /* Window */ = {
+			isa = PBXGroup;
+			children = (
+				C77ADDC55F188549017A4FC6 /* MainWindowController.swift */,
+			);
+			path = Window;
+			sourceTree = "<group>";
+		};
+		D14725606BB8D0BF166E7A33 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				80F6B18DF4AE88C398D82C5F /* SecurityScopedSSHKeyFolderStore.swift */,
+				E3E8D3D1B5C8D15796C21E8C /* SystemSSHKeyManager.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		D28A27A9E89142672303FC73 /* Plugin */ = {
+			isa = PBXGroup;
+			children = (
+				A73D4E1AFE4F1B694CFCBD55 /* NetworkInfoPlugin.swift */,
+			);
+			path = Plugin;
+			sourceTree = "<group>";
+		};
+		D5083986937AA49BF0E93DE4 /* WiFiScanner */ = {
+			isa = PBXGroup;
+			children = (
+				27C5D1EECED801E6DFD0C4D9 /* Data */,
+				2C3DFD07ECB8E7B16ABFC4FB /* Domain */,
+				FD4F08B9847E787A4A930F39 /* Plugin */,
+				856F739F5C1F9E71025D5017 /* Presentation */,
+			);
+			path = WiFiScanner;
+			sourceTree = "<group>";
+		};
+		E3DD5F760862EF3A5919C87E /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				30B4B04244B5446F1606D3C1 /* AdaptiveMobileRootView.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		EA4ADD14DDB29823FEBFEB3F /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				167154D785DBC4023998195A /* SettingsView.swift */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		ED8809B46550635683EFFC5D /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				4F1DF3173F6D3B336164FE22 /* SSHKeyGeneratorView.swift */,
+				47ECA7F131E1C24329B43A94 /* SSHKeysView.swift */,
+				A980B0D5EFAD5956EBE83012 /* SSHKeysViewModel.swift */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		EE2E4FCB87CC449DC14F4EB7 /* Applications */ = {
+			isa = PBXGroup;
+			children = (
+				507EF58A142CE6717EA396C3 /* iOS */,
+				2BD2C5E31241AA891D775EBC /* watchOS */,
+			);
+			path = Applications;
+			sourceTree = "<group>";
+		};
+		FD4F08B9847E787A4A930F39 /* Plugin */ = {
+			isa = PBXGroup;
+			children = (
+				231DDE71DEC4A7FDBBE3ECDF /* WiFiScannerPlugin.swift */,
+			);
+			path = Plugin;
+			sourceTree = "<group>";
+		};
+		FF6359E9F5D7FDEA9A8961F7 /* Plugin */ = {
+			isa = PBXGroup;
+			children = (
+				840DFE2587B04635E57C17DE /* SSHKeysPlugin.swift */,
+			);
+			path = Plugin;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		5EEBD0123018BA3A0049C899 /* toolpouch */ = {
+		14726780809B4D2608DD15A2 /* toolpouch */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5EEBD0353018BA3A0049C899 /* Build configuration list for PBXNativeTarget "toolpouch" */;
+			buildConfigurationList = 4EF973BAACF7C5733176FEE0 /* Build configuration list for PBXNativeTarget "toolpouch" */;
 			buildPhases = (
-				5EEBD00F3018BA3A0049C899 /* Sources */,
-				5EEBD0103018BA3A0049C899 /* Frameworks */,
-				5EEBD0113018BA3A0049C899 /* Resources */,
+				14CC78D3677B838592A84406 /* Sources */,
+				C37FC9C514B62837A6EA6F28 /* Resources */,
 			);
 			buildRules = (
 			);
-			fileSystemSynchronizedGroups = (
-				5EEBD0153018BA3A0049C899 /* toolpouch */,
+			dependencies = (
 			);
 			name = toolpouch;
+			packageProductDependencies = (
+			);
 			productName = toolpouch;
-			productReference = 5EEBD0133018BA3A0049C899 /* toolpouch.app */;
+			productReference = 815CC1B8FA221C74F665DDF3 /* toolpouch.app */;
 			productType = "com.apple.product-type.application";
 		};
-		5EEBD0233018BA3A0049C899 /* toolpouchTests */ = {
+		5463B32FCF3B1254F540F6C9 /* toolpouchMobile */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5EEBD03A3018BA3A0049C899 /* Build configuration list for PBXNativeTarget "toolpouchTests" */;
+			buildConfigurationList = AE3212EC8AB5459466ED2974 /* Build configuration list for PBXNativeTarget "toolpouchMobile" */;
 			buildPhases = (
-				5EEBD0203018BA3A0049C899 /* Sources */,
-				5EEBD0213018BA3A0049C899 /* Frameworks */,
-				5EEBD0223018BA3A0049C899 /* Resources */,
+				86B17494C2CB4E505A2A65F9 /* Sources */,
+				A2D78DFAADEB8FA7EC196789 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				5EEBD0263018BA3A0049C899 /* PBXTargetDependency */,
 			);
-			fileSystemSynchronizedGroups = (
-				5EEBD0273018BA3A0049C899 /* toolpouchTests */,
+			name = toolpouchMobile;
+			packageProductDependencies = (
 			);
-			name = toolpouchTests;
-			productName = toolpouchTests;
-			productReference = 5EEBD0243018BA3A0049C899 /* toolpouchTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
+			productName = toolpouchMobile;
+			productReference = EABA8D9B6F8966BF9B9C182F /* toolpouchMobile.app */;
+			productType = "com.apple.product-type.application";
 		};
-		5EEBD02D3018BA3A0049C899 /* toolpouchUITests */ = {
+		5630F234AC8611F8A9E45302 /* toolpouchUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5EEBD03D3018BA3A0049C899 /* Build configuration list for PBXNativeTarget "toolpouchUITests" */;
+			buildConfigurationList = 0FD07BC2A48064CD411A5CCF /* Build configuration list for PBXNativeTarget "toolpouchUITests" */;
 			buildPhases = (
-				5EEBD02A3018BA3A0049C899 /* Sources */,
-				5EEBD02B3018BA3A0049C899 /* Frameworks */,
-				5EEBD02C3018BA3A0049C899 /* Resources */,
+				EF624DEBD1B57BEE7C708558 /* Sources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				5EEBD0303018BA3A0049C899 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				5EEBD0313018BA3A0049C899 /* toolpouchUITests */,
+				76362C6392572327C0327C35 /* PBXTargetDependency */,
 			);
 			name = toolpouchUITests;
+			packageProductDependencies = (
+			);
 			productName = toolpouchUITests;
-			productReference = 5EEBD02E3018BA3A0049C899 /* toolpouchUITests.xctest */;
+			productReference = D48FEED1313015B7E483AA3D /* toolpouchUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		9BB7FD03FBC822301BCF9731 /* toolpouchWatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6EFD1989AA7DB9ACD7403AFF /* Build configuration list for PBXNativeTarget "toolpouchWatch" */;
+			buildPhases = (
+				F93C64974D8B7C87899E923D /* Sources */,
+				EEA1F8ACFFF4B00920F93206 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = toolpouchWatch;
+			packageProductDependencies = (
+			);
+			productName = toolpouchWatch;
+			productReference = EC61600DADE362B8D4D38F80 /* toolpouchWatch.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E3C39D8462C0929C7417DEAA /* toolpouchTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AF4133900E70220D446B7EA3 /* Build configuration list for PBXNativeTarget "toolpouchTests" */;
+			buildPhases = (
+				5303CFDB113EFA1DBCBEE3DA /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A7206E206EEFE96F321B14D2 /* PBXTargetDependency */,
+			);
+			name = toolpouchTests;
+			packageProductDependencies = (
+			);
+			productName = toolpouchTests;
+			productReference = C80F35597746325EAB898004 /* toolpouchTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		5EEBD00B3018BA3A0049C899 /* Project object */ = {
+		3EF4D52CBB9880093EF673CC /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 2700;
+				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 2700;
 				TargetAttributes = {
-					5EEBD0123018BA3A0049C899 = {
-						CreatedOnToolsVersion = 27.0;
+					14726780809B4D2608DD15A2 = {
+						DevelopmentTeam = HPVQSJDB42;
+						ProvisioningStyle = Automatic;
 					};
-					5EEBD0233018BA3A0049C899 = {
-						CreatedOnToolsVersion = 27.0;
-						TestTargetID = 5EEBD0123018BA3A0049C899;
+					5463B32FCF3B1254F540F6C9 = {
+						DevelopmentTeam = HPVQSJDB42;
+						ProvisioningStyle = Automatic;
 					};
-					5EEBD02D3018BA3A0049C899 = {
-						CreatedOnToolsVersion = 27.0;
-						TestTargetID = 5EEBD0123018BA3A0049C899;
+					5630F234AC8611F8A9E45302 = {
+						DevelopmentTeam = HPVQSJDB42;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 14726780809B4D2608DD15A2;
+					};
+					9BB7FD03FBC822301BCF9731 = {
+						DevelopmentTeam = HPVQSJDB42;
+						ProvisioningStyle = Automatic;
+					};
+					E3C39D8462C0929C7417DEAA = {
+						DevelopmentTeam = HPVQSJDB42;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
-			buildConfigurationList = 5EEBD00E3018BA3A0049C899 /* Build configuration list for PBXProject "toolpouch" */;
+			buildConfigurationList = 1F0E54977BE933DA1E003E8A /* Build configuration list for PBXProject "toolpouch" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
+				en,
 			);
-			mainGroup = 5EEBD00A3018BA3A0049C899;
+			mainGroup = 6DC480851817804E5EB5E6E9;
 			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
-			productRefGroup = 5EEBD0143018BA3A0049C899 /* Products */;
+			productRefGroup = 44B555790B10D6F1F4E2294A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				5EEBD0123018BA3A0049C899 /* toolpouch */,
-				5EEBD0233018BA3A0049C899 /* toolpouchTests */,
-				5EEBD02D3018BA3A0049C899 /* toolpouchUITests */,
+				14726780809B4D2608DD15A2 /* toolpouch */,
+				5463B32FCF3B1254F540F6C9 /* toolpouchMobile */,
+				9BB7FD03FBC822301BCF9731 /* toolpouchWatch */,
+				E3C39D8462C0929C7417DEAA /* toolpouchTests */,
+				5630F234AC8611F8A9E45302 /* toolpouchUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		5EEBD0113018BA3A0049C899 /* Resources */ = {
+		A2D78DFAADEB8FA7EC196789 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
 			files = (
+				7E47F0D38B8220ECAD0BC8AF /* Assets.xcassets in Resources */,
 			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5EEBD0223018BA3A0049C899 /* Resources */ = {
+		C37FC9C514B62837A6EA6F28 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
 			files = (
+				144ACB7AE8F7E6F822B5E058 /* Assets.xcassets in Resources */,
 			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5EEBD02C3018BA3A0049C899 /* Resources */ = {
+		EEA1F8ACFFF4B00920F93206 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
 			files = (
+				33343032B6985278382D2B70 /* Assets.xcassets in Resources */,
 			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		5EEBD00F3018BA3A0049C899 /* Sources */ = {
+		14CC78D3677B838592A84406 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
 			files = (
+				B72FD2641F288E2A9A981931 /* AdaptiveGlassGrid.swift in Sources */,
+				B2AB4CA3EC86AA903E2C6623 /* AppDelegate.swift in Sources */,
+				AEE625E3CE05F15DD14E7B2A /* AppDependencies.swift in Sources */,
+				C42851FFF75E5805EB4A4AB1 /* AppNavigationBar.swift in Sources */,
+				7A403244134E1D0280AC15DD /* AppPreferenceKey.swift in Sources */,
+				6C6E9562FBAB3EB7240A332D /* AppRoute.swift in Sources */,
+				DA3BB61C85DD54C5F1FB6239 /* CompactToolNavigationView.swift in Sources */,
+				3F805199F0FA762910FF800B /* CopyButton.swift in Sources */,
+				22F6A0FCD702FDDB804DB16D /* CoreLocationWiFiScanAuthorizer.swift in Sources */,
+				1684F9540A4986DE674CB9A3 /* CoreWLANWiFiScanner.swift in Sources */,
+				7B620CF8375E7E48884F635E /* CurrentDeviceProviding.swift in Sources */,
+				CB2594379B352898CA742676 /* DashboardView.swift in Sources */,
+				4077049FA466FDB8421C857E /* Device.swift in Sources */,
+				4F69A898277D34E9CC448234 /* DeviceKind.swift in Sources */,
+				EFFCC806B55503683C6C316E /* DeviceRecord.swift in Sources */,
+				A05A26FB2C778F68DD37BF32 /* DeviceRepository.swift in Sources */,
+				5B4A1FA6FB3A9931D3412540 /* DeviceStoring.swift in Sources */,
+				57BE81046CC5004C2D611C32 /* LocalNetworkInfoProviding.swift in Sources */,
+				C1BA0843564046B7BD2B50BA /* MainWindowController.swift in Sources */,
+				88E23B7C959723DDBFDB9CFF /* MenuBarRootView.swift in Sources */,
+				E0E6D5DFA63DFE1C527017CC /* NetworkConnectionKind.swift in Sources */,
+				BA827A24028012A0B9E95DD1 /* NetworkInfoCollecting.swift in Sources */,
+				890A0F3EAFD50CDE7186EEE4 /* NetworkInfoCollector.swift in Sources */,
+				4C9EF4C707C35E428DBC8F42 /* NetworkInfoField.swift in Sources */,
+				7FB2177EE85D4AA3625455BB /* NetworkInfoHeader.swift in Sources */,
+				15A2AFE5966C4C7BD2D616E1 /* NetworkInfoPlugin.swift in Sources */,
+				C7F7E9B880808FA421CB7993 /* NetworkInfoRow.swift in Sources */,
+				B0F2A7C71341956FE857203B /* NetworkInfoSnapshot.swift in Sources */,
+				406F4E687ED7D3AC0AE78050 /* NetworkInfoView.swift in Sources */,
+				9B669353643BF8DF7FEC1161 /* NetworkInfoViewModel.swift in Sources */,
+				31DB78FFB0BDC74AFD796D35 /* NetworkSnapshotCard.swift in Sources */,
+				209F358EC7E4C67DB58A07D4 /* NetworkSnapshotRecord.swift in Sources */,
+				D577EAC537407E10CD5ACF70 /* NetworkSnapshotRepository.swift in Sources */,
+				8F87646E0B069956C24A58D9 /* NetworkSnapshotStoring.swift in Sources */,
+				FFA3420F960A8690714955EB /* PersistenceContainer.swift in Sources */,
+				C0755BC2CFC0D89A8D5DB9CF /* PlatformAvailabilityBadges.swift in Sources */,
+				AEDC23E685A4369E474CCD59 /* PublicIPAddressClient.swift in Sources */,
+				5A0F7CFB256FF925E584F7A7 /* RecentDevicesCard.swift in Sources */,
+				2C5C83A7F33D028EB4ED9886 /* SSHKeyAlgorithm.swift in Sources */,
+				CB2B03C7D6033EB6B6E35170 /* SSHKeyFolderAccessing.swift in Sources */,
+				68EC2ECC01E8D17C066F5797 /* SSHKeyGenerationRequest.swift in Sources */,
+				468258A3247A6B78743A947C /* SSHKeyGeneratorView.swift in Sources */,
+				43B769876A3EAE075A2B73AA /* SSHKeyManaging.swift in Sources */,
+				A48866FCF15E8C531993F648 /* SSHKeyPair.swift in Sources */,
+				F869D30C1258B38CBBC508A6 /* SSHKeysPlugin.swift in Sources */,
+				E8A94992DB381062A248D104 /* SSHKeysView.swift in Sources */,
+				F018E9955580F998D89FE553 /* SSHKeysViewModel.swift in Sources */,
+				282D3F2BE8F36A65BFFBB401 /* ScreenHeader.swift in Sources */,
+				DD56F6C7F19626D56C4AD725 /* SecurityScopedSSHKeyFolderStore.swift in Sources */,
+				54D98146F9B921773B280805 /* SettingsView.swift in Sources */,
+				C0992B92CFF4E1E727E157C8 /* StatusItemController.swift in Sources */,
+				C13DE540427E96E37AF35BCF /* SystemClipboard.swift in Sources */,
+				1F76A5757D7FC46F08AF3D27 /* SystemDeviceProvider.swift in Sources */,
+				5F199BA207BFCEE5E0AC245B /* SystemLocalNetworkInfoProvider.swift in Sources */,
+				A7154A51CF20FCE11569E275 /* SystemSSHKeyManager.swift in Sources */,
+				CA0FCC3C9D49568422FFB64C /* ThreeColumnToolNavigationView.swift in Sources */,
+				239A0DAD68E416FCC77B7F0D /* ToolCategory.swift in Sources */,
+				2B47333BB5809B0449884334 /* ToolCategoryView.swift in Sources */,
+				AD7B2D8ED728160091567729 /* ToolDefinition.swift in Sources */,
+				EF685479F2F1E43EB1163D53 /* ToolExecutionBackend.swift in Sources */,
+				5F19562C13FDA12FB6DC76AB /* ToolPlatform.swift in Sources */,
+				D33EE39B6DD2A8E6252C1764 /* ToolPlugin.swift in Sources */,
+				93D48E21F01B9902926A1B7B /* ToolPouchApp.swift in Sources */,
+				FD0FED97247E82D1D17AD81E /* ToolPouchLayout.swift in Sources */,
+				54277B652E4ABA2C0DEE5B5F /* ToolRegistry.swift in Sources */,
+				AB916832C9B0B40E56E222F9 /* ToolTile.swift in Sources */,
+				FC02516D945A9CCD382E8F5F /* WiFiNetwork.swift in Sources */,
+				E8571E799753686AC1067335 /* WiFiScanAuthorizing.swift in Sources */,
+				2A3582F43895298F3B942D87 /* WiFiScannerPlugin.swift in Sources */,
+				7E858E0AA8700B36D2C93A7A /* WiFiScannerView.swift in Sources */,
+				D3086114888E25B15D3DDC88 /* WiFiScannerViewModel.swift in Sources */,
+				7A134F7F94B9CF3362BD3058 /* WiFiScanning.swift in Sources */,
 			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5EEBD0203018BA3A0049C899 /* Sources */ = {
+		5303CFDB113EFA1DBCBEE3DA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
 			files = (
+				F140D4069A012EFD1470823B /* NetworkInfoCollectorTests.swift in Sources */,
+				ADCB7F29150FF64C0D04D52A /* NetworkSnapshotRepositoryTests.swift in Sources */,
+				676F5BC41C5BEE25D741CD34 /* SystemSSHKeyManagerTests.swift in Sources */,
+				42EE9B61A5A186613DAEBF01 /* ToolRegistryTests.swift in Sources */,
+				98FDD0BA10836DB64A37D198 /* WiFiNetworkTests.swift in Sources */,
 			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5EEBD02A3018BA3A0049C899 /* Sources */ = {
+		86B17494C2CB4E505A2A65F9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
 			files = (
+				3A2E7D6E1740D41632698C25 /* AdaptiveGlassGrid.swift in Sources */,
+				91D33B7F8F5ED8E2E76A2F6E /* AdaptiveMobileRootView.swift in Sources */,
+				6DF7CB4FE6D103CCEC494089 /* AppDependencies.swift in Sources */,
+				AD8429815FEE1C9573ECE6C5 /* AppNavigationBar.swift in Sources */,
+				E18739CB88A905ACFDCD2F9F /* AppPreferenceKey.swift in Sources */,
+				B5459CE50C22A60532F90047 /* AppRoute.swift in Sources */,
+				3A151E6CACAB5C54CA4F28E3 /* CompactToolNavigationView.swift in Sources */,
+				1D90E7D32D616F296A3533BA /* CopyButton.swift in Sources */,
+				F75870C3F3DD07FD47369ACE /* CoreLocationWiFiScanAuthorizer.swift in Sources */,
+				BB5B2C643DEA11B05A613C00 /* CoreWLANWiFiScanner.swift in Sources */,
+				344B02EE120F28D412BFBEBC /* CurrentDeviceProviding.swift in Sources */,
+				77A30DE2852457B727916827 /* DashboardView.swift in Sources */,
+				B093B59C67E948D6CB1E5C77 /* Device.swift in Sources */,
+				61D02E234E29BDBB76AFBE0E /* DeviceKind.swift in Sources */,
+				8F83848D7AFC2C9F4132E688 /* DeviceRecord.swift in Sources */,
+				28CD599E1641E54FF7D6FC66 /* DeviceRepository.swift in Sources */,
+				180342FDFDE44FDBF80575F7 /* DeviceStoring.swift in Sources */,
+				9E1F04AD98AC26BBA8FE9724 /* LocalNetworkInfoProviding.swift in Sources */,
+				41137BDBDB46A48E3FD20131 /* NetworkConnectionKind.swift in Sources */,
+				337F5C5447D4C496D4F48365 /* NetworkInfoCollecting.swift in Sources */,
+				F57777F9C56FD564EF72D739 /* NetworkInfoCollector.swift in Sources */,
+				AA8FA6A254FC851CF9FE8C79 /* NetworkInfoField.swift in Sources */,
+				7120FAB7E3505FDB58126CA7 /* NetworkInfoHeader.swift in Sources */,
+				6882AD2A40401E7FC61C3F8D /* NetworkInfoPlugin.swift in Sources */,
+				0051257FB2E8B94189439A56 /* NetworkInfoRow.swift in Sources */,
+				BFB6CF9F59252D2C36FFD7D0 /* NetworkInfoSnapshot.swift in Sources */,
+				332D2A3C42B074D637BBEFE9 /* NetworkInfoView.swift in Sources */,
+				2A8AC3722A3E5DBBEE5C1993 /* NetworkInfoViewModel.swift in Sources */,
+				E579046C62FFC80C6B08BA89 /* NetworkSnapshotCard.swift in Sources */,
+				D0E7C879812759B4D743C21B /* NetworkSnapshotRecord.swift in Sources */,
+				FE4C3B285E7E890329A52579 /* NetworkSnapshotRepository.swift in Sources */,
+				428EFE74BFE1FF1A2AD08CFD /* NetworkSnapshotStoring.swift in Sources */,
+				99E62B06F6C4D8FCE4A268ED /* PersistenceContainer.swift in Sources */,
+				58BEF5E51931B6B176ED8040 /* PlatformAvailabilityBadges.swift in Sources */,
+				78CD1B3EB3B58940EC41C9EE /* PublicIPAddressClient.swift in Sources */,
+				EE150DCDB7CE318D7181A903 /* RecentDevicesCard.swift in Sources */,
+				E78E54C6DBC89EFE49B938A3 /* SSHKeyAlgorithm.swift in Sources */,
+				774F4E1159843B52A2CAB8C3 /* SSHKeyFolderAccessing.swift in Sources */,
+				9A9B12573ED76B653B2D122A /* SSHKeyGenerationRequest.swift in Sources */,
+				AA58AABDC74972A41F577299 /* SSHKeyGeneratorView.swift in Sources */,
+				C997C1B329407750FD065015 /* SSHKeyManaging.swift in Sources */,
+				05F31E7638D6F38E2F5DE2D8 /* SSHKeyPair.swift in Sources */,
+				15A0673273203EF8EFF80D80 /* SSHKeysPlugin.swift in Sources */,
+				F7F83FB2AE66ED1E12CA9A1E /* SSHKeysView.swift in Sources */,
+				46E3B5C2487724C84570D22F /* SSHKeysViewModel.swift in Sources */,
+				96DF1957BCA3BE0E32EB6DAB /* ScreenHeader.swift in Sources */,
+				01C5E2F416BDAA3EA3E06C52 /* SecurityScopedSSHKeyFolderStore.swift in Sources */,
+				9788FFED97E5750BABD269B5 /* SettingsView.swift in Sources */,
+				78EC6A0FFC95142B1E65B67D /* SystemClipboard.swift in Sources */,
+				FE33F336CF25370890E63047 /* SystemDeviceProvider.swift in Sources */,
+				885CFD9CCBFB65AEC75AF20A /* SystemLocalNetworkInfoProvider.swift in Sources */,
+				17A7D8BE787305A7EC23F62C /* SystemSSHKeyManager.swift in Sources */,
+				DF4A0D136C7AE473A44A394A /* ThreeColumnToolNavigationView.swift in Sources */,
+				8DC4C508EBF96C180F95DCF2 /* ToolCategory.swift in Sources */,
+				BF955729E87D37E33AD81E10 /* ToolCategoryView.swift in Sources */,
+				5AAAC0786446242A8F399FCC /* ToolDefinition.swift in Sources */,
+				829B5B38F0FB497A42DFFBC9 /* ToolExecutionBackend.swift in Sources */,
+				116316EF6DD885DC06CF23C0 /* ToolPlatform.swift in Sources */,
+				71C2F29840A8792499C7EA90 /* ToolPlugin.swift in Sources */,
+				1A28F44B53308F514CF015DF /* ToolPouchLayout.swift in Sources */,
+				31270D267C182E8D5B5F91AC /* ToolPouchMobileApp.swift in Sources */,
+				1298E0EDE0747AAB683C6FFA /* ToolRegistry.swift in Sources */,
+				BEBA1D76B84D403A7E1BCC73 /* ToolTile.swift in Sources */,
+				CD94AA35F1F870FE3D8FAD47 /* WiFiNetwork.swift in Sources */,
+				1E665E8D810506B89EB8C63A /* WiFiScanAuthorizing.swift in Sources */,
+				BB2092BAA442031D5C03FD6B /* WiFiScannerPlugin.swift in Sources */,
+				D410F8BA4F5A4BD21B17AE42 /* WiFiScannerView.swift in Sources */,
+				790D633EEABB702F07153C59 /* WiFiScannerViewModel.swift in Sources */,
+				9CA23FA85BF8E1A086F784FE /* WiFiScanning.swift in Sources */,
 			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EF624DEBD1B57BEE7C708558 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A64B0F940B3E41FC0B9AB92F /* toolpouchUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F93C64974D8B7C87899E923D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E549D4A9F1A0406556049D5C /* AdaptiveGlassGrid.swift in Sources */,
+				9E7A8C2CCB6928909BD918A2 /* AppDependencies.swift in Sources */,
+				A79A953BF171341F1B00ED43 /* AppNavigationBar.swift in Sources */,
+				ABC3CE4504C17DF3AB30D9AA /* AppPreferenceKey.swift in Sources */,
+				FF0DB948F6336E5D61AE54DC /* AppRoute.swift in Sources */,
+				825511454638980CDE46ADED /* CompactToolNavigationView.swift in Sources */,
+				4996F8704350AFD12B42B721 /* CopyButton.swift in Sources */,
+				6A0D59998858E2052209D509 /* CoreLocationWiFiScanAuthorizer.swift in Sources */,
+				F1AF9C281F8FA80EB0E4BAF2 /* CoreWLANWiFiScanner.swift in Sources */,
+				4C383F06312A68F6DE88A050 /* CurrentDeviceProviding.swift in Sources */,
+				ABCA694C43FD80F2E527813B /* DashboardView.swift in Sources */,
+				DFD29A1229297453A9B0CDC4 /* Device.swift in Sources */,
+				3E2A41412A3B63260AADE17A /* DeviceKind.swift in Sources */,
+				3AD4447F379CC72F18B096C7 /* DeviceRecord.swift in Sources */,
+				CDA832BC30A5A5F83B27EB3D /* DeviceRepository.swift in Sources */,
+				18BD24F6F8217CA2ED5B4932 /* DeviceStoring.swift in Sources */,
+				3A323F1DEB7DA0895600A64F /* LocalNetworkInfoProviding.swift in Sources */,
+				78DFB4AFE2166467643263DF /* NetworkConnectionKind.swift in Sources */,
+				B83E627CCB1667A6451FC509 /* NetworkInfoCollecting.swift in Sources */,
+				99D7455D64BAF693420D6496 /* NetworkInfoCollector.swift in Sources */,
+				CA85FB64B5F6FD9E4A69419D /* NetworkInfoField.swift in Sources */,
+				BEA82F959DED3CAECFBDEA36 /* NetworkInfoHeader.swift in Sources */,
+				1B97BD63FEFF48C9A98D2F67 /* NetworkInfoPlugin.swift in Sources */,
+				A35AC47C08B4A047F7CBFA1D /* NetworkInfoRow.swift in Sources */,
+				F14B495ED2E7C0B8B204E3F4 /* NetworkInfoSnapshot.swift in Sources */,
+				0A7FD3155417C4C3BFB1793A /* NetworkInfoView.swift in Sources */,
+				1EB629169E18643EB41F1CEC /* NetworkInfoViewModel.swift in Sources */,
+				2EC88311F2FA268228C84EC9 /* NetworkSnapshotCard.swift in Sources */,
+				0215D8E0B07235FDC3E1F51B /* NetworkSnapshotRecord.swift in Sources */,
+				00982857FF93CFEBC19CE89F /* NetworkSnapshotRepository.swift in Sources */,
+				FDBB142D70815C58EC7D8546 /* NetworkSnapshotStoring.swift in Sources */,
+				F70F97AF8EDDFC8031B24965 /* PersistenceContainer.swift in Sources */,
+				06FF52983D4AA16A291FAD90 /* PlatformAvailabilityBadges.swift in Sources */,
+				06E36E2EB705470787C57203 /* PublicIPAddressClient.swift in Sources */,
+				EDBC9DDE61DB088552EB9058 /* RecentDevicesCard.swift in Sources */,
+				FC36322C47C21386D8BD8632 /* SSHKeyAlgorithm.swift in Sources */,
+				BCBC4B05E55A6CF0BB304F64 /* SSHKeyFolderAccessing.swift in Sources */,
+				ACC666929E0EF60531C12F60 /* SSHKeyGenerationRequest.swift in Sources */,
+				1725DF34953034778DFB5FEE /* SSHKeyGeneratorView.swift in Sources */,
+				6A2D968B3CF1D51EA6F09947 /* SSHKeyManaging.swift in Sources */,
+				1AC43F92862B763AC25EA6DF /* SSHKeyPair.swift in Sources */,
+				5EBA0005B141A7572649FA41 /* SSHKeysPlugin.swift in Sources */,
+				56CEF4327FC9241D4A678574 /* SSHKeysView.swift in Sources */,
+				751130CDBFC2A72DEC7BDDBA /* SSHKeysViewModel.swift in Sources */,
+				1B4631A86B67A7A6BFE175C4 /* ScreenHeader.swift in Sources */,
+				24235128B86DCCA4C51D13A5 /* SecurityScopedSSHKeyFolderStore.swift in Sources */,
+				C2A3CC69E33118F04CF948C7 /* SettingsView.swift in Sources */,
+				7DBB76CD8032F7A8F34A8F3B /* SystemClipboard.swift in Sources */,
+				00786C6220D79FE00D346D4A /* SystemDeviceProvider.swift in Sources */,
+				733659AA81DFB2F2B0681848 /* SystemLocalNetworkInfoProvider.swift in Sources */,
+				8CB93445A799C9F8A0459CA0 /* SystemSSHKeyManager.swift in Sources */,
+				00DE26992872E8624D5569D4 /* ThreeColumnToolNavigationView.swift in Sources */,
+				CEBECCE1027E414675403673 /* ToolCategory.swift in Sources */,
+				BD4B3EE1981215720BE3E1B9 /* ToolCategoryView.swift in Sources */,
+				86DA73A5A863ED9C044AEAC2 /* ToolDefinition.swift in Sources */,
+				7A65FB1FC1C7543977B92695 /* ToolExecutionBackend.swift in Sources */,
+				1F2EFA02FB78D3846BFC483D /* ToolPlatform.swift in Sources */,
+				A0666CEEBF146DFA2551690E /* ToolPlugin.swift in Sources */,
+				EB3832E54696325C45D9CB7E /* ToolPouchLayout.swift in Sources */,
+				DE68615AD1B77F5C4D50AA12 /* ToolPouchWatchApp.swift in Sources */,
+				0B532B50DF7FAAA4A6C72A50 /* ToolRegistry.swift in Sources */,
+				3422B535E9360FB1E460194C /* ToolTile.swift in Sources */,
+				2C57184E32094FF36867B6FF /* WatchRootView.swift in Sources */,
+				9F58817599CA7E9F8A6C55A3 /* WiFiNetwork.swift in Sources */,
+				5E003CE6955C5A6159B2882D /* WiFiScanAuthorizing.swift in Sources */,
+				CEA80FEE501AFA5FD07DF729 /* WiFiScannerPlugin.swift in Sources */,
+				F145BAE4E9CF84FEEA01147D /* WiFiScannerView.swift in Sources */,
+				B73435A8CB44B85F75445D36 /* WiFiScannerViewModel.swift in Sources */,
+				5BD34F1B922C027CFB5216CD /* WiFiScanning.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		5EEBD0263018BA3A0049C899 /* PBXTargetDependency */ = {
+		76362C6392572327C0327C35 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 5EEBD0123018BA3A0049C899 /* toolpouch */;
-			targetProxy = 5EEBD0253018BA3A0049C899 /* PBXContainerItemProxy */;
+			target = 14726780809B4D2608DD15A2 /* toolpouch */;
+			targetProxy = 5C1760561C7C10828D0FA845 /* PBXContainerItemProxy */;
 		};
-		5EEBD0303018BA3A0049C899 /* PBXTargetDependency */ = {
+		A7206E206EEFE96F321B14D2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 5EEBD0123018BA3A0049C899 /* toolpouch */;
-			targetProxy = 5EEBD02F3018BA3A0049C899 /* PBXContainerItemProxy */;
+			target = 14726780809B4D2608DD15A2 /* toolpouch */;
+			targetProxy = 25DB6E37EEB23E6CDCDA308A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		5EEBD0363018BA3A0049C899 /* Debug configuration for PBXNativeTarget "toolpouch" */ = {
+		0AAEE7BF8572571130859074 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = HPVQSJDB42;
-				ENABLE_APP_SANDBOX = YES;
-				ENABLE_HARDENED_RUNTIME = YES;
-				ENABLE_INCOMING_NETWORK_CONNECTIONS = YES;
-				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
-				ENABLE_PREVIEWS = YES;
-				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
-				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
-				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
-				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
-				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
-				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
-				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
-				ENABLE_RESOURCE_ACCESS_USB = NO;
-				ENABLE_USER_SELECTED_FILES = readonly;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = toolpouch/Info.plist;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
-				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 27.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.hoxim.toolpouch;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				REGISTER_APP_GROUPS = YES;
-				SDKROOT = macosx;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SUPPORTED_PLATFORMS = macosx;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_STRICT_CONCURRENCY = complete;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 6.0;
+				INFOPLIST_FILE = toolpouch/Applications/iOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.hoxim.toolpouch.mobile;
+				PRODUCT_NAME = ToolPouch;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		5EEBD0373018BA3A0049C899 /* Release configuration for PBXNativeTarget "toolpouch" */ = {
+		2ADEE3F5392539C9BF066C70 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.hoxim.toolpouchUITests;
+				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = nonisolated;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TEST_TARGET_NAME = toolpouch;
+			};
+			name = Debug;
+		};
+		4A2BD153C4A13FB76D13B438 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = HPVQSJDB42;
+				CODE_SIGN_ENTITLEMENTS = toolpouch/ToolPouch.macOS.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_INCOMING_NETWORK_CONNECTIONS = YES;
 				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
-				ENABLE_PREVIEWS = YES;
-				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
-				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
-				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
-				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
-				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
-				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
-				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
-				ENABLE_RESOURCE_ACCESS_USB = NO;
-				ENABLE_USER_SELECTED_FILES = readonly;
+				ENABLE_RESOURCE_ACCESS_LOCATION = YES;
+				ENABLE_USER_SELECTED_FILES = readwrite;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = toolpouch/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
-				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 27.0;
-				MARKETING_VERSION = 1.0;
+				INFOPLIST_KEY_NSLocationUsageDescription = "ToolPouch uses location access only to identify nearby Wi-Fi networks.";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.hoxim.toolpouch;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				REGISTER_APP_GROUPS = YES;
+				PRODUCT_NAME = toolpouch;
 				SDKROOT = macosx;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SUPPORTED_PLATFORMS = macosx;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_STRICT_CONCURRENCY = complete;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 6.0;
 			};
 			name = Release;
 		};
-		5EEBD0383018BA3A0049C899 /* Debug configuration for PBXProject "toolpouch" */ = {
+		60BE873CAE20B219AE36FD74 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.hoxim.toolpouchTests;
+				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/toolpouch.app/Contents/MacOS/toolpouch";
+			};
+			name = Release;
+		};
+		6C71353DBB7CD71647DD117A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.hoxim.toolpouchUITests;
+				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = nonisolated;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TEST_TARGET_NAME = toolpouch;
+			};
+			name = Release;
+		};
+		7286849629A67AF72E5E0A4B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = toolpouch/ToolPouch.macOS.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = YES;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
+				ENABLE_RESOURCE_ACCESS_LOCATION = YES;
+				ENABLE_USER_SELECTED_FILES = readwrite;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = toolpouch/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSLocationUsageDescription = "ToolPouch uses location access only to identify nearby Wi-Fi networks.";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.hoxim.toolpouch;
+				PRODUCT_NAME = toolpouch;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		8682919FE0A57D51D1AEF795 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.hoxim.toolpouchTests;
+				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/toolpouch.app/Contents/MacOS/toolpouch";
+			};
+			name = Debug;
+		};
+		9A447A8C585D6A06B38776AA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = toolpouch/Applications/iOS/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hoxim.toolpouch.watch;
+				PRODUCT_NAME = ToolPouch;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+			};
+			name = Release;
+		};
+		B0C6811F665C024786ADE5C8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -377,19 +1491,88 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = HPVQSJDB42;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				MACOSX_DEPLOYMENT_TARGET = 27.0;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 6.0;
+				WATCHOS_DEPLOYMENT_TARGET = 27.0;
+			};
+			name = Release;
+		};
+		BD6F8DBCDCFB27BF7C3CD382 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = HPVQSJDB42;
+				ENABLE_PREVIEWS = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
 					"$(inherited)",
+					"DEBUG=1",
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -397,200 +1580,117 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				MACOSX_DEPLOYMENT_TARGET = 27.0;
+				MARKETING_VERSION = 1.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 6.0;
+				WATCHOS_DEPLOYMENT_TARGET = 27.0;
 			};
 			name = Debug;
 		};
-		5EEBD0393018BA3A0049C899 /* Release configuration for PBXProject "toolpouch" */ = {
+		EB7F94F3425058DC79F55B0F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = HPVQSJDB42;
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				MTL_FAST_MATH = YES;
-				SWIFT_COMPILATION_MODE = wholemodule;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = toolpouch/Applications/iOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.hoxim.toolpouch.mobile;
+				PRODUCT_NAME = ToolPouch;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
-		5EEBD03B3018BA3A0049C899 /* Debug configuration for PBXNativeTarget "toolpouchTests" */ = {
+		ED39C440EE443ACD92769383 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = HPVQSJDB42;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				GENERATE_INFOPLIST_FILE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 27.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.hoxim.toolpouchTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				STRING_CATALOG_GENERATE_SYMBOLS = NO;
-				SUPPORTED_PLATFORMS = macosx;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_STRICT_CONCURRENCY = complete;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 6.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/toolpouch.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/toolpouch";
+				INFOPLIST_FILE = toolpouch/Applications/iOS/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hoxim.toolpouch.watch;
+				PRODUCT_NAME = ToolPouch;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
 			};
 			name = Debug;
-		};
-		5EEBD03C3018BA3A0049C899 /* Release configuration for PBXNativeTarget "toolpouchTests" */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = HPVQSJDB42;
-				GENERATE_INFOPLIST_FILE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 27.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.hoxim.toolpouchTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				STRING_CATALOG_GENERATE_SYMBOLS = NO;
-				SUPPORTED_PLATFORMS = macosx;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_STRICT_CONCURRENCY = complete;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 6.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/toolpouch.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/toolpouch";
-			};
-			name = Release;
-		};
-		5EEBD03E3018BA3A0049C899 /* Debug configuration for PBXNativeTarget "toolpouchUITests" */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = HPVQSJDB42;
-				GENERATE_INFOPLIST_FILE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 27.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.hoxim.toolpouchUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				STRING_CATALOG_GENERATE_SYMBOLS = NO;
-				SUPPORTED_PLATFORMS = macosx;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_STRICT_CONCURRENCY = complete;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 6.0;
-				TEST_TARGET_NAME = toolpouch;
-			};
-			name = Debug;
-		};
-		5EEBD03F3018BA3A0049C899 /* Release configuration for PBXNativeTarget "toolpouchUITests" */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = HPVQSJDB42;
-				GENERATE_INFOPLIST_FILE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 27.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.hoxim.toolpouchUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				STRING_CATALOG_GENERATE_SYMBOLS = NO;
-				SUPPORTED_PLATFORMS = macosx;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_STRICT_CONCURRENCY = complete;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 6.0;
-				TEST_TARGET_NAME = toolpouch;
-			};
-			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		5EEBD00E3018BA3A0049C899 /* Build configuration list for PBXProject "toolpouch" */ = {
+		0FD07BC2A48064CD411A5CCF /* Build configuration list for PBXNativeTarget "toolpouchUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				5EEBD0383018BA3A0049C899 /* Debug configuration for PBXProject "toolpouch" */,
-				5EEBD0393018BA3A0049C899 /* Release configuration for PBXProject "toolpouch" */,
+				2ADEE3F5392539C9BF066C70 /* Debug */,
+				6C71353DBB7CD71647DD117A /* Release */,
 			);
-			defaultConfigurationName = Release;
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
 		};
-		5EEBD0353018BA3A0049C899 /* Build configuration list for PBXNativeTarget "toolpouch" */ = {
+		1F0E54977BE933DA1E003E8A /* Build configuration list for PBXProject "toolpouch" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				5EEBD0363018BA3A0049C899 /* Debug configuration for PBXNativeTarget "toolpouch" */,
-				5EEBD0373018BA3A0049C899 /* Release configuration for PBXNativeTarget "toolpouch" */,
+				BD6F8DBCDCFB27BF7C3CD382 /* Debug */,
+				B0C6811F665C024786ADE5C8 /* Release */,
 			);
-			defaultConfigurationName = Release;
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
 		};
-		5EEBD03A3018BA3A0049C899 /* Build configuration list for PBXNativeTarget "toolpouchTests" */ = {
+		4EF973BAACF7C5733176FEE0 /* Build configuration list for PBXNativeTarget "toolpouch" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				5EEBD03B3018BA3A0049C899 /* Debug configuration for PBXNativeTarget "toolpouchTests" */,
-				5EEBD03C3018BA3A0049C899 /* Release configuration for PBXNativeTarget "toolpouchTests" */,
+				7286849629A67AF72E5E0A4B /* Debug */,
+				4A2BD153C4A13FB76D13B438 /* Release */,
 			);
-			defaultConfigurationName = Release;
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
 		};
-		5EEBD03D3018BA3A0049C899 /* Build configuration list for PBXNativeTarget "toolpouchUITests" */ = {
+		6EFD1989AA7DB9ACD7403AFF /* Build configuration list for PBXNativeTarget "toolpouchWatch" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				5EEBD03E3018BA3A0049C899 /* Debug configuration for PBXNativeTarget "toolpouchUITests" */,
-				5EEBD03F3018BA3A0049C899 /* Release configuration for PBXNativeTarget "toolpouchUITests" */,
+				ED39C440EE443ACD92769383 /* Debug */,
+				9A447A8C585D6A06B38776AA /* Release */,
 			);
-			defaultConfigurationName = Release;
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		AE3212EC8AB5459466ED2974 /* Build configuration list for PBXNativeTarget "toolpouchMobile" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0AAEE7BF8572571130859074 /* Debug */,
+				EB7F94F3425058DC79F55B0F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		AF4133900E70220D446B7EA3 /* Build configuration list for PBXNativeTarget "toolpouchTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8682919FE0A57D51D1AEF795 /* Debug */,
+				60BE873CAE20B219AE36FD74 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 5EEBD00B3018BA3A0049C899 /* Project object */;
-	validationLevel = 1;
+	rootObject = 3EF4D52CBB9880093EF673CC /* Project object */;
 }

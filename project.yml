@@ -1,0 +1,128 @@
+name: toolpouch
+options:
+  bundleIdPrefix: com.hoxim
+  deploymentTarget:
+    macOS: "27.0"
+    iOS: "27.0"
+    watchOS: "27.0"
+  xcodeVersion: "27.0"
+  createIntermediateGroups: true
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    SWIFT_STRICT_CONCURRENCY: complete
+    SWIFT_APPROACHABLE_CONCURRENCY: YES
+    SWIFT_DEFAULT_ACTOR_ISOLATION: MainActor
+    SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY: YES
+    STRING_CATALOG_GENERATE_SYMBOLS: YES
+    CURRENT_PROJECT_VERSION: 1
+    MARKETING_VERSION: 1.0
+    CODE_SIGN_STYLE: Automatic
+    DEVELOPMENT_TEAM: HPVQSJDB42
+    ENABLE_PREVIEWS: YES
+targets:
+  toolpouch:
+    type: application
+    platform: macOS
+    sources:
+      - path: toolpouch
+        excludes:
+          - Applications/iOS
+          - Applications/watchOS
+          - Platform/iOS
+          - Platform/watchOS
+          - Info.plist
+          - toolpouch.entitlements
+          - ToolPouch.macOS.entitlements
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.hoxim.toolpouch
+        PRODUCT_NAME: toolpouch
+        CODE_SIGN_ENTITLEMENTS: toolpouch/ToolPouch.macOS.entitlements
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        ENABLE_APP_SANDBOX: YES
+        ENABLE_HARDENED_RUNTIME: YES
+        ENABLE_INCOMING_NETWORK_CONNECTIONS: YES
+        ENABLE_OUTGOING_NETWORK_CONNECTIONS: YES
+        ENABLE_RESOURCE_ACCESS_LOCATION: YES
+        ENABLE_USER_SELECTED_FILES: readwrite
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_FILE: toolpouch/Info.plist
+        INFOPLIST_KEY_LSApplicationCategoryType: public.app-category.utilities
+        INFOPLIST_KEY_NSLocationUsageDescription: ToolPouch uses location access only to identify nearby Wi-Fi networks.
+        LD_RUNPATH_SEARCH_PATHS:
+          - $(inherited)
+          - '@executable_path/../Frameworks'
+    scheme:
+      testTargets:
+        - toolpouchTests
+        - toolpouchUITests
+  toolpouchMobile:
+    type: application
+    platform: iOS
+    sources:
+      - path: toolpouch
+        excludes:
+          - App/ToolPouchApp.swift
+          - Applications/watchOS
+          - Platform/macOS
+          - Platform/watchOS
+          - Info.plist
+          - toolpouch.entitlements
+          - Applications/iOS/Info.plist
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.hoxim.toolpouch.mobile
+        PRODUCT_NAME: ToolPouch
+        TARGETED_DEVICE_FAMILY: 1,2
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_FILE: toolpouch/Applications/iOS/Info.plist
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+  toolpouchWatch:
+    type: application
+    platform: watchOS
+    sources:
+      - path: toolpouch
+        excludes:
+          - App/ToolPouchApp.swift
+          - Applications/iOS
+          - Platform/iOS
+          - Platform/macOS
+          - Info.plist
+          - toolpouch.entitlements
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.hoxim.toolpouch.watch
+        PRODUCT_NAME: ToolPouch
+        GENERATE_INFOPLIST_FILE: YES
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+  toolpouchTests:
+    type: bundle.unit-test
+    platform: macOS
+    sources:
+      - toolpouchTests
+    dependencies:
+      - target: toolpouch
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.hoxim.toolpouchTests
+        GENERATE_INFOPLIST_FILE: YES
+        STRING_CATALOG_GENERATE_SYMBOLS: NO
+        SWIFT_EMIT_LOC_STRINGS: NO
+  toolpouchUITests:
+    type: bundle.ui-testing
+    platform: macOS
+    sources:
+      - toolpouchUITests
+    dependencies:
+      - target: toolpouch
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.hoxim.toolpouchUITests
+        GENERATE_INFOPLIST_FILE: YES
+        STRING_CATALOG_GENERATE_SYMBOLS: NO
+        SWIFT_EMIT_LOC_STRINGS: NO
+        SWIFT_DEFAULT_ACTOR_ISOLATION: nonisolated

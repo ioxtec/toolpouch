@@ -1,0 +1,4 @@
+module ToolPouchRustFFI {
+    header "toolpouch_engine.h"
+    export *
+}

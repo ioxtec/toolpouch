@@ -1,3 +1,4 @@
 enum AppRoute: Hashable {
-    case category(ToolCategory)
+    case category(ToolCategory.ID)
+    case tool(ToolDefinition.ID)
 }

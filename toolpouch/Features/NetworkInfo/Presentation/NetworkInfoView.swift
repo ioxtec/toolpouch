@@ -12,9 +12,9 @@ struct NetworkInfoView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: ToolPouchLayout.Content.spacing) {
-                ScreenHeader(
-                    title: "Network Info",
-                    subtitle: "Current network details and the latest snapshot from each device."
+                NetworkInfoHeader(
+                    isRefreshing: model.isRefreshing,
+                    refresh: refresh
                 )
 
                 content
@@ -28,23 +28,6 @@ struct NetworkInfoView: View {
             .padding(ToolPouchLayout.Content.padding)
         }
         .scrollIndicators(.never)
-        .navigationTitle("Network Info")
-        .toolbar {
-            ToolbarItem {
-                Button {
-                    Task { await model.refresh() }
-                } label: {
-                    if model.isRefreshing {
-                        ProgressView()
-                            .controlSize(.small)
-                    } else {
-                        Label("Refresh", systemImage: "arrow.clockwise")
-                    }
-                }
-                .disabled(model.isRefreshing)
-                .help("Refresh Network Info")
-            }
-        }
         .task {
             model.load()
             if refreshNetworkInfoOnOpen || model.selectedSnapshot == nil {
@@ -79,5 +62,9 @@ struct NetworkInfoView: View {
                 description: Text("Refresh to collect the first snapshot for this device.")
             )
         }
+    }
+
+    private func refresh() {
+        Task { await model.refresh() }
     }
 }

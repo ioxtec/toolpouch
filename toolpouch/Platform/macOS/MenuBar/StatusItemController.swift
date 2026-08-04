@@ -6,11 +6,13 @@ final class StatusItemController: NSObject, NSMenuDelegate {
     private let statusItem: NSStatusItem
     private let popover: NSPopover
     private let contextMenu: NSMenu
+    private let mainWindowController: MainWindowController
 
     init(dependencies: AppDependencies) {
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
         popover = NSPopover()
         contextMenu = NSMenu()
+        mainWindowController = MainWindowController(dependencies: dependencies)
 
         super.init()
 
@@ -48,6 +50,14 @@ final class StatusItemController: NSObject, NSMenuDelegate {
         contextMenu.delegate = self
         contextMenu.addItem(
             menuItem(
+                title: "Open ToolPouch",
+                systemImage: "macwindow",
+                action: #selector(openMainWindow)
+            )
+        )
+        contextMenu.addItem(.separator())
+        contextMenu.addItem(
+            menuItem(
                 title: "Settings…",
                 systemImage: "gearshape",
                 action: #selector(openSettings),
@@ -70,6 +80,11 @@ final class StatusItemController: NSObject, NSMenuDelegate {
                 keyEquivalent: "q"
             )
         )
+    }
+
+    @objc
+    private func openMainWindow() {
+        mainWindowController.present()
     }
 
     private func menuItem(

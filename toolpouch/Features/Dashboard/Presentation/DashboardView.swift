@@ -3,7 +3,7 @@ import SwiftUI
 struct DashboardView: View {
     private let categories: [ToolCategory]
 
-    init(categories: [ToolCategory] = ToolCatalog.categories) {
+    init(categories: [ToolCategory]) {
         self.categories = categories
     }
 
@@ -17,7 +17,7 @@ struct DashboardView: View {
 
                 AdaptiveGlassGrid {
                     ForEach(categories) { category in
-                        NavigationLink(value: AppRoute.category(category)) {
+                        NavigationLink(value: AppRoute.category(category.id)) {
                             ToolTile(
                                 title: category.title,
                                 description: category.description,
@@ -31,6 +31,5 @@ struct DashboardView: View {
             .padding(ToolPouchLayout.Content.padding)
         }
         .scrollIndicators(.never)
-        .navigationTitle("ToolPouch")
     }
 }

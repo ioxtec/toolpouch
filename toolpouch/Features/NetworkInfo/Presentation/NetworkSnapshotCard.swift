@@ -6,16 +6,16 @@ struct NetworkSnapshotCard: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             header
-                .padding(.bottom, 12)
+                .padding(.bottom, 8)
 
             ForEach(Array(snapshot.presentationFields.enumerated()), id: \.element.id) { index, field in
                 if index > 0 {
                     Divider()
-                        .padding(.leading, 28)
+                        .padding(.leading, 26)
                 }
 
                 NetworkInfoRow(field: field)
-                    .padding(.vertical, 9)
+                    .padding(.vertical, 6)
             }
         }
         .padding(ToolPouchLayout.Tile.padding)
