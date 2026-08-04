@@ -3,6 +3,8 @@ nonisolated struct ToolDefinition: Hashable, Identifiable, Sendable {
         case networkInfo
         case wiFiScanner
         case sshKeys
+        case passwordGenerator
+        case textEncoder
     }
 
     let id: ID

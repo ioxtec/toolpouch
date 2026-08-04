@@ -23,6 +23,8 @@ xcodebuild \
     -configuration Debug \
     -destination "generic/platform=macOS" \
     -derivedDataPath "$DERIVED_DATA_PATH" \
+    SDK_STAT_CACHE_ENABLE=NO \
+    COMPILATION_CACHE_ENABLE_CACHING=NO \
     build
 
 open_app() {

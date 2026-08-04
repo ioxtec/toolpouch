@@ -11,23 +11,36 @@
 		00786C6220D79FE00D346D4A /* SystemDeviceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8D3FC935B4D99726F6CC47 /* SystemDeviceProvider.swift */; };
 		00982857FF93CFEBC19CE89F /* NetworkSnapshotRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0839652F731456FD41375E /* NetworkSnapshotRepository.swift */; };
 		00DE26992872E8624D5569D4 /* ThreeColumnToolNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C243B34E2646F278205FD31D /* ThreeColumnToolNavigationView.swift */; };
+		0131025104056D7B31286301 /* TextEncodingConversionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12038DE1DC1BE05E67FF47CB /* TextEncodingConversionError.swift */; };
 		01C5E2F416BDAA3EA3E06C52 /* SecurityScopedSSHKeyFolderStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F6B18DF4AE88C398D82C5F /* SecurityScopedSSHKeyFolderStore.swift */; };
 		0215D8E0B07235FDC3E1F51B /* NetworkSnapshotRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7964692682D3B2BA128346 /* NetworkSnapshotRecord.swift */; };
+		02F6F22ECDD4A71A4B6E1BED /* PasswordGenerationMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76960F38ED126636E9F502F3 /* PasswordGenerationMode.swift */; };
+		046ACF7BFECA1100858CC81C /* PasswordGeneratorOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD5CD6BB2966D02F0540954 /* PasswordGeneratorOptions.swift */; };
 		05F31E7638D6F38E2F5DE2D8 /* SSHKeyPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD43245FED194D5D2676BA6 /* SSHKeyPair.swift */; };
 		06E36E2EB705470787C57203 /* PublicIPAddressClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 613825FBCF371AAEF5C50045 /* PublicIPAddressClient.swift */; };
 		06FF52983D4AA16A291FAD90 /* PlatformAvailabilityBadges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068B5412AE0377DC1B030D34 /* PlatformAvailabilityBadges.swift */; };
+		0780FFD96DC6BD049E0399C0 /* eff_short_wordlist_1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1558918081DCD03B43A1BECA /* eff_short_wordlist_1.txt */; };
 		0A7FD3155417C4C3BFB1793A /* NetworkInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E9A70E2AA762BC89B1108E /* NetworkInfoView.swift */; };
+		0AEE0C3FE1AD5306DAB833E3 /* TextEncodingConverting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10CC618F83511E52D5B85D22 /* TextEncodingConverting.swift */; };
 		0B532B50DF7FAAA4A6C72A50 /* ToolRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09FEDFF9AC030734060D785 /* ToolRegistry.swift */; };
+		103AFD8A5BC92698CE8D4586 /* PasswordResultField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D05E7E05B309DEADF3E415A /* PasswordResultField.swift */; };
 		116316EF6DD885DC06CF23C0 /* ToolPlatform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DAE6574E349860CCECFEDB /* ToolPlatform.swift */; };
+		12062B4847DAA048385D3FD7 /* PasswordGenerating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7A0DDB23093152946A2FE1 /* PasswordGenerating.swift */; };
 		1298E0EDE0747AAB683C6FFA /* ToolRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09FEDFF9AC030734060D785 /* ToolRegistry.swift */; };
+		135A10F78EFD4B9A6E68C2FC /* SecurePasswordGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A015CA6389681BF989E3D364 /* SecurePasswordGenerator.swift */; };
 		144ACB7AE8F7E6F822B5E058 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6A8BDAFE9860DE3BA5E6E63 /* Assets.xcassets */; };
+		145E6A20B9F13F6AB7D429BF /* eff_short_wordlist_1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1558918081DCD03B43A1BECA /* eff_short_wordlist_1.txt */; };
+		15595CB7687751DD2907B360 /* PasswordGeneratorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25EEF05E2177DF478F7E85CB /* PasswordGeneratorView.swift */; };
 		15A0673273203EF8EFF80D80 /* SSHKeysPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840DFE2587B04635E57C17DE /* SSHKeysPlugin.swift */; };
 		15A2AFE5966C4C7BD2D616E1 /* NetworkInfoPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73D4E1AFE4F1B694CFCBD55 /* NetworkInfoPlugin.swift */; };
 		1684F9540A4986DE674CB9A3 /* CoreWLANWiFiScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E74AFBAAF9C353F5981D03 /* CoreWLANWiFiScanner.swift */; };
 		1725DF34953034778DFB5FEE /* SSHKeyGeneratorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1DF3173F6D3B336164FE22 /* SSHKeyGeneratorView.swift */; };
 		17A7D8BE787305A7EC23F62C /* SystemSSHKeyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E8D3D1B5C8D15796C21E8C /* SystemSSHKeyManager.swift */; };
+		17EB852F1AF3D646569E7079 /* PasswordGenerationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262F17F6DA309A175B249BE2 /* PasswordGenerationError.swift */; };
 		180342FDFDE44FDBF80575F7 /* DeviceStoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DB69B90FF76B773D1834D9 /* DeviceStoring.swift */; };
 		18BD24F6F8217CA2ED5B4932 /* DeviceStoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DB69B90FF76B773D1834D9 /* DeviceStoring.swift */; };
+		18F4D8D6448B8F18A9F363D6 /* TextEncoderPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A6A3B6AA8A0063B103F714 /* TextEncoderPlugin.swift */; };
+		191161AA11F3DF032FCA1128 /* PasswordGenerationMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76960F38ED126636E9F502F3 /* PasswordGenerationMode.swift */; };
 		1A28F44B53308F514CF015DF /* ToolPouchLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3664562A15795EA055869A /* ToolPouchLayout.swift */; };
 		1AC43F92862B763AC25EA6DF /* SSHKeyPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD43245FED194D5D2676BA6 /* SSHKeyPair.swift */; };
 		1B4631A86B67A7A6BFE175C4 /* ScreenHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FA0D56E5D5E69642D8427A /* ScreenHeader.swift */; };
@@ -38,9 +51,13 @@
 		1F2EFA02FB78D3846BFC483D /* ToolPlatform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DAE6574E349860CCECFEDB /* ToolPlatform.swift */; };
 		1F76A5757D7FC46F08AF3D27 /* SystemDeviceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8D3FC935B4D99726F6CC47 /* SystemDeviceProvider.swift */; };
 		209F358EC7E4C67DB58A07D4 /* NetworkSnapshotRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7964692682D3B2BA128346 /* NetworkSnapshotRecord.swift */; };
+		20E2F63994839841F96B4C34 /* BinaryTextConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C4D337DA7592E813712FC1 /* BinaryTextConverter.swift */; };
 		22F6A0FCD702FDDB804DB16D /* CoreLocationWiFiScanAuthorizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B23E488E61D65E44716E050 /* CoreLocationWiFiScanAuthorizer.swift */; };
 		239A0DAD68E416FCC77B7F0D /* ToolCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E733BEC952E47417A2A2BB /* ToolCategory.swift */; };
+		240D37B7E1F83C7FD987B13B /* eff_short_wordlist_1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1558918081DCD03B43A1BECA /* eff_short_wordlist_1.txt */; };
 		24235128B86DCCA4C51D13A5 /* SecurityScopedSSHKeyFolderStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F6B18DF4AE88C398D82C5F /* SecurityScopedSSHKeyFolderStore.swift */; };
+		26F92163D6485B2BE5703295 /* PasswordGeneratorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25EEF05E2177DF478F7E85CB /* PasswordGeneratorView.swift */; };
+		2792B309E7F20951E538C698 /* BinaryTextEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317431AFE22F3F49E3C1CA9F /* BinaryTextEncoding.swift */; };
 		282D3F2BE8F36A65BFFBB401 /* ScreenHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FA0D56E5D5E69642D8427A /* ScreenHeader.swift */; };
 		28CD599E1641E54FF7D6FC66 /* DeviceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F74BC189247B422900D1512 /* DeviceRepository.swift */; };
 		2A3582F43895298F3B942D87 /* WiFiScannerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231DDE71DEC4A7FDBBE3ECDF /* WiFiScannerPlugin.swift */; };
@@ -53,6 +70,7 @@
 		31DB78FFB0BDC74AFD796D35 /* NetworkSnapshotCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B4905FA429F9A69EA42030 /* NetworkSnapshotCard.swift */; };
 		332D2A3C42B074D637BBEFE9 /* NetworkInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E9A70E2AA762BC89B1108E /* NetworkInfoView.swift */; };
 		33343032B6985278382D2B70 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6A8BDAFE9860DE3BA5E6E63 /* Assets.xcassets */; };
+		337B7BA776C6BF7BC9C0CBA3 /* TextEncoderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE91A99E5A8CD788FE5C03DC /* TextEncoderView.swift */; };
 		337F5C5447D4C496D4F48365 /* NetworkInfoCollecting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389C80ADDC1698181A5ACEE8 /* NetworkInfoCollecting.swift */; };
 		3422B535E9360FB1E460194C /* ToolTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10ED5908365A774462E04218 /* ToolTile.swift */; };
 		344B02EE120F28D412BFBEBC /* CurrentDeviceProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE962C93DF0F1957BEEE87BA /* CurrentDeviceProviding.swift */; };
@@ -68,13 +86,20 @@
 		428EFE74BFE1FF1A2AD08CFD /* NetworkSnapshotStoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CDE5D27C1075AC7F50FD58 /* NetworkSnapshotStoring.swift */; };
 		42EE9B61A5A186613DAEBF01 /* ToolRegistryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1E9F5F6CB93B69D8D9CCF5 /* ToolRegistryTests.swift */; };
 		43B769876A3EAE075A2B73AA /* SSHKeyManaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5180691BB279D3D1070D3EE /* SSHKeyManaging.swift */; };
+		44B3514016D29F3F0313DDA1 /* EFFPassphraseWordList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315C365147246C5C4D73BA2E /* EFFPassphraseWordList.swift */; };
 		468258A3247A6B78743A947C /* SSHKeyGeneratorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1DF3173F6D3B336164FE22 /* SSHKeyGeneratorView.swift */; };
+		46A9454AE3E2F74919C6AA85 /* GeneratedPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DFD11D4C203D86FBC1B8000 /* GeneratedPassword.swift */; };
 		46E3B5C2487724C84570D22F /* SSHKeysViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A980B0D5EFAD5956EBE83012 /* SSHKeysViewModel.swift */; };
+		47557EE7CF780EA542BFFFDB /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = E7942F8B72064396FC7080BA /* README.md */; };
 		4996F8704350AFD12B42B721 /* CopyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800CC3CC149F184FED2DA6C4 /* CopyButton.swift */; };
 		4C383F06312A68F6DE88A050 /* CurrentDeviceProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE962C93DF0F1957BEEE87BA /* CurrentDeviceProviding.swift */; };
 		4C9EF4C707C35E428DBC8F42 /* NetworkInfoField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FB5C88192D4AA72D86A6F7 /* NetworkInfoField.swift */; };
+		4F2F5A4EF79D7F1744CE7C4C /* PasswordResultField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D05E7E05B309DEADF3E415A /* PasswordResultField.swift */; };
 		4F69A898277D34E9CC448234 /* DeviceKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164CC9FCBC142A35264B35B2 /* DeviceKind.swift */; };
+		4FA33255C6F6211EB1225A84 /* TextEncodingConverting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10CC618F83511E52D5B85D22 /* TextEncodingConverting.swift */; };
+		51A4C858367A583E691F911D /* PasswordGenerationMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76960F38ED126636E9F502F3 /* PasswordGenerationMode.swift */; };
 		54277B652E4ABA2C0DEE5B5F /* ToolRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09FEDFF9AC030734060D785 /* ToolRegistry.swift */; };
+		549882CA40A80250C9A64AFE /* GeneratedPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DFD11D4C203D86FBC1B8000 /* GeneratedPassword.swift */; };
 		54D98146F9B921773B280805 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167154D785DBC4023998195A /* SettingsView.swift */; };
 		56CEF4327FC9241D4A678574 /* SSHKeysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ECA7F131E1C24329B43A94 /* SSHKeysView.swift */; };
 		57BE81046CC5004C2D611C32 /* LocalNetworkInfoProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DA9A1A268CE0EB67C77005 /* LocalNetworkInfoProviding.swift */; };
@@ -89,12 +114,16 @@
 		5F199BA207BFCEE5E0AC245B /* SystemLocalNetworkInfoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91A05C7D22AD616E18145C8 /* SystemLocalNetworkInfoProvider.swift */; };
 		61D02E234E29BDBB76AFBE0E /* DeviceKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164CC9FCBC142A35264B35B2 /* DeviceKind.swift */; };
 		676F5BC41C5BEE25D741CD34 /* SystemSSHKeyManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF1143194B31D435351C5A4 /* SystemSSHKeyManagerTests.swift */; };
+		67FA84E2540FEF576D8E190A /* PasswordResultField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D05E7E05B309DEADF3E415A /* PasswordResultField.swift */; };
 		6882AD2A40401E7FC61C3F8D /* NetworkInfoPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73D4E1AFE4F1B694CFCBD55 /* NetworkInfoPlugin.swift */; };
+		689DAC7A3AB17A9D51F00763 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = E7942F8B72064396FC7080BA /* README.md */; };
 		68EC2ECC01E8D17C066F5797 /* SSHKeyGenerationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD209DD3E7B409475BC75677 /* SSHKeyGenerationRequest.swift */; };
 		6A0D59998858E2052209D509 /* CoreLocationWiFiScanAuthorizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B23E488E61D65E44716E050 /* CoreLocationWiFiScanAuthorizer.swift */; };
 		6A2D968B3CF1D51EA6F09947 /* SSHKeyManaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5180691BB279D3D1070D3EE /* SSHKeyManaging.swift */; };
 		6C6E9562FBAB3EB7240A332D /* AppRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F123208D540B6F39E30ADFB /* AppRoute.swift */; };
+		6D04D8DD950CD10E817913EE /* BinaryTextEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317431AFE22F3F49E3C1CA9F /* BinaryTextEncoding.swift */; };
 		6DF7CB4FE6D103CCEC494089 /* AppDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED60A6037EA8081E403E1B9D /* AppDependencies.swift */; };
+		7007205933C59AA90F8E4D1D /* PasswordGenerationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262F17F6DA309A175B249BE2 /* PasswordGenerationError.swift */; };
 		7120FAB7E3505FDB58126CA7 /* NetworkInfoHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DE4EB0157569E7E4C84647B /* NetworkInfoHeader.swift */; };
 		71C2F29840A8792499C7EA90 /* ToolPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04A0860CA86A74688E0C1BC /* ToolPlugin.swift */; };
 		733659AA81DFB2F2B0681848 /* SystemLocalNetworkInfoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91A05C7D22AD616E18145C8 /* SystemLocalNetworkInfoProvider.swift */; };
@@ -108,22 +137,36 @@
 		7A134F7F94B9CF3362BD3058 /* WiFiScanning.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD183E5DDD24365712DF12AE /* WiFiScanning.swift */; };
 		7A403244134E1D0280AC15DD /* AppPreferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3207B6715EC802F3AB4AF7AE /* AppPreferenceKey.swift */; };
 		7A65FB1FC1C7543977B92695 /* ToolExecutionBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CB05F150518589EE236F1B /* ToolExecutionBackend.swift */; };
+		7AB68995967C4E6EFB6C40ED /* PasswordGeneratorOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD5CD6BB2966D02F0540954 /* PasswordGeneratorOptions.swift */; };
 		7B620CF8375E7E48884F635E /* CurrentDeviceProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE962C93DF0F1957BEEE87BA /* CurrentDeviceProviding.swift */; };
+		7C2D631BA5A1C30AEA315771 /* PassphraseSeparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA5DED2B30FFA4F36822A8A /* PassphraseSeparator.swift */; };
+		7CBD1A14493FA742DF66159D /* TextEncodingConverting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10CC618F83511E52D5B85D22 /* TextEncodingConverting.swift */; };
 		7DBB76CD8032F7A8F34A8F3B /* SystemClipboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBF1212FA8AC55E2EAA0C8D /* SystemClipboard.swift */; };
 		7E47F0D38B8220ECAD0BC8AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6A8BDAFE9860DE3BA5E6E63 /* Assets.xcassets */; };
 		7E858E0AA8700B36D2C93A7A /* WiFiScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C544F3B6073C2E3E87BF6FF /* WiFiScannerView.swift */; };
 		7FB2177EE85D4AA3625455BB /* NetworkInfoHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DE4EB0157569E7E4C84647B /* NetworkInfoHeader.swift */; };
+		81504CA22D12A742DD14DB6F /* TextEncoderPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A6A3B6AA8A0063B103F714 /* TextEncoderPlugin.swift */; };
 		825511454638980CDE46ADED /* CompactToolNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6DCDD6E504FA0A155CE1C5 /* CompactToolNavigationView.swift */; };
 		829B5B38F0FB497A42DFFBC9 /* ToolExecutionBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CB05F150518589EE236F1B /* ToolExecutionBackend.swift */; };
+		83683A4EFA00F9E5B7A8ABBD /* PasswordGeneratorOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD5CD6BB2966D02F0540954 /* PasswordGeneratorOptions.swift */; };
+		8599F74BFBB91C3BAA0053D7 /* TextConversionDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBB5A2BB7141BC77AADD72C /* TextConversionDirection.swift */; };
 		86DA73A5A863ED9C044AEAC2 /* ToolDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8C7F47CD104903A1C8E3BB /* ToolDefinition.swift */; };
+		87B5421589E5AA2CF106C0DC /* PasswordGeneratorPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB763A0EE76EB8BFABF632A /* PasswordGeneratorPlugin.swift */; };
 		885CFD9CCBFB65AEC75AF20A /* SystemLocalNetworkInfoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91A05C7D22AD616E18145C8 /* SystemLocalNetworkInfoProvider.swift */; };
+		88B3ABF663A9B003F15DA00A /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = E7942F8B72064396FC7080BA /* README.md */; };
 		88E23B7C959723DDBFDB9CFF /* MenuBarRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153E7086FF1D7522B52E1556 /* MenuBarRootView.swift */; };
 		890A0F3EAFD50CDE7186EEE4 /* NetworkInfoCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFE2C69164860B77C1CE118 /* NetworkInfoCollector.swift */; };
+		8AD09EAE879C034FE66BA864 /* SecurePasswordGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A015CA6389681BF989E3D364 /* SecurePasswordGenerator.swift */; };
 		8CB93445A799C9F8A0459CA0 /* SystemSSHKeyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E8D3D1B5C8D15796C21E8C /* SystemSSHKeyManager.swift */; };
 		8DC4C508EBF96C180F95DCF2 /* ToolCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E733BEC952E47417A2A2BB /* ToolCategory.swift */; };
+		8ED3CD1B37F6F3BA887E8F57 /* TextEncoderPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A6A3B6AA8A0063B103F714 /* TextEncoderPlugin.swift */; };
+		8F36158202932EE343BFDFC2 /* SecurePasswordGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A015CA6389681BF989E3D364 /* SecurePasswordGenerator.swift */; };
 		8F83848D7AFC2C9F4132E688 /* DeviceRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06AA0D829C6830E286FDDCA /* DeviceRecord.swift */; };
 		8F87646E0B069956C24A58D9 /* NetworkSnapshotStoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CDE5D27C1075AC7F50FD58 /* NetworkSnapshotStoring.swift */; };
+		90B9FC3FE409519E861163A8 /* TextConversionDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBB5A2BB7141BC77AADD72C /* TextConversionDirection.swift */; };
+		91AFEE94700928DE49CC2463 /* PasswordGeneratorPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB763A0EE76EB8BFABF632A /* PasswordGeneratorPlugin.swift */; };
 		91D33B7F8F5ED8E2E76A2F6E /* AdaptiveMobileRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B4B04244B5446F1606D3C1 /* AdaptiveMobileRootView.swift */; };
+		926E5807E87F991D0C182D55 /* EFFPassphraseWordList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315C365147246C5C4D73BA2E /* EFFPassphraseWordList.swift */; };
 		93D48E21F01B9902926A1B7B /* ToolPouchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34E890EF011E9EE5FFC9E11 /* ToolPouchApp.swift */; };
 		96DF1957BCA3BE0E32EB6DAB /* ScreenHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FA0D56E5D5E69642D8427A /* ScreenHeader.swift */; };
 		9788FFED97E5750BABD269B5 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167154D785DBC4023998195A /* SettingsView.swift */; };
@@ -138,17 +181,21 @@
 		9F58817599CA7E9F8A6C55A3 /* WiFiNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDFD56325BA8DA558567EAF /* WiFiNetwork.swift */; };
 		A05A26FB2C778F68DD37BF32 /* DeviceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F74BC189247B422900D1512 /* DeviceRepository.swift */; };
 		A0666CEEBF146DFA2551690E /* ToolPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04A0860CA86A74688E0C1BC /* ToolPlugin.swift */; };
+		A1131E68A65393A8ECAC2083 /* TextEncoderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE91A99E5A8CD788FE5C03DC /* TextEncoderView.swift */; };
 		A35AC47C08B4A047F7CBFA1D /* NetworkInfoRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA52861EB697FD6BF136C6A /* NetworkInfoRow.swift */; };
 		A48866FCF15E8C531993F648 /* SSHKeyPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD43245FED194D5D2676BA6 /* SSHKeyPair.swift */; };
 		A64B0F940B3E41FC0B9AB92F /* toolpouchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7D13A38BE946CA312E7939 /* toolpouchUITests.swift */; };
 		A7154A51CF20FCE11569E275 /* SystemSSHKeyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E8D3D1B5C8D15796C21E8C /* SystemSSHKeyManager.swift */; };
 		A79A953BF171341F1B00ED43 /* AppNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486E0B5DA572E325C37A08E8 /* AppNavigationBar.swift */; };
+		AA10098412F36B25E850E437 /* SecurePasswordGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D1A8F4C7E1F63602A3CAB8 /* SecurePasswordGeneratorTests.swift */; };
 		AA58AABDC74972A41F577299 /* SSHKeyGeneratorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1DF3173F6D3B336164FE22 /* SSHKeyGeneratorView.swift */; };
 		AA8FA6A254FC851CF9FE8C79 /* NetworkInfoField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FB5C88192D4AA72D86A6F7 /* NetworkInfoField.swift */; };
 		AB916832C9B0B40E56E222F9 /* ToolTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10ED5908365A774462E04218 /* ToolTile.swift */; };
 		ABC3CE4504C17DF3AB30D9AA /* AppPreferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3207B6715EC802F3AB4AF7AE /* AppPreferenceKey.swift */; };
 		ABCA694C43FD80F2E527813B /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652A219FC27D38FB8350614F /* DashboardView.swift */; };
+		AC972BB5590957589627CA89 /* BinaryTextConverterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BFE7F58E4EF16994413D03 /* BinaryTextConverterTests.swift */; };
 		ACC666929E0EF60531C12F60 /* SSHKeyGenerationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD209DD3E7B409475BC75677 /* SSHKeyGenerationRequest.swift */; };
+		ACD9C1EC1157DEB7C8763C53 /* TextEncodingConversionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12038DE1DC1BE05E67FF47CB /* TextEncodingConversionError.swift */; };
 		AD7B2D8ED728160091567729 /* ToolDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8C7F47CD104903A1C8E3BB /* ToolDefinition.swift */; };
 		AD8429815FEE1C9573ECE6C5 /* AppNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486E0B5DA572E325C37A08E8 /* AppNavigationBar.swift */; };
 		ADCB7F29150FF64C0D04D52A /* NetworkSnapshotRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 613472AD1F3CD0C844757235 /* NetworkSnapshotRepositoryTests.swift */; };
@@ -158,9 +205,11 @@
 		B0F2A7C71341956FE857203B /* NetworkInfoSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A55F53A385628990EFBB758 /* NetworkInfoSnapshot.swift */; };
 		B2AB4CA3EC86AA903E2C6623 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF8CBBAF423DFECF978F7B1 /* AppDelegate.swift */; };
 		B5459CE50C22A60532F90047 /* AppRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F123208D540B6F39E30ADFB /* AppRoute.swift */; };
+		B7054430CC70F0242FABEE13 /* PasswordGenerating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7A0DDB23093152946A2FE1 /* PasswordGenerating.swift */; };
 		B72FD2641F288E2A9A981931 /* AdaptiveGlassGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = E637C4DC67B3DD861918D253 /* AdaptiveGlassGrid.swift */; };
 		B73435A8CB44B85F75445D36 /* WiFiScannerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E1FC80540C5393C219837F /* WiFiScannerViewModel.swift */; };
 		B83E627CCB1667A6451FC509 /* NetworkInfoCollecting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389C80ADDC1698181A5ACEE8 /* NetworkInfoCollecting.swift */; };
+		BA39FEF94818BDC5F6CD589A /* PasswordGeneratorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25EEF05E2177DF478F7E85CB /* PasswordGeneratorView.swift */; };
 		BA827A24028012A0B9E95DD1 /* NetworkInfoCollecting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389C80ADDC1698181A5ACEE8 /* NetworkInfoCollecting.swift */; };
 		BB2092BAA442031D5C03FD6B /* WiFiScannerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231DDE71DEC4A7FDBBE3ECDF /* WiFiScannerPlugin.swift */; };
 		BB5B2C643DEA11B05A613C00 /* CoreWLANWiFiScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E74AFBAAF9C353F5981D03 /* CoreWLANWiFiScanner.swift */; };
@@ -174,7 +223,9 @@
 		C0992B92CFF4E1E727E157C8 /* StatusItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C25843D6261F583C4E5C70D /* StatusItemController.swift */; };
 		C13DE540427E96E37AF35BCF /* SystemClipboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBF1212FA8AC55E2EAA0C8D /* SystemClipboard.swift */; };
 		C1BA0843564046B7BD2B50BA /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77ADDC55F188549017A4FC6 /* MainWindowController.swift */; };
+		C2406B736E52D7A44F33BD51 /* PasswordGeneratorPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB763A0EE76EB8BFABF632A /* PasswordGeneratorPlugin.swift */; };
 		C2A3CC69E33118F04CF948C7 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167154D785DBC4023998195A /* SettingsView.swift */; };
+		C40967E57A669A7984159295 /* PassphraseSeparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA5DED2B30FFA4F36822A8A /* PassphraseSeparator.swift */; };
 		C42851FFF75E5805EB4A4AB1 /* AppNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486E0B5DA572E325C37A08E8 /* AppNavigationBar.swift */; };
 		C7F7E9B880808FA421CB7993 /* NetworkInfoRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA52861EB697FD6BF136C6A /* NetworkInfoRow.swift */; };
 		C997C1B329407750FD065015 /* SSHKeyManaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5180691BB279D3D1070D3EE /* SSHKeyManaging.swift */; };
@@ -182,22 +233,29 @@
 		CA85FB64B5F6FD9E4A69419D /* NetworkInfoField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FB5C88192D4AA72D86A6F7 /* NetworkInfoField.swift */; };
 		CB2594379B352898CA742676 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652A219FC27D38FB8350614F /* DashboardView.swift */; };
 		CB2B03C7D6033EB6B6E35170 /* SSHKeyFolderAccessing.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8358CA68FA245C6C2F3E119 /* SSHKeyFolderAccessing.swift */; };
+		CD4EBD2A218163098A1335CF /* BinaryTextConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C4D337DA7592E813712FC1 /* BinaryTextConverter.swift */; };
 		CD94AA35F1F870FE3D8FAD47 /* WiFiNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDFD56325BA8DA558567EAF /* WiFiNetwork.swift */; };
 		CDA832BC30A5A5F83B27EB3D /* DeviceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F74BC189247B422900D1512 /* DeviceRepository.swift */; };
 		CEA80FEE501AFA5FD07DF729 /* WiFiScannerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231DDE71DEC4A7FDBBE3ECDF /* WiFiScannerPlugin.swift */; };
 		CEBECCE1027E414675403673 /* ToolCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E733BEC952E47417A2A2BB /* ToolCategory.swift */; };
+		CF7AF940426F0033C855BA67 /* TextEncodingConversionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12038DE1DC1BE05E67FF47CB /* TextEncodingConversionError.swift */; };
+		D010181C1ABDEF64D12CA773 /* TextConversionDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBB5A2BB7141BC77AADD72C /* TextConversionDirection.swift */; };
 		D0E7C879812759B4D743C21B /* NetworkSnapshotRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7964692682D3B2BA128346 /* NetworkSnapshotRecord.swift */; };
 		D3086114888E25B15D3DDC88 /* WiFiScannerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E1FC80540C5393C219837F /* WiFiScannerViewModel.swift */; };
 		D33EE39B6DD2A8E6252C1764 /* ToolPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04A0860CA86A74688E0C1BC /* ToolPlugin.swift */; };
 		D410F8BA4F5A4BD21B17AE42 /* WiFiScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C544F3B6073C2E3E87BF6FF /* WiFiScannerView.swift */; };
 		D577EAC537407E10CD5ACF70 /* NetworkSnapshotRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0839652F731456FD41375E /* NetworkSnapshotRepository.swift */; };
+		D5AA3B32578931E622925117 /* EFFPassphraseWordList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315C365147246C5C4D73BA2E /* EFFPassphraseWordList.swift */; };
 		DA3BB61C85DD54C5F1FB6239 /* CompactToolNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6DCDD6E504FA0A155CE1C5 /* CompactToolNavigationView.swift */; };
+		DAF56499EEBFD4095B8C7636 /* PassphraseSeparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA5DED2B30FFA4F36822A8A /* PassphraseSeparator.swift */; };
 		DD56F6C7F19626D56C4AD725 /* SecurityScopedSSHKeyFolderStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F6B18DF4AE88C398D82C5F /* SecurityScopedSSHKeyFolderStore.swift */; };
+		DE2928BBF4CFEC9D4D9356A4 /* PasswordGenerating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7A0DDB23093152946A2FE1 /* PasswordGenerating.swift */; };
 		DE68615AD1B77F5C4D50AA12 /* ToolPouchWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6D06D4FD65DEA2EFBE51DC /* ToolPouchWatchApp.swift */; };
 		DF4A0D136C7AE473A44A394A /* ThreeColumnToolNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C243B34E2646F278205FD31D /* ThreeColumnToolNavigationView.swift */; };
 		DFD29A1229297453A9B0CDC4 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8E5DAE35E23D3110464A3F /* Device.swift */; };
 		E0E6D5DFA63DFE1C527017CC /* NetworkConnectionKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DE1400A6CF3F3656B0A996 /* NetworkConnectionKind.swift */; };
 		E18739CB88A905ACFDCD2F9F /* AppPreferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3207B6715EC802F3AB4AF7AE /* AppPreferenceKey.swift */; };
+		E1B15E61CCB9E772529E8752 /* BinaryTextEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317431AFE22F3F49E3C1CA9F /* BinaryTextEncoding.swift */; };
 		E549D4A9F1A0406556049D5C /* AdaptiveGlassGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = E637C4DC67B3DD861918D253 /* AdaptiveGlassGrid.swift */; };
 		E579046C62FFC80C6B08BA89 /* NetworkSnapshotCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B4905FA429F9A69EA42030 /* NetworkSnapshotCard.swift */; };
 		E78E54C6DBC89EFE49B938A3 /* SSHKeyAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269BC573505014B0850537B7 /* SSHKeyAlgorithm.swift */; };
@@ -206,17 +264,21 @@
 		EB3832E54696325C45D9CB7E /* ToolPouchLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3664562A15795EA055869A /* ToolPouchLayout.swift */; };
 		EDBC9DDE61DB088552EB9058 /* RecentDevicesCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0795992790521E5BF10EE6 /* RecentDevicesCard.swift */; };
 		EE150DCDB7CE318D7181A903 /* RecentDevicesCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0795992790521E5BF10EE6 /* RecentDevicesCard.swift */; };
+		EE50B67C3AEB48496DBA6D73 /* PasswordGenerationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262F17F6DA309A175B249BE2 /* PasswordGenerationError.swift */; };
 		EF685479F2F1E43EB1163D53 /* ToolExecutionBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CB05F150518589EE236F1B /* ToolExecutionBackend.swift */; };
 		EFFCC806B55503683C6C316E /* DeviceRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06AA0D829C6830E286FDDCA /* DeviceRecord.swift */; };
 		F018E9955580F998D89FE553 /* SSHKeysViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A980B0D5EFAD5956EBE83012 /* SSHKeysViewModel.swift */; };
+		F0D72E07095334E32260CD69 /* GeneratedPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DFD11D4C203D86FBC1B8000 /* GeneratedPassword.swift */; };
 		F140D4069A012EFD1470823B /* NetworkInfoCollectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D49D6F3EB8DBDD7DDEA6D2 /* NetworkInfoCollectorTests.swift */; };
 		F145BAE4E9CF84FEEA01147D /* WiFiScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C544F3B6073C2E3E87BF6FF /* WiFiScannerView.swift */; };
 		F14B495ED2E7C0B8B204E3F4 /* NetworkInfoSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A55F53A385628990EFBB758 /* NetworkInfoSnapshot.swift */; };
 		F1AF9C281F8FA80EB0E4BAF2 /* CoreWLANWiFiScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E74AFBAAF9C353F5981D03 /* CoreWLANWiFiScanner.swift */; };
+		F217F4118DF0BF6AB27F4CE6 /* BinaryTextConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C4D337DA7592E813712FC1 /* BinaryTextConverter.swift */; };
 		F57777F9C56FD564EF72D739 /* NetworkInfoCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFE2C69164860B77C1CE118 /* NetworkInfoCollector.swift */; };
 		F70F97AF8EDDFC8031B24965 /* PersistenceContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD21195E15DB2FA21697E47B /* PersistenceContainer.swift */; };
 		F75870C3F3DD07FD47369ACE /* CoreLocationWiFiScanAuthorizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B23E488E61D65E44716E050 /* CoreLocationWiFiScanAuthorizer.swift */; };
 		F7F83FB2AE66ED1E12CA9A1E /* SSHKeysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ECA7F131E1C24329B43A94 /* SSHKeysView.swift */; };
+		F83B1F2A9B9CC255F5190E30 /* TextEncoderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE91A99E5A8CD788FE5C03DC /* TextEncoderView.swift */; };
 		F869D30C1258B38CBBC508A6 /* SSHKeysPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840DFE2587B04635E57C17DE /* SSHKeysPlugin.swift */; };
 		FC02516D945A9CCD382E8F5F /* WiFiNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDFD56325BA8DA558567EAF /* WiFiNetwork.swift */; };
 		FC36322C47C21386D8BD8632 /* SSHKeyAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269BC573505014B0850537B7 /* SSHKeyAlgorithm.swift */; };
@@ -249,24 +311,36 @@
 		01B4905FA429F9A69EA42030 /* NetworkSnapshotCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSnapshotCard.swift; sourceTree = "<group>"; };
 		053DD5B5A84D23307A1B22EB /* ToolPouch.macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ToolPouch.macOS.entitlements; sourceTree = "<group>"; };
 		068B5412AE0377DC1B030D34 /* PlatformAvailabilityBadges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformAvailabilityBadges.swift; sourceTree = "<group>"; };
+		08BFE7F58E4EF16994413D03 /* BinaryTextConverterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryTextConverterTests.swift; sourceTree = "<group>"; };
 		0A1E9F5F6CB93B69D8D9CCF5 /* ToolRegistryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolRegistryTests.swift; sourceTree = "<group>"; };
 		0DBF1212FA8AC55E2EAA0C8D /* SystemClipboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemClipboard.swift; sourceTree = "<group>"; };
+		0DFD11D4C203D86FBC1B8000 /* GeneratedPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratedPassword.swift; sourceTree = "<group>"; };
+		10CC618F83511E52D5B85D22 /* TextEncodingConverting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEncodingConverting.swift; sourceTree = "<group>"; };
 		10ED5908365A774462E04218 /* ToolTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolTile.swift; sourceTree = "<group>"; };
+		12038DE1DC1BE05E67FF47CB /* TextEncodingConversionError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEncodingConversionError.swift; sourceTree = "<group>"; };
+		12D1A8F4C7E1F63602A3CAB8 /* SecurePasswordGeneratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurePasswordGeneratorTests.swift; sourceTree = "<group>"; };
 		153E7086FF1D7522B52E1556 /* MenuBarRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarRootView.swift; sourceTree = "<group>"; };
+		1558918081DCD03B43A1BECA /* eff_short_wordlist_1.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = eff_short_wordlist_1.txt; sourceTree = "<group>"; };
 		164CC9FCBC142A35264B35B2 /* DeviceKind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceKind.swift; sourceTree = "<group>"; };
 		167154D785DBC4023998195A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		1779F66361F5662740C4F6FA /* WiFiNetworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFiNetworkTests.swift; sourceTree = "<group>"; };
 		1BF8CBBAF423DFECF978F7B1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1CA215E876FB90EF78DDF7FD /* NetworkInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkInfoViewModel.swift; sourceTree = "<group>"; };
 		1DFE2C69164860B77C1CE118 /* NetworkInfoCollector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkInfoCollector.swift; sourceTree = "<group>"; };
+		1FBB5A2BB7141BC77AADD72C /* TextConversionDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextConversionDirection.swift; sourceTree = "<group>"; };
 		1FF1143194B31D435351C5A4 /* SystemSSHKeyManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemSSHKeyManagerTests.swift; sourceTree = "<group>"; };
 		231DDE71DEC4A7FDBBE3ECDF /* WiFiScannerPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFiScannerPlugin.swift; sourceTree = "<group>"; };
+		24A6A3B6AA8A0063B103F714 /* TextEncoderPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEncoderPlugin.swift; sourceTree = "<group>"; };
 		24D49D6F3EB8DBDD7DDEA6D2 /* NetworkInfoCollectorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkInfoCollectorTests.swift; sourceTree = "<group>"; };
+		25EEF05E2177DF478F7E85CB /* PasswordGeneratorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordGeneratorView.swift; sourceTree = "<group>"; };
+		262F17F6DA309A175B249BE2 /* PasswordGenerationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordGenerationError.swift; sourceTree = "<group>"; };
 		269BC573505014B0850537B7 /* SSHKeyAlgorithm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSHKeyAlgorithm.swift; sourceTree = "<group>"; };
 		2F123208D540B6F39E30ADFB /* AppRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRoute.swift; sourceTree = "<group>"; };
 		2F8C7F47CD104903A1C8E3BB /* ToolDefinition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolDefinition.swift; sourceTree = "<group>"; };
 		2F8D3FC935B4D99726F6CC47 /* SystemDeviceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemDeviceProvider.swift; sourceTree = "<group>"; };
 		30B4B04244B5446F1606D3C1 /* AdaptiveMobileRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptiveMobileRootView.swift; sourceTree = "<group>"; };
+		315C365147246C5C4D73BA2E /* EFFPassphraseWordList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFFPassphraseWordList.swift; sourceTree = "<group>"; };
+		317431AFE22F3F49E3C1CA9F /* BinaryTextEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryTextEncoding.swift; sourceTree = "<group>"; };
 		3207B6715EC802F3AB4AF7AE /* AppPreferenceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPreferenceKey.swift; sourceTree = "<group>"; };
 		32DAE6574E349860CCECFEDB /* ToolPlatform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolPlatform.swift; sourceTree = "<group>"; };
 		389C80ADDC1698181A5ACEE8 /* NetworkInfoCollecting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkInfoCollecting.swift; sourceTree = "<group>"; };
@@ -276,15 +350,19 @@
 		45DE1400A6CF3F3656B0A996 /* NetworkConnectionKind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConnectionKind.swift; sourceTree = "<group>"; };
 		47ECA7F131E1C24329B43A94 /* SSHKeysView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSHKeysView.swift; sourceTree = "<group>"; };
 		486E0B5DA572E325C37A08E8 /* AppNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigationBar.swift; sourceTree = "<group>"; };
+		4AD5CD6BB2966D02F0540954 /* PasswordGeneratorOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordGeneratorOptions.swift; sourceTree = "<group>"; };
 		4C544F3B6073C2E3E87BF6FF /* WiFiScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFiScannerView.swift; sourceTree = "<group>"; };
 		4D6D06D4FD65DEA2EFBE51DC /* ToolPouchWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolPouchWatchApp.swift; sourceTree = "<group>"; };
 		4F1DF3173F6D3B336164FE22 /* SSHKeyGeneratorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSHKeyGeneratorView.swift; sourceTree = "<group>"; };
 		4FA52861EB697FD6BF136C6A /* NetworkInfoRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkInfoRow.swift; sourceTree = "<group>"; };
+		52C4D337DA7592E813712FC1 /* BinaryTextConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryTextConverter.swift; sourceTree = "<group>"; };
+		5A7A0DDB23093152946A2FE1 /* PasswordGenerating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordGenerating.swift; sourceTree = "<group>"; };
 		613472AD1F3CD0C844757235 /* NetworkSnapshotRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSnapshotRepositoryTests.swift; sourceTree = "<group>"; };
 		613825FBCF371AAEF5C50045 /* PublicIPAddressClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicIPAddressClient.swift; sourceTree = "<group>"; };
 		652A219FC27D38FB8350614F /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		6B6DCDD6E504FA0A155CE1C5 /* CompactToolNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactToolNavigationView.swift; sourceTree = "<group>"; };
 		71CB05F150518589EE236F1B /* ToolExecutionBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolExecutionBackend.swift; sourceTree = "<group>"; };
+		76960F38ED126636E9F502F3 /* PasswordGenerationMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordGenerationMode.swift; sourceTree = "<group>"; };
 		76E74AFBAAF9C353F5981D03 /* CoreWLANWiFiScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreWLANWiFiScanner.swift; sourceTree = "<group>"; };
 		78FA0D56E5D5E69642D8427A /* ScreenHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenHeader.swift; sourceTree = "<group>"; };
 		7A55F53A385628990EFBB758 /* NetworkInfoSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkInfoSnapshot.swift; sourceTree = "<group>"; };
@@ -296,12 +374,15 @@
 		8C25843D6261F583C4E5C70D /* StatusItemController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusItemController.swift; sourceTree = "<group>"; };
 		90E1FC80540C5393C219837F /* WiFiScannerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFiScannerViewModel.swift; sourceTree = "<group>"; };
 		92E733BEC952E47417A2A2BB /* ToolCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolCategory.swift; sourceTree = "<group>"; };
+		9D05E7E05B309DEADF3E415A /* PasswordResultField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResultField.swift; sourceTree = "<group>"; };
 		9DE4EB0157569E7E4C84647B /* NetworkInfoHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkInfoHeader.swift; sourceTree = "<group>"; };
+		A015CA6389681BF989E3D364 /* SecurePasswordGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurePasswordGenerator.swift; sourceTree = "<group>"; };
 		A73D4E1AFE4F1B694CFCBD55 /* NetworkInfoPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkInfoPlugin.swift; sourceTree = "<group>"; };
 		A980B0D5EFAD5956EBE83012 /* SSHKeysViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSHKeysViewModel.swift; sourceTree = "<group>"; };
 		AA655FB1A90B0BE32860CA44 /* ToolPouchMobileApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolPouchMobileApp.swift; sourceTree = "<group>"; };
 		AB7964692682D3B2BA128346 /* NetworkSnapshotRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSnapshotRecord.swift; sourceTree = "<group>"; };
 		AD0839652F731456FD41375E /* NetworkSnapshotRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSnapshotRepository.swift; sourceTree = "<group>"; };
+		AE91A99E5A8CD788FE5C03DC /* TextEncoderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEncoderView.swift; sourceTree = "<group>"; };
 		B04A0860CA86A74688E0C1BC /* ToolPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolPlugin.swift; sourceTree = "<group>"; };
 		B34E890EF011E9EE5FFC9E11 /* ToolPouchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolPouchApp.swift; sourceTree = "<group>"; };
 		B60D9D80DDAEE87F50A0CA28 /* WatchRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchRootView.swift; sourceTree = "<group>"; };
@@ -326,6 +407,7 @@
 		E3E8D3D1B5C8D15796C21E8C /* SystemSSHKeyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemSSHKeyManager.swift; sourceTree = "<group>"; };
 		E5180691BB279D3D1070D3EE /* SSHKeyManaging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSHKeyManaging.swift; sourceTree = "<group>"; };
 		E637C4DC67B3DD861918D253 /* AdaptiveGlassGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptiveGlassGrid.swift; sourceTree = "<group>"; };
+		E7942F8B72064396FC7080BA /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		E91A05C7D22AD616E18145C8 /* SystemLocalNetworkInfoProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemLocalNetworkInfoProvider.swift; sourceTree = "<group>"; };
 		EABA8D9B6F8966BF9B9C182F /* toolpouchMobile.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = toolpouchMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC61600DADE362B8D4D38F80 /* toolpouchWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = toolpouchWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -334,7 +416,9 @@
 		F09FEDFF9AC030734060D785 /* ToolRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolRegistry.swift; sourceTree = "<group>"; };
 		F8358CA68FA245C6C2F3E119 /* SSHKeyFolderAccessing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSHKeyFolderAccessing.swift; sourceTree = "<group>"; };
 		F8FB5C88192D4AA72D86A6F7 /* NetworkInfoField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkInfoField.swift; sourceTree = "<group>"; };
+		FCB763A0EE76EB8BFABF632A /* PasswordGeneratorPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordGeneratorPlugin.swift; sourceTree = "<group>"; };
 		FD183E5DDD24365712DF12AE /* WiFiScanning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFiScanning.swift; sourceTree = "<group>"; };
+		FEA5DED2B30FFA4F36822A8A /* PassphraseSeparator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassphraseSeparator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -367,8 +451,10 @@
 		096CC8BB361FDA16154DA019 /* toolpouchTests */ = {
 			isa = PBXGroup;
 			children = (
+				08BFE7F58E4EF16994413D03 /* BinaryTextConverterTests.swift */,
 				24D49D6F3EB8DBDD7DDEA6D2 /* NetworkInfoCollectorTests.swift */,
 				613472AD1F3CD0C844757235 /* NetworkSnapshotRepositoryTests.swift */,
+				12D1A8F4C7E1F63602A3CAB8 /* SecurePasswordGeneratorTests.swift */,
 				1FF1143194B31D435351C5A4 /* SystemSSHKeyManagerTests.swift */,
 				0A1E9F5F6CB93B69D8D9CCF5 /* ToolRegistryTests.swift */,
 				1779F66361F5662740C4F6FA /* WiFiNetworkTests.swift */,
@@ -383,6 +469,15 @@
 				C243B34E2646F278205FD31D /* ThreeColumnToolNavigationView.swift */,
 			);
 			path = Navigation;
+			sourceTree = "<group>";
+		};
+		0DF27DFD53CBF45ED2E4BF72 /* Passphrases */ = {
+			isa = PBXGroup;
+			children = (
+				1558918081DCD03B43A1BECA /* eff_short_wordlist_1.txt */,
+				E7942F8B72064396FC7080BA /* README.md */,
+			);
+			path = Passphrases;
 			sourceTree = "<group>";
 		};
 		11C707698206CF01B18D4DCC /* Core */ = {
@@ -419,6 +514,16 @@
 			children = (
 				3B23E488E61D65E44716E050 /* CoreLocationWiFiScanAuthorizer.swift */,
 				76E74AFBAAF9C353F5981D03 /* CoreWLANWiFiScanner.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		295A413DB56DCC81765FA6FC /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				315C365147246C5C4D73BA2E /* EFFPassphraseWordList.swift */,
+				262F17F6DA309A175B249BE2 /* PasswordGenerationError.swift */,
+				A015CA6389681BF989E3D364 /* SecurePasswordGenerator.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -498,6 +603,16 @@
 			path = MenuBar;
 			sourceTree = "<group>";
 		};
+		3E56E8FBD33C46F818F70B0A /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				317431AFE22F3F49E3C1CA9F /* BinaryTextEncoding.swift */,
+				1FBB5A2BB7141BC77AADD72C /* TextConversionDirection.swift */,
+				10CC618F83511E52D5B85D22 /* TextEncodingConverting.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
 		44B555790B10D6F1F4E2294A /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -565,6 +680,35 @@
 			path = Plugins;
 			sourceTree = "<group>";
 		};
+		612BAFD6D6C5355434993232 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				52C4D337DA7592E813712FC1 /* BinaryTextConverter.swift */,
+				12038DE1DC1BE05E67FF47CB /* TextEncodingConversionError.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		6135F58A72F4F508A8D4A7B5 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				0DFD11D4C203D86FBC1B8000 /* GeneratedPassword.swift */,
+				FEA5DED2B30FFA4F36822A8A /* PassphraseSeparator.swift */,
+				5A7A0DDB23093152946A2FE1 /* PasswordGenerating.swift */,
+				76960F38ED126636E9F502F3 /* PasswordGenerationMode.swift */,
+				4AD5CD6BB2966D02F0540954 /* PasswordGeneratorOptions.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		67B0862565315795C7C8B4ED /* Plugin */ = {
+			isa = PBXGroup;
+			children = (
+				24A6A3B6AA8A0063B103F714 /* TextEncoderPlugin.swift */,
+			);
+			path = Plugin;
+			sourceTree = "<group>";
+		};
 		6DC480851817804E5EB5E6E9 = {
 			isa = PBXGroup;
 			children = (
@@ -626,6 +770,14 @@
 			path = NetworkInfo;
 			sourceTree = "<group>";
 		};
+		837A7756637EE3C0712A305D /* Plugin */ = {
+			isa = PBXGroup;
+			children = (
+				FCB763A0EE76EB8BFABF632A /* PasswordGeneratorPlugin.swift */,
+			);
+			path = Plugin;
+			sourceTree = "<group>";
+		};
 		856F739F5C1F9E71025D5017 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
@@ -647,6 +799,7 @@
 				B75F1978FACC32C62756A3EA /* Features */,
 				33AEC774654E1E096581D272 /* Infrastructure */,
 				45B0B9F85D0F4737478C7953 /* Platform */,
+				C9B49EC7BFFABF29B92D83E7 /* Resources */,
 			);
 			path = toolpouch;
 			sourceTree = "<group>";
@@ -657,6 +810,25 @@
 				2F8D3FC935B4D99726F6CC47 /* SystemDeviceProvider.swift */,
 			);
 			path = Devices;
+			sourceTree = "<group>";
+		};
+		94E93368366DE9DDEF2EE0B0 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				AE91A99E5A8CD788FE5C03DC /* TextEncoderView.swift */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		978A6BE1F245F283B802DB4E /* PasswordGenerator */ = {
+			isa = PBXGroup;
+			children = (
+				295A413DB56DCC81765FA6FC /* Data */,
+				6135F58A72F4F508A8D4A7B5 /* Domain */,
+				837A7756637EE3C0712A305D /* Plugin */,
+				D62FE6B814FB3079B51C5D80 /* Presentation */,
+			);
+			path = PasswordGenerator;
 			sourceTree = "<group>";
 		};
 		9E1C07B4EF33E439086AF516 /* iOS */ = {
@@ -726,8 +898,10 @@
 			children = (
 				005F11DDCEE1AE7CF91955EC /* Dashboard */,
 				75868E193B4315953D986F01 /* NetworkInfo */,
+				978A6BE1F245F283B802DB4E /* PasswordGenerator */,
 				0101C5D639B9DE32B0151CD0 /* Settings */,
 				C2AB3C54B5D6E8B2A868F9DB /* SSHKeys */,
+				EC24738BB4B82678CF5C5AB0 /* TextEncoder */,
 				D5083986937AA49BF0E93DE4 /* WiFiScanner */,
 			);
 			path = Features;
@@ -760,6 +934,14 @@
 				ED8809B46550635683EFFC5D /* Presentation */,
 			);
 			path = SSHKeys;
+			sourceTree = "<group>";
+		};
+		C9B49EC7BFFABF29B92D83E7 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0DF27DFD53CBF45ED2E4BF72 /* Passphrases */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		CEC92BEC4D7A94A02ECE9565 /* Window */ = {
@@ -798,6 +980,15 @@
 			path = WiFiScanner;
 			sourceTree = "<group>";
 		};
+		D62FE6B814FB3079B51C5D80 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				25EEF05E2177DF478F7E85CB /* PasswordGeneratorView.swift */,
+				9D05E7E05B309DEADF3E415A /* PasswordResultField.swift */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
 		E3DD5F760862EF3A5919C87E /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
@@ -812,6 +1003,17 @@
 				167154D785DBC4023998195A /* SettingsView.swift */,
 			);
 			path = Presentation;
+			sourceTree = "<group>";
+		};
+		EC24738BB4B82678CF5C5AB0 /* TextEncoder */ = {
+			isa = PBXGroup;
+			children = (
+				612BAFD6D6C5355434993232 /* Data */,
+				3E56E8FBD33C46F818F70B0A /* Domain */,
+				67B0862565315795C7C8B4ED /* Plugin */,
+				94E93368366DE9DDEF2EE0B0 /* Presentation */,
+			);
+			path = TextEncoder;
 			sourceTree = "<group>";
 		};
 		ED8809B46550635683EFFC5D /* Presentation */ = {
@@ -1003,6 +1205,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				7E47F0D38B8220ECAD0BC8AF /* Assets.xcassets in Resources */,
+				689DAC7A3AB17A9D51F00763 /* README.md in Resources */,
+				0780FFD96DC6BD049E0399C0 /* eff_short_wordlist_1.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1011,6 +1215,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				144ACB7AE8F7E6F822B5E058 /* Assets.xcassets in Resources */,
+				47557EE7CF780EA542BFFFDB /* README.md in Resources */,
+				145E6A20B9F13F6AB7D429BF /* eff_short_wordlist_1.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1019,6 +1225,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				33343032B6985278382D2B70 /* Assets.xcassets in Resources */,
+				88B3ABF663A9B003F15DA00A /* README.md in Resources */,
+				240D37B7E1F83C7FD987B13B /* eff_short_wordlist_1.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1035,6 +1243,8 @@
 				C42851FFF75E5805EB4A4AB1 /* AppNavigationBar.swift in Sources */,
 				7A403244134E1D0280AC15DD /* AppPreferenceKey.swift in Sources */,
 				6C6E9562FBAB3EB7240A332D /* AppRoute.swift in Sources */,
+				F217F4118DF0BF6AB27F4CE6 /* BinaryTextConverter.swift in Sources */,
+				2792B309E7F20951E538C698 /* BinaryTextEncoding.swift in Sources */,
 				DA3BB61C85DD54C5F1FB6239 /* CompactToolNavigationView.swift in Sources */,
 				3F805199F0FA762910FF800B /* CopyButton.swift in Sources */,
 				22F6A0FCD702FDDB804DB16D /* CoreLocationWiFiScanAuthorizer.swift in Sources */,
@@ -1046,6 +1256,8 @@
 				EFFCC806B55503683C6C316E /* DeviceRecord.swift in Sources */,
 				A05A26FB2C778F68DD37BF32 /* DeviceRepository.swift in Sources */,
 				5B4A1FA6FB3A9931D3412540 /* DeviceStoring.swift in Sources */,
+				926E5807E87F991D0C182D55 /* EFFPassphraseWordList.swift in Sources */,
+				46A9454AE3E2F74919C6AA85 /* GeneratedPassword.swift in Sources */,
 				57BE81046CC5004C2D611C32 /* LocalNetworkInfoProviding.swift in Sources */,
 				C1BA0843564046B7BD2B50BA /* MainWindowController.swift in Sources */,
 				88E23B7C959723DDBFDB9CFF /* MenuBarRootView.swift in Sources */,
@@ -1063,6 +1275,14 @@
 				209F358EC7E4C67DB58A07D4 /* NetworkSnapshotRecord.swift in Sources */,
 				D577EAC537407E10CD5ACF70 /* NetworkSnapshotRepository.swift in Sources */,
 				8F87646E0B069956C24A58D9 /* NetworkSnapshotStoring.swift in Sources */,
+				C40967E57A669A7984159295 /* PassphraseSeparator.swift in Sources */,
+				DE2928BBF4CFEC9D4D9356A4 /* PasswordGenerating.swift in Sources */,
+				7007205933C59AA90F8E4D1D /* PasswordGenerationError.swift in Sources */,
+				191161AA11F3DF032FCA1128 /* PasswordGenerationMode.swift in Sources */,
+				83683A4EFA00F9E5B7A8ABBD /* PasswordGeneratorOptions.swift in Sources */,
+				91AFEE94700928DE49CC2463 /* PasswordGeneratorPlugin.swift in Sources */,
+				BA39FEF94818BDC5F6CD589A /* PasswordGeneratorView.swift in Sources */,
+				103AFD8A5BC92698CE8D4586 /* PasswordResultField.swift in Sources */,
 				FFA3420F960A8690714955EB /* PersistenceContainer.swift in Sources */,
 				C0755BC2CFC0D89A8D5DB9CF /* PlatformAvailabilityBadges.swift in Sources */,
 				AEDC23E685A4369E474CCD59 /* PublicIPAddressClient.swift in Sources */,
@@ -1077,6 +1297,7 @@
 				E8A94992DB381062A248D104 /* SSHKeysView.swift in Sources */,
 				F018E9955580F998D89FE553 /* SSHKeysViewModel.swift in Sources */,
 				282D3F2BE8F36A65BFFBB401 /* ScreenHeader.swift in Sources */,
+				135A10F78EFD4B9A6E68C2FC /* SecurePasswordGenerator.swift in Sources */,
 				DD56F6C7F19626D56C4AD725 /* SecurityScopedSSHKeyFolderStore.swift in Sources */,
 				54D98146F9B921773B280805 /* SettingsView.swift in Sources */,
 				C0992B92CFF4E1E727E157C8 /* StatusItemController.swift in Sources */,
@@ -1084,6 +1305,11 @@
 				1F76A5757D7FC46F08AF3D27 /* SystemDeviceProvider.swift in Sources */,
 				5F199BA207BFCEE5E0AC245B /* SystemLocalNetworkInfoProvider.swift in Sources */,
 				A7154A51CF20FCE11569E275 /* SystemSSHKeyManager.swift in Sources */,
+				D010181C1ABDEF64D12CA773 /* TextConversionDirection.swift in Sources */,
+				8ED3CD1B37F6F3BA887E8F57 /* TextEncoderPlugin.swift in Sources */,
+				F83B1F2A9B9CC255F5190E30 /* TextEncoderView.swift in Sources */,
+				0131025104056D7B31286301 /* TextEncodingConversionError.swift in Sources */,
+				4FA33255C6F6211EB1225A84 /* TextEncodingConverting.swift in Sources */,
 				CA0FCC3C9D49568422FFB64C /* ThreeColumnToolNavigationView.swift in Sources */,
 				239A0DAD68E416FCC77B7F0D /* ToolCategory.swift in Sources */,
 				2B47333BB5809B0449884334 /* ToolCategoryView.swift in Sources */,
@@ -1108,8 +1334,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC972BB5590957589627CA89 /* BinaryTextConverterTests.swift in Sources */,
 				F140D4069A012EFD1470823B /* NetworkInfoCollectorTests.swift in Sources */,
 				ADCB7F29150FF64C0D04D52A /* NetworkSnapshotRepositoryTests.swift in Sources */,
+				AA10098412F36B25E850E437 /* SecurePasswordGeneratorTests.swift in Sources */,
 				676F5BC41C5BEE25D741CD34 /* SystemSSHKeyManagerTests.swift in Sources */,
 				42EE9B61A5A186613DAEBF01 /* ToolRegistryTests.swift in Sources */,
 				98FDD0BA10836DB64A37D198 /* WiFiNetworkTests.swift in Sources */,
@@ -1126,6 +1354,8 @@
 				AD8429815FEE1C9573ECE6C5 /* AppNavigationBar.swift in Sources */,
 				E18739CB88A905ACFDCD2F9F /* AppPreferenceKey.swift in Sources */,
 				B5459CE50C22A60532F90047 /* AppRoute.swift in Sources */,
+				20E2F63994839841F96B4C34 /* BinaryTextConverter.swift in Sources */,
+				6D04D8DD950CD10E817913EE /* BinaryTextEncoding.swift in Sources */,
 				3A151E6CACAB5C54CA4F28E3 /* CompactToolNavigationView.swift in Sources */,
 				1D90E7D32D616F296A3533BA /* CopyButton.swift in Sources */,
 				F75870C3F3DD07FD47369ACE /* CoreLocationWiFiScanAuthorizer.swift in Sources */,
@@ -1137,6 +1367,8 @@
 				8F83848D7AFC2C9F4132E688 /* DeviceRecord.swift in Sources */,
 				28CD599E1641E54FF7D6FC66 /* DeviceRepository.swift in Sources */,
 				180342FDFDE44FDBF80575F7 /* DeviceStoring.swift in Sources */,
+				44B3514016D29F3F0313DDA1 /* EFFPassphraseWordList.swift in Sources */,
+				549882CA40A80250C9A64AFE /* GeneratedPassword.swift in Sources */,
 				9E1F04AD98AC26BBA8FE9724 /* LocalNetworkInfoProviding.swift in Sources */,
 				41137BDBDB46A48E3FD20131 /* NetworkConnectionKind.swift in Sources */,
 				337F5C5447D4C496D4F48365 /* NetworkInfoCollecting.swift in Sources */,
@@ -1152,6 +1384,14 @@
 				D0E7C879812759B4D743C21B /* NetworkSnapshotRecord.swift in Sources */,
 				FE4C3B285E7E890329A52579 /* NetworkSnapshotRepository.swift in Sources */,
 				428EFE74BFE1FF1A2AD08CFD /* NetworkSnapshotStoring.swift in Sources */,
+				7C2D631BA5A1C30AEA315771 /* PassphraseSeparator.swift in Sources */,
+				B7054430CC70F0242FABEE13 /* PasswordGenerating.swift in Sources */,
+				17EB852F1AF3D646569E7079 /* PasswordGenerationError.swift in Sources */,
+				51A4C858367A583E691F911D /* PasswordGenerationMode.swift in Sources */,
+				046ACF7BFECA1100858CC81C /* PasswordGeneratorOptions.swift in Sources */,
+				87B5421589E5AA2CF106C0DC /* PasswordGeneratorPlugin.swift in Sources */,
+				26F92163D6485B2BE5703295 /* PasswordGeneratorView.swift in Sources */,
+				67FA84E2540FEF576D8E190A /* PasswordResultField.swift in Sources */,
 				99E62B06F6C4D8FCE4A268ED /* PersistenceContainer.swift in Sources */,
 				58BEF5E51931B6B176ED8040 /* PlatformAvailabilityBadges.swift in Sources */,
 				78CD1B3EB3B58940EC41C9EE /* PublicIPAddressClient.swift in Sources */,
@@ -1166,12 +1406,18 @@
 				F7F83FB2AE66ED1E12CA9A1E /* SSHKeysView.swift in Sources */,
 				46E3B5C2487724C84570D22F /* SSHKeysViewModel.swift in Sources */,
 				96DF1957BCA3BE0E32EB6DAB /* ScreenHeader.swift in Sources */,
+				8AD09EAE879C034FE66BA864 /* SecurePasswordGenerator.swift in Sources */,
 				01C5E2F416BDAA3EA3E06C52 /* SecurityScopedSSHKeyFolderStore.swift in Sources */,
 				9788FFED97E5750BABD269B5 /* SettingsView.swift in Sources */,
 				78EC6A0FFC95142B1E65B67D /* SystemClipboard.swift in Sources */,
 				FE33F336CF25370890E63047 /* SystemDeviceProvider.swift in Sources */,
 				885CFD9CCBFB65AEC75AF20A /* SystemLocalNetworkInfoProvider.swift in Sources */,
 				17A7D8BE787305A7EC23F62C /* SystemSSHKeyManager.swift in Sources */,
+				90B9FC3FE409519E861163A8 /* TextConversionDirection.swift in Sources */,
+				81504CA22D12A742DD14DB6F /* TextEncoderPlugin.swift in Sources */,
+				337B7BA776C6BF7BC9C0CBA3 /* TextEncoderView.swift in Sources */,
+				CF7AF940426F0033C855BA67 /* TextEncodingConversionError.swift in Sources */,
+				0AEE0C3FE1AD5306DAB833E3 /* TextEncodingConverting.swift in Sources */,
 				DF4A0D136C7AE473A44A394A /* ThreeColumnToolNavigationView.swift in Sources */,
 				8DC4C508EBF96C180F95DCF2 /* ToolCategory.swift in Sources */,
 				BF955729E87D37E33AD81E10 /* ToolCategoryView.swift in Sources */,
@@ -1209,6 +1455,8 @@
 				A79A953BF171341F1B00ED43 /* AppNavigationBar.swift in Sources */,
 				ABC3CE4504C17DF3AB30D9AA /* AppPreferenceKey.swift in Sources */,
 				FF0DB948F6336E5D61AE54DC /* AppRoute.swift in Sources */,
+				CD4EBD2A218163098A1335CF /* BinaryTextConverter.swift in Sources */,
+				E1B15E61CCB9E772529E8752 /* BinaryTextEncoding.swift in Sources */,
 				825511454638980CDE46ADED /* CompactToolNavigationView.swift in Sources */,
 				4996F8704350AFD12B42B721 /* CopyButton.swift in Sources */,
 				6A0D59998858E2052209D509 /* CoreLocationWiFiScanAuthorizer.swift in Sources */,
@@ -1220,6 +1468,8 @@
 				3AD4447F379CC72F18B096C7 /* DeviceRecord.swift in Sources */,
 				CDA832BC30A5A5F83B27EB3D /* DeviceRepository.swift in Sources */,
 				18BD24F6F8217CA2ED5B4932 /* DeviceStoring.swift in Sources */,
+				D5AA3B32578931E622925117 /* EFFPassphraseWordList.swift in Sources */,
+				F0D72E07095334E32260CD69 /* GeneratedPassword.swift in Sources */,
 				3A323F1DEB7DA0895600A64F /* LocalNetworkInfoProviding.swift in Sources */,
 				78DFB4AFE2166467643263DF /* NetworkConnectionKind.swift in Sources */,
 				B83E627CCB1667A6451FC509 /* NetworkInfoCollecting.swift in Sources */,
@@ -1235,6 +1485,14 @@
 				0215D8E0B07235FDC3E1F51B /* NetworkSnapshotRecord.swift in Sources */,
 				00982857FF93CFEBC19CE89F /* NetworkSnapshotRepository.swift in Sources */,
 				FDBB142D70815C58EC7D8546 /* NetworkSnapshotStoring.swift in Sources */,
+				DAF56499EEBFD4095B8C7636 /* PassphraseSeparator.swift in Sources */,
+				12062B4847DAA048385D3FD7 /* PasswordGenerating.swift in Sources */,
+				EE50B67C3AEB48496DBA6D73 /* PasswordGenerationError.swift in Sources */,
+				02F6F22ECDD4A71A4B6E1BED /* PasswordGenerationMode.swift in Sources */,
+				7AB68995967C4E6EFB6C40ED /* PasswordGeneratorOptions.swift in Sources */,
+				C2406B736E52D7A44F33BD51 /* PasswordGeneratorPlugin.swift in Sources */,
+				15595CB7687751DD2907B360 /* PasswordGeneratorView.swift in Sources */,
+				4F2F5A4EF79D7F1744CE7C4C /* PasswordResultField.swift in Sources */,
 				F70F97AF8EDDFC8031B24965 /* PersistenceContainer.swift in Sources */,
 				06FF52983D4AA16A291FAD90 /* PlatformAvailabilityBadges.swift in Sources */,
 				06E36E2EB705470787C57203 /* PublicIPAddressClient.swift in Sources */,
@@ -1249,12 +1507,18 @@
 				56CEF4327FC9241D4A678574 /* SSHKeysView.swift in Sources */,
 				751130CDBFC2A72DEC7BDDBA /* SSHKeysViewModel.swift in Sources */,
 				1B4631A86B67A7A6BFE175C4 /* ScreenHeader.swift in Sources */,
+				8F36158202932EE343BFDFC2 /* SecurePasswordGenerator.swift in Sources */,
 				24235128B86DCCA4C51D13A5 /* SecurityScopedSSHKeyFolderStore.swift in Sources */,
 				C2A3CC69E33118F04CF948C7 /* SettingsView.swift in Sources */,
 				7DBB76CD8032F7A8F34A8F3B /* SystemClipboard.swift in Sources */,
 				00786C6220D79FE00D346D4A /* SystemDeviceProvider.swift in Sources */,
 				733659AA81DFB2F2B0681848 /* SystemLocalNetworkInfoProvider.swift in Sources */,
 				8CB93445A799C9F8A0459CA0 /* SystemSSHKeyManager.swift in Sources */,
+				8599F74BFBB91C3BAA0053D7 /* TextConversionDirection.swift in Sources */,
+				18F4D8D6448B8F18A9F363D6 /* TextEncoderPlugin.swift in Sources */,
+				A1131E68A65393A8ECAC2083 /* TextEncoderView.swift in Sources */,
+				ACD9C1EC1157DEB7C8763C53 /* TextEncodingConversionError.swift in Sources */,
+				7CBD1A14493FA742DF66159D /* TextEncodingConverting.swift in Sources */,
 				00DE26992872E8624D5569D4 /* ThreeColumnToolNavigationView.swift in Sources */,
 				CEBECCE1027E414675403673 /* ToolCategory.swift in Sources */,
 				BD4B3EE1981215720BE3E1B9 /* ToolCategoryView.swift in Sources */,

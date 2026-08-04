@@ -29,20 +29,32 @@ final class StatusItemController: NSObject, NSMenuDelegate {
             accessibilityDescription: "ToolPouch"
         )
         button.image?.isTemplate = true
+        button.refusesFirstResponder = true
         button.target = self
         button.action = #selector(handleStatusItemClick(_:))
         button.sendAction(on: [.leftMouseUp, .rightMouseUp])
     }
 
     private func configurePopover(dependencies: AppDependencies) {
-        popover.behavior = .transient
+        popover.behavior = .applicationDefined
         popover.animates = true
         popover.contentSize = NSSize(
             width: ToolPouchLayout.MenuBar.width,
             height: ToolPouchLayout.MenuBar.height
         )
-        popover.contentViewController = NSHostingController(
+        let hostingController = PopoverHostingController(
             rootView: MenuBarRootView(dependencies: dependencies)
+        )
+        hostingController.onCancel = { [weak self] in
+            self?.closePopover()
+        }
+        popover.contentViewController = hostingController
+
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(applicationDidResignActive(_:)),
+            name: NSApplication.didResignActiveNotification,
+            object: NSApp
         )
     }
 
@@ -107,28 +119,48 @@ final class StatusItemController: NSObject, NSMenuDelegate {
     private func handleStatusItemClick(_ sender: NSStatusBarButton) {
         guard let event = NSApp.currentEvent else { return }
 
-        if event.type == .rightMouseUp {
-            popover.performClose(nil)
-            contextMenu.popUp(
-                positioning: nil,
-                at: NSPoint(x: 0, y: sender.bounds.height),
-                in: sender
-            )
-        } else {
+        switch event.type {
+        case .rightMouseUp:
+            closePopover()
+            presentContextMenu()
+        case .leftMouseUp:
             togglePopover(relativeTo: sender)
+        default:
+            return
         }
+    }
+
+    private func presentContextMenu() {
+        statusItem.menu = contextMenu
+        statusItem.button?.performClick(nil)
     }
 
     private func togglePopover(relativeTo button: NSStatusBarButton) {
         if popover.isShown {
-            popover.performClose(nil)
+            closePopover()
         } else {
+            NSApp.activate(ignoringOtherApps: true)
             popover.show(
                 relativeTo: button.bounds,
                 of: button,
                 preferredEdge: .minY
             )
+
+            Task { @MainActor [weak self] in
+                await Task.yield()
+                self?.popover.contentViewController?.view.window?.makeKey()
+            }
         }
+    }
+
+    private func closePopover() {
+        guard popover.isShown else { return }
+        popover.performClose(nil)
+    }
+
+    @objc
+    private func applicationDidResignActive(_ notification: Notification) {
+        closePopover()
     }
 
     @objc
@@ -164,6 +196,21 @@ final class StatusItemController: NSObject, NSMenuDelegate {
     }
 
     func menuWillOpen(_ menu: NSMenu) {
-        popover.performClose(nil)
+        closePopover()
+    }
+
+    func menuDidClose(_ menu: NSMenu) {
+        statusItem.menu = nil
+    }
+}
+
+@MainActor
+private final class PopoverHostingController<Content: View>:
+    NSHostingController<Content>
+{
+    var onCancel: (() -> Void)?
+
+    override func cancelOperation(_ sender: Any?) {
+        onCancel?()
     }
 }

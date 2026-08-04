@@ -123,7 +123,11 @@ extension ToolRegistry {
     }
 
     private static var livePlugins: [any ToolPlugin] {
-        var plugins: [any ToolPlugin] = [NetworkInfoPlugin()]
+        var plugins: [any ToolPlugin] = [
+            NetworkInfoPlugin(),
+            PasswordGeneratorPlugin(),
+            TextEncoderPlugin(),
+        ]
         #if os(macOS)
         plugins.append(WiFiScannerPlugin())
         plugins.append(SSHKeysPlugin())

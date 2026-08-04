@@ -45,6 +45,22 @@ struct ToolRegistryTests {
     }
 
     @Test
+    func passwordGeneratorIsAvailableOnEveryPlatform() {
+        #expect(
+            registry.tool(id: .passwordGenerator)?.supportedPlatforms
+                == Set(ToolPlatform.allCases)
+        )
+    }
+
+    @Test
+    func textEncoderIsAvailableOnEveryPlatform() {
+        #expect(
+            registry.tool(id: .textEncoder)?.supportedPlatforms
+                == Set(ToolPlatform.allCases)
+        )
+    }
+
+    @Test
     func networkToolsExposeExpectedPlatformAvailability() {
         #expect(
             registry.tool(id: .networkInfo)?.supportedPlatforms
