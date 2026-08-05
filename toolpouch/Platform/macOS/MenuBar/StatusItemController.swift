@@ -43,19 +43,21 @@ final class StatusItemController: NSObject, NSMenuDelegate {
             height: ToolPouchLayout.MenuBar.height
         )
         let hostingController = PopoverHostingController(
-            rootView: MenuBarRootView(dependencies: dependencies)
+            rootView: MenuBarRootView(
+                dependencies: dependencies,
+                openMainWindow: { [weak self] in
+                    self?.openMainWindow()
+                },
+                close: { [weak self] in
+                    self?.closePopover()
+                }
+            )
         )
         hostingController.onCancel = { [weak self] in
             self?.closePopover()
         }
         popover.contentViewController = hostingController
 
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(applicationDidResignActive(_:)),
-            name: NSApplication.didResignActiveNotification,
-            object: NSApp
-        )
     }
 
     private func configureContextMenu() {
@@ -96,6 +98,7 @@ final class StatusItemController: NSObject, NSMenuDelegate {
 
     @objc
     private func openMainWindow() {
+        closePopover()
         mainWindowController.present()
     }
 
@@ -156,11 +159,6 @@ final class StatusItemController: NSObject, NSMenuDelegate {
     private func closePopover() {
         guard popover.isShown else { return }
         popover.performClose(nil)
-    }
-
-    @objc
-    private func applicationDidResignActive(_ notification: Notification) {
-        closePopover()
     }
 
     @objc

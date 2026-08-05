@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "quickAccess": {
+    "maximumCount": 6,
+    "defaultToolIDs": [
+      "passwordGenerator",
+      "networkInfo",
+      "clipboardInspector",
+      "textEncoder",
+      "domainLookup",
+      "sshKeys"
+    ]
+  },
+  "sections": [
+    {
+      "id": "everyday",
+      "title": "Everyday",
+      "description": "Useful tools for daily tasks",
+      "systemImage": "sparkles",
+      "supportedPlatforms": ["macOS", "iOS", "watchOS"],
+      "toolOrder": ["unitConverter"]
+    },
+    {
+      "id": "network",
+      "title": "Network",
+      "description": "Connection details, Wi-Fi, and domains",
+      "systemImage": "network",
+      "supportedPlatforms": ["macOS", "iOS", "watchOS"],
+      "toolOrder": ["networkInfo", "networkCheck", "wiFiScanner", "domainLookup"]
+    },
+    {
+      "id": "passwords",
+      "title": "Passwords",
+      "description": "Create secure and memorable passwords",
+      "systemImage": "key.fill",
+      "supportedPlatforms": ["macOS", "iOS", "watchOS"],
+      "toolOrder": ["passwordGenerator"]
+    },
+    {
+      "id": "clipboard",
+      "title": "Clipboard",
+      "description": "Inspect and work with copied content",
+      "systemImage": "clipboard",
+      "supportedPlatforms": ["macOS"],
+      "toolOrder": ["clipboardInspector"]
+    },
+    {
+      "id": "text",
+      "title": "Text & Files",
+      "description": "Convert and clean up text and data",
+      "systemImage": "textformat",
+      "supportedPlatforms": ["macOS", "iOS", "watchOS"],
+      "toolOrder": ["textEncoder", "jsonToolkit", "hashChecksum"]
+    },
+    {
+      "id": "developer",
+      "title": "Developer",
+      "description": "Keys and advanced technical tools",
+      "systemImage": "chevron.left.forwardslash.chevron.right",
+      "supportedPlatforms": ["macOS", "iOS", "watchOS"],
+      "toolOrder": ["sshKeys"]
+    },
+    {
+      "id": "visual",
+      "title": "Images & Colors",
+      "description": "Images, colors, and visual utilities",
+      "systemImage": "photo.on.rectangle.angled",
+      "supportedPlatforms": ["macOS", "iOS"],
+      "toolOrder": ["imageInspector", "colorPicker"]
+    }
+  ]
+}

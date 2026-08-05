@@ -5,12 +5,28 @@ struct AppNavigationBar: View {
     let isAtHome: Bool
     let goBack: () -> Void
     let goHome: () -> Void
+    let close: (() -> Void)?
+
+    init(
+        canGoBack: Bool,
+        isAtHome: Bool,
+        goBack: @escaping () -> Void,
+        goHome: @escaping () -> Void,
+        close: (() -> Void)? = nil
+    ) {
+        self.canGoBack = canGoBack
+        self.isAtHome = isAtHome
+        self.goBack = goBack
+        self.goHome = goHome
+        self.close = close
+    }
 
     var body: some View {
         HStack(spacing: 6) {
             Button(action: goBack) {
                 Image(systemName: "chevron.left")
-                    .frame(width: 18, height: 18)
+                    .toolPouchIcon(.medium, weight: .semibold)
+                    .frame(width: 28, height: 28)
             }
             .buttonStyle(.borderless)
             .disabled(!canGoBack)
@@ -20,7 +36,8 @@ struct AppNavigationBar: View {
 
             Button(action: goHome) {
                 Image(systemName: "house")
-                    .frame(width: 18, height: 18)
+                    .toolPouchIcon(.medium, weight: .semibold)
+                    .frame(width: 28, height: 28)
             }
             .buttonStyle(.borderless)
             .disabled(isAtHome)
@@ -33,8 +50,18 @@ struct AppNavigationBar: View {
             Text("ToolPouch")
                 .font(.caption.weight(.medium))
                 .foregroundStyle(.secondary)
+
+            if let close {
+                Button(action: close) {
+                    Image(systemName: "xmark")
+                        .toolPouchIcon(.small, weight: .semibold)
+                        .frame(width: 28, height: 28)
+                }
+                .buttonStyle(.borderless)
+                .help("Close ToolPouch")
+                .accessibilityLabel("Close ToolPouch")
+            }
         }
-        .controlSize(.small)
         .padding(.horizontal, 12)
         .frame(height: ToolPouchLayout.Navigation.height)
     }

@@ -3,15 +3,18 @@ import SwiftUI
 struct CompactToolNavigationView: View {
     let dependencies: AppDependencies
     let showsPersistentNavigationBar: Bool
+    let close: (() -> Void)?
 
     @State private var path: [AppRoute] = []
 
     init(
         dependencies: AppDependencies,
-        showsPersistentNavigationBar: Bool = false
+        showsPersistentNavigationBar: Bool = false,
+        close: (() -> Void)? = nil
     ) {
         self.dependencies = dependencies
         self.showsPersistentNavigationBar = showsPersistentNavigationBar
+        self.close = close
     }
 
     var body: some View {
@@ -21,14 +24,20 @@ struct CompactToolNavigationView: View {
                     canGoBack: !path.isEmpty,
                     isAtHome: path.isEmpty,
                     goBack: goBack,
-                    goHome: goHome
+                    goHome: goHome,
+                    close: close
                 )
                 Divider()
             }
 
             NavigationStack(path: $path) {
                 DashboardView(
-                    categories: dependencies.toolRegistry.categories(for: .current)
+                    categories: dependencies.toolRegistry.categories(for: .current),
+                    availableTools: dependencies.toolRegistry.tools(for: .current),
+                    quickAccessPreferences: dependencies.quickAccessPreferences,
+                    selectTool: { tool in
+                        path.append(.tool(tool.id))
+                    }
                 )
                 .navigationDestination(for: AppRoute.self) { route in
                     destination(for: route)
@@ -38,6 +47,7 @@ struct CompactToolNavigationView: View {
                         ToolbarItem(placement: .primaryAction) {
                             Button(action: goHome) {
                                 Image(systemName: "house")
+                                    .toolPouchIcon(.medium)
                             }
                             .accessibilityLabel("Home")
                         }

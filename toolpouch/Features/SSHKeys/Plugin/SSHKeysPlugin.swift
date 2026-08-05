@@ -4,7 +4,7 @@ import SwiftUI
 struct SSHKeysPlugin: ToolPlugin {
     let definition = ToolDefinition(
         id: .sshKeys,
-        categoryID: .security,
+        categoryID: .developer,
         title: "SSH Keys",
         description: "Browse, generate, and copy SSH key pairs.",
         systemImage: "key.horizontal",

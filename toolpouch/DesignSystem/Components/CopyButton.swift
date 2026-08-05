@@ -11,6 +11,7 @@ struct CopyButton: View {
             showConfirmation()
         } label: {
             Image(systemName: isShowingConfirmation ? "checkmark" : "doc.on.doc")
+                .toolPouchIcon(.small)
                 .contentTransition(.symbolEffect(.replace))
         }
         .buttonStyle(.borderless)

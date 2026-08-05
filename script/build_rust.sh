@@ -25,10 +25,8 @@ case "$MODE" in
             "aarch64-apple-darwin"
             "aarch64-apple-ios"
             "aarch64-apple-ios-sim"
-            "aarch64-apple-watchos"
-            "aarch64-apple-watchos-sim"
         )
-        sdks+=("macosx" "iphoneos" "iphonesimulator" "watchos" "watchsimulator")
+        sdks+=("macosx" "iphoneos" "iphonesimulator")
         ;;
     *)
         echo "usage: $0 [host|apple]" >&2

@@ -46,7 +46,25 @@ The `Rust` workspace contains deterministic, CPU-intensive engines. Swift contin
 
 Rust exposes a small versioned C ABI from `toolpouch-engine`. `script/build_rust.sh` builds static libraries into an XCFramework. Swift-facing wrappers live beside the C headers in `Rust/Bindings` and are added to an app target when the first Rust-backed plugin is introduced.
 
-For expensive macOS operations that need crash isolation, a future XPC service can link the same Rust library. iOS and watchOS targets link the library directly.
+Each computational domain is an independent pure Rust crate. The facade crate
+is the only crate allowed to expose `extern "C"` symbols. Swift features depend
+on typed Swift services rather than generated bindings or raw FFI functions:
+
+`ToolPlugin → Swift service → C ABI facade → Rust domain crate`
+
+The initial `toolpouch-image` crate inspects image files. Large inputs are
+passed as sandbox-authorized file paths, and results use fixed-layout C structs.
+This keeps ownership explicit and avoids copying full media files between Swift
+and Rust. Future asynchronous media operations will use opaque task handles and
+callbacks for progress and cancellation instead of blocking UI calls.
+
+For expensive macOS operations that need crash isolation, a future XPC service can link the same Rust library. iOS targets link the library directly.
+
+Rust-backed plugins currently ship on macOS and iOS/iPadOS. watchOS remains a
+native Swift target because the pinned stable Rust toolchain does not distribute
+watchOS standard-library artifacts through rustup. This can be revisited for a
+specific high-value watch feature instead of introducing a nightly `build-std`
+pipeline preemptively.
 
 ## Network snapshots
 

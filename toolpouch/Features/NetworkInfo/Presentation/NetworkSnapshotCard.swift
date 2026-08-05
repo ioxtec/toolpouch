@@ -45,6 +45,7 @@ struct NetworkSnapshotCard: View {
             Spacer()
 
             Image(systemName: snapshot.isConnected ? "checkmark.circle.fill" : "xmark.circle.fill")
+                .toolPouchIcon(.medium)
                 .foregroundStyle(snapshot.isConnected ? .green : .secondary)
                 .accessibilityLabel(snapshot.isConnected ? "Connected" : "Disconnected")
         }

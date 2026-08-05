@@ -16,6 +16,7 @@ struct RecentDevicesCard: View {
                 } label: {
                     HStack(spacing: 10) {
                         Image(systemName: systemImage(for: snapshot.deviceKind))
+                            .toolPouchIcon(.medium)
                             .frame(width: 20)
 
                         VStack(alignment: .leading, spacing: 2) {
@@ -30,6 +31,7 @@ struct RecentDevicesCard: View {
 
                         if snapshot.id == selectedSnapshotID {
                             Image(systemName: "checkmark")
+                                .toolPouchIcon(.small)
                                 .foregroundStyle(.secondary)
                         }
                     }

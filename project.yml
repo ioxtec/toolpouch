@@ -34,6 +34,10 @@ targets:
           - Info.plist
           - toolpouch.entitlements
           - ToolPouch.macOS.entitlements
+      - path: Rust/Bindings/Swift
+    dependencies:
+      - framework: .build/Rust/ToolPouchRust.xcframework
+        embed: false
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.hoxim.toolpouch
@@ -51,6 +55,7 @@ targets:
         INFOPLIST_FILE: toolpouch/Info.plist
         INFOPLIST_KEY_LSApplicationCategoryType: public.app-category.utilities
         INFOPLIST_KEY_NSLocationUsageDescription: ToolPouch uses location access only to identify nearby Wi-Fi networks.
+        INFOPLIST_KEY_NSScreenCaptureUsageDescription: ToolPouch captures a small area around the pointer only while you are picking a color.
         LD_RUNPATH_SEARCH_PATHS:
           - $(inherited)
           - '@executable_path/../Frameworks'
@@ -71,6 +76,10 @@ targets:
           - Info.plist
           - toolpouch.entitlements
           - Applications/iOS/Info.plist
+      - path: Rust/Bindings/Swift
+    dependencies:
+      - framework: .build/Rust/ToolPouchRust.xcframework
+        embed: false
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.hoxim.toolpouch.mobile
@@ -90,6 +99,10 @@ targets:
           - Applications/iOS
           - Platform/iOS
           - Platform/macOS
+          - Features/ImageInspector
+          - Features/HashChecksum
+          - Features/JSONToolkit
+          - Features/NetworkCheck
           - Info.plist
           - toolpouch.entitlements
     settings:

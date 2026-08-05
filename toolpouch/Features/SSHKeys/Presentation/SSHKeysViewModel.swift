@@ -5,6 +5,11 @@ import Observation
 @MainActor
 @Observable
 final class SSHKeysViewModel {
+    enum CopiedKey: Equatable {
+        case publicKey(SSHKeyPair.ID)
+        case privateKey(SSHKeyPair.ID)
+    }
+
     private let manager: any SSHKeyManaging
     private let folderStore: any SSHKeyFolderAccessing
 
@@ -12,7 +17,7 @@ final class SSHKeysViewModel {
     private(set) var folderURL: URL?
     private(set) var isLoading = false
     private(set) var errorMessage: String?
-    private(set) var copiedKeyID: SSHKeyPair.ID?
+    private(set) var copiedKey: CopiedKey?
 
     init(
         manager: any SSHKeyManaging,
@@ -71,11 +76,17 @@ final class SSHKeysViewModel {
             errorMessage = SSHKeyManagerError.publicKeyUnavailable.localizedDescription
             return
         }
-        await copyKey(at: publicKeyURL, keyID: key.id)
+        await copyKey(
+            at: publicKeyURL,
+            confirmation: .publicKey(key.id)
+        )
     }
 
     func copyPrivateKey(_ key: SSHKeyPair) async {
-        await copyKey(at: key.privateKeyURL, keyID: key.id)
+        await copyKey(
+            at: key.privateKeyURL,
+            confirmation: .privateKey(key.id)
+        )
     }
 
     func moveKeyPairToTrash(_ key: SSHKeyPair) async {
@@ -93,16 +104,19 @@ final class SSHKeysViewModel {
         }
     }
 
-    private func copyKey(at url: URL, keyID: SSHKeyPair.ID) async {
+    private func copyKey(
+        at url: URL,
+        confirmation: CopiedKey
+    ) async {
         do {
             let value = try await folderStore.withAccess { [manager] _ in
                 try await manager.readKey(at: url)
             }
             SystemClipboard.copy(value)
-            copiedKeyID = keyID
+            copiedKey = confirmation
             try? await Task.sleep(for: .seconds(1.2))
-            if copiedKeyID == keyID {
-                copiedKeyID = nil
+            if copiedKey == confirmation {
+                copiedKey = nil
             }
         } catch {
             errorMessage = error.localizedDescription

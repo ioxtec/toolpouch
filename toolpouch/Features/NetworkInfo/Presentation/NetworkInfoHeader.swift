@@ -18,6 +18,7 @@ struct NetworkInfoHeader: View {
                         .frame(width: 16, height: 16)
                 } else {
                     Image(systemName: "arrow.clockwise")
+                        .toolPouchIcon(.small)
                         .frame(width: 16, height: 16)
                 }
             }

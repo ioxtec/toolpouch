@@ -87,7 +87,7 @@ private struct WiFiNetworkRow: View {
     var body: some View {
         HStack(spacing: 12) {
             Image(systemName: network.signalSystemImage)
-                .font(.title3)
+                .toolPouchIcon(.medium)
                 .foregroundStyle(signalColor)
                 .frame(width: 26)
 
@@ -97,7 +97,7 @@ private struct WiFiNetworkRow: View {
                         .font(.headline)
                     if network.isSecure {
                         Image(systemName: "lock.fill")
-                            .font(.caption2)
+                            .toolPouchIcon(.small)
                             .foregroundStyle(.secondary)
                     }
                 }

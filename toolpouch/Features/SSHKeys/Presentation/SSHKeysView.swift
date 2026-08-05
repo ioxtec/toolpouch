@@ -78,6 +78,7 @@ struct SSHKeysView: View {
                     isShowingGenerator = true
                 } label: {
                     Image(systemName: "plus")
+                        .toolPouchIcon(.medium)
                 }
                 .buttonStyle(.glass)
                 .disabled(model.folderURL == nil || model.isLoading)
@@ -86,6 +87,7 @@ struct SSHKeysView: View {
 
             HStack(spacing: 8) {
                 Image(systemName: "folder")
+                    .toolPouchIcon(.small)
                     .foregroundStyle(.secondary)
                 Text(model.folderURL?.path(percentEncoded: false) ?? "No folder selected")
                     .font(.caption.monospaced())
@@ -131,7 +133,10 @@ struct SSHKeysView: View {
                     ForEach(model.keys) { key in
                         SSHKeyRow(
                             key: key,
-                            wasCopied: model.copiedKeyID == key.id,
+                            publicKeyWasCopied: model.copiedKey
+                                == .publicKey(key.id),
+                            privateKeyWasCopied: model.copiedKey
+                                == .privateKey(key.id),
                             copyPublicKey: {
                                 Task { await model.copyPublicKey(key) }
                             },
@@ -162,7 +167,8 @@ struct SSHKeysView: View {
 
 private struct SSHKeyRow: View {
     let key: SSHKeyPair
-    let wasCopied: Bool
+    let publicKeyWasCopied: Bool
+    let privateKeyWasCopied: Bool
     let copyPublicKey: () -> Void
     let copyPrivateKey: () -> Void
     let deleteKeyPair: () -> Void
@@ -170,7 +176,7 @@ private struct SSHKeyRow: View {
     var body: some View {
         HStack(spacing: 12) {
             Image(systemName: "key.horizontal")
-                .font(.title3)
+                .toolPouchIcon(.medium)
                 .frame(width: 28)
 
             VStack(alignment: .leading, spacing: 3) {
@@ -192,24 +198,45 @@ private struct SSHKeyRow: View {
             Spacer()
 
             Button(action: copyPublicKey) {
-                Image(systemName: wasCopied ? "checkmark" : "doc.on.doc")
+                Image(
+                    systemName: publicKeyWasCopied
+                        ? "checkmark"
+                        : "doc.on.doc"
+                )
+                    .toolPouchIcon(.medium)
+                    .contentTransition(.symbolEffect(.replace))
             }
             .buttonStyle(.borderless)
             .frame(width: SSHKeyActionColumn.width)
             .disabled(key.publicKeyURL == nil)
-            .help("Copy Public Key")
-            .accessibilityLabel("Copy Public Key")
+            .help(
+                publicKeyWasCopied ? "Public Key Copied" : "Copy Public Key"
+            )
+            .accessibilityLabel(
+                publicKeyWasCopied ? "Public Key Copied" : "Copy Public Key"
+            )
 
             Button(action: copyPrivateKey) {
-                Image(systemName: "lock.doc")
+                Image(
+                    systemName: privateKeyWasCopied
+                        ? "checkmark"
+                        : "doc.on.doc"
+                )
+                    .toolPouchIcon(.medium)
+                    .contentTransition(.symbolEffect(.replace))
             }
             .buttonStyle(.borderless)
             .frame(width: SSHKeyActionColumn.width)
-            .help("Copy Private Key")
-            .accessibilityLabel("Copy Private Key")
+            .help(
+                privateKeyWasCopied ? "Private Key Copied" : "Copy Private Key"
+            )
+            .accessibilityLabel(
+                privateKeyWasCopied ? "Private Key Copied" : "Copy Private Key"
+            )
 
             Button(action: deleteKeyPair) {
                 Image(systemName: "xmark.circle.fill")
+                    .toolPouchIcon(.medium)
                     .foregroundStyle(.red)
             }
             .buttonStyle(.borderless)
@@ -250,6 +277,7 @@ private struct SSHKeyActionColumnHeader: View {
     var body: some View {
         VStack(spacing: 2) {
             Image(systemName: systemImage)
+                .toolPouchIcon(.small)
             Text(title)
                 .font(.caption2.weight(.semibold))
         }

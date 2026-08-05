@@ -22,7 +22,7 @@ struct ToolTile: View {
         VStack(alignment: .leading, spacing: 7) {
             HStack(spacing: 8) {
                 Image(systemName: systemImage)
-                    .font(.body.weight(.medium))
+                    .toolPouchIcon(.medium, weight: .medium)
                     .symbolRenderingMode(.monochrome)
                     .frame(width: 22, height: 22)
 

@@ -1,5 +1,8 @@
 [workspace]
-members = ["crates/toolpouch-engine"]
+members = [
+    "crates/toolpouch-engine",
+    "crates/toolpouch-image",
+]
 resolver = "3"
 
 [workspace.package]

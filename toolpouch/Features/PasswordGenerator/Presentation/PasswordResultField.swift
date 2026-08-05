@@ -30,6 +30,7 @@ struct PasswordResultField: View {
 
                 Button(action: onRegenerate) {
                     Image(systemName: "arrow.clockwise")
+                        .toolPouchIcon(.medium)
                 }
                 .buttonStyle(.borderless)
                 .help("Generate Again")
@@ -40,6 +41,7 @@ struct PasswordResultField: View {
                     copy(password.value)
                 } label: {
                     Image(systemName: "doc.on.doc")
+                        .toolPouchIcon(.medium)
                 }
                 .buttonStyle(.borderless)
                 .help("Copy to Clipboard")

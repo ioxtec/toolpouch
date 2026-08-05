@@ -1,55 +1,89 @@
 # ToolPouch
 
-ToolPouch is a native, multiplatform collection of focused developer utilities for Apple devices.
+ToolPouch is a native collection of small, useful tools for Apple devices. It is designed for everyday users as well as people who need more technical utilities, without making either group navigate through an overly technical interface.
 
-## Current features
+The macOS menu bar app is the primary interface today. iPhone, iPad, and Apple Watch targets share the same catalog, models, and supported services, while each platform uses navigation suited to its screen.
 
-- Network details, including public IP, local IPv4 and IPv6, router, DNS servers, interface, and host name
-- One-click copy for every network value
-- Local network snapshot history for multiple devices
-- Native menu bar controls with Settings, About, and Quit actions
-- Nearby Wi-Fi scanning with channel and RSSI details on macOS
-- SSH key browsing and generation with persistent access to a user-selected key folder on macOS
-- Compact navigation for iPhone and Apple Watch
-- Three-column navigation for iPad and the optional macOS app window
-- Liquid Glass interface built with SwiftUI
-- Shared network collection code verified for macOS, iOS, and watchOS
-- Compile-time tool plugins with Swift or Rust execution backends
+## Available tools
+
+| Section | Tool | macOS | iPhone / iPad | Apple Watch |
+| --- | --- | :---: | :---: | :---: |
+| Everyday | Unit Converter | ✓ | ✓ | ✓ |
+| Network | Network Info | ✓ | ✓ | ✓ |
+| Network | Network Check | ✓ | ✓ | — |
+| Network | Wi-Fi Analyzer | ✓ | — | — |
+| Network | WHOIS (RDAP) | ✓ | ✓ | ✓ |
+| Passwords | Password Generator | ✓ | ✓ | ✓ |
+| Clipboard | Clipboard Inspector | ✓ | — | — |
+| Text & Files | Text Encoder | ✓ | ✓ | ✓ |
+| Text & Files | JSON Toolkit | ✓ | ✓ | — |
+| Text & Files | Hash & Checksum | ✓ | ✓ | — |
+| Developer | SSH Keys | ✓ | — | — |
+| Images & Colors | Image Toolkit (Rust) | ✓ | ✓ | — |
+| Images & Colors | Color Picker | ✓ | — | — |
+
+The catalog also provides configurable Quick Access shortcuts. Unsupported tools are filtered before navigation is rendered, so a device never presents a tool that it cannot run.
 
 ## Project status
 
-The macOS menu bar app remains the primary interface. Native iPhone, iPad, and Apple Watch targets now share the same registry, models, persistence, and network information tool. Cloud synchronization will be enabled after the iCloud container is provisioned.
+ToolPouch is under active development. Local persistence is the default, and the data model is prepared for CloudKit synchronization after the iCloud container and production schema are configured.
 
-Nearby Wi-Fi scanning uses CoreWLAN and is available on macOS. A general-purpose scanner cannot use the iOS Hotspot Helper APIs without a special Apple entitlement and an approved hotspot-integration use case.
-
-SSH Keys uses the system OpenSSH generator. ToolPouch writes keys only to a folder explicitly selected by the user, remembers access with a security-scoped bookmark, prevents overwriting existing pairs, and requires confirmation before copying a private key.
+The first user-facing Rust tool reads image and EXIF metadata, resizes images, and converts PNG, JPEG, and WebP files locally through a stable C interface and a typed Swift wrapper.
 
 ## Requirements
 
 - macOS 27, iOS 27, or watchOS 27
 - Xcode 27 or later
 - Swift 6
+- XcodeGen when changing targets or project settings
+- Rust 1.92 when working on Rust engines
 
 ## Running the app
 
-Open `toolpouch.xcodeproj` in Xcode and run the `toolpouch` scheme, or use:
+Build the local Rust framework once before generating or opening the Xcode project:
+
+```bash
+./script/build_rust.sh apple
+xcodegen generate
+```
+
+Open `toolpouch.xcodeproj` in Xcode and run one of these schemes:
+
+- `toolpouch` for macOS
+- `toolpouchMobile` for iPhone and iPad
+- `toolpouchWatch` for Apple Watch
+
+The macOS app can also be built and opened with:
 
 ```bash
 ./script/build_and_run.sh
 ```
 
-The available schemes are `toolpouch`, `toolpouchMobile`, and `toolpouchWatch`. Left-click the macOS menu bar icon to open the compact tool grid. Right-click it to open the full app window, Settings, About, or quit the app.
+Left-click the menu bar icon to open the compact interface. Right-click it to open the application window, Settings, About, or quit ToolPouch.
 
-The Xcode project is generated from `project.yml`. Run `xcodegen generate` after changing targets, build settings, or source membership.
+The Xcode project is generated from `project.yml`. Change target membership, build settings, and platform configuration there, then run:
 
-## Structure
+```bash
+xcodegen generate
+```
 
-- `App` — application composition and navigation
-- `Core` — shared models and contracts
-- `Features` — feature-specific domain, data, and presentation code
-- `Infrastructure` — persistence and future synchronization
-- `Platform` — operating-system integrations
-- `DesignSystem` — reusable SwiftUI components and layout values
-- `Rust` — reusable high-performance engines and their FFI bindings
+## Repository structure
 
-More details are available in [Architecture](docs/Architecture.md).
+- `toolpouch/App` — dependency assembly, tool registry, and app-wide navigation
+- `toolpouch/Core` — shared models and tool metadata
+- `toolpouch/Features` — one self-contained folder for each tool
+- `toolpouch/Infrastructure` — persistence and future synchronization
+- `toolpouch/Platform` — operating-system integrations
+- `toolpouch/DesignSystem` — reusable SwiftUI components and visual values
+- `toolpouch/Applications` — platform entry points
+- `Rust` — reusable high-performance engines and Swift/C bindings
+- `toolpouchTests` — domain, service, registry, and persistence tests
+- `toolpouchUITests` — end-to-end interface tests
+
+## Documentation
+
+- [Architecture](docs/Architecture.md)
+- [Development guide](docs/Development.md)
+- [Adding a tool](docs/AddingATool.md)
+- [Rust integration](docs/RustIntegration.md)
+- [Privacy and data](docs/PrivacyAndData.md)

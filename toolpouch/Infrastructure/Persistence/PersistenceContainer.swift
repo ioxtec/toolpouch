@@ -7,6 +7,7 @@ enum PersistenceContainer {
         case local
     }
 
+    /// Creates the shared SwiftData container using local, in-memory, or CloudKit-backed storage.
     static func makeModelContainer(
         mode: StorageMode = .local
     ) -> ModelContainer {

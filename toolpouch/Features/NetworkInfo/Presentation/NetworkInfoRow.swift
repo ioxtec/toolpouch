@@ -6,6 +6,7 @@ struct NetworkInfoRow: View {
     var body: some View {
         HStack(spacing: 10) {
             Image(systemName: field.systemImage)
+                .toolPouchIcon(.small)
                 .foregroundStyle(.secondary)
                 .frame(width: 16)
 

@@ -26,6 +26,7 @@ struct PlatformAvailabilityBadges: View {
         ForEach(sortedPlatforms, id: \.self) { platform in
             HStack(spacing: 4) {
                 Image(systemName: platform.systemImage)
+                    .toolPouchIcon(.small)
                 if showsText {
                     Text(platform.displayName)
                 }

@@ -2,11 +2,13 @@ import Foundation
 
 nonisolated protocol SSHKeyManaging: Sendable {
     func listKeys(in folderURL: URL) async throws -> [SSHKeyPair]
+    /// Generates a key pair without replacing files that already exist in the destination folder.
     func generateKey(
         request: SSHKeyGenerationRequest,
         in folderURL: URL
     ) async throws
     func readKey(at url: URL) async throws -> String
+    /// Moves both files in a key pair to the system Trash so removal remains recoverable.
     func moveKeyPairToTrash(_ key: SSHKeyPair) async throws
 }
 

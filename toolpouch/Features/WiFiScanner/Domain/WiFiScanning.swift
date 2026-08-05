@@ -1,6 +1,7 @@
 import Foundation
 
 protocol WiFiScanning: Sendable {
+    /// Returns nearby networks normalized from the platform scanner, ordered by its implementation.
     func scan() async throws -> [WiFiNetwork]
 }
 

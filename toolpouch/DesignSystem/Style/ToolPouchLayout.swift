@@ -1,9 +1,10 @@
-import CoreGraphics
+import SwiftUI
 
 enum ToolPouchLayout {
     enum MenuBar {
         static let width: CGFloat = 420
         static let height: CGFloat = 520
+        static let footerHeight: CGFloat = 48
     }
 
     enum Content {
@@ -24,6 +25,21 @@ enum ToolPouchLayout {
     }
 
     enum Navigation {
-        static let height: CGFloat = 34
+        static let height: CGFloat = 42
+    }
+
+    enum IconSize: CGFloat {
+        case small = 13
+        case medium = 17
+        case large = 22
+    }
+}
+
+extension View {
+    func toolPouchIcon(
+        _ size: ToolPouchLayout.IconSize,
+        weight: Font.Weight = .regular
+    ) -> some View {
+        font(.system(size: size.rawValue, weight: weight))
     }
 }

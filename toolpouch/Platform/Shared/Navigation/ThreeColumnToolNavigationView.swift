@@ -20,10 +20,32 @@ struct ThreeColumnToolNavigationView: View {
     }
 
     var body: some View {
+        VStack(spacing: 0) {
+            QuickAccessBar(
+                availableTools: dependencies.toolRegistry.tools(for: .current),
+                savedToolIDs: dependencies.quickAccessPreferences.toolIDs,
+                maximumCount: dependencies.quickAccessPreferences.maximumCount,
+                selectTool: select,
+                save: dependencies.quickAccessPreferences.save
+            )
+            .padding(.horizontal, ToolPouchLayout.Content.padding)
+            .padding(.vertical, 6)
+
+            Divider()
+
+            navigation
+        }
+    }
+
+    private var navigation: some View {
         NavigationSplitView(columnVisibility: $columnVisibility) {
-            List(categories, selection: $selectedCategoryID) { category in
-                Label(category.title, systemImage: category.systemImage)
-                    .tag(category.id)
+            List(selection: $selectedCategoryID) {
+                Section("Sections") {
+                    ForEach(categories) { category in
+                        Label(category.title, systemImage: category.systemImage)
+                            .tag(category.id)
+                    }
+                }
             }
             .navigationTitle("ToolPouch")
             .navigationSplitViewColumnWidth(min: 190, ideal: 220)
@@ -64,6 +86,11 @@ struct ThreeColumnToolNavigationView: View {
         return dependencies.toolRegistry.category(id: selectedCategoryID)
     }
 
+    private func select(_ tool: ToolDefinition) {
+        selectedCategoryID = tool.categoryID
+        selectedToolID = tool.id
+    }
+
     @ViewBuilder
     private var detail: some View {
         if let selectedToolID,
@@ -91,7 +118,7 @@ private struct ToolListRow: View {
     var body: some View {
         HStack(spacing: 12) {
             Image(systemName: tool.systemImage)
-                .font(.title3)
+                .toolPouchIcon(.medium)
                 .frame(width: 28)
 
             VStack(alignment: .leading, spacing: 2) {
