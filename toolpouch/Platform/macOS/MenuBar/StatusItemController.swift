@@ -24,11 +24,12 @@ final class StatusItemController: NSObject, NSMenuDelegate {
     private func configureStatusItem() {
         guard let button = statusItem.button else { return }
 
-        button.image = NSImage(
+        let image = NSImage(named: "MenuBarIcon") ?? NSImage(
             systemSymbolName: "shippingbox",
             accessibilityDescription: "ToolPouch"
         )
-        button.image?.isTemplate = true
+        image?.isTemplate = true
+        button.image = image
         button.refusesFirstResponder = true
         button.target = self
         button.action = #selector(handleStatusItemClick(_:))
