@@ -68,6 +68,7 @@
 		1B97BD63FEFF48C9A98D2F67 /* NetworkInfoPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73D4E1AFE4F1B694CFCBD55 /* NetworkInfoPlugin.swift */; };
 		1D90E7D32D616F296A3533BA /* CopyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800CC3CC149F184FED2DA6C4 /* CopyButton.swift */; };
 		1E2988FDDC103E34209DE2A9 /* ImageInspectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892F95AFD7E06058F3DBA64E /* ImageInspectorView.swift */; };
+		1E4B0F98AF8D7ACE78834E91 /* SystemCapabilityResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915C21FAEA6E5AA059ADD043 /* SystemCapabilityResolver.swift */; };
 		1E665E8D810506B89EB8C63A /* WiFiScanAuthorizing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C47458686DEDC5F46989160 /* WiFiScanAuthorizing.swift */; };
 		1EB629169E18643EB41F1CEC /* NetworkInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA215E876FB90EF78DDF7FD /* NetworkInfoViewModel.swift */; };
 		1F1579CC05267365F694CB52 /* RDAPDomainLookupClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59ABDFDE57F57850B73A9A8 /* RDAPDomainLookupClient.swift */; };
@@ -86,6 +87,7 @@
 		26F92163D6485B2BE5703295 /* PasswordGeneratorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25EEF05E2177DF478F7E85CB /* PasswordGeneratorView.swift */; };
 		2792B309E7F20951E538C698 /* BinaryTextEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317431AFE22F3F49E3C1CA9F /* BinaryTextEncoding.swift */; };
 		282D3F2BE8F36A65BFFBB401 /* ScreenHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FA0D56E5D5E69642D8427A /* ScreenHeader.swift */; };
+		2876265BC03A606E47C766FC /* ToolCapability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693E45E1E395C53F220A6F95 /* ToolCapability.swift */; };
 		28CD599E1641E54FF7D6FC66 /* DeviceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F74BC189247B422900D1512 /* DeviceRepository.swift */; };
 		2A3582F43895298F3B942D87 /* WiFiScannerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231DDE71DEC4A7FDBBE3ECDF /* WiFiScannerPlugin.swift */; };
 		2A8AC3722A3E5DBBEE5C1993 /* NetworkInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA215E876FB90EF78DDF7FD /* NetworkInfoViewModel.swift */; };
@@ -116,6 +118,7 @@
 		3A323F1DEB7DA0895600A64F /* LocalNetworkInfoProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DA9A1A268CE0EB67C77005 /* LocalNetworkInfoProviding.swift */; };
 		3AD4447F379CC72F18B096C7 /* DeviceRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06AA0D829C6830E286FDDCA /* DeviceRecord.swift */; };
 		3AF21940818EAF490854DEC5 /* ClipboardInspecting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088DA5EA509250E7286741A5 /* ClipboardInspecting.swift */; };
+		3D65B3640267D8926F8464D7 /* ToolCapability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693E45E1E395C53F220A6F95 /* ToolCapability.swift */; };
 		3E191E8C082213E739DC53FE /* UnitConverting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AD24120DE8C238F79C0E32 /* UnitConverting.swift */; };
 		3E2A41412A3B63260AADE17A /* DeviceKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164CC9FCBC142A35264B35B2 /* DeviceKind.swift */; };
 		3F805199F0FA762910FF800B /* CopyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800CC3CC149F184FED2DA6C4 /* CopyButton.swift */; };
@@ -136,6 +139,7 @@
 		46E3B5C2487724C84570D22F /* SSHKeysViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A980B0D5EFAD5956EBE83012 /* SSHKeysViewModel.swift */; };
 		47557EE7CF780EA542BFFFDB /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = E7942F8B72064396FC7080BA /* README.md */; };
 		47660AED91DFCC3223B710D9 /* SystemClipboardInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2801EDCA8838A26ABCAF820F /* SystemClipboardInspector.swift */; };
+		47D51DF8CF3FE774832A6F1D /* SystemCapabilityResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915C21FAEA6E5AA059ADD043 /* SystemCapabilityResolver.swift */; };
 		4984AD2330AC4826C3ECF856 /* ImageTransformOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7045720186EE220868CB570 /* ImageTransformOptions.swift */; };
 		4996F8704350AFD12B42B721 /* CopyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800CC3CC149F184FED2DA6C4 /* CopyButton.swift */; };
 		4A2E24DC0F40FF1E212DFE09 /* JSONFormattingStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACD19576492BCB18B80A356 /* JSONFormattingStyle.swift */; };
@@ -149,6 +153,7 @@
 		50823DEBA3F2988D7018C921 /* DomainLookupService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADB4BADE5C39A3F7ECE0DBD /* DomainLookupService.swift */; };
 		51A4C858367A583E691F911D /* PasswordGenerationMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76960F38ED126636E9F502F3 /* PasswordGenerationMode.swift */; };
 		54277B652E4ABA2C0DEE5B5F /* ToolRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09FEDFF9AC030734060D785 /* ToolRegistry.swift */; };
+		543BD4031D4CE06D0684D62D /* ToolPluginManifest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB04E4AE3223816C40793928 /* ToolPluginManifest.swift */; };
 		548354BA54502EB05E9E3668 /* NetworkCheckRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C433EE9AD55B70103F4E6D4 /* NetworkCheckRequest.swift */; };
 		549882CA40A80250C9A64AFE /* GeneratedPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DFD11D4C203D86FBC1B8000 /* GeneratedPassword.swift */; };
 		54D98146F9B921773B280805 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167154D785DBC4023998195A /* SettingsView.swift */; };
@@ -192,6 +197,7 @@
 		6A2D968B3CF1D51EA6F09947 /* SSHKeyManaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5180691BB279D3D1070D3EE /* SSHKeyManaging.swift */; };
 		6AB3DBF43CBF926E86149ADB /* NetworkChecking.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5733835A535DC26A0E86884 /* NetworkChecking.swift */; };
 		6C1D967E9755ADB4A223EF43 /* JSONFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618D60A87160EF3226D3F9F2 /* JSONFormatting.swift */; };
+		6C2812331EF58A9132FA6C5D /* SystemCapabilityResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915C21FAEA6E5AA059ADD043 /* SystemCapabilityResolver.swift */; };
 		6C6E9562FBAB3EB7240A332D /* AppRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F123208D540B6F39E30ADFB /* AppRoute.swift */; };
 		6D04D8DD950CD10E817913EE /* BinaryTextEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317431AFE22F3F49E3C1CA9F /* BinaryTextEncoding.swift */; };
 		6DF7CB4FE6D103CCEC494089 /* AppDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED60A6037EA8081E403E1B9D /* AppDependencies.swift */; };
@@ -235,6 +241,7 @@
 		8599F74BFBB91C3BAA0053D7 /* TextConversionDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBB5A2BB7141BC77AADD72C /* TextConversionDirection.swift */; };
 		86DA73A5A863ED9C044AEAC2 /* ToolDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8C7F47CD104903A1C8E3BB /* ToolDefinition.swift */; };
 		87B5421589E5AA2CF106C0DC /* PasswordGeneratorPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB763A0EE76EB8BFABF632A /* PasswordGeneratorPlugin.swift */; };
+		8836ED5483E1AC7848FF454B /* ToolPluginManifest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB04E4AE3223816C40793928 /* ToolPluginManifest.swift */; };
 		885CFD9CCBFB65AEC75AF20A /* SystemLocalNetworkInfoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91A05C7D22AD616E18145C8 /* SystemLocalNetworkInfoProvider.swift */; };
 		88B3ABF663A9B003F15DA00A /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = E7942F8B72064396FC7080BA /* README.md */; };
 		88E23B7C959723DDBFDB9CFF /* MenuBarRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153E7086FF1D7522B52E1556 /* MenuBarRootView.swift */; };
@@ -273,6 +280,7 @@
 		9D283CF6C9692FDECF5D9409 /* JSONFormattingStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACD19576492BCB18B80A356 /* JSONFormattingStyle.swift */; };
 		9E1F04AD98AC26BBA8FE9724 /* LocalNetworkInfoProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DA9A1A268CE0EB67C77005 /* LocalNetworkInfoProviding.swift */; };
 		9E7A8C2CCB6928909BD918A2 /* AppDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED60A6037EA8081E403E1B9D /* AppDependencies.swift */; };
+		9ED4803479688EB1FF3CCE3D /* CapabilityResolverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DE4F74912EAF1E288DC0F4 /* CapabilityResolverTests.swift */; };
 		9F58817599CA7E9F8A6C55A3 /* WiFiNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDFD56325BA8DA558567EAF /* WiFiNetwork.swift */; };
 		A03F089D0B8DB13FA5450506 /* ImageMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0EDDC6C3C78471FC4166BA /* ImageMetadata.swift */; };
 		A05A26FB2C778F68DD37BF32 /* DeviceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F74BC189247B422900D1512 /* DeviceRepository.swift */; };
@@ -332,6 +340,7 @@
 		BBA7A96AE5AED2232C320D71 /* DomainLookupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F212F09C42AC69AA817EDEAC /* DomainLookupView.swift */; };
 		BBB02EBDAC7EA2962C811335 /* ClipboardSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22B9D9EF2C28B65E28BBD8F /* ClipboardSnapshot.swift */; };
 		BCBC4B05E55A6CF0BB304F64 /* SSHKeyFolderAccessing.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8358CA68FA245C6C2F3E119 /* SSHKeyFolderAccessing.swift */; };
+		BD2260764D50FCA7CA857A8E /* ToolPluginManifest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB04E4AE3223816C40793928 /* ToolPluginManifest.swift */; };
 		BD4B3EE1981215720BE3E1B9 /* ToolCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97EDA481D4D7D4168B49A97 /* ToolCategoryView.swift */; };
 		BEA82F959DED3CAECFBDEA36 /* NetworkInfoHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DE4EB0157569E7E4C84647B /* NetworkInfoHeader.swift */; };
 		BEBA1D76B84D403A7E1BCC73 /* ToolTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10ED5908365A774462E04218 /* ToolTile.swift */; };
@@ -347,6 +356,7 @@
 		C1BA0843564046B7BD2B50BA /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77ADDC55F188549017A4FC6 /* MainWindowController.swift */; };
 		C219C57EE377E7E58DEC0335 /* ConversionUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03D36E05BDE6111B509CEFD /* ConversionUnit.swift */; };
 		C2406B736E52D7A44F33BD51 /* PasswordGeneratorPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB763A0EE76EB8BFABF632A /* PasswordGeneratorPlugin.swift */; };
+		C289F1088BA60C1DD64E944E /* ToolCapability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693E45E1E395C53F220A6F95 /* ToolCapability.swift */; };
 		C2A3CC69E33118F04CF948C7 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167154D785DBC4023998195A /* SettingsView.swift */; };
 		C40967E57A669A7984159295 /* PassphraseSeparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA5DED2B30FFA4F36822A8A /* PassphraseSeparator.swift */; };
 		C42851FFF75E5805EB4A4AB1 /* AppNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486E0B5DA572E325C37A08E8 /* AppNavigationBar.swift */; };
@@ -396,6 +406,7 @@
 		DFD853056F04D16B3C5FA887 /* UnitConverterPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDB256E1BEA2A616956F1D9 /* UnitConverterPlugin.swift */; };
 		E0E6D5DFA63DFE1C527017CC /* NetworkConnectionKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DE1400A6CF3F3656B0A996 /* NetworkConnectionKind.swift */; };
 		E110EB8A6AE082E3A8DE1E0C /* DomainLookupPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = C449ABE0D2EC9FB94FA0A2F7 /* DomainLookupPlugin.swift */; };
+		E13A68E592BDB95C65F2BC9B /* CapabilityResolving.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFB1B2687862FDECEFB08F2 /* CapabilityResolving.swift */; };
 		E18739CB88A905ACFDCD2F9F /* AppPreferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3207B6715EC802F3AB4AF7AE /* AppPreferenceKey.swift */; };
 		E1B15E61CCB9E772529E8752 /* BinaryTextEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317431AFE22F3F49E3C1CA9F /* BinaryTextEncoding.swift */; };
 		E549D4A9F1A0406556049D5C /* AdaptiveGlassGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = E637C4DC67B3DD861918D253 /* AdaptiveGlassGrid.swift */; };
@@ -431,6 +442,7 @@
 		F5F080546356A991F460992A /* JSONFormattingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345DE671A9639D4794E353E1 /* JSONFormattingError.swift */; };
 		F70F97AF8EDDFC8031B24965 /* PersistenceContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD21195E15DB2FA21697E47B /* PersistenceContainer.swift */; };
 		F75870C3F3DD07FD47369ACE /* CoreLocationWiFiScanAuthorizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B23E488E61D65E44716E050 /* CoreLocationWiFiScanAuthorizer.swift */; };
+		F7E05D135BA00F7075217BA3 /* CapabilityResolving.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFB1B2687862FDECEFB08F2 /* CapabilityResolving.swift */; };
 		F7F83FB2AE66ED1E12CA9A1E /* SSHKeysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ECA7F131E1C24329B43A94 /* SSHKeysView.swift */; };
 		F83B1F2A9B9CC255F5190E30 /* TextEncoderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE91A99E5A8CD788FE5C03DC /* TextEncoderView.swift */; };
 		F854ABC3C0E834A5309DB19E /* RDAPResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1790B4C86C9F09D8832FD5DF /* RDAPResponse.swift */; };
@@ -447,6 +459,7 @@
 		FE33F336CF25370890E63047 /* SystemDeviceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8D3FC935B4D99726F6CC47 /* SystemDeviceProvider.swift */; };
 		FE4C3B285E7E890329A52579 /* NetworkSnapshotRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0839652F731456FD41375E /* NetworkSnapshotRepository.swift */; };
 		FF0DB948F6336E5D61AE54DC /* AppRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F123208D540B6F39E30ADFB /* AppRoute.swift */; };
+		FF3D2C09E026200ADDE06056 /* CapabilityResolving.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFB1B2687862FDECEFB08F2 /* CapabilityResolving.swift */; };
 		FFA3420F960A8690714955EB /* PersistenceContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD21195E15DB2FA21697E47B /* PersistenceContainer.swift */; };
 		FFE89622781AA06BD4B39FC3 /* JSONToolkitPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7AE9C738436DC7509B3317F /* JSONToolkitPlugin.swift */; };
 /* End PBXBuildFile section */
@@ -501,6 +514,7 @@
 		1EDE8AE65F15E3B763E70D08 /* ImageInspectorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageInspectorModel.swift; sourceTree = "<group>"; };
 		1FBB5A2BB7141BC77AADD72C /* TextConversionDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextConversionDirection.swift; sourceTree = "<group>"; };
 		1FF1143194B31D435351C5A4 /* SystemSSHKeyManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemSSHKeyManagerTests.swift; sourceTree = "<group>"; };
+		21DE4F74912EAF1E288DC0F4 /* CapabilityResolverTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapabilityResolverTests.swift; sourceTree = "<group>"; };
 		22B1EBB41C4EEF958E0283C4 /* ToolCatalogConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolCatalogConfiguration.swift; sourceTree = "<group>"; };
 		231071D124F7E8227E5C6910 /* ToolCatalog.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ToolCatalog.json; sourceTree = "<group>"; };
 		231DDE71DEC4A7FDBBE3ECDF /* WiFiScannerPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFiScannerPlugin.swift; sourceTree = "<group>"; };
@@ -541,6 +555,7 @@
 		52C4D337DA7592E813712FC1 /* BinaryTextConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryTextConverter.swift; sourceTree = "<group>"; };
 		54E911515A79FC7C444A9E14 /* ToolPouchRust.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = ToolPouchRust.xcframework; path = .build/Rust/ToolPouchRust.xcframework; sourceTree = "<group>"; };
 		5A7A0DDB23093152946A2FE1 /* PasswordGenerating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordGenerating.swift; sourceTree = "<group>"; };
+		5CFB1B2687862FDECEFB08F2 /* CapabilityResolving.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapabilityResolving.swift; sourceTree = "<group>"; };
 		5EA660BEB33C17A1FF633580 /* HashChecksumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashChecksumView.swift; sourceTree = "<group>"; };
 		613472AD1F3CD0C844757235 /* NetworkSnapshotRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSnapshotRepositoryTests.swift; sourceTree = "<group>"; };
 		613825FBCF371AAEF5C50045 /* PublicIPAddressClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicIPAddressClient.swift; sourceTree = "<group>"; };
@@ -549,6 +564,7 @@
 		652A219FC27D38FB8350614F /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		664CDA30B77466B1341C0763 /* NetworkCheckError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkCheckError.swift; sourceTree = "<group>"; };
 		6783D6C0FAEA356AD6335415 /* ImageInspecting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageInspecting.swift; sourceTree = "<group>"; };
+		693E45E1E395C53F220A6F95 /* ToolCapability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolCapability.swift; sourceTree = "<group>"; };
 		6B21269D665CEE2ECD9EC9F5 /* RustImageInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RustImageInspector.swift; sourceTree = "<group>"; };
 		6B6DCDD6E504FA0A155CE1C5 /* CompactToolNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactToolNavigationView.swift; sourceTree = "<group>"; };
 		6BE5EB37CE42FC5282BD7D4C /* MenuBarFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarFooter.swift; sourceTree = "<group>"; };
@@ -571,6 +587,7 @@
 		8C25843D6261F583C4E5C70D /* StatusItemController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusItemController.swift; sourceTree = "<group>"; };
 		90557927DA6ECE95BDFE9988 /* QuickAccessPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickAccessPreferences.swift; sourceTree = "<group>"; };
 		90E1FC80540C5393C219837F /* WiFiScannerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFiScannerViewModel.swift; sourceTree = "<group>"; };
+		915C21FAEA6E5AA059ADD043 /* SystemCapabilityResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemCapabilityResolver.swift; sourceTree = "<group>"; };
 		91DDAA30783BB20C75F9A4E2 /* DomainLookupError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainLookupError.swift; sourceTree = "<group>"; };
 		92E733BEC952E47417A2A2BB /* ToolCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolCategory.swift; sourceTree = "<group>"; };
 		9BF7F3D1F7143862ABAC4892 /* SystemClipboardInspectorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemClipboardInspectorTests.swift; sourceTree = "<group>"; };
@@ -646,6 +663,7 @@
 		F8358CA68FA245C6C2F3E119 /* SSHKeyFolderAccessing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSHKeyFolderAccessing.swift; sourceTree = "<group>"; };
 		F8FB5C88192D4AA72D86A6F7 /* NetworkInfoField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkInfoField.swift; sourceTree = "<group>"; };
 		FACD19576492BCB18B80A356 /* JSONFormattingStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONFormattingStyle.swift; sourceTree = "<group>"; };
+		FB04E4AE3223816C40793928 /* ToolPluginManifest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolPluginManifest.swift; sourceTree = "<group>"; };
 		FCB763A0EE76EB8BFABF632A /* PasswordGeneratorPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordGeneratorPlugin.swift; sourceTree = "<group>"; };
 		FD183E5DDD24365712DF12AE /* WiFiScanning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFiScanning.swift; sourceTree = "<group>"; };
 		FE5C2C878CA75C8D39D21EAE /* HashCalculating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashCalculating.swift; sourceTree = "<group>"; };
@@ -711,6 +729,7 @@
 			isa = PBXGroup;
 			children = (
 				08BFE7F58E4EF16994413D03 /* BinaryTextConverterTests.swift */,
+				21DE4F74912EAF1E288DC0F4 /* CapabilityResolverTests.swift */,
 				083D4AF12643AB571CCE14FB /* CryptoKitHashCalculatorTests.swift */,
 				2ABC67DD7E5FD25A29C3FDB4 /* FoundationJSONFormatterTests.swift */,
 				BD22068ED8955C8E0D640BF5 /* LocalUnitConverterTests.swift */,
@@ -1119,6 +1138,7 @@
 			isa = PBXGroup;
 			children = (
 				B04A0860CA86A74688E0C1BC /* ToolPlugin.swift */,
+				FB04E4AE3223816C40793928 /* ToolPluginManifest.swift */,
 			);
 			path = Plugins;
 			sourceTree = "<group>";
@@ -1460,6 +1480,9 @@
 		B04827E18281AFF6A34FB8B9 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				5CFB1B2687862FDECEFB08F2 /* CapabilityResolving.swift */,
+				915C21FAEA6E5AA059ADD043 /* SystemCapabilityResolver.swift */,
+				693E45E1E395C53F220A6F95 /* ToolCapability.swift */,
 				22B1EBB41C4EEF958E0283C4 /* ToolCatalogConfiguration.swift */,
 				92E733BEC952E47417A2A2BB /* ToolCategory.swift */,
 				2F8C7F47CD104903A1C8E3BB /* ToolDefinition.swift */,
@@ -1930,6 +1953,7 @@
 				6C6E9562FBAB3EB7240A332D /* AppRoute.swift in Sources */,
 				F217F4118DF0BF6AB27F4CE6 /* BinaryTextConverter.swift in Sources */,
 				2792B309E7F20951E538C698 /* BinaryTextEncoding.swift in Sources */,
+				F7E05D135BA00F7075217BA3 /* CapabilityResolving.swift in Sources */,
 				6E12D1B37FBC4225AA88862F /* ClipboardInspecting.swift in Sources */,
 				60172BF33C2289FB8B5BF75A /* ClipboardInspectorModel.swift in Sources */,
 				FB76A94685B43AFBA3AD9717 /* ClipboardInspectorPlugin.swift in Sources */,
@@ -2038,6 +2062,7 @@
 				DD56F6C7F19626D56C4AD725 /* SecurityScopedSSHKeyFolderStore.swift in Sources */,
 				54D98146F9B921773B280805 /* SettingsView.swift in Sources */,
 				C0992B92CFF4E1E727E157C8 /* StatusItemController.swift in Sources */,
+				6C2812331EF58A9132FA6C5D /* SystemCapabilityResolver.swift in Sources */,
 				C13DE540427E96E37AF35BCF /* SystemClipboard.swift in Sources */,
 				C086FCA01ABCD529BF611AF5 /* SystemClipboardInspector.swift in Sources */,
 				1F76A5757D7FC46F08AF3D27 /* SystemDeviceProvider.swift in Sources */,
@@ -2050,6 +2075,7 @@
 				0131025104056D7B31286301 /* TextEncodingConversionError.swift in Sources */,
 				4FA33255C6F6211EB1225A84 /* TextEncodingConverting.swift in Sources */,
 				CA0FCC3C9D49568422FFB64C /* ThreeColumnToolNavigationView.swift in Sources */,
+				2876265BC03A606E47C766FC /* ToolCapability.swift in Sources */,
 				FE2B9899341E9282B24D2D82 /* ToolCatalogConfiguration.swift in Sources */,
 				239A0DAD68E416FCC77B7F0D /* ToolCategory.swift in Sources */,
 				2B47333BB5809B0449884334 /* ToolCategoryView.swift in Sources */,
@@ -2057,6 +2083,7 @@
 				EF685479F2F1E43EB1163D53 /* ToolExecutionBackend.swift in Sources */,
 				5F19562C13FDA12FB6DC76AB /* ToolPlatform.swift in Sources */,
 				D33EE39B6DD2A8E6252C1764 /* ToolPlugin.swift in Sources */,
+				543BD4031D4CE06D0684D62D /* ToolPluginManifest.swift in Sources */,
 				93D48E21F01B9902926A1B7B /* ToolPouchApp.swift in Sources */,
 				FD0FED97247E82D1D17AD81E /* ToolPouchLayout.swift in Sources */,
 				D2154FABF5CB21E3E4927357 /* ToolPouchRustEngine.swift in Sources */,
@@ -2081,6 +2108,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC972BB5590957589627CA89 /* BinaryTextConverterTests.swift in Sources */,
+				9ED4803479688EB1FF3CCE3D /* CapabilityResolverTests.swift in Sources */,
 				8BA2088EA86DDD3534FFEAD9 /* CryptoKitHashCalculatorTests.swift in Sources */,
 				3FD2A65390E8EF0AFC690EFB /* FoundationJSONFormatterTests.swift in Sources */,
 				F36663B89FF4D2923934356D /* LocalUnitConverterTests.swift in Sources */,
@@ -2109,6 +2137,7 @@
 				B5459CE50C22A60532F90047 /* AppRoute.swift in Sources */,
 				20E2F63994839841F96B4C34 /* BinaryTextConverter.swift in Sources */,
 				6D04D8DD950CD10E817913EE /* BinaryTextEncoding.swift in Sources */,
+				E13A68E592BDB95C65F2BC9B /* CapabilityResolving.swift in Sources */,
 				EE5BD68016504A8A81D00753 /* ClipboardInspecting.swift in Sources */,
 				EFB7E694255CCEEA8DE658A7 /* ClipboardInspectorModel.swift in Sources */,
 				3838BFA6777CE68D6B0BE284 /* ClipboardInspectorPlugin.swift in Sources */,
@@ -2212,6 +2241,7 @@
 				8AD09EAE879C034FE66BA864 /* SecurePasswordGenerator.swift in Sources */,
 				01C5E2F416BDAA3EA3E06C52 /* SecurityScopedSSHKeyFolderStore.swift in Sources */,
 				9788FFED97E5750BABD269B5 /* SettingsView.swift in Sources */,
+				1E4B0F98AF8D7ACE78834E91 /* SystemCapabilityResolver.swift in Sources */,
 				78EC6A0FFC95142B1E65B67D /* SystemClipboard.swift in Sources */,
 				141D22E27125A7F8478BBF3D /* SystemClipboardInspector.swift in Sources */,
 				FE33F336CF25370890E63047 /* SystemDeviceProvider.swift in Sources */,
@@ -2224,6 +2254,7 @@
 				CF7AF940426F0033C855BA67 /* TextEncodingConversionError.swift in Sources */,
 				0AEE0C3FE1AD5306DAB833E3 /* TextEncodingConverting.swift in Sources */,
 				DF4A0D136C7AE473A44A394A /* ThreeColumnToolNavigationView.swift in Sources */,
+				3D65B3640267D8926F8464D7 /* ToolCapability.swift in Sources */,
 				B32F908075BE2815DAEFD3EF /* ToolCatalogConfiguration.swift in Sources */,
 				8DC4C508EBF96C180F95DCF2 /* ToolCategory.swift in Sources */,
 				BF955729E87D37E33AD81E10 /* ToolCategoryView.swift in Sources */,
@@ -2231,6 +2262,7 @@
 				829B5B38F0FB497A42DFFBC9 /* ToolExecutionBackend.swift in Sources */,
 				116316EF6DD885DC06CF23C0 /* ToolPlatform.swift in Sources */,
 				71C2F29840A8792499C7EA90 /* ToolPlugin.swift in Sources */,
+				8836ED5483E1AC7848FF454B /* ToolPluginManifest.swift in Sources */,
 				1A28F44B53308F514CF015DF /* ToolPouchLayout.swift in Sources */,
 				31270D267C182E8D5B5F91AC /* ToolPouchMobileApp.swift in Sources */,
 				DA3D755FE9D020BBA77299C7 /* ToolPouchRustEngine.swift in Sources */,
@@ -2269,6 +2301,7 @@
 				FF0DB948F6336E5D61AE54DC /* AppRoute.swift in Sources */,
 				CD4EBD2A218163098A1335CF /* BinaryTextConverter.swift in Sources */,
 				E1B15E61CCB9E772529E8752 /* BinaryTextEncoding.swift in Sources */,
+				FF3D2C09E026200ADDE06056 /* CapabilityResolving.swift in Sources */,
 				3AF21940818EAF490854DEC5 /* ClipboardInspecting.swift in Sources */,
 				E5C7C8196352538A24FCFBCC /* ClipboardInspectorModel.swift in Sources */,
 				F21AB72D59EC5C3990AABDBD /* ClipboardInspectorPlugin.swift in Sources */,
@@ -2344,6 +2377,7 @@
 				8F36158202932EE343BFDFC2 /* SecurePasswordGenerator.swift in Sources */,
 				24235128B86DCCA4C51D13A5 /* SecurityScopedSSHKeyFolderStore.swift in Sources */,
 				C2A3CC69E33118F04CF948C7 /* SettingsView.swift in Sources */,
+				47D51DF8CF3FE774832A6F1D /* SystemCapabilityResolver.swift in Sources */,
 				7DBB76CD8032F7A8F34A8F3B /* SystemClipboard.swift in Sources */,
 				47660AED91DFCC3223B710D9 /* SystemClipboardInspector.swift in Sources */,
 				00786C6220D79FE00D346D4A /* SystemDeviceProvider.swift in Sources */,
@@ -2355,6 +2389,7 @@
 				ACD9C1EC1157DEB7C8763C53 /* TextEncodingConversionError.swift in Sources */,
 				7CBD1A14493FA742DF66159D /* TextEncodingConverting.swift in Sources */,
 				00DE26992872E8624D5569D4 /* ThreeColumnToolNavigationView.swift in Sources */,
+				C289F1088BA60C1DD64E944E /* ToolCapability.swift in Sources */,
 				57ED23301DC30DEDCBDAE07F /* ToolCatalogConfiguration.swift in Sources */,
 				CEBECCE1027E414675403673 /* ToolCategory.swift in Sources */,
 				BD4B3EE1981215720BE3E1B9 /* ToolCategoryView.swift in Sources */,
@@ -2362,6 +2397,7 @@
 				7A65FB1FC1C7543977B92695 /* ToolExecutionBackend.swift in Sources */,
 				1F2EFA02FB78D3846BFC483D /* ToolPlatform.swift in Sources */,
 				A0666CEEBF146DFA2551690E /* ToolPlugin.swift in Sources */,
+				BD2260764D50FCA7CA857A8E /* ToolPluginManifest.swift in Sources */,
 				EB3832E54696325C45D9CB7E /* ToolPouchLayout.swift in Sources */,
 				DE68615AD1B77F5C4D50AA12 /* ToolPouchWatchApp.swift in Sources */,
 				0B532B50DF7FAAA4A6C72A50 /* ToolRegistry.swift in Sources */,

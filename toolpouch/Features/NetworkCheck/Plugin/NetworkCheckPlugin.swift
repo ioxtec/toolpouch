@@ -8,7 +8,8 @@ struct NetworkCheckPlugin: ToolPlugin {
         description: "Resolve a host and check whether a TCP port is reachable.",
         systemImage: "wave.3.right.circle",
         supportedPlatforms: [.macOS, .iOS],
-        executionBackend: .nativeSwift
+        executionBackend: .nativeSwift,
+        requiredCapabilities: [.network]
     )
 
     func makeDestination(dependencies: AppDependencies) -> AnyView {

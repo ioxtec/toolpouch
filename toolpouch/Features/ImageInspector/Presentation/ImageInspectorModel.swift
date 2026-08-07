@@ -19,7 +19,7 @@ final class ImageInspectorModel {
         self.inspector = inspector
     }
 
-    /// Replaces the current selection and inspects the image away from the main actor.
+    /// Replaces the current selection and inspects the image on the inspector's actor.
     func select(_ url: URL) async {
         selectedFileURL = url
         inspection = nil
@@ -31,13 +31,10 @@ final class ImageInspectorModel {
         defer { isInspecting = false }
 
         do {
-            let result = try await Task.detached { [inspector] in
-                let inspection = try inspector.inspectImage(at: url)
-                let metadata = try inspector.readMetadata(at: url)
-                return (inspection, metadata)
-            }.value
-            inspection = result.0
-            metadata = result.1
+            let inspection = try await inspector.inspectImage(at: url)
+            let metadata = try await inspector.readMetadata(at: url)
+            self.inspection = inspection
+            self.metadata = metadata
         } catch is CancellationError {
             return
         } catch {
@@ -71,13 +68,11 @@ final class ImageInspectorModel {
         defer { isTransforming = false }
 
         do {
-            try await Task.detached { [inspector] in
-                try inspector.transform(
-                    inputURL: selectedFileURL,
-                    outputURL: outputURL,
-                    options: options
-                )
-            }.value
+            try await inspector.transform(
+                inputURL: selectedFileURL,
+                outputURL: outputURL,
+                options: options
+            )
             transformedFileURL = outputURL
             transformMessage = "Image saved successfully."
         } catch {

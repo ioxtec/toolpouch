@@ -9,7 +9,8 @@ struct SSHKeysPlugin: ToolPlugin {
         description: "Browse, generate, and copy SSH key pairs.",
         systemImage: "key.horizontal",
         supportedPlatforms: [.macOS],
-        executionBackend: .nativeSwift
+        executionBackend: .nativeSwift,
+        requiredCapabilities: [.sshKeys]
     )
 
     func makeDestination(dependencies: AppDependencies) -> AnyView {

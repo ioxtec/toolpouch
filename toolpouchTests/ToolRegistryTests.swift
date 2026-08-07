@@ -183,6 +183,33 @@ struct ToolRegistryTests {
     }
 
     @Test
+    func everyToolExposesAPluginManifest() {
+        for tool in registry.tools {
+            let manifest = registry.manifest(for: tool.id)
+            #expect(manifest != nil)
+            #expect(manifest?.version.string == "1.0.0")
+        }
+    }
+
+    @Test
+    func manifestExposesRequiredCapabilities() {
+        let manifest = registry.manifest(for: .colorPicker)
+        #expect(manifest?.requiredCapabilities.contains(.screenCapture) == true)
+    }
+
+    @Test
+    func networkToolsAreHiddenWhenNetworkCapabilityIsMissing() {
+        let registry = ToolRegistry(
+            configuration: ToolCatalogConfigurationLoader.load(),
+            plugins: [NetworkInfoPlugin(), DomainLookupPlugin()],
+            capabilityResolver: NoNetworkCapabilityResolver()
+        )
+
+        #expect(registry.tools(in: .network, for: .macOS).isEmpty)
+        #expect(registry.tool(id: .networkInfo) != nil)
+    }
+
+    @Test
     func quickAccessPreferencesPersistUniqueLimitedToolIDs() {
         let suiteName = "QuickAccessPreferencesTests.\(UUID().uuidString)"
         let defaults = UserDefaults(suiteName: suiteName)!
@@ -224,5 +251,15 @@ struct ToolRegistryTests {
             defaults: defaults
         )
         #expect(emptyPreferences.toolIDs.isEmpty)
+    }
+}
+
+/// Resolver that never exposes the network capability, used to verify that
+/// tools requiring it are hidden from the registry.
+private struct NoNetworkCapabilityResolver: CapabilityResolving {
+    let platform: ToolPlatform = .macOS
+
+    func hasCapability(_ capability: ToolCapability) -> Bool {
+        capability != .network
     }
 }

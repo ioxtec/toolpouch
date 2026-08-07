@@ -8,7 +8,8 @@ struct DomainLookupPlugin: ToolPlugin {
         description: "Check registration details for a domain.",
         systemImage: "globe.badge.chevron.backward",
         supportedPlatforms: [.macOS, .iOS, .watchOS],
-        executionBackend: .nativeSwift
+        executionBackend: .nativeSwift,
+        requiredCapabilities: [.network]
     )
 
     func makeDestination(dependencies: AppDependencies) -> AnyView {

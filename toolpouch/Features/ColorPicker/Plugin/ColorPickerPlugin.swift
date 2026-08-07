@@ -9,7 +9,8 @@ struct ColorPickerPlugin: ToolPlugin {
         description: "Pick an exact pixel color anywhere on your screens.",
         systemImage: "eyedropper.halffull",
         supportedPlatforms: [.macOS],
-        executionBackend: .nativeSwift
+        executionBackend: .nativeSwift,
+        requiredCapabilities: [.screenCapture]
     )
 
     func makeDestination(dependencies: AppDependencies) -> AnyView {

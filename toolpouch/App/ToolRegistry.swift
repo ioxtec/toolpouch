@@ -6,10 +6,12 @@ struct ToolRegistry {
     let categories: [ToolCategory]
     private let plugins: [any ToolPlugin]
     private let configuration: ToolCatalogConfiguration
+    private let capabilityResolver: any CapabilityResolving
 
     init(
         configuration: ToolCatalogConfiguration,
-        plugins: [any ToolPlugin]
+        plugins: [any ToolPlugin],
+        capabilityResolver: any CapabilityResolving = SystemCapabilityResolver()
     ) {
         let identifiers = plugins.map(\.definition.id)
         precondition(
@@ -20,6 +22,7 @@ struct ToolRegistry {
         self.configuration = configuration
         categories = configuration.sections.map(\.category)
         self.plugins = plugins
+        self.capabilityResolver = capabilityResolver
     }
 
     var tools: [ToolDefinition] {
@@ -36,6 +39,11 @@ struct ToolRegistry {
 
     func tool(id: ToolDefinition.ID) -> ToolDefinition? {
         plugins.first { $0.definition.id == id }?.definition
+    }
+
+    /// Returns the plugin manifest for a tool, if it is registered.
+    func manifest(for toolID: ToolDefinition.ID) -> ToolPluginManifest? {
+        plugins.first { $0.definition.id == toolID }?.manifest
     }
 
     func tools(in categoryID: ToolCategory.ID) -> [ToolDefinition] {
@@ -62,6 +70,7 @@ struct ToolRegistry {
     ) -> [ToolDefinition] {
         tools(in: categoryID).filter {
             $0.supportedPlatforms.contains(platform)
+                && isAvailable($0)
         }
     }
 
@@ -87,7 +96,10 @@ struct ToolRegistry {
         Array(
             toolIDs
                 .compactMap { tool(id: $0) }
-                .filter { $0.supportedPlatforms.contains(platform) }
+                .filter {
+                    $0.supportedPlatforms.contains(platform)
+                        && isAvailable($0)
+                }
                 .prefix(configuration.quickAccess.maximumCount)
         )
     }
@@ -96,6 +108,13 @@ struct ToolRegistry {
         categories(for: platform).flatMap {
             tools(in: $0.id, for: platform)
         }
+    }
+
+    /// Whether the tool is available on the current device given its capabilities.
+    private func isAvailable(_ tool: ToolDefinition) -> Bool {
+        capabilityResolver.supports(
+            requiredCapabilities: tool.requiredCapabilities
+        )
     }
 
     func destination(
@@ -112,7 +131,8 @@ extension ToolRegistry {
     static func live() -> ToolRegistry {
         ToolRegistry(
             configuration: ToolCatalogConfigurationLoader.load(),
-            plugins: livePlugins
+            plugins: livePlugins,
+            capabilityResolver: SystemCapabilityResolver()
         )
     }
 

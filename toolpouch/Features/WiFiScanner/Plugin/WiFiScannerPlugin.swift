@@ -9,7 +9,8 @@ struct WiFiScannerPlugin: ToolPlugin {
         description: "Nearby networks, channels, and signal strength.",
         systemImage: "wifi",
         supportedPlatforms: [.macOS],
-        executionBackend: .nativeSwift
+        executionBackend: .nativeSwift,
+        requiredCapabilities: [.wiFiScanning]
     )
 
     func makeDestination(dependencies: AppDependencies) -> AnyView {

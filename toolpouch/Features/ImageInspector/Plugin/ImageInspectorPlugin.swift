@@ -8,7 +8,8 @@ struct ImageInspectorPlugin: ToolPlugin {
         description: "Inspect metadata, resize images, and convert formats.",
         systemImage: "photo.badge.magnifyingglass",
         supportedPlatforms: [.macOS, .iOS],
-        executionBackend: .rust
+        executionBackend: .rust,
+        requiredCapabilities: [.rustEngine]
     )
 
     func makeDestination(dependencies: AppDependencies) -> AnyView {

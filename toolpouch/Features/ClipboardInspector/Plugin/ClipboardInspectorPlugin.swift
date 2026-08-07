@@ -9,7 +9,8 @@ struct ClipboardInspectorPlugin: ToolPlugin {
         description: "Preview formats and clear the current clipboard.",
         systemImage: "clipboard.fill",
         supportedPlatforms: [.macOS],
-        executionBackend: .nativeSwift
+        executionBackend: .nativeSwift,
+        requiredCapabilities: [.clipboard]
     )
 
     func makeDestination(dependencies: AppDependencies) -> AnyView {

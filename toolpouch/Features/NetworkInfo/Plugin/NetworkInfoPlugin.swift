@@ -8,7 +8,8 @@ struct NetworkInfoPlugin: ToolPlugin {
         description: "IP addresses, DNS, router, and interface details.",
         systemImage: "network",
         supportedPlatforms: [.macOS, .iOS, .watchOS],
-        executionBackend: .nativeSwift
+        executionBackend: .nativeSwift,
+        requiredCapabilities: [.network]
     )
 
     func makeDestination(dependencies: AppDependencies) -> AnyView {

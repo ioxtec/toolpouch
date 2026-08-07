@@ -61,10 +61,13 @@ nonisolated public struct ToolPouchRustImageInfo: Equatable, Sendable {
     public let fileSize: UInt64
 }
 
-nonisolated public struct ToolPouchRustEngine: Sendable {
+/// Isolates the Rust FFI calls on a dedicated actor so heavy image work never
+/// blocks the main actor. Each method runs synchronously inside the actor but
+/// is exposed as `async` to callers.
+public actor ToolPouchRustEngine {
     public init() {}
 
-    public var apiVersion: UInt32 {
+    nonisolated public var apiVersion: UInt32 {
         toolpouch_engine_api_version()
     }
 

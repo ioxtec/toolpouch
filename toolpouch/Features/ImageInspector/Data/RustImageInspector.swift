@@ -1,11 +1,13 @@
 import Foundation
 
-nonisolated struct RustImageInspector: ImageInspecting {
+/// Runs image inspection and transformation on the Rust engine's actor so the
+/// work never blocks the main actor.
+actor RustImageInspector: ImageInspecting {
     private let engine = ToolPouchRustEngine()
 
-    func inspectImage(at url: URL) throws -> ImageInspection {
+    func inspectImage(at url: URL) async throws -> ImageInspection {
         do {
-            let result = try engine.inspectImage(at: url)
+            let result = try await engine.inspectImage(at: url)
             return ImageInspection(
                 width: result.width,
                 height: result.height,
@@ -21,9 +23,9 @@ nonisolated struct RustImageInspector: ImageInspecting {
         }
     }
 
-    func readMetadata(at url: URL) throws -> ImageMetadata {
+    func readMetadata(at url: URL) async throws -> ImageMetadata {
         do {
-            let result = try engine.readImageMetadata(at: url)
+            let result = try await engine.readImageMetadata(at: url)
             return ImageMetadata(
                 cameraMake: result.cameraMake,
                 cameraModel: result.cameraModel,
@@ -46,9 +48,9 @@ nonisolated struct RustImageInspector: ImageInspecting {
         inputURL: URL,
         outputURL: URL,
         options: ImageTransformOptions
-    ) throws {
+    ) async throws {
         do {
-            try engine.transformImage(
+            try await engine.transformImage(
                 at: inputURL,
                 savingTo: outputURL,
                 maximumWidth: options.maximumWidth,
