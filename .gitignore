@@ -21,3 +21,6 @@ Rust/target/
 # Playgrounds
 timeline.xctimeline
 playground.xcworkspace
+
+# Abacus AI agent config
+.abacusai/
