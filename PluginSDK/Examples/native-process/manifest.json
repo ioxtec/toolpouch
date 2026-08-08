@@ -1,0 +1,43 @@
+{
+  "$schema": "../../manifest.schema.json",
+  "author": {
+    "name": "Example Developer",
+    "website": "https://example.dev"
+  },
+  "displayName": "Example Formatter",
+  "entryPoint": "payload/macos-arm64/plugin",
+  "identifier": "dev.example.formatter",
+  "minimumHostVersion": {
+    "major": 1,
+    "minor": 0,
+    "patch": 0
+  },
+  "permissions": [
+    "files.user-selected.read",
+    "files.user-selected.write"
+  ],
+  "runtime": "nativeProcess",
+  "schemaVersion": 1,
+  "summary": "Formats a user-selected text file.",
+  "supportedPlatforms": [
+    "macOS"
+  ],
+  "tools": [
+    {
+      "categoryID": "text",
+      "description": "Formats text using an external process.",
+      "id": "dev.example.formatter.text",
+      "requiredCapabilities": [],
+      "supportedPlatforms": [
+        "macOS"
+      ],
+      "systemImage": "text.alignleft",
+      "title": "Example Formatter"
+    }
+  ],
+  "version": {
+    "major": 1,
+    "minor": 0,
+    "patch": 0
+  }
+}
