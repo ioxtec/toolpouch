@@ -78,6 +78,18 @@ struct ToolRegistryTests {
     }
 
     @Test
+    func archiveToolIsAvailableOnMacOSAndIOS() {
+        #expect(
+            registry.tool(id: .archiveTool)?.supportedPlatforms
+                == [.macOS, .iOS]
+        )
+        #expect(
+            !registry.tools(in: .everyday, for: .watchOS)
+                .contains { $0.id == .archiveTool }
+        )
+    }
+
+    @Test
     func jsonToolkitIsAvailableOnMacOSAndIOS() {
         #expect(
             registry.tool(id: .jsonToolkit)?.supportedPlatforms

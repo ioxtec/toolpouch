@@ -1,0 +1,11 @@
+module bzlib [system] {
+  header "bzlib.h"
+  export *
+  link "bz2"
+}
+
+module lzma [system] {
+  header "lzma.h"
+  export *
+  link "lzma"
+}

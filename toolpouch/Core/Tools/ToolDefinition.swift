@@ -13,6 +13,7 @@ nonisolated struct ToolDefinition: Hashable, Identifiable, Sendable {
         case domainLookup
         case imageInspector
         case colorPicker
+        case archiveTool
     }
 
     let id: ID

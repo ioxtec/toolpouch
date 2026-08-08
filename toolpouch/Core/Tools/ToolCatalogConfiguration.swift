@@ -74,7 +74,7 @@ private extension ToolCatalogConfiguration {
                 description: "Useful tools for daily tasks",
                 systemImage: "sparkles",
                 supportedPlatforms: Set(ToolPlatform.allCases),
-                toolOrder: [.unitConverter]
+                toolOrder: [.unitConverter, .archiveTool]
             ),
             Section(
                 id: .network,

@@ -143,6 +143,7 @@ extension ToolRegistry {
             DomainLookupPlugin(),
             PasswordGeneratorPlugin(),
             TextEncoderPlugin(),
+            ArchiveToolPlugin(),
         ]
         #if !os(watchOS)
         plugins.append(NetworkCheckPlugin())
