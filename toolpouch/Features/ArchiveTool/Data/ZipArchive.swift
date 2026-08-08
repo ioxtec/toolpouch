@@ -8,9 +8,37 @@ import zlib
 /// by the system Compression framework. Reads both stored (method 0) and
 /// deflated (method 8) entries.
 nonisolated enum ZipArchive {
+    /// Host-controlled extraction limits. Never derive these values from the
+    /// archive itself: ZIP sizes and compression ratios are attacker input.
+    struct ExtractionPolicy: Sendable {
+        let maximumArchiveSize: Int
+        let maximumEntryCount: Int
+        let maximumEntrySize: Int
+        let maximumTotalUncompressedSize: Int
+        let maximumCompressionRatio: Int
+
+        static let archiveTool = ExtractionPolicy(
+            maximumArchiveSize: 1_073_741_824,
+            maximumEntryCount: 10_000,
+            maximumEntrySize: 1_073_741_824,
+            maximumTotalUncompressedSize: 2_147_483_648,
+            maximumCompressionRatio: 1_000
+        )
+
+        /// Deliberately conservative limits for downloaded executable code.
+        static let pluginPackage = ExtractionPolicy(
+            maximumArchiveSize: 128 * 1_048_576,
+            maximumEntryCount: 512,
+            maximumEntrySize: 128 * 1_048_576,
+            maximumTotalUncompressedSize: 256 * 1_048_576,
+            maximumCompressionRatio: 250
+        )
+    }
+
     static func create(
         from sourceURL: URL,
         to destinationURL: URL,
+        includeRootDirectory: Bool = true,
         fileManager: FileManager = .default
     ) throws {
         guard fileManager.fileExists(atPath: sourceURL.path) else {
@@ -18,8 +46,26 @@ nonisolated enum ZipArchive {
         }
 
         var files: [(name: String, url: URL)] = []
-        collectEntries(from: sourceURL, into: &files, fileManager: fileManager)
+        if includeRootDirectory {
+            collectEntries(from: sourceURL, into: &files, fileManager: fileManager)
+        } else {
+            let children = try fileManager.contentsOfDirectory(
+                at: sourceURL,
+                includingPropertiesForKeys: nil
+            )
+            for child in children {
+                collectEntries(
+                    from: child,
+                    into: &files,
+                    fileManager: fileManager,
+                    prefix: child.lastPathComponent
+                )
+            }
+        }
         guard !files.isEmpty else { throw ArchiveOperationError.emptySource }
+        guard files.count <= Int(UInt16.max) else {
+            throw ArchiveOperationError.archiveFailed
+        }
 
         var localHeaders = Data()
         var centralDirectory = Data()
@@ -48,9 +94,12 @@ nonisolated enum ZipArchive {
                 size = 0
             } else {
                 contentData = try Data(contentsOf: entry.url, options: [.mappedIfSafe])
+                guard contentData.count <= Int(UInt32.max) else {
+                    throw ArchiveOperationError.archiveFailed
+                }
                 size = UInt32(contentData.count)
                 crcValue = crc32(of: contentData)
-                let raw = try codec.compress(data: contentData)
+                let raw = try codec.compressRawDeflate(data: contentData)
                 if raw.count < contentData.count {
                     compressedData = raw
                     method = 8
@@ -80,7 +129,7 @@ nonisolated enum ZipArchive {
 
             var centralEntry = Data()
             centralEntry.append(contentsOf: [0x50, 0x4b, 0x01, 0x02]) // signature
-            centralEntry.append(contentsOf: littleEndian(UInt16(20))) // version made by
+            centralEntry.append(contentsOf: littleEndian(UInt16(0x0314))) // Unix, ZIP 2.0
             centralEntry.append(contentsOf: littleEndian(UInt16(20))) // version needed
             centralEntry.append(contentsOf: littleEndian(UInt16(0))) // flags
             centralEntry.append(contentsOf: littleEndian(method)) // method
@@ -94,7 +143,13 @@ nonisolated enum ZipArchive {
             centralEntry.append(contentsOf: littleEndian(UInt16(0))) // comment length
             centralEntry.append(contentsOf: littleEndian(UInt16(0))) // disk number
             centralEntry.append(contentsOf: littleEndian(UInt16(0))) // internal attrs
-            centralEntry.append(contentsOf: littleEndian(UInt32(0))) // external attrs
+            centralEntry.append(contentsOf: littleEndian(
+                externalAttributes(
+                    for: entry.url,
+                    isDirectory: isDirectory.boolValue,
+                    fileManager: fileManager
+                )
+            ))
             centralEntry.append(contentsOf: littleEndian(UInt32(offset))) // local header offset
             centralEntry.append(nameData)
             centralDirectory.append(centralEntry)
@@ -123,21 +178,44 @@ nonisolated enum ZipArchive {
     static func extract(
         archiveURL: URL,
         to destinationDirectory: URL,
+        policy: ExtractionPolicy = .archiveTool,
         fileManager: FileManager = .default
     ) throws {
+        let archiveAttributes = try fileManager.attributesOfItem(
+            atPath: archiveURL.path
+        )
+        guard let archiveSize = archiveAttributes[.size] as? NSNumber,
+              archiveSize.intValue <= policy.maximumArchiveSize else {
+            throw ArchiveOperationError.invalidArchive
+        }
         let data = try Data(contentsOf: archiveURL, options: [.mappedIfSafe])
-        guard data.count > 22 else { throw ArchiveOperationError.invalidArchive }
+        guard data.count > 22,
+              data.count <= policy.maximumArchiveSize else {
+            throw ArchiveOperationError.invalidArchive
+        }
 
         let eocdOffset = findEndOfCentralDirectory(in: data)
         guard eocdOffset >= 0 else { throw ArchiveOperationError.invalidArchive }
 
         let eocdStart = data.startIndex + eocdOffset
+        let diskNumber = readUInt16(data, at: eocdStart + 4)
+        let centralDirectoryDisk = readUInt16(data, at: eocdStart + 6)
+        let entriesOnDisk = Int(readUInt16(data, at: eocdStart + 8))
         let entryCount = Int(readUInt16(data, at: eocdStart + 10))
         let centralSize = Int(readUInt32(data, at: eocdStart + 12))
         let centralOffset = Int(readUInt32(data, at: eocdStart + 16))
+        let commentLength = Int(readUInt16(data, at: eocdStart + 20))
 
-        guard centralOffset >= 0, centralSize >= 0,
-              centralOffset + centralSize <= data.count else {
+        // Plugin packages intentionally support only a single, non-ZIP64
+        // archive. Requiring the central directory to end exactly at EOCD
+        // also prevents ambiguous archives with hidden trailing structures.
+        guard diskNumber == 0,
+              centralDirectoryDisk == 0,
+              entriesOnDisk == entryCount,
+              entryCount <= policy.maximumEntryCount,
+              centralOffset >= 0, centralSize >= 0,
+              centralOffset + centralSize == eocdOffset,
+              eocdStart + 22 + commentLength == data.endIndex else {
             throw ArchiveOperationError.invalidArchive
         }
 
@@ -148,9 +226,12 @@ nonisolated enum ZipArchive {
 
         let codec = GzipCodec()
         var cursor = data.startIndex + centralOffset
+        let centralEnd = cursor + centralSize
+        var totalUncompressedSize = 0
+        var extractedPaths = Set<String>()
 
         for _ in 0..<entryCount {
-            guard cursor + 46 <= data.count,
+            guard cursor + 46 <= centralEnd,
                   data[cursor] == 0x50,
                   data[cursor + 1] == 0x4b,
                   data[cursor + 2] == 0x01,
@@ -158,6 +239,8 @@ nonisolated enum ZipArchive {
                 throw ArchiveOperationError.invalidArchive
             }
 
+            let versionMadeBy = readUInt16(data, at: cursor + 4)
+            let flags = readUInt16(data, at: cursor + 8)
             let method = readUInt16(data, at: cursor + 10)
             let crcStored = readUInt32(data, at: cursor + 16)
             let compressedSize = Int(readUInt32(data, at: cursor + 20))
@@ -165,9 +248,12 @@ nonisolated enum ZipArchive {
             let nameLength = Int(readUInt16(data, at: cursor + 28))
             let extraLength = Int(readUInt16(data, at: cursor + 30))
             let commentLength = Int(readUInt16(data, at: cursor + 32))
+            let externalAttributes = readUInt32(data, at: cursor + 38)
             let localOffset = Int(readUInt32(data, at: cursor + 42))
 
-            guard cursor + 46 + nameLength <= data.count,
+            let recordSize = 46 + nameLength + extraLength + commentLength
+            guard flags & 0x0001 == 0,
+                  cursor + recordSize <= centralEnd,
                   let name = String(
                       data: data.subdata(
                           in: (cursor + 46)..<(cursor + 46 + nameLength)
@@ -177,34 +263,80 @@ nonisolated enum ZipArchive {
                 throw ArchiveOperationError.invalidArchive
             }
 
-            let normalizedName = name.hasSuffix("/")
+            let isDirectoryEntry = name.hasSuffix("/")
+            let normalizedName = isDirectoryEntry
                 ? String(name.dropLast())
                 : name
-            guard !normalizedName.isEmpty,
-                  !normalizedName.contains("..") else {
+            let destinationPath = try safeExtractionURL(
+                for: normalizedName,
+                inside: destinationDirectory
+            )
+            let collisionKey = destinationPath.path
+                .precomposedStringWithCanonicalMapping
+                .lowercased()
+            guard extractedPaths.insert(collisionKey).inserted else {
                 throw ArchiveOperationError.invalidArchive
             }
 
-            let destinationPath = destinationDirectory
-                .appendingPathComponent(normalizedName)
+            let unixMode = versionMadeBy >> 8 == 3
+                ? externalAttributes >> 16
+                : 0
+            let fileType = unixMode & 0o170000
+            guard fileType != 0o120000 else {
+                throw ArchiveOperationError.invalidArchive
+            }
+            guard uncompressedSize <= policy.maximumEntrySize,
+                  totalUncompressedSize
+                    <= policy.maximumTotalUncompressedSize - uncompressedSize else {
+                throw ArchiveOperationError.invalidArchive
+            }
+            if uncompressedSize > 1_048_576 {
+                guard compressedSize > 0,
+                      uncompressedSize / compressedSize
+                        <= policy.maximumCompressionRatio else {
+                    throw ArchiveOperationError.invalidArchive
+                }
+            }
+            totalUncompressedSize += uncompressedSize
 
-            if name.hasSuffix("/") {
+            if isDirectoryEntry {
+                guard method == 0,
+                      compressedSize == 0,
+                      uncompressedSize == 0,
+                      crcStored == 0 else {
+                    throw ArchiveOperationError.invalidArchive
+                }
                 try fileManager.createDirectory(
                     at: destinationPath,
                     withIntermediateDirectories: true
+                )
+                try applySafePermissions(
+                    unixMode: unixMode,
+                    to: destinationPath,
+                    isDirectory: true,
+                    fileManager: fileManager
                 )
             } else {
                 let compressedData = try readLocalEntry(
                     data: data,
                     localOffset: localOffset,
-                    compressedSize: compressedSize
+                    compressedSize: compressedSize,
+                    expectedName: name,
+                    expectedMethod: method,
+                    maximumDataEnd: data.startIndex + centralOffset
                 )
                 let content: Data
                 switch method {
                 case 0:
                     content = compressedData
                 case 8:
-                    content = try codec.decompress(data: compressedData)
+                    content = try codec.decompressRawDeflate(
+                        data: compressedData,
+                        maximumOutputSize: min(
+                            uncompressedSize,
+                            policy.maximumEntrySize
+                        )
+                    )
                 default:
                     throw ArchiveOperationError.unsupportedFormat
                 }
@@ -219,9 +351,18 @@ nonisolated enum ZipArchive {
                     withIntermediateDirectories: true
                 )
                 try content.write(to: destinationPath, options: [.atomic])
+                try applySafePermissions(
+                    unixMode: unixMode,
+                    to: destinationPath,
+                    isDirectory: false,
+                    fileManager: fileManager
+                )
             }
 
-            cursor += 46 + nameLength + extraLength + commentLength
+            cursor += recordSize
+        }
+        guard cursor == centralEnd else {
+            throw ArchiveOperationError.invalidArchive
         }
     }
 
@@ -265,7 +406,10 @@ nonisolated enum ZipArchive {
     private static func readLocalEntry(
         data: Data,
         localOffset: Int,
-        compressedSize: Int
+        compressedSize: Int,
+        expectedName: String,
+        expectedMethod: UInt16,
+        maximumDataEnd: Int
     ) throws -> Data {
         let start = data.startIndex + localOffset
         guard start + 30 <= data.count,
@@ -275,13 +419,86 @@ nonisolated enum ZipArchive {
               data[start + 3] == 0x04 else {
             throw ArchiveOperationError.invalidArchive
         }
+        let flags = readUInt16(data, at: start + 6)
+        let method = readUInt16(data, at: start + 8)
         let nameLength = Int(readUInt16(data, at: start + 26))
         let extraLength = Int(readUInt16(data, at: start + 28))
         let contentStart = start + 30 + nameLength + extraLength
-        guard contentStart + compressedSize <= data.count else {
+        guard flags & 0x0001 == 0,
+              method == expectedMethod,
+              start + 30 + nameLength <= data.count,
+              let localName = String(
+                  data: data.subdata(
+                      in: (start + 30)..<(start + 30 + nameLength)
+                  ),
+                  encoding: .utf8
+              ),
+              localName == expectedName,
+              contentStart + compressedSize <= maximumDataEnd else {
             throw ArchiveOperationError.invalidArchive
         }
         return data.subdata(in: contentStart..<(contentStart + compressedSize))
+    }
+
+    private static func safeExtractionURL(
+        for entryName: String,
+        inside destinationDirectory: URL
+    ) throws -> URL {
+        guard !entryName.isEmpty,
+              !entryName.hasPrefix("/"),
+              !entryName.contains("\\"),
+              !entryName.contains("\0") else {
+            throw ArchiveOperationError.invalidArchive
+        }
+        let components = entryName.split(
+            separator: "/",
+            omittingEmptySubsequences: false
+        )
+        guard !components.contains(where: {
+            $0.isEmpty || $0 == "." || $0 == ".."
+        }) else {
+            throw ArchiveOperationError.invalidArchive
+        }
+
+        let root = destinationDirectory.standardizedFileURL
+        let candidate = root
+            .appendingPathComponent(entryName)
+            .standardizedFileURL
+        let rootPrefix = root.path.hasSuffix("/") ? root.path : root.path + "/"
+        guard candidate.path.hasPrefix(rootPrefix) else {
+            throw ArchiveOperationError.invalidArchive
+        }
+        return candidate
+    }
+
+    private static func externalAttributes(
+        for url: URL,
+        isDirectory: Bool,
+        fileManager: FileManager
+    ) -> UInt32 {
+        let attributes = try? fileManager.attributesOfItem(
+            atPath: url.path
+        )
+        let permissions = (attributes?[.posixPermissions] as? NSNumber)?
+            .uint32Value ?? (isDirectory ? 0o755 : 0o644)
+        let fileType: UInt32 = isDirectory ? 0o040000 : 0o100000
+        return (fileType | (permissions & 0o777)) << 16
+    }
+
+    private static func applySafePermissions(
+        unixMode: UInt32,
+        to url: URL,
+        isDirectory: Bool,
+        fileManager: FileManager
+    ) throws {
+        let archivedPermissions = Int(unixMode & 0o777)
+        let safePermissions = isDirectory
+            ? 0o700 | (archivedPermissions & 0o077)
+            : 0o600 | (archivedPermissions & 0o111)
+        try fileManager.setAttributes(
+            [.posixPermissions: safePermissions],
+            ofItemAtPath: url.path
+        )
     }
 
     private static func findEndOfCentralDirectory(in data: Data) -> Int {

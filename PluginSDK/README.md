@@ -74,7 +74,21 @@ for a minimal native-process package.
 
 ## Current milestone
 
-Toolpouch can decode and validate manifests and extracted package directories.
-Archive extraction, signature verification, process execution, the host
-protocol, and publishing CLI will be added in later milestones. Do not treat an
-unsigned package as trusted merely because its manifest passes validation.
+Toolpouch can decode and validate manifests, safely extract local plugin
+archives, install immutable versions through a staging area, switch the active
+version, roll back, and uninstall packages. Cryptographic signature
+verification, process execution, the host protocol, and the publishing CLI
+will be added in later milestones. Do not treat an unsigned package as trusted
+merely because its manifest passes validation.
+
+## Local installation and trust
+
+The installer uses a private staging directory and only moves a complete
+version into the plugin store after archive, manifest, payload, and trust checks
+pass. Installed versions are immutable. Activation changes a small atomic
+pointer, which also makes rollback independent from package extraction.
+
+The default production policy rejects unsigned packages. During development,
+Toolpouch may explicitly use `PluginInstallationPolicy.localDevelopment`; such
+installs are recorded as `unsignedLocal` and must be clearly identified in UI.
+Do not enable this policy silently for repository downloads.

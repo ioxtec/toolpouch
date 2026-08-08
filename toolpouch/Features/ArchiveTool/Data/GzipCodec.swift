@@ -15,10 +15,7 @@ nonisolated struct GzipCodec: Sendable {
 
         var output = Data()
         output.append(Self.gzipHeader)
-        let rawDeflate = try stream(
-            data: data,
-            operation: COMPRESSION_STREAM_ENCODE
-        )
+        let rawDeflate = try compressRawDeflate(data: data)
         output.append(rawDeflate)
         output.append(Self.crc32Data(of: data))
         output.append(Self.isize(of: data))
@@ -58,7 +55,7 @@ nonisolated struct GzipCodec: Sendable {
         let payload = data.subdata(
             in: (data.startIndex + offset)..<(data.endIndex - 8)
         )
-        let raw = try stream(data: payload, operation: COMPRESSION_STREAM_DECODE)
+        let raw = try decompressRawDeflate(data: payload)
         let actualCRC = Self.crc32(of: raw)
         let storedCRC: UInt32 = data.withUnsafeBytes {
             $0.loadUnaligned(fromByteOffset: data.count - 8, as: UInt32.self)
@@ -67,6 +64,31 @@ nonisolated struct GzipCodec: Sendable {
             throw ArchiveOperationError.invalidArchive
         }
         return raw
+    }
+
+    /// Encodes RFC 1951 DEFLATE data without a GZIP header or trailer.
+    /// ZIP entries use this representation; plugin authors should normally let
+    /// the packaging CLI create it rather than calling this API directly.
+    func compressRawDeflate(data: Data) throws -> Data {
+        try stream(
+            data: data,
+            operation: COMPRESSION_STREAM_ENCODE,
+            maximumOutputSize: nil
+        )
+    }
+
+    /// Decodes raw RFC 1951 DEFLATE while enforcing an optional output limit.
+    /// The limit must come from a trusted host policy, not only the archive's
+    /// claimed size, to prevent compressed-data expansion from exhausting RAM.
+    func decompressRawDeflate(
+        data: Data,
+        maximumOutputSize: Int? = nil
+    ) throws -> Data {
+        try stream(
+            data: data,
+            operation: COMPRESSION_STREAM_DECODE,
+            maximumOutputSize: maximumOutputSize
+        )
     }
 
     private static var gzipHeader: Data {
@@ -96,7 +118,8 @@ nonisolated struct GzipCodec: Sendable {
 
     private func stream(
         data: Data,
-        operation: compression_stream_operation
+        operation: compression_stream_operation,
+        maximumOutputSize: Int? = nil
     ) throws -> Data {
         let outputBufferSize = max(
             Int(compression_decode_scratch_buffer_size(COMPRESSION_ZLIB)),
@@ -154,6 +177,10 @@ nonisolated struct GzipCodec: Sendable {
 
                 let produced = outputBufferSize - stream.dst_size
                 if produced > 0 {
+                    if let maximumOutputSize,
+                       result.count > maximumOutputSize - produced {
+                        throw ArchiveOperationError.invalidArchive
+                    }
                     result.append(outputBuffer, count: produced)
                 }
 

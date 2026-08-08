@@ -36,6 +36,14 @@ nonisolated struct ToolPluginVersion: Hashable, Codable, Sendable {
     }
 }
 
+extension ToolPluginVersion: Comparable {
+    static func < (lhs: Self, rhs: Self) -> Bool {
+        if lhs.major != rhs.major { return lhs.major < rhs.major }
+        if lhs.minor != rhs.minor { return lhs.minor < rhs.minor }
+        return lhs.patch < rhs.patch
+    }
+}
+
 /// The execution environment used by a plugin. This is separate from a
 /// tool's computation backend: a bundled Swift tool may internally call Rust.
 nonisolated enum ToolPluginRuntime: String, Codable, Sendable {
