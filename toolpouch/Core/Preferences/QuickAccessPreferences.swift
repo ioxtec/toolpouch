@@ -22,13 +22,17 @@ final class QuickAccessPreferences {
 
         if defaults.object(forKey: storageKey) != nil {
             let storedIDs = defaults.stringArray(forKey: storageKey) ?? []
-            let decodedIDs = storedIDs.compactMap(
-                ToolDefinition.ID.init(rawValue:)
+            let decodedIDs = storedIDs.map(
+                ToolDefinition.ID.init(persistedValue:)
             )
             toolIDs = Self.normalized(
                 decodedIDs,
                 maximumCount: maximumCount
             )
+            let migratedValues = toolIDs.map(\.rawValue)
+            if migratedValues != storedIDs {
+                defaults.set(migratedValues, forKey: storageKey)
+            }
         } else {
             toolIDs = Array(defaultToolIDs.prefix(maximumCount))
         }

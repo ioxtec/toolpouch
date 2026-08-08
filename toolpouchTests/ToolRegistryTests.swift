@@ -1,4 +1,5 @@
 import Foundation
+import SwiftUI
 import Testing
 @testable import toolpouch
 
@@ -11,6 +12,20 @@ struct ToolRegistryTests {
         let identifiers = registry.categories.map(\.id)
 
         #expect(Set(identifiers).count == identifiers.count)
+    }
+
+    @Test
+    func categoryIdentifiersCanRepresentExternalCatalogSections() throws {
+        let identifier = ToolCategory.ID(
+            rawValue: "dev.example.specialized-tools"
+        )
+        let encoded = try JSONEncoder().encode(identifier)
+        let decoded = try JSONDecoder().decode(
+            ToolCategory.ID.self,
+            from: encoded
+        )
+
+        #expect(decoded == identifier)
     }
 
     @Test
@@ -28,6 +43,28 @@ struct ToolRegistryTests {
         let identifiers = registry.tools.map(\.id)
 
         #expect(Set(identifiers).count == identifiers.count)
+    }
+
+    @Test
+    func bundledToolIdentifiersUseToolpouchNamespace() {
+        for tool in registry.tools {
+            #expect(tool.id.rawValue.hasPrefix("com.toolpouch."))
+        }
+    }
+
+    @Test
+    func identifiersCanRepresentThirdPartyTools() throws {
+        let identifier = ToolDefinition.ID(
+            rawValue: "dev.example.formatter"
+        )
+        let encoded = try JSONEncoder().encode(identifier)
+        let decoded = try JSONDecoder().decode(
+            ToolDefinition.ID.self,
+            from: encoded
+        )
+
+        #expect(decoded == identifier)
+        #expect(String(decoding: encoded, as: UTF8.self) == "\"dev.example.formatter\"")
     }
 
     @Test
@@ -199,8 +236,66 @@ struct ToolRegistryTests {
         for tool in registry.tools {
             let manifest = registry.manifest(for: tool.id)
             #expect(manifest != nil)
+            #expect(manifest?.schemaVersion == 1)
+            #expect(manifest?.identifier.rawValue == tool.id.rawValue)
             #expect(manifest?.version.string == "1.0.0")
+            #expect(manifest?.runtime == .nativeSwift)
+            #expect(registry.source(for: tool.id) == .bundled)
         }
+    }
+
+    @Test
+    func pluginManifestRoundTripsAsPortableJSON() throws {
+        let manifest = ToolPluginManifest(
+            identifier: ToolPluginIdentifier(
+                rawValue: "dev.example.formatter"
+            ),
+            version: ToolPluginVersion(2, 1, 0),
+            minimumHostVersion: ToolPluginVersion(1, 2, 0),
+            runtime: .nativeProcess,
+            requiredCapabilities: [.network]
+        )
+
+        let data = try JSONEncoder().encode(manifest)
+        let decoded = try JSONDecoder().decode(
+            ToolPluginManifest.self,
+            from: data
+        )
+
+        #expect(decoded == manifest)
+    }
+
+    @Test
+    func registryAcceptsARegistrationFromALocalPackage() {
+        let toolID = ToolDefinition.ID(rawValue: "dev.example.formatter")
+        let definition = ToolDefinition(
+            id: toolID,
+            categoryID: .text,
+            title: "Example Formatter",
+            description: "Formats example input",
+            systemImage: "text.alignleft",
+            supportedPlatforms: [.macOS],
+            executionBackend: .rust
+        )
+        let manifest = ToolPluginManifest(
+            identifier: ToolPluginIdentifier(rawValue: toolID.rawValue),
+            version: ToolPluginVersion(1, 0, 0),
+            runtime: .nativeProcess
+        )
+        let registration = RegisteredToolPlugin(
+            definition: definition,
+            manifest: manifest,
+            source: .localPackage,
+            destinationFactory: { _ in AnyView(EmptyView()) }
+        )
+        let registry = ToolRegistry(
+            configuration: ToolCatalogConfigurationLoader.load(),
+            registrations: [registration]
+        )
+
+        #expect(registry.tool(id: toolID) == definition)
+        #expect(registry.manifest(for: toolID) == manifest)
+        #expect(registry.source(for: toolID) == .localPackage)
     }
 
     @Test
@@ -263,6 +358,38 @@ struct ToolRegistryTests {
             defaults: defaults
         )
         #expect(emptyPreferences.toolIDs.isEmpty)
+    }
+
+    @Test
+    func quickAccessPreferencesMigrateLegacyAndPreserveExternalIDs() {
+        let suiteName = "QuickAccessMigrationTests.\(UUID().uuidString)"
+        let defaults = UserDefaults(suiteName: suiteName)!
+        defer { defaults.removePersistentDomain(forName: suiteName) }
+        let storageKey = AppPreferenceKey.quickAccessToolIDs(for: .macOS)
+        defaults.set(
+            ["networkInfo", "dev.example.formatter"],
+            forKey: storageKey
+        )
+
+        let preferences = QuickAccessPreferences(
+            platform: .macOS,
+            defaultToolIDs: [],
+            maximumCount: 6,
+            defaults: defaults
+        )
+
+        #expect(
+            preferences.toolIDs == [
+                .networkInfo,
+                ToolDefinition.ID(rawValue: "dev.example.formatter"),
+            ]
+        )
+        #expect(
+            defaults.stringArray(forKey: storageKey) == [
+                ToolDefinition.ID.networkInfo.rawValue,
+                "dev.example.formatter",
+            ]
+        )
     }
 }
 

@@ -1,19 +1,28 @@
 nonisolated struct ToolDefinition: Hashable, Identifiable, Sendable {
-    enum ID: String, Codable, Sendable {
-        case unitConverter
-        case networkInfo
-        case wiFiScanner
-        case sshKeys
-        case passwordGenerator
-        case textEncoder
-        case jsonToolkit
-        case hashChecksum
-        case networkCheck
-        case clipboardInspector
-        case domainLookup
-        case imageInspector
-        case colorPicker
-        case archiveTool
+    /// A stable, globally unique identifier for a tool.
+    ///
+    /// Unlike an enum, this value can represent tools that aren't compiled
+    /// into the app. Third-party tools should use a reverse-DNS namespace.
+    struct ID: RawRepresentable, Hashable, Codable, Sendable, CustomStringConvertible {
+        let rawValue: String
+
+        init(rawValue: String) {
+            self.rawValue = rawValue
+        }
+
+        var description: String {
+            rawValue
+        }
+
+        init(from decoder: any Decoder) throws {
+            let container = try decoder.singleValueContainer()
+            rawValue = try container.decode(String.self)
+        }
+
+        func encode(to encoder: any Encoder) throws {
+            var container = encoder.singleValueContainer()
+            try container.encode(rawValue)
+        }
     }
 
     let id: ID
@@ -46,4 +55,46 @@ nonisolated struct ToolDefinition: Hashable, Identifiable, Sendable {
         self.executionBackend = executionBackend
         self.requiredCapabilities = requiredCapabilities
     }
+}
+
+extension ToolDefinition.ID {
+    static let unitConverter = Self(rawValue: "com.toolpouch.unit-converter")
+    static let networkInfo = Self(rawValue: "com.toolpouch.network-info")
+    static let wiFiScanner = Self(rawValue: "com.toolpouch.wifi-scanner")
+    static let sshKeys = Self(rawValue: "com.toolpouch.ssh-keys")
+    static let passwordGenerator = Self(rawValue: "com.toolpouch.password-generator")
+    static let textEncoder = Self(rawValue: "com.toolpouch.text-encoder")
+    static let jsonToolkit = Self(rawValue: "com.toolpouch.json-toolkit")
+    static let hashChecksum = Self(rawValue: "com.toolpouch.hash-checksum")
+    static let networkCheck = Self(rawValue: "com.toolpouch.network-check")
+    static let clipboardInspector = Self(rawValue: "com.toolpouch.clipboard-inspector")
+    static let domainLookup = Self(rawValue: "com.toolpouch.domain-lookup")
+    static let imageInspector = Self(rawValue: "com.toolpouch.image-inspector")
+    static let colorPicker = Self(rawValue: "com.toolpouch.color-picker")
+    static let archiveTool = Self(rawValue: "com.toolpouch.archive-tool")
+
+    /// Decodes identifiers persisted by versions released before tools used
+    /// reverse-DNS identifiers. Unknown values are preserved for external
+    /// plugins that may be temporarily disabled or uninstalled.
+    init(persistedValue: String) {
+        self = Self.legacyIdentifiers[persistedValue]
+            ?? Self(rawValue: persistedValue)
+    }
+
+    private static let legacyIdentifiers: [String: Self] = [
+        "unitConverter": .unitConverter,
+        "networkInfo": .networkInfo,
+        "wiFiScanner": .wiFiScanner,
+        "sshKeys": .sshKeys,
+        "passwordGenerator": .passwordGenerator,
+        "textEncoder": .textEncoder,
+        "jsonToolkit": .jsonToolkit,
+        "hashChecksum": .hashChecksum,
+        "networkCheck": .networkCheck,
+        "clipboardInspector": .clipboardInspector,
+        "domainLookup": .domainLookup,
+        "imageInspector": .imageInspector,
+        "colorPicker": .colorPicker,
+        "archiveTool": .archiveTool,
+    ]
 }

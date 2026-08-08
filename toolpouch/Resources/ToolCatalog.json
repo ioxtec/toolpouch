@@ -3,12 +3,12 @@
   "quickAccess": {
     "maximumCount": 6,
     "defaultToolIDs": [
-      "passwordGenerator",
-      "networkInfo",
-      "clipboardInspector",
-      "textEncoder",
-      "domainLookup",
-      "sshKeys"
+      "com.toolpouch.password-generator",
+      "com.toolpouch.network-info",
+      "com.toolpouch.clipboard-inspector",
+      "com.toolpouch.text-encoder",
+      "com.toolpouch.domain-lookup",
+      "com.toolpouch.ssh-keys"
     ]
   },
   "sections": [
@@ -18,7 +18,7 @@
       "description": "Useful tools for daily tasks",
       "systemImage": "sparkles",
       "supportedPlatforms": ["macOS", "iOS", "watchOS"],
-      "toolOrder": ["unitConverter", "archiveTool"]
+      "toolOrder": ["com.toolpouch.unit-converter", "com.toolpouch.archive-tool"]
     },
     {
       "id": "network",
@@ -26,7 +26,7 @@
       "description": "Connection details, Wi-Fi, and domains",
       "systemImage": "network",
       "supportedPlatforms": ["macOS", "iOS", "watchOS"],
-      "toolOrder": ["networkInfo", "networkCheck", "wiFiScanner", "domainLookup"]
+      "toolOrder": ["com.toolpouch.network-info", "com.toolpouch.network-check", "com.toolpouch.wifi-scanner", "com.toolpouch.domain-lookup"]
     },
     {
       "id": "passwords",
@@ -34,7 +34,7 @@
       "description": "Create secure and memorable passwords",
       "systemImage": "key.fill",
       "supportedPlatforms": ["macOS", "iOS", "watchOS"],
-      "toolOrder": ["passwordGenerator"]
+      "toolOrder": ["com.toolpouch.password-generator"]
     },
     {
       "id": "clipboard",
@@ -42,7 +42,7 @@
       "description": "Inspect and work with copied content",
       "systemImage": "clipboard",
       "supportedPlatforms": ["macOS"],
-      "toolOrder": ["clipboardInspector"]
+      "toolOrder": ["com.toolpouch.clipboard-inspector"]
     },
     {
       "id": "text",
@@ -50,7 +50,7 @@
       "description": "Convert and clean up text and data",
       "systemImage": "textformat",
       "supportedPlatforms": ["macOS", "iOS", "watchOS"],
-      "toolOrder": ["textEncoder", "jsonToolkit", "hashChecksum"]
+      "toolOrder": ["com.toolpouch.text-encoder", "com.toolpouch.json-toolkit", "com.toolpouch.hash-checksum"]
     },
     {
       "id": "developer",
@@ -58,7 +58,7 @@
       "description": "Keys and advanced technical tools",
       "systemImage": "chevron.left.forwardslash.chevron.right",
       "supportedPlatforms": ["macOS", "iOS", "watchOS"],
-      "toolOrder": ["sshKeys"]
+      "toolOrder": ["com.toolpouch.ssh-keys"]
     },
     {
       "id": "visual",
@@ -66,7 +66,7 @@
       "description": "Images, colors, and visual utilities",
       "systemImage": "photo.on.rectangle.angled",
       "supportedPlatforms": ["macOS", "iOS"],
-      "toolOrder": ["imageInspector", "colorPicker"]
+      "toolOrder": ["com.toolpouch.image-inspector", "com.toolpouch.color-picker"]
     }
   ]
 }

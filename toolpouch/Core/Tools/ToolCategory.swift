@@ -1,12 +1,22 @@
 nonisolated struct ToolCategory: Hashable, Identifiable, Sendable {
-    enum ID: String, Codable, Sendable {
-        case everyday
-        case network
-        case passwords
-        case clipboard
-        case text
-        case developer
-        case visual
+    /// Stable identifier that can also represent a category supplied by an
+    /// external plugin catalog.
+    struct ID: RawRepresentable, Hashable, Codable, Sendable {
+        let rawValue: String
+
+        init(rawValue: String) {
+            self.rawValue = rawValue
+        }
+
+        init(from decoder: any Decoder) throws {
+            let container = try decoder.singleValueContainer()
+            rawValue = try container.decode(String.self)
+        }
+
+        func encode(to encoder: any Encoder) throws {
+            var container = encoder.singleValueContainer()
+            try container.encode(rawValue)
+        }
     }
 
     let id: ID
@@ -28,4 +38,14 @@ nonisolated struct ToolCategory: Hashable, Identifiable, Sendable {
         self.systemImage = systemImage
         self.supportedPlatforms = supportedPlatforms
     }
+}
+
+extension ToolCategory.ID {
+    static let everyday = Self(rawValue: "everyday")
+    static let network = Self(rawValue: "network")
+    static let passwords = Self(rawValue: "passwords")
+    static let clipboard = Self(rawValue: "clipboard")
+    static let text = Self(rawValue: "text")
+    static let developer = Self(rawValue: "developer")
+    static let visual = Self(rawValue: "visual")
 }
