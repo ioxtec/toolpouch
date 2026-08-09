@@ -113,6 +113,9 @@ actor PluginPackageInstaller {
         }
 
         let manifest = try validator.validatePackage(at: stagedPackageURL)
+        guard policy.allowedRuntimes.contains(manifest.runtime) else {
+            throw PluginInstallationError.runtimeNotAllowed(manifest.runtime)
+        }
         let trustLevel = try signatureVerifier.verify(
             packageURL: stagedPackageURL,
             manifest: manifest
@@ -217,6 +220,28 @@ actor PluginPackageInstaller {
         return try installation(
             identifier: identifier,
             version: pointer.version
+        )
+    }
+
+    /// Resolves durable metadata together with the immutable package path used
+    /// by execution hosts. Callers must still revalidate the entry point just
+    /// before launch because files can be modified outside this actor.
+    func activePackage(
+        for identifier: ToolPluginIdentifier
+    ) throws -> PluginInstallationResult? {
+        guard let active = try activeVersion(for: identifier) else {
+            return nil
+        }
+        return PluginInstallationResult(
+            installation: active,
+            packageURL: versionDirectory(
+                identifier: identifier,
+                version: active.version
+            ).appendingPathComponent(
+                StoreLayout.package,
+                isDirectory: true
+            ),
+            isActive: true
         )
     }
 

@@ -2,7 +2,7 @@ import Foundation
 
 /// Trust established for an installed package. Manifest validation and trust
 /// are intentionally separate: valid JSON does not make executable code safe.
-nonisolated enum PluginPackageTrustLevel: String, Codable, Sendable {
+nonisolated enum PluginPackageTrustLevel: String, Codable, Hashable, Sendable {
     /// Local development package accepted by an explicit installation policy.
     case unsignedLocal
     /// Package signed by a registered third-party developer key.
@@ -32,12 +32,19 @@ nonisolated struct PluginInstallationResult: Sendable {
 /// verification. Production repository installs should set this to `false`.
 nonisolated struct PluginInstallationPolicy: Sendable {
     let allowsUnsignedLocalPackages: Bool
+    let allowedRuntimes: Set<ToolPluginRuntime>
 
     static let localDevelopment = PluginInstallationPolicy(
-        allowsUnsignedLocalPackages: true
+        allowsUnsignedLocalPackages: true,
+        allowedRuntimes: [.nativeProcess, .webAssembly, .remoteService]
     )
+
+    /// Safe default for the App Store build. Native executables may remain in
+    /// the package schema for a future direct-distribution build, but they must
+    /// not enter the active App Store plugin store.
     static let repositoryOnly = PluginInstallationPolicy(
-        allowsUnsignedLocalPackages: false
+        allowsUnsignedLocalPackages: false,
+        allowedRuntimes: [.webAssembly, .remoteService]
     )
 }
 
@@ -68,6 +75,7 @@ nonisolated enum PluginInstallationError: Error, Equatable, LocalizedError {
     case sourceIsSymbolicLink
     case invalidArchive
     case unsignedPackageNotAllowed
+    case runtimeNotAllowed(ToolPluginRuntime)
     case invalidIdentifier(String)
     case versionAlreadyInstalled(String, String)
     case pluginNotInstalled(String)
@@ -86,6 +94,8 @@ nonisolated enum PluginInstallationError: Error, Equatable, LocalizedError {
             "The plugin package isn't a valid or safe ZIP archive."
         case .unsignedPackageNotAllowed:
             "The current installation policy doesn't allow unsigned plugins."
+        case let .runtimeNotAllowed(runtime):
+            "The current installation policy doesn't allow the \(runtime.rawValue) runtime."
         case let .invalidIdentifier(identifier):
             "Plugin identifier '\(identifier)' isn't safe for local storage."
         case let .versionAlreadyInstalled(identifier, version):

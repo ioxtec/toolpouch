@@ -151,6 +151,29 @@ struct PluginPackageInstallerTests {
     }
 
     @Test
+    func appStorePolicyRejectsNativeProcessPackage() async throws {
+        let fixture = try makeFixture(
+            version: ToolPluginVersion(1, 0, 0),
+            runtime: .nativeProcess
+        )
+        defer { fixture.remove() }
+        let installer = PluginPackageInstaller(
+            rootDirectory: fixture.storeURL,
+            policy: .repositoryOnly,
+            signatureVerifier: StubSignatureVerifier(
+                trustLevel: .repositorySigned
+            )
+        )
+
+        await #expect(
+            throws: PluginInstallationError.runtimeNotAllowed(.nativeProcess)
+        ) {
+            try await installer.install(archiveURL: fixture.archiveURL)
+        }
+        #expect(try await installer.installedVersions(for: identifier).isEmpty)
+    }
+
+    @Test
     func signedVerifierPersistsEstablishedTrust() async throws {
         let fixture = try makeFixture(version: ToolPluginVersion(1, 0, 0))
         defer { fixture.remove() }
@@ -196,7 +219,8 @@ struct PluginPackageInstallerTests {
 
     private func makeFixture(
         version: ToolPluginVersion,
-        rootURL existingRoot: URL? = nil
+        rootURL existingRoot: URL? = nil,
+        runtime: ToolPluginRuntime = .webAssembly
     ) throws -> PluginInstallerFixture {
         let rootURL = existingRoot ?? FileManager.default.temporaryDirectory
             .appending(
@@ -235,7 +259,7 @@ struct PluginPackageInstallerTests {
             summary: "Formats example text.",
             author: PluginAuthor(name: "Example Developer"),
             version: version,
-            runtime: .nativeProcess,
+            runtime: runtime,
             entryPoint: "payload/macos-arm64/plugin",
             supportedPlatforms: [.macOS],
             tools: [

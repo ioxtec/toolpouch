@@ -19,22 +19,33 @@ installable after the app has been built.
 
 ### External Swift plugin
 
-An installable Swift plugin is a standalone executable using the
-`nativeProcess` runtime. It does **not** import the app's `ToolPlugin` protocol
-or construct SwiftUI. Toolpouch owns the UI and communicates with the executable
-through the versioned host protocol. This runtime is macOS-only, and its entry
-point must have executable permissions (`chmod +x payload/.../plugin`) before
-the package is created.
+The App Store build cannot download and execute a standalone Swift binary.
+Swift plugins are therefore bundled with Toolpouch and reviewed as part of an
+app release. A future directly distributed macOS build may support signed and
+notarized Swift executables through the reserved `nativeProcess` runtime.
 
 ### External Rust plugin
 
-Rust plugins use either:
+For the App Store build, Rust plugins compile to WebAssembly and use the
+`webAssembly` runtime. This keeps downloaded code behind a host-controlled API
+instead of exposing native macOS frameworks.
+
+A future directly distributed build may additionally use:
 
 - `nativeProcess` for a standalone macOS executable, or
-- `webAssembly` for a WASM payload once the WASM host is available.
+- `webAssembly` for the same portable payload as the App Store build.
 
-Rust code should never rely on Swift ABI. The manifest and host protocol are
-the compatibility boundary.
+Rust code should never rely on Swift ABI. The manifest, JSON values, and host
+protocol are the compatibility boundary.
+
+## App Store boundary
+
+The App Store installation policy accepts `webAssembly` and `remoteService`
+packages, but rejects `nativeProcess`. Downloaded plugins must remain within
+Toolpouch's advertised purpose and follow App Review Guideline 4.7. In
+particular, the repository needs an index with universal links, reporting and
+blocking controls, age-rating metadata, and explicit consent before a plugin
+receives user data or privacy permissions.
 
 ## Package layout
 
@@ -77,7 +88,7 @@ for a minimal native-process package.
 Toolpouch can decode and validate manifests, safely extract local plugin
 archives, install immutable versions through a staging area, switch the active
 version, roll back, and uninstall packages. Cryptographic signature
-verification, process execution, the host protocol, and the publishing CLI
+verification, WebAssembly execution, the host protocol, and the publishing CLI
 will be added in later milestones. Do not treat an unsigned package as trusted
 merely because its manifest passes validation.
 

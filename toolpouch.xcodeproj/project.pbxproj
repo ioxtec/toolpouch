@@ -94,6 +94,7 @@
 		26F92163D6485B2BE5703295 /* PasswordGeneratorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25EEF05E2177DF478F7E85CB /* PasswordGeneratorView.swift */; };
 		2792B309E7F20951E538C698 /* BinaryTextEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317431AFE22F3F49E3C1CA9F /* BinaryTextEncoding.swift */; };
 		27FB056D94A1F1980418AC32 /* ArchiveOperationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220DC4882B74BC9BED5E5F7D /* ArchiveOperationError.swift */; };
+		27FB135A0632D4FCDEB085EA /* JSONValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E71A62AE80C5C0C6010610 /* JSONValue.swift */; };
 		282D3F2BE8F36A65BFFBB401 /* ScreenHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FA0D56E5D5E69642D8427A /* ScreenHeader.swift */; };
 		2876265BC03A606E47C766FC /* ToolCapability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693E45E1E395C53F220A6F95 /* ToolCapability.swift */; };
 		28CD599E1641E54FF7D6FC66 /* DeviceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F74BC189247B422900D1512 /* DeviceRepository.swift */; };
@@ -145,8 +146,10 @@
 		4372C0ADA8043B23A6EFC8CA /* JSONFormattingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345DE671A9639D4794E353E1 /* JSONFormattingError.swift */; };
 		43B769876A3EAE075A2B73AA /* SSHKeyManaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5180691BB279D3D1070D3EE /* SSHKeyManaging.swift */; };
 		43E29EF6AD2E2B1BE75AB63F /* NetworkCheckRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17BE8FEBFCB16BCA1EEAD6E /* NetworkCheckRequestTests.swift */; };
+		4477C2159B865C8926D513C0 /* PluginHostProtocolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07900229A74F08E3E121B645 /* PluginHostProtocolTests.swift */; };
 		44A2D9B101B5F64A520C1543 /* PluginPackageInstaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EBD9C5FEF852EDA4F28397 /* PluginPackageInstaller.swift */; };
 		44B3514016D29F3F0313DDA1 /* EFFPassphraseWordList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315C365147246C5C4D73BA2E /* EFFPassphraseWordList.swift */; };
+		44EE66534719065E9094D9FE /* JSONValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E71A62AE80C5C0C6010610 /* JSONValue.swift */; };
 		468258A3247A6B78743A947C /* SSHKeyGeneratorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1DF3173F6D3B336164FE22 /* SSHKeyGeneratorView.swift */; };
 		46A9454AE3E2F74919C6AA85 /* GeneratedPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DFD11D4C203D86FBC1B8000 /* GeneratedPassword.swift */; };
 		46E3B5C2487724C84570D22F /* SSHKeysViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A980B0D5EFAD5956EBE83012 /* SSHKeysViewModel.swift */; };
@@ -202,6 +205,7 @@
 		62F2D3381FFD68B9B6ED2BDE /* UnitConversionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38B66267CAE10D0011062EE /* UnitConversionError.swift */; };
 		62FA2368AF58013272BC7976 /* ImageInspectorPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C43F28F19253B0C5FFA73B8 /* ImageInspectorPlugin.swift */; };
 		643A0EEF9F660816B2B4E596 /* NetworkCheckResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAB07EC97FF9E8B7EA18B88 /* NetworkCheckResult.swift */; };
+		64B9849953E3CF687A71A1C1 /* PluginHostProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3391C3BC67599DB9CCC3FC89 /* PluginHostProtocol.swift */; };
 		668B865CE8E55A07F1A3F7FE /* HashDigest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8200EAB1F79309B68D51281 /* HashDigest.swift */; };
 		676F5BC41C5BEE25D741CD34 /* SystemSSHKeyManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF1143194B31D435351C5A4 /* SystemSSHKeyManagerTests.swift */; };
 		67FA84E2540FEF576D8E190A /* PasswordResultField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D05E7E05B309DEADF3E415A /* PasswordResultField.swift */; };
@@ -221,6 +225,7 @@
 		6D04D8DD950CD10E817913EE /* BinaryTextEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317431AFE22F3F49E3C1CA9F /* BinaryTextEncoding.swift */; };
 		6DF7CB4FE6D103CCEC494089 /* AppDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED60A6037EA8081E403E1B9D /* AppDependencies.swift */; };
 		6E12D1B37FBC4225AA88862F /* ClipboardInspecting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088DA5EA509250E7286741A5 /* ClipboardInspecting.swift */; };
+		6EFE383236F07D428D56FA7B /* PluginHostProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3391C3BC67599DB9CCC3FC89 /* PluginHostProtocol.swift */; };
 		6FB870F049C8534B58935755 /* ToolCatalog.json in Resources */ = {isa = PBXBuildFile; fileRef = 231071D124F7E8227E5C6910 /* ToolCatalog.json */; };
 		7007205933C59AA90F8E4D1D /* PasswordGenerationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262F17F6DA309A175B249BE2 /* PasswordGenerationError.swift */; };
 		70A061E2BE926175F78BC9AF /* DomainLookupError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DDAA30783BB20C75F9A4E2 /* DomainLookupError.swift */; };
@@ -360,6 +365,7 @@
 		B32F908075BE2815DAEFD3EF /* ToolCatalogConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B1EBB41C4EEF958E0283C4 /* ToolCatalogConfiguration.swift */; };
 		B3906B38041B421A4CD88CFF /* DomainLookupPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = C449ABE0D2EC9FB94FA0A2F7 /* DomainLookupPlugin.swift */; };
 		B42C2F89876F3B6781A8B31D /* ClipboardSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22B9D9EF2C28B65E28BBD8F /* ClipboardSnapshot.swift */; };
+		B51B331DD75A0D5F75B8C86B /* JSONValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E71A62AE80C5C0C6010610 /* JSONValue.swift */; };
 		B5459CE50C22A60532F90047 /* AppRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F123208D540B6F39E30ADFB /* AppRoute.swift */; };
 		B5B4F868A39D05B4042686DC /* NetworkCheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8871EB5E673346D61640F6 /* NetworkCheckView.swift */; };
 		B5D6487CB1DB7BC48829344B /* ZipArchive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03248967B167A5DADD8E8124 /* ZipArchive.swift */; };
@@ -376,6 +382,7 @@
 		BBA7A96AE5AED2232C320D71 /* DomainLookupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F212F09C42AC69AA817EDEAC /* DomainLookupView.swift */; };
 		BBB02EBDAC7EA2962C811335 /* ClipboardSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22B9D9EF2C28B65E28BBD8F /* ClipboardSnapshot.swift */; };
 		BCBC4B05E55A6CF0BB304F64 /* SSHKeyFolderAccessing.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8358CA68FA245C6C2F3E119 /* SSHKeyFolderAccessing.swift */; };
+		BCF5C1E50149C30DE703DAE8 /* PluginHostProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3391C3BC67599DB9CCC3FC89 /* PluginHostProtocol.swift */; };
 		BD2260764D50FCA7CA857A8E /* ToolPluginManifest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB04E4AE3223816C40793928 /* ToolPluginManifest.swift */; };
 		BD4B3EE1981215720BE3E1B9 /* ToolCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97EDA481D4D7D4168B49A97 /* ToolCategoryView.swift */; };
 		BEA82F959DED3CAECFBDEA36 /* NetworkInfoHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DE4EB0157569E7E4C84647B /* NetworkInfoHeader.swift */; };
@@ -536,6 +543,7 @@
 		06461CD8439F3E095E40F2CD /* DomainRegistration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainRegistration.swift; sourceTree = "<group>"; };
 		066FA92CB6365C9140FDCAD1 /* DomainLookupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainLookupViewModel.swift; sourceTree = "<group>"; };
 		068B5412AE0377DC1B030D34 /* PlatformAvailabilityBadges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformAvailabilityBadges.swift; sourceTree = "<group>"; };
+		07900229A74F08E3E121B645 /* PluginHostProtocolTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluginHostProtocolTests.swift; sourceTree = "<group>"; };
 		083D4AF12643AB571CCE14FB /* CryptoKitHashCalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoKitHashCalculatorTests.swift; sourceTree = "<group>"; };
 		088DA5EA509250E7286741A5 /* ClipboardInspecting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipboardInspecting.swift; sourceTree = "<group>"; };
 		08BFE7F58E4EF16994413D03 /* BinaryTextConverterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryTextConverterTests.swift; sourceTree = "<group>"; };
@@ -592,7 +600,9 @@
 		317431AFE22F3F49E3C1CA9F /* BinaryTextEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryTextEncoding.swift; sourceTree = "<group>"; };
 		3207B6715EC802F3AB4AF7AE /* AppPreferenceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPreferenceKey.swift; sourceTree = "<group>"; };
 		32DAE6574E349860CCECFEDB /* ToolPlatform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolPlatform.swift; sourceTree = "<group>"; };
+		3391C3BC67599DB9CCC3FC89 /* PluginHostProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluginHostProtocol.swift; sourceTree = "<group>"; };
 		345DE671A9639D4794E353E1 /* JSONFormattingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONFormattingError.swift; sourceTree = "<group>"; };
+		35E71A62AE80C5C0C6010610 /* JSONValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONValue.swift; sourceTree = "<group>"; };
 		388DB53E8EF8E8168413DCF1 /* bzlib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bzlib.h; sourceTree = "<group>"; };
 		389C80ADDC1698181A5ACEE8 /* NetworkInfoCollecting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkInfoCollecting.swift; sourceTree = "<group>"; };
 		3B23E488E61D65E44716E050 /* CoreLocationWiFiScanAuthorizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreLocationWiFiScanAuthorizer.swift; sourceTree = "<group>"; };
@@ -824,6 +834,7 @@
 				24D49D6F3EB8DBDD7DDEA6D2 /* NetworkInfoCollectorTests.swift */,
 				613472AD1F3CD0C844757235 /* NetworkSnapshotRepositoryTests.swift */,
 				C14B8916E16674159EC0244C /* PickedColorTests.swift */,
+				07900229A74F08E3E121B645 /* PluginHostProtocolTests.swift */,
 				C2A34AF2FA6295CE36C81213 /* PluginPackageInstallerTests.swift */,
 				E2E28BA42AF88F8F6F412D39 /* PluginPackageValidatorTests.swift */,
 				2C086D39C85164AFB580BF23 /* RDAPDomainLookupClientTests.swift */,
@@ -834,6 +845,7 @@
 				0A1E9F5F6CB93B69D8D9CCF5 /* ToolRegistryTests.swift */,
 				1779F66361F5662740C4F6FA /* WiFiNetworkTests.swift */,
 				BC7609E6210BB4AF208DE1AA /* ZipArchiveSecurityTests.swift */,
+				37A9F17255D5925E837DCCD0 /* Fixtures */,
 			);
 			path = toolpouchTests;
 			sourceTree = "<group>";
@@ -880,6 +892,7 @@
 			children = (
 				B7FB4D341DB04F35C4CC5978 /* Devices */,
 				B7F1079888D9688BFBBC6DD8 /* Preferences */,
+				44F3BD14FBAB85BA6CAD364D /* Serialization */,
 				B04827E18281AFF6A34FB8B9 /* Tools */,
 			);
 			path = Core;
@@ -1087,6 +1100,13 @@
 			path = watchOS;
 			sourceTree = "<group>";
 		};
+		37A9F17255D5925E837DCCD0 /* Fixtures */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Fixtures;
+			sourceTree = "<group>";
+		};
 		3812F5D976577955BC378EA4 /* Permissions */ = {
 			isa = PBXGroup;
 			children = (
@@ -1153,6 +1173,14 @@
 				EC61600DADE362B8D4D38F80 /* toolpouchWatch.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		44F3BD14FBAB85BA6CAD364D /* Serialization */ = {
+			isa = PBXGroup;
+			children = (
+				35E71A62AE80C5C0C6010610 /* JSONValue.swift */,
+			);
+			path = Serialization;
 			sourceTree = "<group>";
 		};
 		45B0B9F85D0F4737478C7953 /* Platform */ = {
@@ -1259,6 +1287,7 @@
 			children = (
 				B04A0860CA86A74688E0C1BC /* ToolPlugin.swift */,
 				FB04E4AE3223816C40793928 /* ToolPluginManifest.swift */,
+				B9C9BAB6A49C179EA8D123F0 /* Host */,
 				A17180FB376866CF20AEF7D7 /* Packages */,
 			);
 			path = Plugins;
@@ -1719,6 +1748,14 @@
 				164CC9FCBC142A35264B35B2 /* DeviceKind.swift */,
 			);
 			path = Devices;
+			sourceTree = "<group>";
+		};
+		B9C9BAB6A49C179EA8D123F0 /* Host */ = {
+			isa = PBXGroup;
+			children = (
+				3391C3BC67599DB9CCC3FC89 /* PluginHostProtocol.swift */,
+			);
+			path = Host;
 			sourceTree = "<group>";
 		};
 		C2AB3C54B5D6E8B2A868F9DB /* SSHKeys */ = {
@@ -2196,6 +2233,7 @@
 				9D283CF6C9692FDECF5D9409 /* JSONFormattingStyle.swift in Sources */,
 				76AC7442C7D64FA1F27E95B5 /* JSONToolkitPlugin.swift in Sources */,
 				A76491EADB90E006EDF94ACE /* JSONToolkitView.swift in Sources */,
+				B51B331DD75A0D5F75B8C86B /* JSONValue.swift in Sources */,
 				57BE81046CC5004C2D611C32 /* LocalNetworkInfoProviding.swift in Sources */,
 				0441F66A1FE2F145DECCB167 /* LocalUnitConverter.swift in Sources */,
 				38DA640857B8EFABB4B30308 /* MacOSImageFilePicker.swift in Sources */,
@@ -2233,6 +2271,7 @@
 				FFA3420F960A8690714955EB /* PersistenceContainer.swift in Sources */,
 				348DB27A1A323A13E1B1D0DD /* PickedColor.swift in Sources */,
 				C0755BC2CFC0D89A8D5DB9CF /* PlatformAvailabilityBadges.swift in Sources */,
+				BCF5C1E50149C30DE703DAE8 /* PluginHostProtocol.swift in Sources */,
 				8574DEAA320830318F994B9A /* PluginPackageInstallation.swift in Sources */,
 				44A2D9B101B5F64A520C1543 /* PluginPackageInstaller.swift in Sources */,
 				8226334B0D92C1EE60E03F71 /* PluginPackageManifest.swift in Sources */,
@@ -2318,6 +2357,7 @@
 				F140D4069A012EFD1470823B /* NetworkInfoCollectorTests.swift in Sources */,
 				ADCB7F29150FF64C0D04D52A /* NetworkSnapshotRepositoryTests.swift in Sources */,
 				99CACF09E2B5492EE5BD2926 /* PickedColorTests.swift in Sources */,
+				4477C2159B865C8926D513C0 /* PluginHostProtocolTests.swift in Sources */,
 				D28C39A7D6356A80BED094CC /* PluginPackageInstallerTests.swift in Sources */,
 				164C06E0C33B233EBD41A698 /* PluginPackageValidatorTests.swift in Sources */,
 				DD22C481E536ECECC264CDEE /* RDAPDomainLookupClientTests.swift in Sources */,
@@ -2400,6 +2440,7 @@
 				4A2E24DC0F40FF1E212DFE09 /* JSONFormattingStyle.swift in Sources */,
 				FFE89622781AA06BD4B39FC3 /* JSONToolkitPlugin.swift in Sources */,
 				1FE33F1CBD77C01CDDE23549 /* JSONToolkitView.swift in Sources */,
+				27FB135A0632D4FCDEB085EA /* JSONValue.swift in Sources */,
 				9E1F04AD98AC26BBA8FE9724 /* LocalNetworkInfoProviding.swift in Sources */,
 				5DFC4C773C48675DE0E95EF0 /* LocalUnitConverter.swift in Sources */,
 				DBCF7ED4C6CAAC5A7919C018 /* MacOSImageFilePicker.swift in Sources */,
@@ -2434,6 +2475,7 @@
 				99E62B06F6C4D8FCE4A268ED /* PersistenceContainer.swift in Sources */,
 				A4C00277BAB9C6C06FB2FB12 /* PickedColor.swift in Sources */,
 				58BEF5E51931B6B176ED8040 /* PlatformAvailabilityBadges.swift in Sources */,
+				6EFE383236F07D428D56FA7B /* PluginHostProtocol.swift in Sources */,
 				1A9F9ABB40177B9214B07D7C /* PluginPackageInstallation.swift in Sources */,
 				CF223999610D469B168C95D7 /* PluginPackageInstaller.swift in Sources */,
 				AAA0CD51871120A5949DF0A8 /* PluginPackageManifest.swift in Sources */,
@@ -2558,6 +2600,7 @@
 				D5AA3B32578931E622925117 /* EFFPassphraseWordList.swift in Sources */,
 				F0D72E07095334E32260CD69 /* GeneratedPassword.swift in Sources */,
 				88D3BEB47F20787FCB3269B1 /* GzipCodec.swift in Sources */,
+				44EE66534719065E9094D9FE /* JSONValue.swift in Sources */,
 				3A323F1DEB7DA0895600A64F /* LocalNetworkInfoProviding.swift in Sources */,
 				5AA1606A93ADDDAA4412A5CC /* LocalUnitConverter.swift in Sources */,
 				78DFB4AFE2166467643263DF /* NetworkConnectionKind.swift in Sources */,
@@ -2585,6 +2628,7 @@
 				F70F97AF8EDDFC8031B24965 /* PersistenceContainer.swift in Sources */,
 				895D74B7D2009F2E149B455A /* PickedColor.swift in Sources */,
 				06FF52983D4AA16A291FAD90 /* PlatformAvailabilityBadges.swift in Sources */,
+				64B9849953E3CF687A71A1C1 /* PluginHostProtocol.swift in Sources */,
 				472B7ACECBA1E8CB947F6403 /* PluginPackageInstallation.swift in Sources */,
 				AC01C591C75FAF5D8B23D9CA /* PluginPackageInstaller.swift in Sources */,
 				EC23BF1B9EF9C6DBDD1DF307 /* PluginPackageManifest.swift in Sources */,
