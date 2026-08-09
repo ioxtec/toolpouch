@@ -1,8 +1,7 @@
 nonisolated struct ToolDefinition: Hashable, Identifiable, Sendable {
     /// A stable, globally unique identifier for a tool.
     ///
-    /// Unlike an enum, this value can represent tools that aren't compiled
-    /// into the app. Third-party tools should use a reverse-DNS namespace.
+    /// Reverse-DNS values stay stable across catalog changes and app releases.
     struct ID: RawRepresentable, Hashable, Codable, Sendable, CustomStringConvertible {
         let rawValue: String
 
@@ -74,8 +73,8 @@ extension ToolDefinition.ID {
     static let archiveTool = Self(rawValue: "com.toolpouch.archive-tool")
 
     /// Decodes identifiers persisted by versions released before tools used
-    /// reverse-DNS identifiers. Unknown values are preserved for external
-    /// plugins that may be temporarily disabled or uninstalled.
+    /// reverse-DNS identifiers. Unknown values remain decodable so removing a
+    /// tool from one release does not corrupt the user's stored preferences.
     init(persistedValue: String) {
         self = Self.legacyIdentifiers[persistedValue]
             ?? Self(rawValue: persistedValue)

@@ -1,6 +1,5 @@
 nonisolated struct ToolCategory: Hashable, Identifiable, Sendable {
-    /// Stable identifier that can also represent a category supplied by an
-    /// external plugin catalog.
+    /// Stable identifier persisted by catalog configuration and preferences.
     struct ID: RawRepresentable, Hashable, Codable, Sendable {
         let rawValue: String
 

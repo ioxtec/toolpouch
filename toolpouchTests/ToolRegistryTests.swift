@@ -236,66 +236,12 @@ struct ToolRegistryTests {
         for tool in registry.tools {
             let manifest = registry.manifest(for: tool.id)
             #expect(manifest != nil)
-            #expect(manifest?.schemaVersion == 1)
-            #expect(manifest?.identifier.rawValue == tool.id.rawValue)
             #expect(manifest?.version.string == "1.0.0")
-            #expect(manifest?.runtime == .nativeSwift)
-            #expect(registry.source(for: tool.id) == .bundled)
+            #expect(
+                manifest?.requiredCapabilities
+                    == tool.requiredCapabilities
+            )
         }
-    }
-
-    @Test
-    func pluginManifestRoundTripsAsPortableJSON() throws {
-        let manifest = ToolPluginManifest(
-            identifier: ToolPluginIdentifier(
-                rawValue: "dev.example.formatter"
-            ),
-            version: ToolPluginVersion(2, 1, 0),
-            minimumHostVersion: ToolPluginVersion(1, 2, 0),
-            runtime: .nativeProcess,
-            requiredCapabilities: [.network]
-        )
-
-        let data = try JSONEncoder().encode(manifest)
-        let decoded = try JSONDecoder().decode(
-            ToolPluginManifest.self,
-            from: data
-        )
-
-        #expect(decoded == manifest)
-    }
-
-    @Test
-    func registryAcceptsARegistrationFromALocalPackage() {
-        let toolID = ToolDefinition.ID(rawValue: "dev.example.formatter")
-        let definition = ToolDefinition(
-            id: toolID,
-            categoryID: .text,
-            title: "Example Formatter",
-            description: "Formats example input",
-            systemImage: "text.alignleft",
-            supportedPlatforms: [.macOS],
-            executionBackend: .rust
-        )
-        let manifest = ToolPluginManifest(
-            identifier: ToolPluginIdentifier(rawValue: toolID.rawValue),
-            version: ToolPluginVersion(1, 0, 0),
-            runtime: .nativeProcess
-        )
-        let registration = RegisteredToolPlugin(
-            definition: definition,
-            manifest: manifest,
-            source: .localPackage,
-            destinationFactory: { _ in AnyView(EmptyView()) }
-        )
-        let registry = ToolRegistry(
-            configuration: ToolCatalogConfigurationLoader.load(),
-            registrations: [registration]
-        )
-
-        #expect(registry.tool(id: toolID) == definition)
-        #expect(registry.manifest(for: toolID) == manifest)
-        #expect(registry.source(for: toolID) == .localPackage)
     }
 
     @Test

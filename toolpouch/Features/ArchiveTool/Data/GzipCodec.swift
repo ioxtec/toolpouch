@@ -67,8 +67,7 @@ nonisolated struct GzipCodec: Sendable {
     }
 
     /// Encodes RFC 1951 DEFLATE data without a GZIP header or trailer.
-    /// ZIP entries use this representation; plugin authors should normally let
-    /// the packaging CLI create it rather than calling this API directly.
+    /// ZIP entries use this representation internally.
     func compressRawDeflate(data: Data) throws -> Data {
         try stream(
             data: data,

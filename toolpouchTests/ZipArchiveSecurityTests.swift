@@ -58,11 +58,11 @@ struct ZipArchiveSecurityTests {
     }
 
     @Test
-    func pluginPolicyRejectsExtremeCompressionRatio() throws {
+    func untrustedArchivePolicyRejectsExtremeCompressionRatio() throws {
         let root = try makeTemporaryDirectory()
         defer { try? FileManager.default.removeItem(at: root) }
         let source = root.appending(path: "zeros.bin")
-        let archive = root.appending(path: "bomb.toolpouchplugin")
+        let archive = root.appending(path: "bomb.zip")
         let output = root.appending(path: "output", directoryHint: .isDirectory)
         try Data(repeating: 0, count: 2 * 1_048_576).write(to: source)
         try ZipArchive.create(from: source, to: archive)
@@ -71,7 +71,7 @@ struct ZipArchiveSecurityTests {
             try ZipArchive.extract(
                 archiveURL: archive,
                 to: output,
-                policy: .pluginPackage
+                policy: .untrustedArchive
             )
         }
     }
@@ -81,7 +81,7 @@ struct ZipArchiveSecurityTests {
         let root = try makeTemporaryDirectory()
         defer { try? FileManager.default.removeItem(at: root) }
         let source = root.appending(path: "safe.txt")
-        let archive = root.appending(path: "trailing-data.toolpouchplugin")
+        let archive = root.appending(path: "trailing-data.zip")
         let output = root.appending(path: "output", directoryHint: .isDirectory)
         try Data("safe".utf8).write(to: source)
         try ZipArchive.create(from: source, to: archive)
@@ -93,7 +93,7 @@ struct ZipArchiveSecurityTests {
             try ZipArchive.extract(
                 archiveURL: archive,
                 to: output,
-                policy: .pluginPackage
+                policy: .untrustedArchive
             )
         }
     }

@@ -4,7 +4,7 @@ import SwiftUI
 /// Keeps tool metadata, ordering, platform availability, and destination creation in one place.
 struct ToolRegistry {
     let categories: [ToolCategory]
-    private let registrations: [RegisteredToolPlugin]
+    private let plugins: [any ToolPlugin]
     private let configuration: ToolCatalogConfiguration
     private let capabilityResolver: any CapabilityResolving
 
@@ -13,19 +13,7 @@ struct ToolRegistry {
         plugins: [any ToolPlugin],
         capabilityResolver: any CapabilityResolving = SystemCapabilityResolver()
     ) {
-        self.init(
-            configuration: configuration,
-            registrations: plugins.map(RegisteredToolPlugin.init(bundled:)),
-            capabilityResolver: capabilityResolver
-        )
-    }
-
-    init(
-        configuration: ToolCatalogConfiguration,
-        registrations: [RegisteredToolPlugin],
-        capabilityResolver: any CapabilityResolving = SystemCapabilityResolver()
-    ) {
-        let identifiers = registrations.map(\.definition.id)
+        let identifiers = plugins.map(\.definition.id)
         precondition(
             Set(identifiers).count == identifiers.count,
             "Tool plugin identifiers must be unique."
@@ -33,12 +21,12 @@ struct ToolRegistry {
 
         self.configuration = configuration
         categories = configuration.sections.map(\.category)
-        self.registrations = registrations
+        self.plugins = plugins
         self.capabilityResolver = capabilityResolver
     }
 
     var tools: [ToolDefinition] {
-        registrations.map(\.definition)
+        plugins.map(\.definition)
     }
 
     var quickAccessMaximumCount: Int {
@@ -50,17 +38,12 @@ struct ToolRegistry {
     }
 
     func tool(id: ToolDefinition.ID) -> ToolDefinition? {
-        registration(for: id)?.definition
+        plugins.first { $0.definition.id == id }?.definition
     }
 
     /// Returns the plugin manifest for a tool, if it is registered.
     func manifest(for toolID: ToolDefinition.ID) -> ToolPluginManifest? {
-        registration(for: toolID)?.manifest
-    }
-
-    /// Returns how a plugin was installed, without exposing its execution host.
-    func source(for toolID: ToolDefinition.ID) -> ToolPluginSource? {
-        registration(for: toolID)?.source
+        plugins.first { $0.definition.id == toolID }?.manifest
     }
 
     func tools(in categoryID: ToolCategory.ID) -> [ToolDefinition] {
@@ -138,14 +121,8 @@ struct ToolRegistry {
         for toolID: ToolDefinition.ID,
         dependencies: AppDependencies
     ) -> AnyView? {
-        registration(for: toolID)?
+        plugins.first { $0.definition.id == toolID }?
             .makeDestination(dependencies: dependencies)
-    }
-
-    private func registration(
-        for toolID: ToolDefinition.ID
-    ) -> RegisteredToolPlugin? {
-        registrations.first { $0.definition.id == toolID }
     }
 }
 

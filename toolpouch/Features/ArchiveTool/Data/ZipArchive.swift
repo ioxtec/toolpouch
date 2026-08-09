@@ -25,8 +25,8 @@ nonisolated enum ZipArchive {
             maximumCompressionRatio: 1_000
         )
 
-        /// Deliberately conservative limits for downloaded executable code.
-        static let pluginPackage = ExtractionPolicy(
+        /// Deliberately conservative limits for archives from untrusted sources.
+        static let untrustedArchive = ExtractionPolicy(
             maximumArchiveSize: 128 * 1_048_576,
             maximumEntryCount: 512,
             maximumEntrySize: 128 * 1_048_576,
@@ -206,9 +206,9 @@ nonisolated enum ZipArchive {
         let centralOffset = Int(readUInt32(data, at: eocdStart + 16))
         let commentLength = Int(readUInt16(data, at: eocdStart + 20))
 
-        // Plugin packages intentionally support only a single, non-ZIP64
-        // archive. Requiring the central directory to end exactly at EOCD
-        // also prevents ambiguous archives with hidden trailing structures.
+        // This reader intentionally supports only a single, non-ZIP64 archive.
+        // Requiring the central directory to end exactly at EOCD also prevents
+        // ambiguous archives with hidden trailing structures.
         guard diskNumber == 0,
               centralDirectoryDisk == 0,
               entriesOnDisk == entryCount,
