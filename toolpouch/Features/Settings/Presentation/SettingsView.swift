@@ -4,6 +4,7 @@ import AppKit
 #endif
 
 struct SettingsView: View {
+    @EnvironmentObject private var themeStore: AppThemeStore
     @AppStorage(AppPreferenceKey.refreshNetworkInfoOnOpen)
     private var refreshNetworkInfoOnOpen = true
     #if os(macOS)
@@ -12,6 +13,20 @@ struct SettingsView: View {
 
     var body: some View {
         Form {
+            Section("Appearance") {
+                Picker("Theme", selection: themeSelection) {
+                    ForEach(themeStore.themes) { theme in
+                        Text(theme.name).tag(theme.id)
+                    }
+                }
+
+                Text(themeStore.selectedTheme.description)
+                    .font(.caption)
+                    .foregroundStyle(themeStore.selectedTheme.colors.secondaryText.color)
+
+                ThemeSwatches(theme: themeStore.selectedTheme)
+            }
+
             Section("Network Info") {
                 Toggle(
                     "Refresh automatically when opened",
@@ -65,7 +80,7 @@ struct SettingsView: View {
             #endif
         }
         .formStyle(.grouped)
-        .frame(width: 520, height: 330)
+        .frame(width: 520, height: 460)
         .navigationTitle("Settings")
         #if os(macOS)
         .onAppear { screenCapturePermission.refresh() }
@@ -77,5 +92,37 @@ struct SettingsView: View {
             screenCapturePermission.refresh()
         }
         #endif
+    }
+
+    private var themeSelection: Binding<String> {
+        Binding(
+            get: { themeStore.selectedThemeID },
+            set: { themeStore.selectTheme(id: $0) }
+        )
+    }
+}
+
+private struct ThemeSwatches: View {
+    let theme: AppTheme
+
+    var body: some View {
+        HStack(spacing: 7) {
+            swatch(theme.colors.background.color)
+            swatch(theme.colors.surface.color)
+            swatch(theme.colors.interactiveSurface.color)
+            swatch(theme.colors.primaryAccent.color)
+            swatch(theme.colors.secondaryAccent.color)
+        }
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel("Theme color preview")
+    }
+
+    private func swatch(_ color: Color) -> some View {
+        Circle()
+            .fill(color)
+            .frame(width: 18, height: 18)
+            .overlay {
+                Circle().stroke(.white.opacity(0.22), lineWidth: 1)
+            }
     }
 }

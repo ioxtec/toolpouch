@@ -2,9 +2,12 @@ import SwiftUI
 
 enum ToolPouchLayout {
     enum MenuBar {
-        static let width: CGFloat = 420
-        static let height: CGFloat = 520
-        static let footerHeight: CGFloat = 48
+        static let width: CGFloat = 380
+        static let height: CGFloat = 470
+        static let footerHeight: CGFloat = 40
+        static let contentPadding: CGFloat = 10
+        static let contentSpacing: CGFloat = 10
+        static let gridSpacing: CGFloat = 8
     }
 
     enum Content {
@@ -33,6 +36,11 @@ enum ToolPouchLayout {
         case medium = 17
         case large = 22
     }
+}
+
+enum ToolPouchContentDensity {
+    case regular
+    case compact
 }
 
 extension View {

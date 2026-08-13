@@ -5,12 +5,12 @@ struct MenuBarFooter: View {
 
     var body: some View {
         Button(action: openMainWindow) {
-            HStack(spacing: 9) {
+            HStack(spacing: 7) {
                 Image(systemName: "macwindow")
-                    .toolPouchIcon(.medium, weight: .medium)
+                    .toolPouchIcon(.small, weight: .medium)
 
                 Text("Open in Window")
-                    .font(.subheadline.weight(.medium))
+                    .font(.caption.weight(.semibold))
 
                 Spacer()
 
@@ -18,7 +18,7 @@ struct MenuBarFooter: View {
                     .toolPouchIcon(.small, weight: .semibold)
                     .foregroundStyle(.secondary)
             }
-            .padding(.horizontal, 14)
+            .padding(.horizontal, 12)
             .frame(
                 maxWidth: .infinity,
                 minHeight: ToolPouchLayout.MenuBar.footerHeight

@@ -15,25 +15,18 @@ final class SecurityScopedSSHKeyFolderStore: SSHKeyFolderAccessing {
     }
 
     func chooseFolder() async throws -> URL? {
-        let panel = NSOpenPanel()
-        panel.title = "Choose SSH Key Folder"
-        panel.message = "ToolPouch needs permission to read and create SSH keys in this folder."
-        panel.prompt = "Choose Folder"
-        panel.canChooseFiles = false
-        panel.canChooseDirectories = true
-        panel.allowsMultipleSelection = false
-        panel.canCreateDirectories = true
-        panel.showsHiddenFiles = true
-
         let sshFolderURL = FileManager.default.homeDirectoryForCurrentUser
             .appendingPathComponent(".ssh", isDirectory: true)
-        panel.directoryURL = FileManager.default.fileExists(atPath: sshFolderURL.path)
+        let initialDirectory = FileManager.default.fileExists(atPath: sshFolderURL.path)
             ? sshFolderURL
             : FileManager.default.homeDirectoryForCurrentUser
 
-        NSApp.activate(ignoringOtherApps: true)
-        let response = panel.runModal()
-        guard response == .OK, let url = panel.url else { return nil }
+        guard let url = CenteredFilePanel.chooseDirectory(
+            title: "Choose SSH Key Folder",
+            message: "ToolPouch needs permission to read and create SSH keys in this folder.",
+            initialDirectory: initialDirectory,
+            showsHiddenFiles: true
+        ) else { return nil }
 
         let bookmark = try url.bookmarkData(
             options: .withSecurityScope,

@@ -1,5 +1,6 @@
 nonisolated enum AppPreferenceKey {
     static let refreshNetworkInfoOnOpen = "refreshNetworkInfoOnOpen"
+    static let selectedThemeID = "selectedThemeID"
     static let sshKeyFolderBookmark = "sshKeyFolderBookmark"
 
     static func quickAccessToolIDs(for platform: ToolPlatform) -> String {

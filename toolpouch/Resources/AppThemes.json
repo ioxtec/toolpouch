@@ -1,0 +1,69 @@
+{
+  "version": 1,
+  "defaultThemeID": "dracula",
+  "themes": [
+    {
+      "id": "dracula",
+      "name": "Dracula",
+      "description": "Matte violet surfaces with pink and cyan accents.",
+      "appearance": "dark",
+      "renderingStyle": "solid",
+      "colors": {
+        "background": { "hex": "282A36" },
+        "surface": { "hex": "343442" },
+        "elevatedSurface": { "hex": "3C3B4D" },
+        "interactiveSurface": { "hex": "494659" },
+        "border": { "hex": "625D73" },
+        "primaryText": { "hex": "F8F8F2" },
+        "secondaryText": { "hex": "B9B5C4" },
+        "primaryAccent": { "hex": "FF79C6" },
+        "secondaryAccent": { "hex": "8BE9FD" },
+        "success": { "hex": "50FA7B" },
+        "warning": { "hex": "F1FA8C" },
+        "danger": { "hex": "FF5555" }
+      }
+    },
+    {
+      "id": "dracula-cyan",
+      "name": "Dracula Cyan",
+      "description": "The same matte palette with a cooler cyan primary accent.",
+      "appearance": "dark",
+      "renderingStyle": "solid",
+      "colors": {
+        "background": { "hex": "282A36" },
+        "surface": { "hex": "343442" },
+        "elevatedSurface": { "hex": "3C3B4D" },
+        "interactiveSurface": { "hex": "494659" },
+        "border": { "hex": "625D73" },
+        "primaryText": { "hex": "F8F8F2" },
+        "secondaryText": { "hex": "B9B5C4" },
+        "primaryAccent": { "hex": "8BE9FD" },
+        "secondaryAccent": { "hex": "FF79C6" },
+        "success": { "hex": "50FA7B" },
+        "warning": { "hex": "F1FA8C" },
+        "danger": { "hex": "FF5555" }
+      }
+    },
+    {
+      "id": "amethyst-glass",
+      "name": "Amethyst Glass",
+      "description": "System glass with a restrained violet palette.",
+      "appearance": "dark",
+      "renderingStyle": "glass",
+      "colors": {
+        "background": { "hex": "302B3A" },
+        "surface": { "hex": "3A3445" },
+        "elevatedSurface": { "hex": "463E51" },
+        "interactiveSurface": { "hex": "51485D" },
+        "border": { "hex": "71667D" },
+        "primaryText": { "hex": "FAF8FC" },
+        "secondaryText": { "hex": "C5BFCA" },
+        "primaryAccent": { "hex": "FF79C6" },
+        "secondaryAccent": { "hex": "8BE9FD" },
+        "success": { "hex": "50FA7B" },
+        "warning": { "hex": "F1FA8C" },
+        "danger": { "hex": "FF5555" }
+      }
+    }
+  ]
+}

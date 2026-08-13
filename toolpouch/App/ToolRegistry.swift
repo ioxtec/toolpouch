@@ -146,6 +146,7 @@ extension ToolRegistry {
             ArchiveToolPlugin(),
         ]
         #if !os(watchOS)
+        plugins.append(CoordinateToolPlugin())
         plugins.append(NetworkCheckPlugin())
         plugins.append(JSONToolkitPlugin())
         plugins.append(HashChecksumPlugin())

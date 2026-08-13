@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		000B3A32499DA4E6EE1482A3 /* CoordinateToolPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F22F0C84DD7CD0ACB9ABD9 /* CoordinateToolPlugin.swift */; };
 		0051257FB2E8B94189439A56 /* NetworkInfoRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA52861EB697FD6BF136C6A /* NetworkInfoRow.swift */; };
 		00786C6220D79FE00D346D4A /* SystemDeviceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8D3FC935B4D99726F6CC47 /* SystemDeviceProvider.swift */; };
 		00911232F09713513DA73762 /* UnitConverterPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDB256E1BEA2A616956F1D9 /* UnitConverterPlugin.swift */; };
@@ -19,6 +20,7 @@
 		01C5E2F416BDAA3EA3E06C52 /* SecurityScopedSSHKeyFolderStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F6B18DF4AE88C398D82C5F /* SecurityScopedSSHKeyFolderStore.swift */; };
 		0215D8E0B07235FDC3E1F51B /* NetworkSnapshotRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7964692682D3B2BA128346 /* NetworkSnapshotRecord.swift */; };
 		02F6F22ECDD4A71A4B6E1BED /* PasswordGenerationMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76960F38ED126636E9F502F3 /* PasswordGenerationMode.swift */; };
+		035C82001FF5F56B9BA72711 /* CoordinateToolPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F22F0C84DD7CD0ACB9ABD9 /* CoordinateToolPlugin.swift */; };
 		036F5765D9E157D64C1619F7 /* FoundationJSONFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723E25716B9746C1F15A0F44 /* FoundationJSONFormatter.swift */; };
 		0441F66A1FE2F145DECCB167 /* LocalUnitConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA4D223BD8E3B39A820835F /* LocalUnitConverter.swift */; };
 		046ACF7BFECA1100858CC81C /* PasswordGeneratorOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD5CD6BB2966D02F0540954 /* PasswordGeneratorOptions.swift */; };
@@ -31,11 +33,13 @@
 		0B4E9F9D1F37CBBB41466DCC /* NetworkCheckError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664CDA30B77466B1341C0763 /* NetworkCheckError.swift */; };
 		0B532B50DF7FAAA4A6C72A50 /* ToolRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09FEDFF9AC030734060D785 /* ToolRegistry.swift */; };
 		0C365CB081CADEE80E9BADAC /* QuickAccessBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4FE9B59F75C7DE3117CC68B /* QuickAccessBar.swift */; };
+		0CF939775F069B312D885B7A /* AppThemeStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AF71FA198AA254F99CB390 /* AppThemeStore.swift */; };
 		0DA2D925EAAEDC99A136F994 /* ArchiveManaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7305D2D95A0C2798891E8B02 /* ArchiveManaging.swift */; };
 		103AFD8A5BC92698CE8D4586 /* PasswordResultField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D05E7E05B309DEADF3E415A /* PasswordResultField.swift */; };
 		116316EF6DD885DC06CF23C0 /* ToolPlatform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DAE6574E349860CCECFEDB /* ToolPlatform.swift */; };
 		118ACFF0688525486D41C184 /* UnitConversionCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5A7EB508810EFB55E5ACFA /* UnitConversionCategory.swift */; };
 		12062B4847DAA048385D3FD7 /* PasswordGenerating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7A0DDB23093152946A2FE1 /* PasswordGenerating.swift */; };
+		124E84752F62EB773C5A4CB8 /* ToolSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F8187293239B83E6BB3D6F /* ToolSearchView.swift */; };
 		1298E0EDE0747AAB683C6FFA /* ToolRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09FEDFF9AC030734060D785 /* ToolRegistry.swift */; };
 		131A201322307D25C8B360B2 /* ColorPickerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13EB3E37CE87AB73056E215 /* ColorPickerPlugin.swift */; };
 		135A10F78EFD4B9A6E68C2FC /* SecurePasswordGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A015CA6389681BF989E3D364 /* SecurePasswordGenerator.swift */; };
@@ -81,6 +85,7 @@
 		2079D5226A47851CBEA003AE /* ArchiveManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1DB7307E6054318D868634 /* ArchiveManager.swift */; };
 		209F358EC7E4C67DB58A07D4 /* NetworkSnapshotRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7964692682D3B2BA128346 /* NetworkSnapshotRecord.swift */; };
 		20E2F63994839841F96B4C34 /* BinaryTextConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C4D337DA7592E813712FC1 /* BinaryTextConverter.swift */; };
+		210414BBF3F0C71F3B5FA354 /* GeographicCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15136E99B183661D732A7BDC /* GeographicCoordinate.swift */; };
 		2294C8A52DFF7CA1AD9094DA /* ScreenColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B277833CB26D6972762CA541 /* ScreenColorPicker.swift */; };
 		22F6A0FCD702FDDB804DB16D /* CoreLocationWiFiScanAuthorizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B23E488E61D65E44716E050 /* CoreLocationWiFiScanAuthorizer.swift */; };
 		239A0DAD68E416FCC77B7F0D /* ToolCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E733BEC952E47417A2A2BB /* ToolCategory.swift */; };
@@ -93,8 +98,10 @@
 		2792B309E7F20951E538C698 /* BinaryTextEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317431AFE22F3F49E3C1CA9F /* BinaryTextEncoding.swift */; };
 		27FB056D94A1F1980418AC32 /* ArchiveOperationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220DC4882B74BC9BED5E5F7D /* ArchiveOperationError.swift */; };
 		282D3F2BE8F36A65BFFBB401 /* ScreenHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FA0D56E5D5E69642D8427A /* ScreenHeader.swift */; };
+		28637A75AF40BC7C1F0EA52E /* AppThemeEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A70A4EF6A2071F51E20C6FB /* AppThemeEnvironment.swift */; };
 		2876265BC03A606E47C766FC /* ToolCapability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693E45E1E395C53F220A6F95 /* ToolCapability.swift */; };
 		28CD599E1641E54FF7D6FC66 /* DeviceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F74BC189247B422900D1512 /* DeviceRepository.swift */; };
+		2A0D41734D8A13E459E43DE3 /* GeographicCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15136E99B183661D732A7BDC /* GeographicCoordinate.swift */; };
 		2A3582F43895298F3B942D87 /* WiFiScannerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231DDE71DEC4A7FDBBE3ECDF /* WiFiScannerPlugin.swift */; };
 		2A8AC3722A3E5DBBEE5C1993 /* NetworkInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA215E876FB90EF78DDF7FD /* NetworkInfoViewModel.swift */; };
 		2B47333BB5809B0449884334 /* ToolCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97EDA481D4D7D4168B49A97 /* ToolCategoryView.swift */; };
@@ -105,6 +112,7 @@
 		2EC88311F2FA268228C84EC9 /* NetworkSnapshotCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B4905FA429F9A69EA42030 /* NetworkSnapshotCard.swift */; };
 		2F97850D24907BE804B2716C /* CryptoKitHashCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2888DF29B6786F14AAA8B3 /* CryptoKitHashCalculator.swift */; };
 		3020031070E0F01A265861A3 /* ImageInspectorPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C43F28F19253B0C5FFA73B8 /* ImageInspectorPlugin.swift */; };
+		3110301565E3EA706771C0CC /* AppThemeStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AF71FA198AA254F99CB390 /* AppThemeStore.swift */; };
 		31270D267C182E8D5B5F91AC /* ToolPouchMobileApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA655FB1A90B0BE32860CA44 /* ToolPouchMobileApp.swift */; };
 		31CA83793D161E84218EE8F6 /* ImageInspectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892F95AFD7E06058F3DBA64E /* ImageInspectorView.swift */; };
 		31D43C45DDF7130B1B34A347 /* SystemNetworkChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9074469F33164E2B07357DD /* SystemNetworkChecker.swift */; };
@@ -193,10 +201,12 @@
 		5F199BA207BFCEE5E0AC245B /* SystemLocalNetworkInfoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91A05C7D22AD616E18145C8 /* SystemLocalNetworkInfoProvider.swift */; };
 		60172BF33C2289FB8B5BF75A /* ClipboardInspectorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD2161CD2E45F95CBA994F5 /* ClipboardInspectorModel.swift */; };
 		60483E7A708F054D70948B6C /* ArchiveToolPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB1AD6A085B57B42D8BE8C9 /* ArchiveToolPlugin.swift */; };
+		60BE3C620549A72B3CC18004 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4C6E8EC175699806203728 /* AppTheme.swift */; };
 		61D02E234E29BDBB76AFBE0E /* DeviceKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164CC9FCBC142A35264B35B2 /* DeviceKind.swift */; };
 		62F2D3381FFD68B9B6ED2BDE /* UnitConversionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38B66267CAE10D0011062EE /* UnitConversionError.swift */; };
 		62FA2368AF58013272BC7976 /* ImageInspectorPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C43F28F19253B0C5FFA73B8 /* ImageInspectorPlugin.swift */; };
 		643A0EEF9F660816B2B4E596 /* NetworkCheckResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAB07EC97FF9E8B7EA18B88 /* NetworkCheckResult.swift */; };
+		65182F56E30AF4B36E5B733A /* AppThemeEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A70A4EF6A2071F51E20C6FB /* AppThemeEnvironment.swift */; };
 		668B865CE8E55A07F1A3F7FE /* HashDigest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8200EAB1F79309B68D51281 /* HashDigest.swift */; };
 		676F5BC41C5BEE25D741CD34 /* SystemSSHKeyManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF1143194B31D435351C5A4 /* SystemSSHKeyManagerTests.swift */; };
 		67FA84E2540FEF576D8E190A /* PasswordResultField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D05E7E05B309DEADF3E415A /* PasswordResultField.swift */; };
@@ -205,6 +215,7 @@
 		6882AD2A40401E7FC61C3F8D /* NetworkInfoPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73D4E1AFE4F1B694CFCBD55 /* NetworkInfoPlugin.swift */; };
 		689DAC7A3AB17A9D51F00763 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = E7942F8B72064396FC7080BA /* README.md */; };
 		68EC2ECC01E8D17C066F5797 /* SSHKeyGenerationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD209DD3E7B409475BC75677 /* SSHKeyGenerationRequest.swift */; };
+		68EE8B8C84666E529C4656C6 /* CoordinateParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197E791B9F6AE1124F016B7E /* CoordinateParser.swift */; };
 		69905411755902DF57466573 /* ArchiveManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1DB7307E6054318D868634 /* ArchiveManager.swift */; };
 		69C32CA3237BFBDA48C6CB47 /* DomainLookupService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADB4BADE5C39A3F7ECE0DBD /* DomainLookupService.swift */; };
 		6A0D59998858E2052209D509 /* CoreLocationWiFiScanAuthorizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B23E488E61D65E44716E050 /* CoreLocationWiFiScanAuthorizer.swift */; };
@@ -224,6 +235,7 @@
 		71C2F29840A8792499C7EA90 /* ToolPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04A0860CA86A74688E0C1BC /* ToolPlugin.swift */; };
 		7253E255F11EE55F1CB72A51 /* ClipboardInspectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D847B859F9BEC69AE3F44CF /* ClipboardInspectorView.swift */; };
 		733659AA81DFB2F2B0681848 /* SystemLocalNetworkInfoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91A05C7D22AD616E18145C8 /* SystemLocalNetworkInfoProvider.swift */; };
+		73959D4C16CC6DC5BD9C4C51 /* CoordinateToolView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F9C818CF97C2BBB24B895A /* CoordinateToolView.swift */; };
 		751130CDBFC2A72DEC7BDDBA /* SSHKeysViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A980B0D5EFAD5956EBE83012 /* SSHKeysViewModel.swift */; };
 		76AC7442C7D64FA1F27E95B5 /* JSONToolkitPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7AE9C738436DC7509B3317F /* JSONToolkitPlugin.swift */; };
 		774F4E1159843B52A2CAB8C3 /* SSHKeyFolderAccessing.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8358CA68FA245C6C2F3E119 /* SSHKeyFolderAccessing.swift */; };
@@ -261,6 +273,7 @@
 		87B5421589E5AA2CF106C0DC /* PasswordGeneratorPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB763A0EE76EB8BFABF632A /* PasswordGeneratorPlugin.swift */; };
 		8836ED5483E1AC7848FF454B /* ToolPluginManifest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB04E4AE3223816C40793928 /* ToolPluginManifest.swift */; };
 		885CFD9CCBFB65AEC75AF20A /* SystemLocalNetworkInfoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91A05C7D22AD616E18145C8 /* SystemLocalNetworkInfoProvider.swift */; };
+		88714C46FBCBE7BC9379E0FD /* AppThemes.json in Resources */ = {isa = PBXBuildFile; fileRef = C46AB1F160B869DB883DB82C /* AppThemes.json */; };
 		88B3ABF663A9B003F15DA00A /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = E7942F8B72064396FC7080BA /* README.md */; };
 		88D3BEB47F20787FCB3269B1 /* GzipCodec.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA94520A701FCBC0D881ED2E /* GzipCodec.swift */; };
 		88E23B7C959723DDBFDB9CFF /* MenuBarRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153E7086FF1D7522B52E1556 /* MenuBarRootView.swift */; };
@@ -268,14 +281,18 @@
 		895D74B7D2009F2E149B455A /* PickedColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7412702EE8DA3DE82215105 /* PickedColor.swift */; };
 		8A45C5CDA65B117616CA371D /* JSONFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618D60A87160EF3226D3F9F2 /* JSONFormatting.swift */; };
 		8AD09EAE879C034FE66BA864 /* SecurePasswordGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A015CA6389681BF989E3D364 /* SecurePasswordGenerator.swift */; };
+		8B9111D5C28739D5F7701BD2 /* AppThemeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1F28D3952B288F44933A49 /* AppThemeTests.swift */; };
 		8BA2088EA86DDD3534FFEAD9 /* CryptoKitHashCalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083D4AF12643AB571CCE14FB /* CryptoKitHashCalculatorTests.swift */; };
 		8CB93445A799C9F8A0459CA0 /* SystemSSHKeyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E8D3D1B5C8D15796C21E8C /* SystemSSHKeyManager.swift */; };
+		8D041527773F6B912B9C1A53 /* CoordinateParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197E791B9F6AE1124F016B7E /* CoordinateParser.swift */; };
+		8D060038CE29977EFCB9558D /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4C6E8EC175699806203728 /* AppTheme.swift */; };
 		8D0709C0E00DCDCDFE2EDE39 /* DomainLookupPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = C449ABE0D2EC9FB94FA0A2F7 /* DomainLookupPlugin.swift */; };
 		8DC4C508EBF96C180F95DCF2 /* ToolCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E733BEC952E47417A2A2BB /* ToolCategory.swift */; };
 		8ED3CD1B37F6F3BA887E8F57 /* TextEncoderPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A6A3B6AA8A0063B103F714 /* TextEncoderPlugin.swift */; };
 		8F36158202932EE343BFDFC2 /* SecurePasswordGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A015CA6389681BF989E3D364 /* SecurePasswordGenerator.swift */; };
 		8F83848D7AFC2C9F4132E688 /* DeviceRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06AA0D829C6830E286FDDCA /* DeviceRecord.swift */; };
 		8F87646E0B069956C24A58D9 /* NetworkSnapshotStoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CDE5D27C1075AC7F50FD58 /* NetworkSnapshotStoring.swift */; };
+		90A07AF9C34CD5EEA0D9A449 /* ToolSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F8187293239B83E6BB3D6F /* ToolSearchView.swift */; };
 		90B9FC3FE409519E861163A8 /* TextConversionDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBB5A2BB7141BC77AADD72C /* TextConversionDirection.swift */; };
 		91AFEE94700928DE49CC2463 /* PasswordGeneratorPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB763A0EE76EB8BFABF632A /* PasswordGeneratorPlugin.swift */; };
 		91D33B7F8F5ED8E2E76A2F6E /* AdaptiveMobileRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B4B04244B5446F1606D3C1 /* AdaptiveMobileRootView.swift */; };
@@ -291,10 +308,12 @@
 		99CACF09E2B5492EE5BD2926 /* PickedColorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14B8916E16674159EC0244C /* PickedColorTests.swift */; };
 		99D7455D64BAF693420D6496 /* NetworkInfoCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFE2C69164860B77C1CE118 /* NetworkInfoCollector.swift */; };
 		99E62B06F6C4D8FCE4A268ED /* PersistenceContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD21195E15DB2FA21697E47B /* PersistenceContainer.swift */; };
+		9A3352C0D1434A5EE0918BB6 /* AppThemeStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AF71FA198AA254F99CB390 /* AppThemeStore.swift */; };
 		9A51A72EEF51ED309EE94738 /* ZipArchiveSecurityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7609E6210BB4AF208DE1AA /* ZipArchiveSecurityTests.swift */; };
 		9A9B12573ED76B653B2D122A /* SSHKeyGenerationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD209DD3E7B409475BC75677 /* SSHKeyGenerationRequest.swift */; };
 		9B3744CDFFD09C61AA858A63 /* UnitConverting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AD24120DE8C238F79C0E32 /* UnitConverting.swift */; };
 		9B669353643BF8DF7FEC1161 /* NetworkInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA215E876FB90EF78DDF7FD /* NetworkInfoViewModel.swift */; };
+		9C366879999D6D042625715A /* AppThemeEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A70A4EF6A2071F51E20C6FB /* AppThemeEnvironment.swift */; };
 		9C607711778AC46072EC1799 /* MenuBarFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE5EB37CE42FC5282BD7D4C /* MenuBarFooter.swift */; };
 		9CA23FA85BF8E1A086F784FE /* WiFiScanning.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD183E5DDD24365712DF12AE /* WiFiScanning.swift */; };
 		9D283CF6C9692FDECF5D9409 /* JSONFormattingStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACD19576492BCB18B80A356 /* JSONFormattingStyle.swift */; };
@@ -312,6 +331,7 @@
 		A2DE2CB886DE1A2A1311E389 /* ZipArchive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03248967B167A5DADD8E8124 /* ZipArchive.swift */; };
 		A301037CC7CC6DB84310138B /* RustImageInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B21269D665CEE2ECD9EC9F5 /* RustImageInspector.swift */; };
 		A35AC47C08B4A047F7CBFA1D /* NetworkInfoRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA52861EB697FD6BF136C6A /* NetworkInfoRow.swift */; };
+		A3CBD046B9C35E502BB060D9 /* CoordinateToolView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F9C818CF97C2BBB24B895A /* CoordinateToolView.swift */; };
 		A3F2994406F54B1DF8FB6B4D /* UnitConverterPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDB256E1BEA2A616956F1D9 /* UnitConverterPlugin.swift */; };
 		A48866FCF15E8C531993F648 /* SSHKeyPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD43245FED194D5D2676BA6 /* SSHKeyPair.swift */; };
 		A4C00277BAB9C6C06FB2FB12 /* PickedColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7412702EE8DA3DE82215105 /* PickedColor.swift */; };
@@ -365,6 +385,7 @@
 		BBA7A96AE5AED2232C320D71 /* DomainLookupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F212F09C42AC69AA817EDEAC /* DomainLookupView.swift */; };
 		BBB02EBDAC7EA2962C811335 /* ClipboardSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22B9D9EF2C28B65E28BBD8F /* ClipboardSnapshot.swift */; };
 		BCBC4B05E55A6CF0BB304F64 /* SSHKeyFolderAccessing.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8358CA68FA245C6C2F3E119 /* SSHKeyFolderAccessing.swift */; };
+		BD1B7DFBF8F083DC42739E71 /* AppThemes.json in Resources */ = {isa = PBXBuildFile; fileRef = C46AB1F160B869DB883DB82C /* AppThemes.json */; };
 		BD2260764D50FCA7CA857A8E /* ToolPluginManifest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB04E4AE3223816C40793928 /* ToolPluginManifest.swift */; };
 		BD4B3EE1981215720BE3E1B9 /* ToolCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97EDA481D4D7D4168B49A97 /* ToolCategoryView.swift */; };
 		BEA82F959DED3CAECFBDEA36 /* NetworkInfoHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DE4EB0157569E7E4C84647B /* NetworkInfoHeader.swift */; };
@@ -387,6 +408,7 @@
 		C409E87342A3F53C2B09421D /* ArchiveFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CE132790D9A34694B4275B /* ArchiveFormat.swift */; };
 		C42851FFF75E5805EB4A4AB1 /* AppNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486E0B5DA572E325C37A08E8 /* AppNavigationBar.swift */; };
 		C549DFC9741736ACD470EFC3 /* RDAPResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1790B4C86C9F09D8832FD5DF /* RDAPResponse.swift */; };
+		C5C99E985BCE093BA23D38B4 /* AppThemes.json in Resources */ = {isa = PBXBuildFile; fileRef = C46AB1F160B869DB883DB82C /* AppThemes.json */; };
 		C7F7E9B880808FA421CB7993 /* NetworkInfoRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA52861EB697FD6BF136C6A /* NetworkInfoRow.swift */; };
 		C82090ED9FABCB25267E2C0D /* ArchiveManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119E197FEC67B1845430C054 /* ArchiveManagerTests.swift */; };
 		C887F197ECEF6380C5804399 /* ArchiveToolView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A31159C701DDAA48D81376 /* ArchiveToolView.swift */; };
@@ -404,6 +426,7 @@
 		CEBECCE1027E414675403673 /* ToolCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E733BEC952E47417A2A2BB /* ToolCategory.swift */; };
 		CF7AF940426F0033C855BA67 /* TextEncodingConversionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12038DE1DC1BE05E67FF47CB /* TextEncodingConversionError.swift */; };
 		D010181C1ABDEF64D12CA773 /* TextConversionDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBB5A2BB7141BC77AADD72C /* TextConversionDirection.swift */; };
+		D01EED8185394F8C78A52AC5 /* ToolSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F8187293239B83E6BB3D6F /* ToolSearchView.swift */; };
 		D0E29927D406DF53C88DFAB3 /* HashChecksumPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27AE54D48D13785B2126E32B /* HashChecksumPlugin.swift */; };
 		D0E7C879812759B4D743C21B /* NetworkSnapshotRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7964692682D3B2BA128346 /* NetworkSnapshotRecord.swift */; };
 		D1C969E8BE6082A87C81D035 /* RDAPResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1790B4C86C9F09D8832FD5DF /* RDAPResponse.swift */; };
@@ -434,6 +457,7 @@
 		DF4A0D136C7AE473A44A394A /* ThreeColumnToolNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C243B34E2646F278205FD31D /* ThreeColumnToolNavigationView.swift */; };
 		DFD29A1229297453A9B0CDC4 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8E5DAE35E23D3110464A3F /* Device.swift */; };
 		DFD853056F04D16B3C5FA887 /* UnitConverterPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDB256E1BEA2A616956F1D9 /* UnitConverterPlugin.swift */; };
+		DFE29A9984881655A99D11E8 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4C6E8EC175699806203728 /* AppTheme.swift */; };
 		E0E6D5DFA63DFE1C527017CC /* NetworkConnectionKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DE1400A6CF3F3656B0A996 /* NetworkConnectionKind.swift */; };
 		E110EB8A6AE082E3A8DE1E0C /* DomainLookupPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = C449ABE0D2EC9FB94FA0A2F7 /* DomainLookupPlugin.swift */; };
 		E13A68E592BDB95C65F2BC9B /* CapabilityResolving.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFB1B2687862FDECEFB08F2 /* CapabilityResolving.swift */; };
@@ -454,6 +478,8 @@
 		EE150DCDB7CE318D7181A903 /* RecentDevicesCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0795992790521E5BF10EE6 /* RecentDevicesCard.swift */; };
 		EE50B67C3AEB48496DBA6D73 /* PasswordGenerationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262F17F6DA309A175B249BE2 /* PasswordGenerationError.swift */; };
 		EE5BD68016504A8A81D00753 /* ClipboardInspecting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088DA5EA509250E7286741A5 /* ClipboardInspecting.swift */; };
+		EE94ABD341D1D290518B4EBD /* CenteredFilePanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8633C2616FE4985ED8AF4EE4 /* CenteredFilePanel.swift */; };
+		EEE63706B02A7D9F2A65E7E8 /* CoordinateParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89236D818D05B6FE4F0B9B5 /* CoordinateParserTests.swift */; };
 		EF685479F2F1E43EB1163D53 /* ToolExecutionBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CB05F150518589EE236F1B /* ToolExecutionBackend.swift */; };
 		EFB7E694255CCEEA8DE658A7 /* ClipboardInspectorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD2161CD2E45F95CBA994F5 /* ClipboardInspectorModel.swift */; };
 		EFFCC806B55503683C6C316E /* DeviceRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06AA0D829C6830E286FDDCA /* DeviceRecord.swift */; };
@@ -540,16 +566,19 @@
 		11C250ECE135F4222D44B5F6 /* index_hash.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = index_hash.h; sourceTree = "<group>"; };
 		12038DE1DC1BE05E67FF47CB /* TextEncodingConversionError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEncodingConversionError.swift; sourceTree = "<group>"; };
 		12D1A8F4C7E1F63602A3CAB8 /* SecurePasswordGeneratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurePasswordGeneratorTests.swift; sourceTree = "<group>"; };
+		15136E99B183661D732A7BDC /* GeographicCoordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeographicCoordinate.swift; sourceTree = "<group>"; };
 		153E7086FF1D7522B52E1556 /* MenuBarRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarRootView.swift; sourceTree = "<group>"; };
 		1558918081DCD03B43A1BECA /* eff_short_wordlist_1.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = eff_short_wordlist_1.txt; sourceTree = "<group>"; };
 		164CC9FCBC142A35264B35B2 /* DeviceKind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceKind.swift; sourceTree = "<group>"; };
 		167154D785DBC4023998195A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		1779F66361F5662740C4F6FA /* WiFiNetworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFiNetworkTests.swift; sourceTree = "<group>"; };
 		1790B4C86C9F09D8832FD5DF /* RDAPResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RDAPResponse.swift; sourceTree = "<group>"; };
+		197E791B9F6AE1124F016B7E /* CoordinateParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinateParser.swift; sourceTree = "<group>"; };
 		1AFA7C74EEEEA50D2441C3D4 /* MacOSImageFilePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacOSImageFilePicker.swift; sourceTree = "<group>"; };
 		1BF8CBBAF423DFECF978F7B1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1CA215E876FB90EF78DDF7FD /* NetworkInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkInfoViewModel.swift; sourceTree = "<group>"; };
 		1DFE2C69164860B77C1CE118 /* NetworkInfoCollector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkInfoCollector.swift; sourceTree = "<group>"; };
+		1E4C6E8EC175699806203728 /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
 		1EDE8AE65F15E3B763E70D08 /* ImageInspectorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageInspectorModel.swift; sourceTree = "<group>"; };
 		1FBB5A2BB7141BC77AADD72C /* TextConversionDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextConversionDirection.swift; sourceTree = "<group>"; };
 		1FF1143194B31D435351C5A4 /* SystemSSHKeyManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemSSHKeyManagerTests.swift; sourceTree = "<group>"; };
@@ -579,6 +608,7 @@
 		3207B6715EC802F3AB4AF7AE /* AppPreferenceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPreferenceKey.swift; sourceTree = "<group>"; };
 		32DAE6574E349860CCECFEDB /* ToolPlatform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolPlatform.swift; sourceTree = "<group>"; };
 		345DE671A9639D4794E353E1 /* JSONFormattingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONFormattingError.swift; sourceTree = "<group>"; };
+		36F9C818CF97C2BBB24B895A /* CoordinateToolView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinateToolView.swift; sourceTree = "<group>"; };
 		388DB53E8EF8E8168413DCF1 /* bzlib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bzlib.h; sourceTree = "<group>"; };
 		389C80ADDC1698181A5ACEE8 /* NetworkInfoCollecting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkInfoCollecting.swift; sourceTree = "<group>"; };
 		3B23E488E61D65E44716E050 /* CoreLocationWiFiScanAuthorizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreLocationWiFiScanAuthorizer.swift; sourceTree = "<group>"; };
@@ -600,6 +630,7 @@
 		54E911515A79FC7C444A9E14 /* ToolPouchRust.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = ToolPouchRust.xcframework; path = .build/Rust/ToolPouchRust.xcframework; sourceTree = "<group>"; };
 		5A7A0DDB23093152946A2FE1 /* PasswordGenerating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordGenerating.swift; sourceTree = "<group>"; };
 		5CFB1B2687862FDECEFB08F2 /* CapabilityResolving.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapabilityResolving.swift; sourceTree = "<group>"; };
+		5D1F28D3952B288F44933A49 /* AppThemeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppThemeTests.swift; sourceTree = "<group>"; };
 		5EA660BEB33C17A1FF633580 /* HashChecksumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashChecksumView.swift; sourceTree = "<group>"; };
 		613472AD1F3CD0C844757235 /* NetworkSnapshotRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSnapshotRepositoryTests.swift; sourceTree = "<group>"; };
 		613825FBCF371AAEF5C50045 /* PublicIPAddressClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicIPAddressClient.swift; sourceTree = "<group>"; };
@@ -609,6 +640,7 @@
 		664CDA30B77466B1341C0763 /* NetworkCheckError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkCheckError.swift; sourceTree = "<group>"; };
 		6783D6C0FAEA356AD6335415 /* ImageInspecting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageInspecting.swift; sourceTree = "<group>"; };
 		693E45E1E395C53F220A6F95 /* ToolCapability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolCapability.swift; sourceTree = "<group>"; };
+		6A70A4EF6A2071F51E20C6FB /* AppThemeEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppThemeEnvironment.swift; sourceTree = "<group>"; };
 		6B21269D665CEE2ECD9EC9F5 /* RustImageInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RustImageInspector.swift; sourceTree = "<group>"; };
 		6B6DCDD6E504FA0A155CE1C5 /* CompactToolNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactToolNavigationView.swift; sourceTree = "<group>"; };
 		6BE5EB37CE42FC5282BD7D4C /* MenuBarFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarFooter.swift; sourceTree = "<group>"; };
@@ -621,12 +653,14 @@
 		76960F38ED126636E9F502F3 /* PasswordGenerationMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordGenerationMode.swift; sourceTree = "<group>"; };
 		76E74AFBAAF9C353F5981D03 /* CoreWLANWiFiScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreWLANWiFiScanner.swift; sourceTree = "<group>"; };
 		77C9E5381E8F4A8F9FCAC94D /* stream_flags.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = stream_flags.h; sourceTree = "<group>"; };
+		77F8187293239B83E6BB3D6F /* ToolSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolSearchView.swift; sourceTree = "<group>"; };
 		78FA0D56E5D5E69642D8427A /* ScreenHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenHeader.swift; sourceTree = "<group>"; };
 		7A55F53A385628990EFBB758 /* NetworkInfoSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkInfoSnapshot.swift; sourceTree = "<group>"; };
 		800CC3CC149F184FED2DA6C4 /* CopyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyButton.swift; sourceTree = "<group>"; };
 		80F6B18DF4AE88C398D82C5F /* SecurityScopedSSHKeyFolderStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityScopedSSHKeyFolderStore.swift; sourceTree = "<group>"; };
 		815CC1B8FA221C74F665DDF3 /* toolpouch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = toolpouch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		840DFE2587B04635E57C17DE /* SSHKeysPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSHKeysPlugin.swift; sourceTree = "<group>"; };
+		8633C2616FE4985ED8AF4EE4 /* CenteredFilePanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenteredFilePanel.swift; sourceTree = "<group>"; };
 		892F95AFD7E06058F3DBA64E /* ImageInspectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageInspectorView.swift; sourceTree = "<group>"; };
 		89AD24120DE8C238F79C0E32 /* UnitConverting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitConverting.swift; sourceTree = "<group>"; };
 		8A1B3F0309FA1CD5E39E87D2 /* lzma.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lzma.h; sourceTree = "<group>"; };
@@ -649,6 +683,8 @@
 		9D05E7E05B309DEADF3E415A /* PasswordResultField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResultField.swift; sourceTree = "<group>"; };
 		9DE4EB0157569E7E4C84647B /* NetworkInfoHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkInfoHeader.swift; sourceTree = "<group>"; };
 		A015CA6389681BF989E3D364 /* SecurePasswordGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurePasswordGenerator.swift; sourceTree = "<group>"; };
+		A0AF71FA198AA254F99CB390 /* AppThemeStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppThemeStore.swift; sourceTree = "<group>"; };
+		A3F22F0C84DD7CD0ACB9ABD9 /* CoordinateToolPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinateToolPlugin.swift; sourceTree = "<group>"; };
 		A4FE9B59F75C7DE3117CC68B /* QuickAccessBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickAccessBar.swift; sourceTree = "<group>"; };
 		A5733835A535DC26A0E86884 /* NetworkChecking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkChecking.swift; sourceTree = "<group>"; };
 		A7045720186EE220868CB570 /* ImageTransformOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTransformOptions.swift; sourceTree = "<group>"; };
@@ -683,9 +719,11 @@
 		C243B34E2646F278205FD31D /* ThreeColumnToolNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeColumnToolNavigationView.swift; sourceTree = "<group>"; };
 		C33B97D4CBCF8380AE9C1196 /* check.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = check.h; sourceTree = "<group>"; };
 		C449ABE0D2EC9FB94FA0A2F7 /* DomainLookupPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainLookupPlugin.swift; sourceTree = "<group>"; };
+		C46AB1F160B869DB883DB82C /* AppThemes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = AppThemes.json; sourceTree = "<group>"; };
 		C77ADDC55F188549017A4FC6 /* MainWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
 		C80F35597746325EAB898004 /* toolpouchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = toolpouchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8200EAB1F79309B68D51281 /* HashDigest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashDigest.swift; sourceTree = "<group>"; };
+		C89236D818D05B6FE4F0B9B5 /* CoordinateParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinateParserTests.swift; sourceTree = "<group>"; };
 		CD3664562A15795EA055869A /* ToolPouchLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolPouchLayout.swift; sourceTree = "<group>"; };
 		CE962C93DF0F1957BEEE87BA /* CurrentDeviceProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentDeviceProviding.swift; sourceTree = "<group>"; };
 		CEADC59776A502413EC224FC /* ImageInspection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageInspection.swift; sourceTree = "<group>"; };
@@ -776,6 +814,7 @@
 			children = (
 				2AC95EC7389ED87C102F57F1 /* Application */,
 				396704B4C07DAEF382862E54 /* MenuBar */,
+				E72835D6A5607F7380C82418 /* Panels */,
 				3812F5D976577955BC378EA4 /* Permissions */,
 				CEC92BEC4D7A94A02ECE9565 /* Window */,
 			);
@@ -793,9 +832,11 @@
 		096CC8BB361FDA16154DA019 /* toolpouchTests */ = {
 			isa = PBXGroup;
 			children = (
+				5D1F28D3952B288F44933A49 /* AppThemeTests.swift */,
 				119E197FEC67B1845430C054 /* ArchiveManagerTests.swift */,
 				08BFE7F58E4EF16994413D03 /* BinaryTextConverterTests.swift */,
 				21DE4F74912EAF1E288DC0F4 /* CapabilityResolverTests.swift */,
+				C89236D818D05B6FE4F0B9B5 /* CoordinateParserTests.swift */,
 				083D4AF12643AB571CCE14FB /* CryptoKitHashCalculatorTests.swift */,
 				2ABC67DD7E5FD25A29C3FDB4 /* FoundationJSONFormatterTests.swift */,
 				D846B97F24892658E1DF2144 /* GzipCodecTests.swift */,
@@ -1359,6 +1400,14 @@
 			);
 			sourceTree = "<group>";
 		};
+		6E0579E0BC398DE310C6F5F6 /* Plugin */ = {
+			isa = PBXGroup;
+			children = (
+				A3F22F0C84DD7CD0ACB9ABD9 /* CoordinateToolPlugin.swift */,
+			);
+			path = Plugin;
+			sourceTree = "<group>";
+		};
 		6FF50D89946766DE4AA735FB /* Domain */ = {
 			isa = PBXGroup;
 			children = (
@@ -1590,6 +1639,7 @@
 				652A219FC27D38FB8350614F /* DashboardView.swift */,
 				A4FE9B59F75C7DE3117CC68B /* QuickAccessBar.swift */,
 				D97EDA481D4D7D4168B49A97 /* ToolCategoryView.swift */,
+				77F8187293239B83E6BB3D6F /* ToolSearchView.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -1609,6 +1659,7 @@
 			children = (
 				ACE0F9D9E51B744DC32A58E0 /* Components */,
 				719FC33C3068DED4FDC7F0A2 /* Style */,
+				C3808C2FAF0CC0DFBEEB2389 /* Theme */,
 			);
 			path = DesignSystem;
 			sourceTree = "<group>";
@@ -1626,6 +1677,15 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		B009BCE2775D5CDBD487C227 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				197E791B9F6AE1124F016B7E /* CoordinateParser.swift */,
+				15136E99B183661D732A7BDC /* GeographicCoordinate.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
 		B04827E18281AFF6A34FB8B9 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
@@ -1639,6 +1699,16 @@
 				32DAE6574E349860CCECFEDB /* ToolPlatform.swift */,
 			);
 			path = Tools;
+			sourceTree = "<group>";
+		};
+		B4432BF83D941DED6FFD49B1 /* CoordinateTool */ = {
+			isa = PBXGroup;
+			children = (
+				B009BCE2775D5CDBD487C227 /* Domain */,
+				6E0579E0BC398DE310C6F5F6 /* Plugin */,
+				B97F5E29DC8C6E0A43E159BA /* Presentation */,
+			);
+			path = CoordinateTool;
 			sourceTree = "<group>";
 		};
 		B62FD1BF629DBBF2AFA09311 /* App */ = {
@@ -1659,6 +1729,7 @@
 				67AD6E4FC1FF291D652A1AD2 /* ArchiveTool */,
 				7E96DB235EE5D561315670CD /* ClipboardInspector */,
 				3F4DE071BAAD285357C75C55 /* ColorPicker */,
+				B4432BF83D941DED6FFD49B1 /* CoordinateTool */,
 				005F11DDCEE1AE7CF91955EC /* Dashboard */,
 				9B11EA39AA62FB2C2145CECF /* DomainLookup */,
 				5F897A92717AD40C552DDF96 /* HashChecksum */,
@@ -1695,6 +1766,14 @@
 			path = Devices;
 			sourceTree = "<group>";
 		};
+		B97F5E29DC8C6E0A43E159BA /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				36F9C818CF97C2BBB24B895A /* CoordinateToolView.swift */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
 		C2AB3C54B5D6E8B2A868F9DB /* SSHKeys */ = {
 			isa = PBXGroup;
 			children = (
@@ -1704,6 +1783,16 @@
 				ED8809B46550635683EFFC5D /* Presentation */,
 			);
 			path = SSHKeys;
+			sourceTree = "<group>";
+		};
+		C3808C2FAF0CC0DFBEEB2389 /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				1E4C6E8EC175699806203728 /* AppTheme.swift */,
+				6A70A4EF6A2071F51E20C6FB /* AppThemeEnvironment.swift */,
+				A0AF71FA198AA254F99CB390 /* AppThemeStore.swift */,
+			);
+			path = Theme;
 			sourceTree = "<group>";
 		};
 		C3F8CD06F6E5F34258E1B529 /* Swift */ = {
@@ -1717,6 +1806,7 @@
 		C9B49EC7BFFABF29B92D83E7 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C46AB1F160B869DB883DB82C /* AppThemes.json */,
 				231071D124F7E8227E5C6910 /* ToolCatalog.json */,
 				0DF27DFD53CBF45ED2E4BF72 /* Passphrases */,
 			);
@@ -1811,6 +1901,14 @@
 				3210BAF8F538A2B37527C37D /* Presentation */,
 			);
 			path = UnitConverter;
+			sourceTree = "<group>";
+		};
+		E72835D6A5607F7380C82418 /* Panels */ = {
+			isa = PBXGroup;
+			children = (
+				8633C2616FE4985ED8AF4EE4 /* CenteredFilePanel.swift */,
+			);
+			path = Panels;
 			sourceTree = "<group>";
 		};
 		EA04672AF4461F96FC726D59 /* ImageInspector */ = {
@@ -2069,6 +2167,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD1B7DFBF8F083DC42739E71 /* AppThemes.json in Resources */,
 				7E47F0D38B8220ECAD0BC8AF /* Assets.xcassets in Resources */,
 				689DAC7A3AB17A9D51F00763 /* README.md in Resources */,
 				7D7D7BB7D0C0C9678A027981 /* ToolCatalog.json in Resources */,
@@ -2080,6 +2179,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88714C46FBCBE7BC9379E0FD /* AppThemes.json in Resources */,
 				144ACB7AE8F7E6F822B5E058 /* Assets.xcassets in Resources */,
 				47557EE7CF780EA542BFFFDB /* README.md in Resources */,
 				6FB870F049C8534B58935755 /* ToolCatalog.json in Resources */,
@@ -2091,6 +2191,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5C99E985BCE093BA23D38B4 /* AppThemes.json in Resources */,
 				33343032B6985278382D2B70 /* Assets.xcassets in Resources */,
 				88B3ABF663A9B003F15DA00A /* README.md in Resources */,
 				1A39F600AE3AEEFF7B2FF060 /* ToolCatalog.json in Resources */,
@@ -2111,6 +2212,9 @@
 				C42851FFF75E5805EB4A4AB1 /* AppNavigationBar.swift in Sources */,
 				7A403244134E1D0280AC15DD /* AppPreferenceKey.swift in Sources */,
 				6C6E9562FBAB3EB7240A332D /* AppRoute.swift in Sources */,
+				DFE29A9984881655A99D11E8 /* AppTheme.swift in Sources */,
+				28637A75AF40BC7C1F0EA52E /* AppThemeEnvironment.swift in Sources */,
+				9A3352C0D1434A5EE0918BB6 /* AppThemeStore.swift in Sources */,
 				71207C32EFEC0DAA51638CE5 /* ArchiveFormat.swift in Sources */,
 				4B881CA97DBD65573190F4A1 /* ArchiveManager.swift in Sources */,
 				F58E03E37FEECC30CF240F19 /* ArchiveManaging.swift in Sources */,
@@ -2121,6 +2225,7 @@
 				F217F4118DF0BF6AB27F4CE6 /* BinaryTextConverter.swift in Sources */,
 				2792B309E7F20951E538C698 /* BinaryTextEncoding.swift in Sources */,
 				F7E05D135BA00F7075217BA3 /* CapabilityResolving.swift in Sources */,
+				EE94ABD341D1D290518B4EBD /* CenteredFilePanel.swift in Sources */,
 				6E12D1B37FBC4225AA88862F /* ClipboardInspecting.swift in Sources */,
 				60172BF33C2289FB8B5BF75A /* ClipboardInspectorModel.swift in Sources */,
 				FB76A94685B43AFBA3AD9717 /* ClipboardInspectorPlugin.swift in Sources */,
@@ -2131,6 +2236,9 @@
 				436DC795CB56A426093CA214 /* ColorPickerView.swift in Sources */,
 				DA3BB61C85DD54C5F1FB6239 /* CompactToolNavigationView.swift in Sources */,
 				00F31E070C8B80349FD0F304 /* ConversionUnit.swift in Sources */,
+				68EE8B8C84666E529C4656C6 /* CoordinateParser.swift in Sources */,
+				000B3A32499DA4E6EE1482A3 /* CoordinateToolPlugin.swift in Sources */,
+				A3CBD046B9C35E502BB060D9 /* CoordinateToolView.swift in Sources */,
 				3F805199F0FA762910FF800B /* CopyButton.swift in Sources */,
 				22F6A0FCD702FDDB804DB16D /* CoreLocationWiFiScanAuthorizer.swift in Sources */,
 				1684F9540A4986DE674CB9A3 /* CoreWLANWiFiScanner.swift in Sources */,
@@ -2151,6 +2259,7 @@
 				926E5807E87F991D0C182D55 /* EFFPassphraseWordList.swift in Sources */,
 				036F5765D9E157D64C1619F7 /* FoundationJSONFormatter.swift in Sources */,
 				46A9454AE3E2F74919C6AA85 /* GeneratedPassword.swift in Sources */,
+				210414BBF3F0C71F3B5FA354 /* GeographicCoordinate.swift in Sources */,
 				35CE58713D55BDB49C13F1B4 /* GzipCodec.swift in Sources */,
 				D3653F05F4DBBF883891B9E4 /* HashAlgorithm.swift in Sources */,
 				551E57D31CF1302473B897FC /* HashCalculating.swift in Sources */,
@@ -2257,6 +2366,7 @@
 				FD0FED97247E82D1D17AD81E /* ToolPouchLayout.swift in Sources */,
 				D2154FABF5CB21E3E4927357 /* ToolPouchRustEngine.swift in Sources */,
 				54277B652E4ABA2C0DEE5B5F /* ToolRegistry.swift in Sources */,
+				90A07AF9C34CD5EEA0D9A449 /* ToolSearchView.swift in Sources */,
 				AB916832C9B0B40E56E222F9 /* ToolTile.swift in Sources */,
 				E8F60ACE66FFA1FF2BC432AE /* UnitConversionCategory.swift in Sources */,
 				F8CF535CDC74E04C1E1CA79E /* UnitConversionError.swift in Sources */,
@@ -2277,9 +2387,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B9111D5C28739D5F7701BD2 /* AppThemeTests.swift in Sources */,
 				C82090ED9FABCB25267E2C0D /* ArchiveManagerTests.swift in Sources */,
 				AC972BB5590957589627CA89 /* BinaryTextConverterTests.swift in Sources */,
 				9ED4803479688EB1FF3CCE3D /* CapabilityResolverTests.swift in Sources */,
+				EEE63706B02A7D9F2A65E7E8 /* CoordinateParserTests.swift in Sources */,
 				8BA2088EA86DDD3534FFEAD9 /* CryptoKitHashCalculatorTests.swift in Sources */,
 				3FD2A65390E8EF0AFC690EFB /* FoundationJSONFormatterTests.swift in Sources */,
 				56D2097C7DAB1E97A70EA240 /* GzipCodecTests.swift in Sources */,
@@ -2309,6 +2421,9 @@
 				AD8429815FEE1C9573ECE6C5 /* AppNavigationBar.swift in Sources */,
 				E18739CB88A905ACFDCD2F9F /* AppPreferenceKey.swift in Sources */,
 				B5459CE50C22A60532F90047 /* AppRoute.swift in Sources */,
+				8D060038CE29977EFCB9558D /* AppTheme.swift in Sources */,
+				65182F56E30AF4B36E5B733A /* AppThemeEnvironment.swift in Sources */,
+				0CF939775F069B312D885B7A /* AppThemeStore.swift in Sources */,
 				C409E87342A3F53C2B09421D /* ArchiveFormat.swift in Sources */,
 				69905411755902DF57466573 /* ArchiveManager.swift in Sources */,
 				3E6600844300BF5DBF931811 /* ArchiveManaging.swift in Sources */,
@@ -2329,6 +2444,9 @@
 				E8B6F7988F514F127489F31E /* ColorPickerView.swift in Sources */,
 				3A151E6CACAB5C54CA4F28E3 /* CompactToolNavigationView.swift in Sources */,
 				C219C57EE377E7E58DEC0335 /* ConversionUnit.swift in Sources */,
+				8D041527773F6B912B9C1A53 /* CoordinateParser.swift in Sources */,
+				035C82001FF5F56B9BA72711 /* CoordinateToolPlugin.swift in Sources */,
+				73959D4C16CC6DC5BD9C4C51 /* CoordinateToolView.swift in Sources */,
 				1D90E7D32D616F296A3533BA /* CopyButton.swift in Sources */,
 				F75870C3F3DD07FD47369ACE /* CoreLocationWiFiScanAuthorizer.swift in Sources */,
 				BB5B2C643DEA11B05A613C00 /* CoreWLANWiFiScanner.swift in Sources */,
@@ -2349,6 +2467,7 @@
 				44B3514016D29F3F0313DDA1 /* EFFPassphraseWordList.swift in Sources */,
 				C16892C195AEF088DF5249F0 /* FoundationJSONFormatter.swift in Sources */,
 				549882CA40A80250C9A64AFE /* GeneratedPassword.swift in Sources */,
+				2A0D41734D8A13E459E43DE3 /* GeographicCoordinate.swift in Sources */,
 				F5AD57B5D412ADDB691140B4 /* GzipCodec.swift in Sources */,
 				B7CE3513319C50B023E854BE /* HashAlgorithm.swift in Sources */,
 				5EBC0281BE258D7D3AECBF9A /* HashCalculating.swift in Sources */,
@@ -2450,6 +2569,7 @@
 				31270D267C182E8D5B5F91AC /* ToolPouchMobileApp.swift in Sources */,
 				DA3D755FE9D020BBA77299C7 /* ToolPouchRustEngine.swift in Sources */,
 				1298E0EDE0747AAB683C6FFA /* ToolRegistry.swift in Sources */,
+				124E84752F62EB773C5A4CB8 /* ToolSearchView.swift in Sources */,
 				BEBA1D76B84D403A7E1BCC73 /* ToolTile.swift in Sources */,
 				118ACFF0688525486D41C184 /* UnitConversionCategory.swift in Sources */,
 				DC99EC45B51AA7543D95A328 /* UnitConversionError.swift in Sources */,
@@ -2483,6 +2603,9 @@
 				A79A953BF171341F1B00ED43 /* AppNavigationBar.swift in Sources */,
 				ABC3CE4504C17DF3AB30D9AA /* AppPreferenceKey.swift in Sources */,
 				FF0DB948F6336E5D61AE54DC /* AppRoute.swift in Sources */,
+				60BE3C620549A72B3CC18004 /* AppTheme.swift in Sources */,
+				9C366879999D6D042625715A /* AppThemeEnvironment.swift in Sources */,
+				3110301565E3EA706771C0CC /* AppThemeStore.swift in Sources */,
 				16FD8BF7A1329A9C951869D1 /* ArchiveFormat.swift in Sources */,
 				2079D5226A47851CBEA003AE /* ArchiveManager.swift in Sources */,
 				0DA2D925EAAEDC99A136F994 /* ArchiveManaging.swift in Sources */,
@@ -2594,6 +2717,7 @@
 				EB3832E54696325C45D9CB7E /* ToolPouchLayout.swift in Sources */,
 				DE68615AD1B77F5C4D50AA12 /* ToolPouchWatchApp.swift in Sources */,
 				0B532B50DF7FAAA4A6C72A50 /* ToolRegistry.swift in Sources */,
+				D01EED8185394F8C78A52AC5 /* ToolSearchView.swift in Sources */,
 				3422B535E9360FB1E460194C /* ToolTile.swift in Sources */,
 				19341FECB19C54C41615437F /* UnitConversionCategory.swift in Sources */,
 				62F2D3381FFD68B9B6ED2BDE /* UnitConversionError.swift in Sources */,

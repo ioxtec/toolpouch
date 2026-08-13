@@ -5,6 +5,7 @@ import SwiftData
 struct AppDependencies {
     let toolRegistry: ToolRegistry
     let quickAccessPreferences: QuickAccessPreferences
+    let themeStore: AppThemeStore
     let currentDeviceProvider: any CurrentDeviceProviding
     let deviceStore: any DeviceStoring
     let networkCollector: any NetworkInfoCollecting
@@ -25,6 +26,7 @@ struct AppDependencies {
                     .map(\.id),
                 maximumCount: toolRegistry.quickAccessMaximumCount
             ),
+            themeStore: AppThemeStore(),
             currentDeviceProvider: SystemDeviceProvider(),
             deviceStore: DeviceRepository(modelContext: modelContainer.mainContext),
             networkCollector: NetworkInfoCollector(),

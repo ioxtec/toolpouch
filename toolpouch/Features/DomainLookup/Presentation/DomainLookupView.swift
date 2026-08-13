@@ -124,6 +124,7 @@ private struct DomainRegistrationView: View {
             #endif
         }
         #if !os(watchOS)
+        #if !os(macOS)
         .fileExporter(
             isPresented: $isExportingResponse,
             document: RDAPJSONDocument(content: registration.rawResponse),
@@ -135,6 +136,7 @@ private struct DomainRegistrationView: View {
                 isShowingExportError = true
             }
         }
+        #endif
         .alert("Unable to Save Response", isPresented: $isShowingExportError) {
             Button("OK", role: .cancel) {}
         } message: {
@@ -265,7 +267,11 @@ private struct DomainRegistrationView: View {
                 }
 
                 Button {
+                    #if os(macOS)
+                    saveResponse()
+                    #else
                     isExportingResponse = true
+                    #endif
                 } label: {
                     Image(systemName: "arrow.down.circle")
                         .toolPouchIcon(.medium, weight: .medium)
@@ -289,6 +295,23 @@ private struct DomainRegistrationView: View {
     private func format(_ date: Date) -> String {
         date.formatted(date: .abbreviated, time: .omitted)
     }
+
+    #if os(macOS)
+    private func saveResponse() {
+        guard let url = CenteredFilePanel.chooseSaveURL(
+            title: "Save RDAP Response",
+            allowedContentTypes: [.json],
+            suggestedFilename: "\(registration.name.lowercased())-rdap.json"
+        ) else { return }
+
+        do {
+            try Data(registration.rawResponse.utf8).write(to: url, options: .atomic)
+        } catch {
+            exportErrorMessage = error.localizedDescription
+            isShowingExportError = true
+        }
+    }
+    #endif
 }
 
 #if !os(watchOS)

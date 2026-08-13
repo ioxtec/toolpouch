@@ -6,6 +6,19 @@ struct CompactToolNavigationView: View {
     let close: (() -> Void)?
 
     @State private var path: [AppRoute] = []
+    @State private var searchQuery = ""
+
+    private var density: ToolPouchContentDensity {
+        showsPersistentNavigationBar ? .compact : .regular
+    }
+
+    private var categories: [ToolCategory] {
+        dependencies.toolRegistry.categories(for: .current)
+    }
+
+    private var availableTools: [ToolDefinition] {
+        dependencies.toolRegistry.tools(for: .current)
+    }
 
     init(
         dependencies: AppDependencies,
@@ -25,20 +38,32 @@ struct CompactToolNavigationView: View {
                     isAtHome: path.isEmpty,
                     goBack: goBack,
                     goHome: goHome,
-                    close: close
+                    close: close,
+                    density: density
                 )
-                Divider()
+
+                ToolSearchField(query: $searchQuery)
             }
 
             NavigationStack(path: $path) {
-                DashboardView(
-                    categories: dependencies.toolRegistry.categories(for: .current),
-                    availableTools: dependencies.toolRegistry.tools(for: .current),
-                    quickAccessPreferences: dependencies.quickAccessPreferences,
-                    selectTool: { tool in
-                        path.append(.tool(tool.id))
+                Group {
+                    if showsPersistentNavigationBar && !searchQuery.isEmpty {
+                        ToolSearchResultsView(
+                            query: searchQuery,
+                            tools: availableTools,
+                            categories: categories,
+                            selectTool: select
+                        )
+                    } else {
+                        DashboardView(
+                            categories: categories,
+                            availableTools: availableTools,
+                            quickAccessPreferences: dependencies.quickAccessPreferences,
+                            density: density,
+                            selectTool: select
+                        )
                     }
-                )
+                }
                 .navigationDestination(for: AppRoute.self) { route in
                     destination(for: route)
                 }
@@ -67,7 +92,8 @@ struct CompactToolNavigationView: View {
                     tools: dependencies.toolRegistry.tools(
                         in: categoryID,
                         for: .current
-                    )
+                    ),
+                    density: density
                 )
                 .navigationTitle(category.title)
             }
@@ -91,5 +117,11 @@ struct CompactToolNavigationView: View {
 
     private func goHome() {
         path.removeAll()
+        searchQuery = ""
+    }
+
+    private func select(_ tool: ToolDefinition) {
+        searchQuery = ""
+        path.append(.tool(tool.id))
     }
 }

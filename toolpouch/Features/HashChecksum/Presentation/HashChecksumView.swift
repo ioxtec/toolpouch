@@ -46,12 +46,14 @@ struct HashChecksumView: View {
         .task(id: request) {
             await calculateHash()
         }
+        #if !os(macOS)
         .fileImporter(
             isPresented: $isSelectingFile,
             allowedContentTypes: [.item],
             allowsMultipleSelection: false,
             onCompletion: handleFileSelection
         )
+        #endif
     }
 
     private var hashPanel: some View {
@@ -131,7 +133,16 @@ struct HashChecksumView: View {
 
     private var fileInputSection: some View {
         Button {
+            #if os(macOS)
+            if let url = CenteredFilePanel.chooseFile(
+                title: "Choose a File",
+                message: "Select a file to calculate its checksum."
+            ) {
+                selectedFileURL = url
+            }
+            #else
             isSelectingFile = true
+            #endif
         } label: {
             VStack(spacing: 10) {
                 Image(systemName: selectedFileURL == nil ? "doc.badge.plus" : "doc")

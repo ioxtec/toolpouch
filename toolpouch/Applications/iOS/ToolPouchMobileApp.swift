@@ -16,6 +16,8 @@ struct ToolPouchMobileApp: App {
     var body: some Scene {
         WindowGroup {
             AdaptiveMobileRootView(dependencies: dependencies)
+                .environmentObject(dependencies.themeStore)
+                .toolPouchTheme(dependencies.themeStore)
         }
         .modelContainer(modelContainer)
     }

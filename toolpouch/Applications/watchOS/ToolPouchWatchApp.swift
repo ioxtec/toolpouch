@@ -16,6 +16,8 @@ struct ToolPouchWatchApp: App {
     var body: some Scene {
         WindowGroup {
             WatchRootView(dependencies: dependencies)
+                .environmentObject(dependencies.themeStore)
+                .toolPouchTheme(dependencies.themeStore)
         }
         .modelContainer(modelContainer)
     }

@@ -53,6 +53,8 @@ final class StatusItemController: NSObject, NSMenuDelegate {
                     self?.closePopover()
                 }
             )
+            .environmentObject(dependencies.themeStore)
+            .toolPouchTheme(dependencies.themeStore)
         )
         hostingController.onCancel = { [weak self] in
             self?.closePopover()

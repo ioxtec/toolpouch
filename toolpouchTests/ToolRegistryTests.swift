@@ -127,6 +127,18 @@ struct ToolRegistryTests {
     }
 
     @Test
+    func coordinateToolIsAvailableOnMacOSAndIOS() {
+        #expect(
+            registry.tool(id: .coordinateTool)?.supportedPlatforms
+                == [.macOS, .iOS]
+        )
+        #expect(
+            !registry.tools(in: .everyday, for: .watchOS)
+                .contains { $0.id == .coordinateTool }
+        )
+    }
+
+    @Test
     func jsonToolkitIsAvailableOnMacOSAndIOS() {
         #expect(
             registry.tool(id: .jsonToolkit)?.supportedPlatforms

@@ -1,7 +1,15 @@
 import SwiftUI
 
 struct PlatformAvailabilityBadges: View {
+    @Environment(\.appTheme) private var theme
+
     let platforms: Set<ToolPlatform>
+    let compact: Bool
+
+    init(platforms: Set<ToolPlatform>, compact: Bool = false) {
+        self.platforms = platforms
+        self.compact = compact
+    }
 
     private var sortedPlatforms: [ToolPlatform] {
         ToolPlatform.allCases.filter(platforms.contains)
@@ -9,8 +17,10 @@ struct PlatformAvailabilityBadges: View {
 
     var body: some View {
         ViewThatFits(in: .horizontal) {
-            HStack(spacing: 5) {
-                badges(showsText: true)
+            if !compact {
+                HStack(spacing: 5) {
+                    badges(showsText: true)
+                }
             }
 
             HStack(spacing: 5) {
@@ -32,10 +42,10 @@ struct PlatformAvailabilityBadges: View {
                 }
             }
             .font(.caption2.weight(.medium))
-            .foregroundStyle(.secondary)
-            .padding(.horizontal, 7)
-            .padding(.vertical, 4)
-            .background(.secondary.opacity(0.12), in: .capsule)
+            .foregroundStyle(theme.colors.secondaryText.color)
+            .padding(.horizontal, compact ? 6 : 7)
+            .padding(.vertical, compact ? 3 : 4)
+            .background(theme.colors.elevatedSurface.color, in: .capsule)
         }
     }
 

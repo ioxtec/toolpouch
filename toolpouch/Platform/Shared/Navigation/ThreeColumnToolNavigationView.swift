@@ -1,11 +1,15 @@
 import SwiftUI
 
 struct ThreeColumnToolNavigationView: View {
+    @Environment(\.appTheme) private var theme
+
     let dependencies: AppDependencies
 
     @State private var selectedCategoryID: ToolCategory.ID?
     @State private var selectedToolID: ToolDefinition.ID?
     @State private var columnVisibility: NavigationSplitViewVisibility = .all
+
+    private let quickAccessHeaderHeight: CGFloat = 45
 
     private var categories: [ToolCategory] {
         dependencies.toolRegistry.categories(for: .current)
@@ -20,21 +24,29 @@ struct ThreeColumnToolNavigationView: View {
     }
 
     var body: some View {
+        navigation
+            .overlay(alignment: .top) {
+                quickAccessHeader
+            }
+    }
+
+    private var quickAccessHeader: some View {
         VStack(spacing: 0) {
             QuickAccessBar(
                 availableTools: dependencies.toolRegistry.tools(for: .current),
                 savedToolIDs: dependencies.quickAccessPreferences.toolIDs,
                 maximumCount: dependencies.quickAccessPreferences.maximumCount,
                 selectTool: select,
-                save: dependencies.quickAccessPreferences.save
+                save: dependencies.quickAccessPreferences.save,
+                density: .compact
             )
             .padding(.horizontal, ToolPouchLayout.Content.padding)
-            .padding(.vertical, 6)
+            .padding(.vertical, 5)
+            .background(theme.colors.elevatedSurface.color)
 
             Divider()
-
-            navigation
         }
+        .frame(height: quickAccessHeaderHeight)
     }
 
     private var navigation: some View {
@@ -49,14 +61,34 @@ struct ThreeColumnToolNavigationView: View {
             }
             .navigationTitle("ToolPouch")
             .navigationSplitViewColumnWidth(min: 190, ideal: 220)
+            .padding(.top, quickAccessHeaderHeight)
+            .scrollContentBackground(.hidden)
+            .background(theme.colors.surface.color)
         } content: {
             Group {
                 if let category = selectedCategory {
-                    List(tools, selection: $selectedToolID) { tool in
-                        ToolListRow(tool: tool)
-                            .tag(tool.id)
+                    ScrollView {
+                        LazyVStack(spacing: 8) {
+                            ForEach(tools) { tool in
+                                Button {
+                                    selectedToolID = tool.id
+                                } label: {
+                                    ToolTile(
+                                        title: tool.title,
+                                        description: tool.description,
+                                        systemImage: tool.systemImage,
+                                        supportedPlatforms: tool.supportedPlatforms,
+                                        density: .compact,
+                                        isSelected: selectedToolID == tool.id
+                                    )
+                                }
+                                .buttonStyle(.plain)
+                            }
+                        }
+                        .padding(10)
                     }
                     .navigationTitle(category.title)
+                    .background(theme.colors.elevatedSurface.color)
                 } else {
                     ContentUnavailableView(
                         "Choose a Section",
@@ -64,9 +96,12 @@ struct ThreeColumnToolNavigationView: View {
                     )
                 }
             }
+            .padding(.top, quickAccessHeaderHeight)
             .navigationSplitViewColumnWidth(min: 230, ideal: 290)
         } detail: {
             detail
+                .padding(.top, quickAccessHeaderHeight)
+                .background(theme.colors.background.color)
         }
         .onChange(of: selectedCategoryID) {
             if !tools.contains(where: { $0.id == selectedToolID }) {
@@ -109,31 +144,5 @@ struct ThreeColumnToolNavigationView: View {
                 description: Text("Select a tool from the middle column.")
             )
         }
-    }
-}
-
-private struct ToolListRow: View {
-    let tool: ToolDefinition
-
-    var body: some View {
-        HStack(spacing: 12) {
-            Image(systemName: tool.systemImage)
-                .toolPouchIcon(.medium)
-                .frame(width: 28)
-
-            VStack(alignment: .leading, spacing: 2) {
-                Text(tool.title)
-                    .font(.headline)
-                Text(tool.description)
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-                    .lineLimit(2)
-
-                PlatformAvailabilityBadges(
-                    platforms: tool.supportedPlatforms
-                )
-            }
-        }
-        .padding(.vertical, 4)
     }
 }

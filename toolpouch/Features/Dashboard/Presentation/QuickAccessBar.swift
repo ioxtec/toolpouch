@@ -2,11 +2,30 @@ import SwiftUI
 import UniformTypeIdentifiers
 
 struct QuickAccessBar: View {
+    @Environment(\.appTheme) private var theme
+
     let availableTools: [ToolDefinition]
     let savedToolIDs: [ToolDefinition.ID]
     let maximumCount: Int
     let selectTool: (ToolDefinition) -> Void
     let save: ([ToolDefinition.ID]) -> Void
+    let density: ToolPouchContentDensity
+
+    init(
+        availableTools: [ToolDefinition],
+        savedToolIDs: [ToolDefinition.ID],
+        maximumCount: Int,
+        selectTool: @escaping (ToolDefinition) -> Void,
+        save: @escaping ([ToolDefinition.ID]) -> Void,
+        density: ToolPouchContentDensity = .regular
+    ) {
+        self.availableTools = availableTools
+        self.savedToolIDs = savedToolIDs
+        self.maximumCount = maximumCount
+        self.selectTool = selectTool
+        self.save = save
+        self.density = density
+    }
 
     @Namespace private var glassNamespace
     @State private var draftToolIDs: [ToolDefinition.ID] = []
@@ -64,7 +83,9 @@ struct QuickAccessBar: View {
                 .scrollIndicators(.never)
             }
 
-            hoverLabel
+            if density == .regular || isEditing {
+                hoverLabel
+            }
         }
         .onAppear {
             draftToolIDs = savedToolIDs
@@ -173,7 +194,7 @@ struct QuickAccessBar: View {
             }
         }
         .font(.caption.weight(.medium))
-        .foregroundStyle(.secondary)
+        .foregroundStyle(theme.colors.secondaryText.color)
         .lineLimit(1)
         .frame(height: 18)
         .padding(.horizontal, 4)
@@ -192,7 +213,7 @@ struct QuickAccessBar: View {
                 .contentShape(.circle)
         }
         .buttonStyle(.plain)
-        .foregroundStyle(.secondary)
+        .foregroundStyle(theme.colors.secondaryText.color)
         .disabled(!canAddTool)
         .help(
             canAddTool
@@ -224,7 +245,11 @@ struct QuickAccessBar: View {
                 .contentShape(.circle)
         }
         .buttonStyle(.plain)
-        .foregroundStyle(isEditing ? Color.accentColor : Color.secondary)
+        .foregroundStyle(
+            isEditing
+                ? theme.colors.primaryAccent.color
+                : theme.colors.secondaryText.color
+        )
         .help(isEditing ? "Save Quick Access" : "Edit Quick Access")
         .accessibilityLabel(
             isEditing ? "Save Quick Access" : "Edit Quick Access"
@@ -318,7 +343,7 @@ private struct QuickAccessToolButton: View {
                     .contentShape(.circle)
             }
             .buttonStyle(.plain)
-            .glassEffect(.regular.interactive(), in: .circle)
+            .toolPouchCircleSurface()
             .glassEffectID(tool.id.rawValue, in: glassNamespace)
             #if os(macOS) || os(iOS)
             .onHover(perform: hoverChanged)

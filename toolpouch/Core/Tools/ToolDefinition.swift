@@ -71,6 +71,7 @@ extension ToolDefinition.ID {
     static let imageInspector = Self(rawValue: "com.toolpouch.image-inspector")
     static let colorPicker = Self(rawValue: "com.toolpouch.color-picker")
     static let archiveTool = Self(rawValue: "com.toolpouch.archive-tool")
+    static let coordinateTool = Self(rawValue: "com.toolpouch.coordinate-tool")
 
     /// Decodes identifiers persisted by versions released before tools used
     /// reverse-DNS identifiers. Unknown values remain decodable so removing a
@@ -95,5 +96,6 @@ extension ToolDefinition.ID {
         "imageInspector": .imageInspector,
         "colorPicker": .colorPicker,
         "archiveTool": .archiveTool,
+        "coordinateTool": .coordinateTool,
     ]
 }

@@ -6,6 +6,8 @@ final class MainWindowController: NSWindowController {
     init(dependencies: AppDependencies) {
         let rootView = ThreeColumnToolNavigationView(dependencies: dependencies)
             .frame(minWidth: 900, minHeight: 560)
+            .environmentObject(dependencies.themeStore)
+            .toolPouchTheme(dependencies.themeStore)
 
         let window = NSWindow(
             contentRect: NSRect(x: 0, y: 0, width: 1160, height: 720),

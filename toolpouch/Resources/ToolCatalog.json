@@ -18,7 +18,7 @@
       "description": "Useful tools for daily tasks",
       "systemImage": "sparkles",
       "supportedPlatforms": ["macOS", "iOS", "watchOS"],
-      "toolOrder": ["com.toolpouch.unit-converter", "com.toolpouch.archive-tool"]
+      "toolOrder": ["com.toolpouch.unit-converter", "com.toolpouch.coordinate-tool", "com.toolpouch.archive-tool"]
     },
     {
       "id": "network",

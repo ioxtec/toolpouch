@@ -18,6 +18,8 @@ struct ToolPouchApp: App {
     var body: some Scene {
         Settings {
             SettingsView()
+                .environmentObject(dependencies.themeStore)
+                .toolPouchTheme(dependencies.themeStore)
         }
         .modelContainer(modelContainer)
     }
