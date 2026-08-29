@@ -504,6 +504,8 @@ private struct QuickCopyNavigationCard: View {
 }
 
 private struct QuickCopySnippetCard: View {
+    @Environment(\.appTheme) private var theme
+
     let snippet: QuickCopySnippetRecord
     let toggleFavorite: () -> Void
     let edit: () -> Void
@@ -561,7 +563,7 @@ private struct QuickCopySnippetCard: View {
 
             HStack(alignment: .top, spacing: 10) {
                 Text(snippet.content)
-                    .font(.body.monospaced())
+                    .font(.system(.callout, design: .monospaced))
                     .frame(maxWidth: .infinity, alignment: .topLeading)
                     .fixedSize(horizontal: false, vertical: true)
                     #if !os(watchOS)
@@ -574,6 +576,10 @@ private struct QuickCopySnippetCard: View {
             }
             .padding(12)
             .background(.quaternary, in: RoundedRectangle(cornerRadius: 10))
+            .overlay {
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(theme.colors.border.color.opacity(0.8), lineWidth: 1)
+            }
 
             #if os(watchOS)
             Text("Open this note on iPhone or Mac to copy it.")
