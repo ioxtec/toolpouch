@@ -18,6 +18,9 @@ struct QuickCopyNotesView: View {
 
     var body: some View {
         VStack(spacing: 0) {
+            if !breadcrumbTrail.isEmpty {
+                breadcrumb
+            }
             header
             Divider()
             content
@@ -63,6 +66,62 @@ struct QuickCopyNotesView: View {
     private var selectedCollection: QuickCopyCollectionRecord? {
         guard case let .snippets(_, collectionID) = screen else { return nil }
         return selectedFolder?.collections?.first { $0.id == collectionID }
+    }
+
+    private struct BreadcrumbItem {
+        let title: String
+        let action: (() -> Void)?
+    }
+
+    private var breadcrumbTrail: [BreadcrumbItem] {
+        switch screen {
+        case .folders:
+            return []
+        case .collections:
+            return [
+                BreadcrumbItem(title: "Quick Copy Notes", action: { screen = .folders }),
+                BreadcrumbItem(title: selectedFolder?.title ?? "Folder", action: nil)
+            ]
+        case let .snippets(folderID, _):
+            return [
+                BreadcrumbItem(title: "Quick Copy Notes", action: { screen = .folders }),
+                BreadcrumbItem(
+                    title: selectedFolder?.title ?? "Folder",
+                    action: { screen = .collections(folderID: folderID) }
+                ),
+                BreadcrumbItem(title: selectedCollection?.title ?? "Collection", action: nil)
+            ]
+        }
+    }
+
+    private var breadcrumb: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: 4) {
+                ForEach(Array(breadcrumbTrail.enumerated()), id: \.offset) { index, item in
+                    if index > 0 {
+                        Image(systemName: "chevron.right")
+                            .font(.caption2)
+                            .foregroundStyle(.tertiary)
+                    }
+                    if let action = item.action {
+                        Button(action: action) {
+                            Text(item.title)
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                                .lineLimit(1)
+                        }
+                        .buttonStyle(.plain)
+                    } else {
+                        Text(item.title)
+                            .font(.caption.weight(.medium))
+                            .foregroundStyle(.primary)
+                            .lineLimit(1)
+                    }
+                }
+            }
+            .padding(.horizontal, ToolPouchLayout.Content.padding)
+        }
+        .padding(.top, 8)
     }
 
     private var header: some View {
@@ -136,7 +195,7 @@ struct QuickCopyNotesView: View {
             )
         } else {
             ScrollView {
-                LazyVStack(spacing: 10) {
+                LazyVStack(spacing: 8) {
                     ForEach(sortedFolders) { folder in
                         QuickCopyNavigationCard(
                             title: folder.title,
@@ -182,7 +241,7 @@ struct QuickCopyNotesView: View {
                 )
             } else {
                 ScrollView {
-                    LazyVStack(spacing: 10) {
+                    LazyVStack(spacing: 8) {
                         ForEach(collections) { collection in
                             QuickCopyNavigationCard(
                                 title: collection.title,
@@ -240,7 +299,7 @@ struct QuickCopyNotesView: View {
                 )
             } else {
                 ScrollView {
-                    LazyVStack(spacing: 12) {
+                    LazyVStack(spacing: 8) {
                         ForEach(snippets) { snippet in
                             QuickCopySnippetCard(
                                 snippet: snippet,
@@ -432,6 +491,8 @@ struct QuickCopyNotesView: View {
 }
 
 private struct QuickCopyNavigationCard: View {
+    @Environment(\.appTheme) private var theme
+
     let title: String
     let details: String
     let countText: String
@@ -441,27 +502,30 @@ private struct QuickCopyNavigationCard: View {
     let delete: () -> Void
 
     var body: some View {
-        HStack(spacing: 12) {
+        HStack(spacing: 10) {
             Button(action: open) {
-                HStack(spacing: 12) {
+                HStack(spacing: 10) {
                     Image(systemName: systemImage)
-                        .toolPouchIcon(.large)
+                        .toolPouchIcon(.medium)
                         .foregroundStyle(Color.accentColor)
-                        .frame(width: 30)
+                        .frame(width: 22)
 
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text(title)
-                            .font(.headline)
-                            .foregroundStyle(.primary)
+                    VStack(alignment: .leading, spacing: 1) {
+                        HStack(spacing: 6) {
+                            Text(title)
+                                .font(.subheadline.weight(.medium))
+                                .foregroundStyle(.primary)
+                                .lineLimit(1)
+                            Text(countText)
+                                .font(.caption2)
+                                .foregroundStyle(.secondary)
+                        }
                         if !details.isEmpty {
                             Text(details)
-                                .font(.caption)
+                                .font(.caption2)
                                 .foregroundStyle(.secondary)
-                                .lineLimit(2)
+                                .lineLimit(1)
                         }
-                        Text(countText)
-                            .font(.caption2)
-                            .foregroundStyle(.secondary)
                     }
 
                     Spacer(minLength: 8)
@@ -498,8 +562,9 @@ private struct QuickCopyNavigationCard: View {
             .accessibilityLabel("Actions for \(title)")
             #endif
         }
-        .padding(14)
-        .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 14))
+        .padding(.horizontal, 12)
+        .padding(.vertical, 10)
+        .background(theme.colors.interactiveSurface.color, in: RoundedRectangle(cornerRadius: 12))
     }
 }
 
@@ -512,16 +577,16 @@ private struct QuickCopySnippetCard: View {
     let delete: () -> Void
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            HStack(alignment: .top, spacing: 8) {
-                VStack(alignment: .leading, spacing: 3) {
-                    Text(snippet.title)
-                        .font(.headline)
-                    if !snippet.details.isEmpty {
-                        Text(snippet.details)
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
-                    }
+        VStack(alignment: .leading, spacing: 6) {
+            HStack(alignment: .firstTextBaseline, spacing: 8) {
+                Text(snippet.title)
+                    .font(.subheadline.weight(.medium))
+                    .lineLimit(1)
+                if !snippet.details.isEmpty {
+                    Text(snippet.details)
+                        .font(.caption2)
+                        .foregroundStyle(.secondary)
+                        .lineLimit(1)
                 }
 
                 Spacer(minLength: 8)
@@ -561,11 +626,12 @@ private struct QuickCopySnippetCard: View {
                 #endif
             }
 
-            HStack(alignment: .top, spacing: 10) {
+            HStack(alignment: .top, spacing: 8) {
                 Text(snippet.content)
-                    .font(.system(.callout, design: .monospaced))
+                    .font(.system(.footnote, design: .monospaced))
+                    .lineLimit(4)
+                    .truncationMode(.tail)
                     .frame(maxWidth: .infinity, alignment: .topLeading)
-                    .fixedSize(horizontal: false, vertical: true)
                     #if !os(watchOS)
                     .textSelection(.enabled)
                     #endif
@@ -574,12 +640,8 @@ private struct QuickCopySnippetCard: View {
                 CopyButton(value: snippet.content)
                 #endif
             }
-            .padding(12)
-            .background(.quaternary, in: RoundedRectangle(cornerRadius: 10))
-            .overlay {
-                RoundedRectangle(cornerRadius: 10)
-                    .stroke(theme.colors.border.color.opacity(0.8), lineWidth: 1)
-            }
+            .padding(8)
+            .background(theme.colors.elevatedSurface.color, in: RoundedRectangle(cornerRadius: 8))
 
             #if os(watchOS)
             Text("Open this note on iPhone or Mac to copy it.")
@@ -587,9 +649,10 @@ private struct QuickCopySnippetCard: View {
                 .foregroundStyle(.secondary)
             #endif
         }
-        .padding(14)
+        .padding(.horizontal, 12)
+        .padding(.vertical, 10)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 14))
+        .background(theme.colors.interactiveSurface.color, in: RoundedRectangle(cornerRadius: 12))
     }
 }
 
