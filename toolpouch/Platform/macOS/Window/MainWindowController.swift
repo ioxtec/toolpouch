@@ -1,4 +1,5 @@
 import AppKit
+import SwiftData
 import SwiftUI
 
 @MainActor
@@ -8,6 +9,7 @@ final class MainWindowController: NSWindowController {
             .frame(minWidth: 900, minHeight: 560)
             .environmentObject(dependencies.themeStore)
             .toolPouchTheme(dependencies.themeStore)
+            .modelContainer(dependencies.modelContainer)
 
         let window = NSWindow(
             contentRect: NSRect(x: 0, y: 0, width: 1160, height: 720),

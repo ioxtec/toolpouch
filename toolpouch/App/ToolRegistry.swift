@@ -139,11 +139,13 @@ extension ToolRegistry {
     private static var livePlugins: [any ToolPlugin] {
         var plugins: [any ToolPlugin] = [
             UnitConverterPlugin(),
+            QuickCopyNotesPlugin(),
             NetworkInfoPlugin(),
             DomainLookupPlugin(),
             PasswordGeneratorPlugin(),
             TextEncoderPlugin(),
             ArchiveToolPlugin(),
+            SystemStatsPlugin(),
         ]
         #if !os(watchOS)
         plugins.append(CoordinateToolPlugin())
@@ -155,6 +157,7 @@ extension ToolRegistry {
         #if os(macOS)
         plugins.append(ClipboardInspectorPlugin())
         plugins.append(ColorPickerPlugin())
+        plugins.append(MediaFileInfoPlugin())
         plugins.append(WiFiScannerPlugin())
         plugins.append(SSHKeysPlugin())
         #endif

@@ -41,6 +41,7 @@ nonisolated struct ToolCategory: Hashable, Identifiable, Sendable {
 
 extension ToolCategory.ID {
     static let everyday = Self(rawValue: "everyday")
+    static let system = Self(rawValue: "system")
     static let network = Self(rawValue: "network")
     static let passwords = Self(rawValue: "passwords")
     static let clipboard = Self(rawValue: "clipboard")

@@ -4,6 +4,7 @@ import AppKit
 #endif
 
 struct SettingsView: View {
+    private let appVersion = AppVersionInfo.current
     @EnvironmentObject private var themeStore: AppThemeStore
     @AppStorage(AppPreferenceKey.refreshNetworkInfoOnOpen)
     private var refreshNetworkInfoOnOpen = true
@@ -78,9 +79,18 @@ struct SettingsView: View {
                 }
             }
             #endif
+
+            Section("About") {
+                LabeledContent("Version", value: appVersion.version)
+                LabeledContent("Build", value: appVersion.build)
+
+                Text("Release versions follow semantic versioning. The build number increases with every App Store upload.")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
         }
         .formStyle(.grouped)
-        .frame(width: 520, height: 460)
+        .frame(width: 520, height: 540)
         .navigationTitle("Settings")
         #if os(macOS)
         .onAppear { screenCapturePermission.refresh() }

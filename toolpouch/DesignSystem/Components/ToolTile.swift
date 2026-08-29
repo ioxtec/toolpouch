@@ -10,6 +10,7 @@ struct ToolTile: View {
     let supportedPlatforms: Set<ToolPlatform>?
     let density: ToolPouchContentDensity
     let isSelected: Bool
+    let badgeValue: Int?
 
     init(
         title: String,
@@ -17,7 +18,8 @@ struct ToolTile: View {
         systemImage: String,
         supportedPlatforms: Set<ToolPlatform>? = nil,
         density: ToolPouchContentDensity = .regular,
-        isSelected: Bool = false
+        isSelected: Bool = false,
+        badgeValue: Int? = nil
     ) {
         self.title = title
         self.description = description
@@ -25,6 +27,7 @@ struct ToolTile: View {
         self.supportedPlatforms = supportedPlatforms
         self.density = density
         self.isSelected = isSelected
+        self.badgeValue = badgeValue
     }
 
     @ViewBuilder
@@ -66,6 +69,10 @@ struct ToolTile: View {
             }
 
             Spacer(minLength: 2)
+
+            if let badgeValue {
+                countBadge(badgeValue)
+            }
         }
         .padding(.leading, 7)
         .padding(.trailing, 10)
@@ -100,7 +107,7 @@ struct ToolTile: View {
         #endif
         .accessibilityElement(children: .combine)
         .accessibilityLabel(title)
-        .accessibilityHint(description)
+        .accessibilityHint(accessibilityHint)
     }
 
     private var regularTile: some View {
@@ -115,6 +122,12 @@ struct ToolTile: View {
                 Text(title)
                     .font(.headline)
                     .lineLimit(1)
+
+                Spacer(minLength: 4)
+
+                if let badgeValue {
+                    countBadge(badgeValue)
+                }
             }
 
             Text(description)
@@ -137,12 +150,34 @@ struct ToolTile: View {
         .toolPouchSurface(interactive: true)
         .accessibilityElement(children: .combine)
         .accessibilityLabel(title)
-        .accessibilityHint(description)
+        .accessibilityHint(accessibilityHint)
     }
 
     private var regularMinimumHeight: CGFloat {
         return supportedPlatforms == nil
             ? ToolPouchLayout.Tile.minimumHeight
             : ToolPouchLayout.Tile.minimumHeightWithPlatforms
+    }
+
+    private func countBadge(_ value: Int) -> some View {
+        Text(value.formatted())
+            .font(.caption2.monospacedDigit().weight(.bold))
+            .foregroundStyle(theme.colors.primaryAccent.color)
+            .padding(.horizontal, 7)
+            .frame(minWidth: 24, minHeight: 24)
+            .background(
+                theme.colors.primaryAccent.color.opacity(isHovering ? 0.22 : 0.14),
+                in: Capsule()
+            )
+            .overlay {
+                Capsule()
+                    .stroke(theme.colors.primaryAccent.color.opacity(0.3), lineWidth: 1)
+            }
+            .accessibilityLabel("\(value) tools")
+    }
+
+    private var accessibilityHint: String {
+        guard let badgeValue else { return description }
+        return "\(description) \(badgeValue) tools."
     }
 }

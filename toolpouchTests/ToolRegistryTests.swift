@@ -83,9 +83,26 @@ struct ToolRegistryTests {
     }
 
     @Test
+    func systemStatsIsAvailableOnEveryPlatform() {
+        #expect(
+            registry.tool(id: .systemStats)?.supportedPlatforms
+                == Set(ToolPlatform.allCases)
+        )
+        #expect(registry.tools(in: .system, for: .watchOS).map(\.id) == [.systemStats])
+    }
+
+    @Test
     func unitConverterIsAvailableOnEveryPlatform() {
         #expect(
             registry.tool(id: .unitConverter)?.supportedPlatforms
+                == Set(ToolPlatform.allCases)
+        )
+    }
+
+    @Test
+    func quickCopyNotesIsAvailableOnEveryPlatform() {
+        #expect(
+            registry.tool(id: .quickCopyNotes)?.supportedPlatforms
                 == Set(ToolPlatform.allCases)
         )
     }

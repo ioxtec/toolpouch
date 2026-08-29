@@ -4,12 +4,14 @@ struct CompactToolNavigationView: View {
     let dependencies: AppDependencies
     let showsPersistentNavigationBar: Bool
     let close: (() -> Void)?
+    private let preferredDensity: ToolPouchContentDensity?
 
     @State private var path: [AppRoute] = []
     @State private var searchQuery = ""
 
     private var density: ToolPouchContentDensity {
-        showsPersistentNavigationBar ? .compact : .regular
+        preferredDensity
+            ?? (showsPersistentNavigationBar ? .compact : .regular)
     }
 
     private var categories: [ToolCategory] {
@@ -23,11 +25,13 @@ struct CompactToolNavigationView: View {
     init(
         dependencies: AppDependencies,
         showsPersistentNavigationBar: Bool = false,
-        close: (() -> Void)? = nil
+        close: (() -> Void)? = nil,
+        preferredDensity: ToolPouchContentDensity? = nil
     ) {
         self.dependencies = dependencies
         self.showsPersistentNavigationBar = showsPersistentNavigationBar
         self.close = close
+        self.preferredDensity = preferredDensity
     }
 
     var body: some View {

@@ -3,7 +3,7 @@ import SwiftUI
 enum ToolPouchLayout {
     enum MenuBar {
         static let width: CGFloat = 380
-        static let height: CGFloat = 470
+        static let height: CGFloat = 490
         static let footerHeight: CGFloat = 40
         static let contentPadding: CGFloat = 10
         static let contentSpacing: CGFloat = 10

@@ -42,6 +42,7 @@ nonisolated enum ConversionUnit: String, CaseIterable, Identifiable, Sendable {
     case knot
 
     case milliliterCooking
+    case literCooking
     case teaspoon
     case tablespoon
     case usCup
@@ -82,7 +83,7 @@ nonisolated enum ConversionUnit: String, CaseIterable, Identifiable, Sendable {
             .area
         case .meterPerSecond, .kilometerPerHour, .milePerHour, .knot:
             .speed
-        case .milliliterCooking, .teaspoon, .tablespoon,
+        case .milliliterCooking, .literCooking, .teaspoon, .tablespoon,
              .usCup, .usFluidOunceCooking:
             .cooking
         case .literPer100Kilometers, .kilometerPerLiter,
@@ -133,6 +134,7 @@ nonisolated enum ConversionUnit: String, CaseIterable, Identifiable, Sendable {
         case .milePerHour: "Miles per Hour"
         case .knot: "Knots"
         case .milliliterCooking: "Milliliters"
+        case .literCooking: "Liters"
         case .teaspoon: "Teaspoons"
         case .tablespoon: "Tablespoons"
         case .usCup: "US Cups"
@@ -174,6 +176,7 @@ nonisolated enum ConversionUnit: String, CaseIterable, Identifiable, Sendable {
         case .fahrenheit: "°F"
         case .kelvin: "K"
         case .milliliter, .milliliterCooking: "mL"
+        case .literCooking: "L"
         case .liter: "L"
         case .cubicMeter: "m³"
         case .usFluidOunce, .usFluidOunceCooking: "US fl oz"

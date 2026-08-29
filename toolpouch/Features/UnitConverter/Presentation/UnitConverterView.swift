@@ -142,6 +142,14 @@ struct UnitConverterView: View {
             }
             .padding(12)
             .background(.quaternary, in: RoundedRectangle(cornerRadius: 10))
+
+            if let alternative = alternativeRepresentation(for: side) {
+                Text(alternative)
+                    .font(.caption.monospacedDigit())
+                    .foregroundStyle(.secondary)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .accessibilityLabel("Convenient equivalent: \(alternative)")
+            }
         }
         .padding(12)
         .background(.quinary, in: RoundedRectangle(cornerRadius: 12))
@@ -261,11 +269,38 @@ struct UnitConverterView: View {
     }
 
     private func formatted(_ value: Double) -> String {
+        UnitConversionValueFormatter.string(from: value)
+    }
+
+    private func alternativeRepresentation(for side: Side) -> String? {
+        let text = side == .left ? leftValue : rightValue
+        let unit = side == .left ? leftUnit : rightUnit
+        guard let value = numberFormatter.number(from: text)?.doubleValue else {
+            return nil
+        }
+
+        return UnitConversionAlternativeFormatter.string(
+            from: value,
+            unit: unit,
+            converter: converter
+        )
+    }
+}
+
+/// Formats converted values with significant digits instead of a fixed number
+/// of decimal places. Small units such as cups converted from milliliters need
+/// more fractional places to survive a reverse conversion without visible
+/// values such as 0.99999933 mL.
+nonisolated enum UnitConversionValueFormatter {
+    static func string(
+        from value: Double,
+        locale: Locale = .current
+    ) -> String {
         value.formatted(
             .number
-                .locale(.current)
+                .locale(locale)
                 .grouping(.automatic)
-                .precision(.fractionLength(0...8))
+                .precision(.significantDigits(1...12))
         )
     }
 }

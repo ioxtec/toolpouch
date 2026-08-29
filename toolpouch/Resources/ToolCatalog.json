@@ -18,7 +18,15 @@
       "description": "Useful tools for daily tasks",
       "systemImage": "sparkles",
       "supportedPlatforms": ["macOS", "iOS", "watchOS"],
-      "toolOrder": ["com.toolpouch.unit-converter", "com.toolpouch.coordinate-tool", "com.toolpouch.archive-tool"]
+      "toolOrder": ["com.toolpouch.quick-copy-notes", "com.toolpouch.unit-converter", "com.toolpouch.coordinate-tool", "com.toolpouch.archive-tool"]
+    },
+    {
+      "id": "system",
+      "title": "System",
+      "description": "Live health, resource, storage, and power information",
+      "systemImage": "cpu",
+      "supportedPlatforms": ["macOS", "iOS", "watchOS"],
+      "toolOrder": ["com.toolpouch.system-stats"]
     },
     {
       "id": "network",
@@ -62,11 +70,11 @@
     },
     {
       "id": "visual",
-      "title": "Images & Colors",
-      "description": "Images, colors, and visual utilities",
-      "systemImage": "photo.on.rectangle.angled",
+      "title": "Media & Colors",
+      "description": "Images, audio, video, and color utilities",
+      "systemImage": "play.rectangle.on.rectangle",
       "supportedPlatforms": ["macOS", "iOS"],
-      "toolOrder": ["com.toolpouch.image-inspector", "com.toolpouch.color-picker"]
+      "toolOrder": ["com.toolpouch.image-inspector", "com.toolpouch.media-file-info", "com.toolpouch.color-picker"]
     }
   ]
 }

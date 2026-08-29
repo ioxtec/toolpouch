@@ -27,57 +27,91 @@ struct AppNavigationBar: View {
     }
 
     var body: some View {
-        HStack(spacing: 6) {
-            Button(action: goBack) {
-                Image(systemName: "chevron.left")
-                    .toolPouchIcon(.medium, weight: .semibold)
-                    .frame(width: 28, height: 28)
-            }
-            .buttonStyle(.borderless)
-            .disabled(!canGoBack)
-            .opacity(canGoBack ? 1 : 0.35)
-            .help("Back")
-            .accessibilityLabel("Back")
+        ZStack {
+            brand
 
-            Button(action: goHome) {
-                Image(systemName: "house")
-                    .toolPouchIcon(.medium, weight: .semibold)
-                    .frame(width: 28, height: 28)
-            }
-            .buttonStyle(.borderless)
-            .disabled(isAtHome)
-            .opacity(isAtHome ? 0.35 : 1)
-            .help("All Sections")
-            .accessibilityLabel("All Sections")
+            HStack(spacing: 6) {
+                ToolPouchCircleButton(
+                    systemImage: "chevron.left",
+                    accessibilityLabel: "Back",
+                    isEnabled: canGoBack,
+                    diameter: navigationButtonDiameter,
+                    action: goBack
+                )
 
-            Spacer()
+                ToolPouchCircleButton(
+                    systemImage: "house",
+                    accessibilityLabel: "All Sections",
+                    isEnabled: !isAtHome,
+                    diameter: navigationButtonDiameter,
+                    action: goHome
+                )
 
-            Text("ToolPouch")
-                .font(.caption.weight(.medium))
-                .foregroundStyle(theme.colors.secondaryText.color)
+                Spacer()
 
-            if let close {
-                Button(action: close) {
-                    Image(systemName: "xmark")
-                        .toolPouchIcon(.small, weight: .semibold)
-                        .frame(width: 28, height: 28)
+                if let close {
+                    ToolPouchCircleButton(
+                        systemImage: "xmark",
+                        accessibilityLabel: "Close ToolPouch",
+                        diameter: navigationButtonDiameter,
+                        iconSize: .small,
+                        iconWeight: .bold,
+                        action: close
+                    )
                 }
-                .buttonStyle(.borderless)
-                .help("Close ToolPouch")
-                .accessibilityLabel("Close ToolPouch")
             }
         }
-        .padding(.horizontal, density == .compact ? 8 : 12)
+        .padding(.horizontal, density == .compact ? 10 : 12)
         .frame(
             height: density == .compact
-                ? 34
+                ? 46
                 : ToolPouchLayout.Navigation.height
         )
-        .toolPouchSurface(
-            elevated: true,
-            cornerRadius: density == .compact ? 999 : 16
+    }
+
+    private var brand: some View {
+        Text("Tool Pouch")
+            .font(wordmarkFont)
+            .tracking(0.7)
+            .foregroundStyle(theme.colors.primaryText.color)
+            .overlay {
+                stitchPattern
+                    .mask {
+                        Text("Tool Pouch")
+                            .font(wordmarkFont)
+                            .tracking(0.7)
+                    }
+            }
+            .accessibilityLabel("Tool Pouch")
+    }
+
+    private var wordmarkFont: Font {
+        .custom(
+            "AmericanTypewriter-Bold",
+            fixedSize: density == .compact ? 20 : 22
         )
-        .padding(.horizontal, density == .compact ? 8 : 10)
-        .padding(.vertical, density == .compact ? 5 : 7)
+    }
+
+    private var stitchPattern: some View {
+        Canvas { context, size in
+            var stitches = Path()
+            let middleY = size.height * 0.55
+
+            for x in stride(from: -2.0, through: size.width + 2, by: 6) {
+                stitches.move(to: CGPoint(x: x, y: middleY + 1.5))
+                stitches.addLine(to: CGPoint(x: x + 3, y: middleY - 1.5))
+            }
+
+            context.stroke(
+                stitches,
+                with: .color(theme.colors.primaryAccent.color.opacity(0.95)),
+                style: StrokeStyle(lineWidth: 1.25, lineCap: .round)
+            )
+        }
+        .allowsHitTesting(false)
+    }
+
+    private var navigationButtonDiameter: CGFloat {
+        density == .compact ? 34 : 36
     }
 }

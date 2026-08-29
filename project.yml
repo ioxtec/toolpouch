@@ -18,7 +18,7 @@ settings:
       - $(SRCROOT)/toolpouch/Features/ArchiveTool/CModules
     STRING_CATALOG_GENERATE_SYMBOLS: YES
     CURRENT_PROJECT_VERSION: 1
-    MARKETING_VERSION: 1.0
+    MARKETING_VERSION: 0.1.0
     CODE_SIGN_STYLE: Automatic
     DEVELOPMENT_TEAM: HPVQSJDB42
     ENABLE_PREVIEWS: YES
@@ -40,6 +40,7 @@ targets:
     dependencies:
       - framework: .build/Rust/ToolPouchRust.xcframework
         embed: false
+      - sdk: IOKit.framework
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.hoxim.toolpouch
@@ -78,6 +79,7 @@ targets:
           - Info.plist
           - toolpouch.entitlements
           - Applications/iOS/Info.plist
+          - Features/MediaFileInfo
       - path: Rust/Bindings/Swift
     dependencies:
       - framework: .build/Rust/ToolPouchRust.xcframework
@@ -86,6 +88,7 @@ targets:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.hoxim.toolpouch.mobile
         PRODUCT_NAME: ToolPouch
+        CODE_SIGN_ENTITLEMENTS: toolpouch/toolpouch.entitlements
         TARGETED_DEVICE_FAMILY: 1,2
         GENERATE_INFOPLIST_FILE: YES
         INFOPLIST_FILE: toolpouch/Applications/iOS/Info.plist
@@ -106,12 +109,14 @@ targets:
           - Features/JSONToolkit
           - Features/NetworkCheck
           - Features/CoordinateTool
+          - Features/MediaFileInfo
           - Info.plist
           - toolpouch.entitlements
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.hoxim.toolpouch.watch
         PRODUCT_NAME: ToolPouch
+        CODE_SIGN_ENTITLEMENTS: toolpouch/toolpouch.entitlements
         GENERATE_INFOPLIST_FILE: YES
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIconWatch
         ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor

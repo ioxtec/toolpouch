@@ -87,7 +87,7 @@ nonisolated struct LocalUnitConverter: UnitConverting {
         case .pound: 0.453_592_37
         case .stone: 6.350_293_18
         case .milliliter, .milliliterCooking: 0.001
-        case .liter: 1
+        case .liter, .literCooking: 1
         case .cubicMeter: 1_000
         case .usFluidOunce, .usFluidOunceCooking: 0.029_573_529_562_5
         case .usPint: 0.473_176_473

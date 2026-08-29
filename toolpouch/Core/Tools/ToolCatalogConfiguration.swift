@@ -74,7 +74,15 @@ private extension ToolCatalogConfiguration {
                 description: "Useful tools for daily tasks",
                 systemImage: "sparkles",
                 supportedPlatforms: Set(ToolPlatform.allCases),
-                toolOrder: [.unitConverter, .archiveTool]
+                toolOrder: [.quickCopyNotes, .unitConverter, .archiveTool]
+            ),
+            Section(
+                id: .system,
+                title: "System",
+                description: "Live health, resource, storage, and power information",
+                systemImage: "cpu",
+                supportedPlatforms: Set(ToolPlatform.allCases),
+                toolOrder: [.systemStats]
             ),
             Section(
                 id: .network,

@@ -30,7 +30,7 @@ struct ToolSearchField: View {
         .frame(height: 32)
         .toolPouchSurface(elevated: true, cornerRadius: 999)
         .padding(.horizontal, 8)
-        .padding(.bottom, 5)
+        .padding(.vertical, 5)
     }
 }
 

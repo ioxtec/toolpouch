@@ -22,9 +22,13 @@ Every external service should be replaceable behind a domain protocol. Network c
 
 ## Persistence and synchronization
 
-Network snapshots and device metadata are stored through SwiftData. Local storage is the development default. The schema is prepared for private CloudKit synchronization, but synchronization is not considered active until the iCloud container, entitlements, and production schema are configured and verified.
+Network snapshots and device metadata are stored locally through SwiftData and are not synchronized.
 
-Sensitive transient values such as generated passwords, clipboard contents, private keys, and file contents must not be added to CloudKit records, analytics, or logs.
+Quick Copy Notes are stored offline-first through SwiftData and synchronized between the user's devices through the app's private CloudKit database. This synchronized store contains the folder names, collection names, note titles, descriptions, note contents, favorites, ordering, and modification dates created by the user. Removing a folder also removes its nested collections and notes.
+
+The CloudKit production schema must be deployed and verified before an App Store release. If the synchronized store cannot be opened because iCloud, provisioning, or the production schema is unavailable, the app automatically opens the same Quick Copy Notes schema as a local-only store instead of preventing the app from launching.
+
+Sensitive transient values such as generated passwords, clipboard contents, private keys, and file contents must not be added to CloudKit records, analytics, or logs. Quick Copy Notes is not a password manager; its UI and App Store description must not encourage storing passwords, private keys, or access tokens.
 
 ## Adding permissions or data collection
 

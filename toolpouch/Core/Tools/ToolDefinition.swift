@@ -58,6 +58,7 @@ nonisolated struct ToolDefinition: Hashable, Identifiable, Sendable {
 
 extension ToolDefinition.ID {
     static let unitConverter = Self(rawValue: "com.toolpouch.unit-converter")
+    static let quickCopyNotes = Self(rawValue: "com.toolpouch.quick-copy-notes")
     static let networkInfo = Self(rawValue: "com.toolpouch.network-info")
     static let wiFiScanner = Self(rawValue: "com.toolpouch.wifi-scanner")
     static let sshKeys = Self(rawValue: "com.toolpouch.ssh-keys")
@@ -72,6 +73,8 @@ extension ToolDefinition.ID {
     static let colorPicker = Self(rawValue: "com.toolpouch.color-picker")
     static let archiveTool = Self(rawValue: "com.toolpouch.archive-tool")
     static let coordinateTool = Self(rawValue: "com.toolpouch.coordinate-tool")
+    static let mediaFileInfo = Self(rawValue: "com.toolpouch.media-file-info")
+    static let systemStats = Self(rawValue: "com.toolpouch.system-stats")
 
     /// Decodes identifiers persisted by versions released before tools used
     /// reverse-DNS identifiers. Unknown values remain decodable so removing a
@@ -83,6 +86,7 @@ extension ToolDefinition.ID {
 
     private static let legacyIdentifiers: [String: Self] = [
         "unitConverter": .unitConverter,
+        "quickCopyNotes": .quickCopyNotes,
         "networkInfo": .networkInfo,
         "wiFiScanner": .wiFiScanner,
         "sshKeys": .sshKeys,
@@ -97,5 +101,7 @@ extension ToolDefinition.ID {
         "colorPicker": .colorPicker,
         "archiveTool": .archiveTool,
         "coordinateTool": .coordinateTool,
+        "mediaFileInfo": .mediaFileInfo,
+        "systemStats": .systemStats,
     ]
 }

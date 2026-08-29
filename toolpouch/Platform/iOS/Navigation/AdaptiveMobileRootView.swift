@@ -10,7 +10,12 @@ struct AdaptiveMobileRootView: View {
         if horizontalSizeClass == .regular {
             ThreeColumnToolNavigationView(dependencies: dependencies)
         } else {
-            CompactToolNavigationView(dependencies: dependencies)
+            // Phones use the same capsule-based tool rows as the compact
+            // macOS interface while retaining native iOS navigation.
+            CompactToolNavigationView(
+                dependencies: dependencies,
+                preferredDensity: .compact
+            )
         }
     }
 }

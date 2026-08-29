@@ -1,4 +1,5 @@
 import AppKit
+import SwiftData
 import SwiftUI
 
 @MainActor
@@ -55,6 +56,7 @@ final class StatusItemController: NSObject, NSMenuDelegate {
             )
             .environmentObject(dependencies.themeStore)
             .toolPouchTheme(dependencies.themeStore)
+            .modelContainer(dependencies.modelContainer)
         )
         hostingController.onCancel = { [weak self] in
             self?.closePopover()
@@ -177,17 +179,12 @@ final class StatusItemController: NSObject, NSMenuDelegate {
     @objc
     private func openAbout() {
         NSApp.activate(ignoringOtherApps: true)
-        let version = Bundle.main.object(
-            forInfoDictionaryKey: "CFBundleShortVersionString"
-        ) as? String ?? "1.0"
-        let build = Bundle.main.object(
-            forInfoDictionaryKey: "CFBundleVersion"
-        ) as? String ?? "1"
+        let appVersion = AppVersionInfo.current
 
         NSApp.orderFrontStandardAboutPanel(options: [
             .applicationName: "ToolPouch",
-            .applicationVersion: "Version \(version)",
-            .version: "Build \(build)",
+            .applicationVersion: "Version \(appVersion.version)",
+            .version: "Build \(appVersion.build)",
         ])
     }
 

@@ -67,6 +67,21 @@ struct AppThemeTests {
     }
 }
 
+struct AppVersionInfoTests {
+    @Test func formatsVersionAndBuild() {
+        let version = AppVersionInfo(version: "0.1.0", build: "17")
+
+        #expect(version.displayValue == "0.1.0 (17)")
+    }
+
+    @Test func replacesMissingBundleValuesWithReadableFallbacks() {
+        let version = AppVersionInfo(version: "  ", build: nil)
+
+        #expect(version.version == "Unknown")
+        #expect(version.build == "Unknown")
+    }
+}
+
 private extension AppThemeColors {
     static let draculaTestColors = AppTheme.draculaFallback.colors
 }

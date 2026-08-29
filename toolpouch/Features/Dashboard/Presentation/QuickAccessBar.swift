@@ -316,6 +316,9 @@ struct QuickAccessBar: View {
 }
 
 private struct QuickAccessToolButton: View {
+    @Environment(\.appTheme) private var theme
+    @State private var isHovering = false
+
     let tool: ToolDefinition
     let isEditing: Bool
     let isDragging: Bool
@@ -345,9 +348,36 @@ private struct QuickAccessToolButton: View {
             .buttonStyle(.plain)
             .toolPouchCircleSurface()
             .glassEffectID(tool.id.rawValue, in: glassNamespace)
+            .overlay {
+                Circle()
+                    .stroke(
+                        theme.colors.primaryAccent.color.opacity(
+                            isHovering ? 0.95 : 0
+                        ),
+                        lineWidth: 1.5
+                    )
+                    .padding(1)
+                    .allowsHitTesting(false)
+            }
+            .background(
+                theme.colors.primaryAccent.color.opacity(
+                    isHovering ? 0.10 : 0
+                ),
+                in: Circle()
+            )
+            .scaleEffect(isHovering ? 1.06 : 1)
+            .animation(.easeOut(duration: 0.12), value: isHovering)
             #if os(macOS) || os(iOS)
-            .onHover(perform: hoverChanged)
+            .onHover { hovering in
+                isHovering = hovering
+                hoverChanged(hovering)
+            }
             #endif
+            .onChange(of: isDragging) { _, dragging in
+                guard dragging, isHovering else { return }
+                isHovering = false
+                hoverChanged(false)
+            }
             .help(tool.description)
             .accessibilityLabel(tool.title)
             .accessibilityHint(tool.description)

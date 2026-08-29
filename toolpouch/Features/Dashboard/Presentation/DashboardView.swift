@@ -24,12 +24,6 @@ struct DashboardView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: contentSpacing) {
-                ScreenHeader(
-                    title: "Tools",
-                    subtitle: "Useful tools for everyday tasks.",
-                    density: density
-                )
-
                 DashboardSectionTitle("Quick Access", density: density)
                 QuickAccessBar(
                     availableTools: availableTools,
@@ -52,7 +46,8 @@ struct DashboardView: View {
                                 title: category.title,
                                 description: category.description,
                                 systemImage: category.systemImage,
-                                density: density
+                                density: density,
+                                badgeValue: toolCountByCategory[category.id, default: 0]
                             )
                         }
                         .buttonStyle(.plain)
@@ -72,6 +67,11 @@ struct DashboardView: View {
         density == .compact
             ? ToolPouchLayout.MenuBar.contentSpacing
             : ToolPouchLayout.Content.spacing
+    }
+
+    private var toolCountByCategory: [ToolCategory.ID: Int] {
+        Dictionary(grouping: availableTools, by: \.categoryID)
+            .mapValues(\.count)
     }
 }
 
