@@ -66,9 +66,9 @@ struct SSHKeysView: View {
             HStack {
                 VStack(alignment: .leading, spacing: 3) {
                     Text("SSH Keys")
-                        .font(.title2.bold())
+                        .font(.headline)
                     Text("Manage key pairs stored in your SSH folder.")
-                        .font(.subheadline)
+                        .font(.caption)
                         .foregroundStyle(.secondary)
                 }
 

@@ -18,17 +18,17 @@ struct ScreenHeader: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: density == .compact ? 1 : 4) {
+        VStack(alignment: .leading, spacing: 2) {
             Text(title)
                 .font(
                     density == .compact
-                        ? .headline
-                        : .title2.weight(.semibold)
+                        ? .subheadline.weight(.semibold)
+                        : .headline
                 )
                 .foregroundStyle(theme.colors.primaryText.color)
 
             Text(subtitle)
-                .font(density == .compact ? .caption : .subheadline)
+                .font(.caption)
                 .foregroundStyle(theme.colors.secondaryText.color)
                 .fixedSize(horizontal: false, vertical: true)
         }

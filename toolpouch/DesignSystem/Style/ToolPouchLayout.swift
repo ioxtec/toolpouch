@@ -11,19 +11,19 @@ enum ToolPouchLayout {
     }
 
     enum Content {
-        static let padding: CGFloat = 16
-        static let spacing: CGFloat = 16
+        static let padding: CGFloat = 12
+        static let spacing: CGFloat = 12
     }
 
     enum Grid {
-        static let minimumItemWidth: CGFloat = 172
-        static let spacing: CGFloat = 10
+        static let minimumItemWidth: CGFloat = 160
+        static let spacing: CGFloat = 8
     }
 
     enum Tile {
-        static let minimumHeight: CGFloat = 86
-        static let minimumHeightWithPlatforms: CGFloat = 120
-        static let padding: CGFloat = 12
+        static let minimumHeight: CGFloat = 72
+        static let minimumHeightWithPlatforms: CGFloat = 100
+        static let padding: CGFloat = 10
         static let cornerRadius: CGFloat = 12
     }
 

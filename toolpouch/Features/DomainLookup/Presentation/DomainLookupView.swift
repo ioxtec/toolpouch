@@ -149,11 +149,11 @@ private struct DomainRegistrationView: View {
         DomainLookupCard {
             HStack(alignment: .top, spacing: 12) {
                 Image(systemName: "globe")
-                    .toolPouchIcon(.large)
+                    .toolPouchIcon(.medium)
 
-                VStack(alignment: .leading, spacing: 4) {
+                VStack(alignment: .leading, spacing: 2) {
                     Text(registration.unicodeName ?? registration.name)
-                        .font(.title3.bold())
+                        .font(.headline)
                         .selectableText()
                     if let unicodeName = registration.unicodeName,
                        unicodeName.caseInsensitiveCompare(registration.name) != .orderedSame {

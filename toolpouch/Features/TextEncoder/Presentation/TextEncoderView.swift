@@ -28,10 +28,10 @@ struct TextEncoderView: View {
     private var header: some View {
         VStack(alignment: .leading, spacing: 3) {
             Text("Text Encoder")
-                .font(.title2.bold())
+                .font(.headline)
             #if !os(watchOS)
             Text("Convert UTF-8 text using common binary-to-text formats.")
-                .font(.subheadline)
+                .font(.caption)
                 .foregroundStyle(.secondary)
             #endif
         }

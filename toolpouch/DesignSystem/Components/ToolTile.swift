@@ -111,16 +111,16 @@ struct ToolTile: View {
     }
 
     private var regularTile: some View {
-        VStack(alignment: .leading, spacing: 7) {
-            HStack(spacing: 8) {
+        VStack(alignment: .leading, spacing: 5) {
+            HStack(spacing: 6) {
                 Image(systemName: systemImage)
-                    .toolPouchIcon(.medium, weight: .medium)
+                    .toolPouchIcon(.small, weight: .medium)
                     .symbolRenderingMode(.monochrome)
-                    .frame(width: 22, height: 22)
+                    .frame(width: 18, height: 18)
                     .foregroundStyle(theme.colors.primaryAccent.color)
 
                 Text(title)
-                    .font(.headline)
+                    .font(.subheadline.weight(.semibold))
                     .lineLimit(1)
 
                 Spacer(minLength: 4)
@@ -131,7 +131,7 @@ struct ToolTile: View {
             }
 
             Text(description)
-                .font(.caption)
+                .font(.caption2)
                 .foregroundStyle(theme.colors.secondaryText.color)
                 .lineLimit(2)
 

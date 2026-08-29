@@ -50,20 +50,20 @@ struct UnitConverterView: View {
     #endif
 
     private var converterPanel: some View {
-        VStack(alignment: .leading, spacing: 14) {
+        VStack(alignment: .leading, spacing: 10) {
             categoryPicker
             Divider()
             conversionFields
 
             if let errorMessage {
                 Label(errorMessage, systemImage: "exclamationmark.triangle.fill")
-                    .font(.caption)
+                    .font(.caption2)
                     .foregroundStyle(.orange)
             }
         }
-        .padding(14)
+        .padding(10)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 14))
+        .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 12))
     }
 
     private var categoryPicker: some View {
@@ -73,6 +73,7 @@ struct UnitConverterView: View {
                     .tag(category)
             }
         }
+        .font(.subheadline)
         #if os(watchOS)
         .pickerStyle(.navigationLink)
         #else
@@ -110,7 +111,7 @@ struct UnitConverterView: View {
     private func valuePanel(side: Side) -> some View {
         let unit = side == .left ? leftUnit : rightUnit
 
-        return VStack(alignment: .leading, spacing: 10) {
+        return VStack(alignment: .leading, spacing: 6) {
             Picker(
                 side == .left ? "From" : "To",
                 selection: unitBinding(for: side)
@@ -121,17 +122,18 @@ struct UnitConverterView: View {
                 }
             }
             .labelsHidden()
+            .font(.subheadline)
 
-            HStack(alignment: .firstTextBaseline, spacing: 8) {
+            HStack(alignment: .firstTextBaseline, spacing: 6) {
                 TextField("0", text: valueBinding(for: side))
-                    .font(.system(.title2, design: .rounded, weight: .medium))
+                    .font(.system(.body, design: .rounded, weight: .medium))
                     .textFieldStyle(.plain)
                     #if os(iOS)
                     .keyboardType(.decimalPad)
                     #endif
 
                 Text(unit.symbol)
-                    .font(.headline)
+                    .font(.subheadline)
                     .foregroundStyle(.secondary)
 
                 #if !os(watchOS)
@@ -140,19 +142,19 @@ struct UnitConverterView: View {
                 }
                 #endif
             }
-            .padding(12)
-            .background(.quaternary, in: RoundedRectangle(cornerRadius: 10))
+            .padding(8)
+            .background(.quaternary, in: RoundedRectangle(cornerRadius: 8))
 
             if let alternative = alternativeRepresentation(for: side) {
                 Text(alternative)
-                    .font(.caption.monospacedDigit())
+                    .font(.caption2.monospacedDigit())
                     .foregroundStyle(.secondary)
                     .fixedSize(horizontal: false, vertical: true)
                     .accessibilityLabel("Convenient equivalent: \(alternative)")
             }
         }
-        .padding(12)
-        .background(.quinary, in: RoundedRectangle(cornerRadius: 12))
+        .padding(8)
+        .background(.quinary, in: RoundedRectangle(cornerRadius: 10))
     }
 
     private func swapButton(vertical: Bool) -> some View {
@@ -160,8 +162,8 @@ struct UnitConverterView: View {
             swapSides()
         } label: {
             Image(systemName: vertical ? "arrow.up.arrow.down" : "arrow.left.arrow.right")
-                .toolPouchIcon(.medium, weight: .semibold)
-                .frame(width: 34, height: 34)
+                .toolPouchIcon(.small, weight: .semibold)
+                .frame(width: 26, height: 26)
         }
         .buttonStyle(.borderless)
         .help("Swap units")

@@ -21,10 +21,10 @@ struct ArchiveToolView: View {
     private var header: some View {
         VStack(alignment: .leading, spacing: 3) {
             Text("Archive Tool")
-                .font(.title2.bold())
+                .font(.headline)
             #if !os(watchOS)
             Text("Compress files and folders, or extract ZIP, GZIP, BZIP2, XZ, TAR, and TGZ archives.")
-                .font(.subheadline)
+                .font(.caption)
                 .foregroundStyle(.secondary)
             #endif
         }

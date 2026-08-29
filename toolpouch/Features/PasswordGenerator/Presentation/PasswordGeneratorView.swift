@@ -42,10 +42,10 @@ struct PasswordGeneratorView: View {
     private var header: some View {
         VStack(alignment: .leading, spacing: 3) {
             Text("Password Generator")
-                .font(.title2.bold())
+                .font(.headline)
             #if !os(watchOS)
             Text("Create secure random passwords and memorable passphrases.")
-                .font(.subheadline)
+                .font(.caption)
                 .foregroundStyle(.secondary)
             #endif
         }

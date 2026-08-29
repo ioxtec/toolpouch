@@ -28,9 +28,9 @@ struct WiFiScannerView: View {
         HStack(spacing: 12) {
             VStack(alignment: .leading, spacing: 3) {
                 Text("Wi-Fi Scanner")
-                    .font(.title2.bold())
+                    .font(.headline)
                 Text("Nearby networks ordered by signal strength.")
-                    .font(.subheadline)
+                    .font(.caption)
                     .foregroundStyle(.secondary)
             }
 
