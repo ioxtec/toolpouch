@@ -233,9 +233,9 @@ private nonisolated enum MatroskaParserError: LocalizedError {
 
     var errorDescription: String? {
         switch self {
-        case .malformedElement: "The Matroska container contains malformed metadata."
-        case .missingSegment: "The file does not contain a Matroska segment."
-        case .missingTracks: "No audio or video tracks were found in the Matroska container."
+        case .malformedElement: "The Matroska container contains malformed metadata.".localizedInterfaceText
+        case .missingSegment: "The file does not contain a Matroska segment.".localizedInterfaceText
+        case .missingTracks: "No audio or video tracks were found in the Matroska container.".localizedInterfaceText
         }
     }
 }

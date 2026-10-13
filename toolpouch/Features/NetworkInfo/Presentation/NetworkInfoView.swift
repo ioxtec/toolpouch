@@ -11,7 +11,7 @@ struct NetworkInfoView: View {
 
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: ToolPouchLayout.Content.spacing) {
+            ToolContentLayout {
                 NetworkInfoHeader(
                     isRefreshing: model.isRefreshing,
                     refresh: refresh
@@ -25,7 +25,6 @@ struct NetworkInfoView: View {
                         .foregroundStyle(.secondary)
                 }
             }
-            .padding(ToolPouchLayout.Content.padding)
         }
         .scrollIndicators(.never)
         .task {

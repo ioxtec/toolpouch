@@ -10,9 +10,9 @@ enum CenteredFilePanel {
         allowedContentTypes: [UTType] = [.item]
     ) -> URL? {
         let panel = NSOpenPanel()
-        panel.title = title
+        panel.title = title.localizedInterfaceText
         if let message {
-            panel.message = message
+            panel.message = message.localizedInterfaceText
         }
         panel.prompt = "Choose"
         panel.allowedContentTypes = allowedContentTypes
@@ -31,9 +31,9 @@ enum CenteredFilePanel {
         showsHiddenFiles: Bool = false
     ) -> URL? {
         let panel = NSOpenPanel()
-        panel.title = title
+        panel.title = title.localizedInterfaceText
         if let message {
-            panel.message = message
+            panel.message = message.localizedInterfaceText
         }
         panel.prompt = prompt
         panel.directoryURL = initialDirectory
@@ -53,7 +53,7 @@ enum CenteredFilePanel {
         suggestedFilename: String
     ) -> URL? {
         let panel = NSSavePanel()
-        panel.title = title
+        panel.title = title.localizedInterfaceText
         panel.prompt = prompt
         panel.allowedContentTypes = allowedContentTypes
         panel.canCreateDirectories = true

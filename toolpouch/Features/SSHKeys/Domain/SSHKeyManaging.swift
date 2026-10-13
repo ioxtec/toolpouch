@@ -22,15 +22,15 @@ nonisolated enum SSHKeyManagerError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .invalidFileName:
-            "Use a file name without slashes or parent-directory references."
+            "Use a file name without slashes or parent-directory references.".localizedInterfaceText
         case let .fileAlreadyExists(name):
-            "A key named \(name) already exists."
+            String(format: "A key named %@ already exists.".localizedInterfaceText, name)
         case let .generationFailed(message):
-            message.isEmpty ? "The key could not be generated." : message
+            message.isEmpty ? "The key could not be generated.".localizedInterfaceText : message
         case .folderUnavailable:
-            "Choose an SSH key folder first."
+            "Choose an SSH key folder first.".localizedInterfaceText
         case .publicKeyUnavailable:
-            "This key does not have a matching public key file."
+            "This key does not have a matching public key file.".localizedInterfaceText
         }
     }
 }

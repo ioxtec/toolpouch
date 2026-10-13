@@ -24,3 +24,12 @@ playground.xcworkspace
 
 # Abacus AI agent config
 .abacusai/
+
+# App Store screenshots, compositions, previews and source photography
+AppStoreAssets/**/*.png
+AppStoreAssets/**/*.jpg
+AppStoreAssets/**/*.jpeg
+AppStoreAssets/**/*.avif
+
+# Design concepts; production icons in Assets.xcassets remain versioned
+design/icon-concepts/*.png

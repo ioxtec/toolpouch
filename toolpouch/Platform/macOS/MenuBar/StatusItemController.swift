@@ -8,12 +8,14 @@ final class StatusItemController: NSObject, NSMenuDelegate {
     private let popover: NSPopover
     private let contextMenu: NSMenu
     private let mainWindowController: MainWindowController
+    private let settingsWindowController: SettingsWindowController
 
     init(dependencies: AppDependencies) {
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
         popover = NSPopover()
         contextMenu = NSMenu()
         mainWindowController = MainWindowController(dependencies: dependencies)
+        settingsWindowController = SettingsWindowController(dependencies: dependencies)
 
         super.init()
 
@@ -47,14 +49,23 @@ final class StatusItemController: NSObject, NSMenuDelegate {
         let hostingController = PopoverHostingController(
             rootView: MenuBarRootView(
                 dependencies: dependencies,
-                openMainWindow: { [weak self] in
-                    self?.openMainWindow()
+                openMainWindow: { [weak self] toolID in
+                    self?.presentMainWindow(toolID: toolID)
+                },
+                openSettings: { [weak self] in
+                    self?.closePopover()
+                    self?.openSettings()
                 },
                 close: { [weak self] in
                     self?.closePopover()
+                },
+                resizeToFit: { [weak self] requestedHeight in
+                    self?.resizePopover(toFit: requestedHeight)
+                        ?? ToolPouchLayout.MenuBar.height
                 }
             )
             .environmentObject(dependencies.themeStore)
+            .appLanguage(dependencies.languageStore)
             .toolPouchTheme(dependencies.themeStore)
             .modelContainer(dependencies.modelContainer)
         )
@@ -63,6 +74,31 @@ final class StatusItemController: NSObject, NSMenuDelegate {
         }
         popover.contentViewController = hostingController
 
+    }
+
+    /// Keeps the popover close to its content while respecting the usable area
+    /// of whichever display currently owns the menu-bar item.
+    private func resizePopover(toFit requestedHeight: CGFloat) -> CGFloat {
+        let screen = statusItem.button?.window?.screen ?? NSScreen.main
+        let availableHeight = max(
+            ToolPouchLayout.MenuBar.minimumHeight,
+            (screen?.visibleFrame.height ?? ToolPouchLayout.MenuBar.height)
+                - ToolPouchLayout.MenuBar.screenMargin
+        )
+        let fittedHeight = min(
+            max(requestedHeight, ToolPouchLayout.MenuBar.minimumHeight),
+            availableHeight
+        )
+
+        guard abs(popover.contentSize.height - fittedHeight) > 1 else {
+            return fittedHeight
+        }
+
+        popover.contentSize = NSSize(
+            width: ToolPouchLayout.MenuBar.width,
+            height: fittedHeight
+        )
+        return fittedHeight
     }
 
     private func configureContextMenu() {
@@ -103,8 +139,12 @@ final class StatusItemController: NSObject, NSMenuDelegate {
 
     @objc
     private func openMainWindow() {
+        presentMainWindow(toolID: nil)
+    }
+
+    private func presentMainWindow(toolID: ToolDefinition.ID?) {
         closePopover()
-        mainWindowController.present()
+        mainWindowController.present(toolID: toolID)
     }
 
     private func menuItem(
@@ -114,7 +154,7 @@ final class StatusItemController: NSObject, NSMenuDelegate {
         keyEquivalent: String = ""
     ) -> NSMenuItem {
         let item = NSMenuItem(
-            title: title,
+            title: title.localizedInterfaceText,
             action: action,
             keyEquivalent: keyEquivalent
         )
@@ -139,6 +179,8 @@ final class StatusItemController: NSObject, NSMenuDelegate {
     }
 
     private func presentContextMenu() {
+        contextMenu.removeAllItems()
+        configureContextMenu()
         statusItem.menu = contextMenu
         statusItem.button?.performClick(nil)
     }
@@ -168,12 +210,8 @@ final class StatusItemController: NSObject, NSMenuDelegate {
 
     @objc
     private func openSettings() {
-        NSApp.activate(ignoringOtherApps: true)
-        NSApp.sendAction(
-            Selector(("showSettingsWindow:")),
-            to: nil,
-            from: self
-        )
+        closePopover()
+        settingsWindowController.present()
     }
 
     @objc

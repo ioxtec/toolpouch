@@ -40,47 +40,61 @@ struct ToolTile: View {
     }
 
     private var compactTile: some View {
-        HStack(spacing: 8) {
+        HStack(alignment: .top, spacing: 7) {
             ZStack {
                 Circle()
-                    .fill(
-                        theme.colors.primaryAccent.color.opacity(
-                            isSelected ? 0.34 : (isHovering ? 0.28 : 0.16)
+                    .fill(theme.colors.accentButtonBackground.color)
+                    .overlay {
+                        Circle().fill(
+                            theme.colors.primaryAccent.color.opacity(
+                                isSelected ? 0.16 : (isHovering ? 0.10 : 0)
+                            )
                         )
-                    )
+                    }
 
                 Image(systemName: systemImage)
-                    .toolPouchIcon(.medium, weight: .semibold)
+                    .toolPouchIcon(.small, weight: .semibold)
                     .symbolRenderingMode(.monochrome)
                     .foregroundStyle(theme.colors.primaryAccent.color)
             }
-            .frame(width: 36, height: 36)
+            .frame(
+                width: ToolPouchLayout.Tile.compactIconDiameter,
+                height: ToolPouchLayout.Tile.compactIconDiameter
+            )
 
-            VStack(alignment: .leading, spacing: 1) {
-                Text(title)
-                    .font(.subheadline.weight(.semibold))
-                    .foregroundStyle(theme.colors.primaryText.color)
-                    .lineLimit(1)
+            VStack(alignment: .leading, spacing: 2) {
+                HStack(spacing: 5) {
+                    Text(title.localizedInterfaceText)
+                        .font(.subheadline.weight(.semibold))
+                        .foregroundStyle(theme.colors.primaryText.color)
+                        .lineLimit(1)
 
-                Text(description)
+                    if let badgeValue {
+                        compactCountBadge(badgeValue)
+                    }
+
+                    Spacer(minLength: 0)
+                }
+
+                Text(description.localizedInterfaceText)
                     .font(.caption2)
                     .foregroundStyle(theme.colors.secondaryText.color)
                     .lineLimit(1)
             }
-
-            Spacer(minLength: 2)
-
-            if let badgeValue {
-                countBadge(badgeValue)
-            }
         }
-        .padding(.leading, 7)
-        .padding(.trailing, 10)
-        .frame(maxWidth: .infinity, minHeight: 52, alignment: .leading)
-        .contentShape(.capsule)
-        .toolPouchSurface(interactive: true, cornerRadius: 999)
+        .padding(ToolPouchLayout.Tile.compactPadding)
+        .frame(
+            maxWidth: .infinity,
+            minHeight: ToolPouchLayout.Tile.compactMinimumHeight,
+            alignment: .topLeading
+        )
+        .contentShape(.rect)
+        .toolPouchSurface(
+            interactive: true,
+            cornerRadius: ToolPouchLayout.Tile.cornerRadius
+        )
         .overlay {
-            Capsule()
+            RoundedRectangle(cornerRadius: ToolPouchLayout.Tile.cornerRadius)
                 .fill(
                     theme.colors.primaryAccent.color.opacity(
                         isSelected ? 0.12 : 0
@@ -89,7 +103,7 @@ struct ToolTile: View {
                 .allowsHitTesting(false)
         }
         .overlay {
-            Capsule()
+            RoundedRectangle(cornerRadius: ToolPouchLayout.Tile.cornerRadius)
                 .stroke(
                     theme.colors.primaryAccent.color.opacity(
                         isSelected ? 0.92 : (isHovering ? 0.72 : 0)
@@ -106,8 +120,11 @@ struct ToolTile: View {
         }
         #endif
         .accessibilityElement(children: .combine)
-        .accessibilityLabel(title)
+        .accessibilityLabel(title.localizedInterfaceText)
         .accessibilityHint(accessibilityHint)
+        #if os(macOS)
+        .help(description.localizedInterfaceText)
+        #endif
     }
 
     private var regularTile: some View {
@@ -119,7 +136,7 @@ struct ToolTile: View {
                     .frame(width: 18, height: 18)
                     .foregroundStyle(theme.colors.primaryAccent.color)
 
-                Text(title)
+                Text(title.localizedInterfaceText)
                     .font(.subheadline.weight(.semibold))
                     .lineLimit(1)
 
@@ -130,7 +147,7 @@ struct ToolTile: View {
                 }
             }
 
-            Text(description)
+            Text(description.localizedInterfaceText)
                 .font(.caption2)
                 .foregroundStyle(theme.colors.secondaryText.color)
                 .lineLimit(2)
@@ -149,8 +166,11 @@ struct ToolTile: View {
         .contentShape(.rect)
         .toolPouchSurface(interactive: true)
         .accessibilityElement(children: .combine)
-        .accessibilityLabel(title)
+        .accessibilityLabel(title.localizedInterfaceText)
         .accessibilityHint(accessibilityHint)
+        #if os(macOS)
+        .help(description.localizedInterfaceText)
+        #endif
     }
 
     private var regularMinimumHeight: CGFloat {
@@ -166,7 +186,7 @@ struct ToolTile: View {
             .padding(.horizontal, 7)
             .frame(minWidth: 24, minHeight: 24)
             .background(
-                theme.colors.primaryAccent.color.opacity(isHovering ? 0.22 : 0.14),
+                theme.colors.accentButtonBackground.color,
                 in: Capsule()
             )
             .overlay {
@@ -176,8 +196,22 @@ struct ToolTile: View {
             .accessibilityLabel("\(value) tools")
     }
 
+    private func compactCountBadge(_ value: Int) -> some View {
+        Text(value.formatted())
+            .font(.caption2.monospacedDigit().weight(.bold))
+            .foregroundStyle(theme.colors.primaryAccent.color)
+            .padding(.horizontal, 5)
+            .frame(minWidth: 18, minHeight: 18)
+            .background(
+                theme.colors.accentButtonBackground.color,
+                in: Capsule()
+            )
+            .accessibilityLabel("\(value) tools")
+    }
+
     private var accessibilityHint: String {
-        guard let badgeValue else { return description }
-        return "\(description) \(badgeValue) tools."
+        guard let badgeValue else { return description.localizedInterfaceText }
+        let toolCount = String(localized: "\(badgeValue) tools")
+        return "\(description.localizedInterfaceText) \(toolCount)."
     }
 }

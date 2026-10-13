@@ -11,19 +11,19 @@ struct MediaFileInfoView: View {
 
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: ToolPouchLayout.Content.spacing) {
+            ToolContentLayout {
                 ScreenHeader(
                     title: "Media File Info",
                     subtitle: "Inspect image, audio, and video files without uploading them."
                 )
                 contentPanel
             }
-            .padding(ToolPouchLayout.Content.padding)
         }
+        .scrollIndicators(.never)
     }
 
     private var contentPanel: some View {
-        VStack(alignment: .leading, spacing: 14) {
+        ToolSectionCard {
             filePicker
 
             if model.selectedFileURL != nil || model.errorMessage != nil {
@@ -31,9 +31,6 @@ struct MediaFileInfoView: View {
                 resultContent
             }
         }
-        .padding(14)
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 14))
     }
 
     private var filePicker: some View {
@@ -45,7 +42,7 @@ struct MediaFileInfoView: View {
                     .contentTransition(.symbolEffect(.replace))
 
                 Text(dropZoneTitle)
-                    .font(.headline)
+                    .font(ToolPouchLayout.Typography.sectionTitle)
                     .lineLimit(2)
                     .multilineTextAlignment(.center)
 
@@ -57,15 +54,15 @@ struct MediaFileInfoView: View {
                     .font(.caption)
                     .foregroundStyle(.tertiary)
             }
-            .padding(18)
-            .frame(maxWidth: .infinity, minHeight: 140)
+            .padding(ToolPouchLayout.Spacing.xLarge)
+            .frame(maxWidth: .infinity, minHeight: 118)
             .contentShape(.rect)
             .background(
                 model.isDropTargeted ? theme.colors.primaryAccent.color.opacity(0.12) : Color.primary.opacity(0.035),
-                in: RoundedRectangle(cornerRadius: 12)
+                in: RoundedRectangle(cornerRadius: ToolPouchLayout.Radius.card)
             )
             .overlay {
-                RoundedRectangle(cornerRadius: 12)
+                RoundedRectangle(cornerRadius: ToolPouchLayout.Radius.card)
                     .strokeBorder(
                         model.isDropTargeted ? theme.colors.primaryAccent.color : Color.secondary.opacity(0.45),
                         style: StrokeStyle(lineWidth: model.isDropTargeted ? 2 : 1, dash: [7, 5])
@@ -99,8 +96,7 @@ struct MediaFileInfoView: View {
                             .textSelection(.enabled)
                         CopyButton(value: details)
                     }
-                    .padding(8)
-                    .background(.quaternary, in: RoundedRectangle(cornerRadius: 8))
+                    .toolPouchControlSurface()
                 }
                 Button("Choose Another File", action: chooseFile)
             }
@@ -121,10 +117,10 @@ struct MediaFileInfoView: View {
 
                 VStack(alignment: .leading, spacing: 2) {
                     Text(inspection.filename)
-                        .font(.headline)
+                        .font(ToolPouchLayout.Typography.sectionTitle)
                         .lineLimit(2)
                         .textSelection(.enabled)
-                    Text(inspection.kind.title)
+                    Text(inspection.kind.title.localizedInterfaceText)
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 }
@@ -163,23 +159,26 @@ struct MediaFileInfoView: View {
     private func waveformSection(_ samples: [Float]) -> some View {
         VStack(alignment: .leading, spacing: 8) {
             Label("Waveform", systemImage: "waveform")
-                .font(.headline)
+                .font(ToolPouchLayout.Typography.sectionTitle)
 
             MediaWaveformView(samples: samples)
                 .frame(height: 112)
                 .padding(.horizontal, 10)
-                .background(.quaternary, in: RoundedRectangle(cornerRadius: 10))
+                .toolPouchSurface(cornerRadius: ToolPouchLayout.Radius.control)
         }
     }
 
     private func tracksSection(_ tracks: [MediaTrackInspection]) -> some View {
         VStack(alignment: .leading, spacing: 10) {
             Text("Tracks")
-                .font(.headline)
+                .font(ToolPouchLayout.Typography.sectionTitle)
 
             ForEach(tracks) { track in
                 VStack(alignment: .leading, spacing: 10) {
-                    Label("\(track.kind.title) · \(track.codec)", systemImage: track.kind.systemImage)
+                    Label(
+                        "\(track.kind.title.localizedInterfaceText) · \(track.codec)",
+                        systemImage: track.kind.systemImage
+                    )
                         .font(.subheadline.weight(.semibold))
                         .foregroundStyle(theme.colors.primaryAccent.color)
 
@@ -198,7 +197,7 @@ struct MediaFileInfoView: View {
                 }
                 .padding(12)
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .background(.quaternary, in: RoundedRectangle(cornerRadius: 10))
+                .toolPouchSurface(cornerRadius: ToolPouchLayout.Radius.control)
             }
         }
     }
@@ -212,7 +211,7 @@ struct MediaFileInfoView: View {
 
     private func detail(_ title: String, _ value: String, icon: String) -> some View {
         VStack(alignment: .leading, spacing: 5) {
-            Label(title, systemImage: icon)
+            Label(title.localizedInterfaceText, systemImage: icon)
                 .font(.caption)
                 .foregroundStyle(.secondary)
             Text(value)
@@ -221,14 +220,14 @@ struct MediaFileInfoView: View {
         }
         .padding(10)
         .frame(maxWidth: .infinity, minHeight: 66, alignment: .leading)
-        .background(.quaternary, in: RoundedRectangle(cornerRadius: 10))
+        .toolPouchSurface(cornerRadius: ToolPouchLayout.Radius.control)
     }
 
     @ViewBuilder
     private func optionalTrackValue(_ label: String, _ value: String?) -> some View {
         if let value {
             VStack(alignment: .leading, spacing: 2) {
-                Text(label)
+                Text(label.localizedInterfaceText)
                     .font(.caption2)
                     .foregroundStyle(.secondary)
                 Text(value)

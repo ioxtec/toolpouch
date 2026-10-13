@@ -11,5 +11,11 @@ nonisolated protocol ArchiveManaging: Sendable {
     ) async throws
 
     /// Decompresses an archive into a folder beside the archive.
-    func decompress(archiveURL: URL) async throws -> URL
+    func decompress(archiveURL: URL, destinationURL: URL?) async throws -> URL
+}
+
+extension ArchiveManaging {
+    func decompress(archiveURL: URL) async throws -> URL {
+        try await decompress(archiveURL: archiveURL, destinationURL: nil)
+    }
 }

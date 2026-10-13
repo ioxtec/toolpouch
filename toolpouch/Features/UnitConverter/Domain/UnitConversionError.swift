@@ -8,11 +8,11 @@ nonisolated enum UnitConversionError: LocalizedError, Equatable, Sendable {
     var errorDescription: String? {
         switch self {
         case .incompatibleUnits:
-            "Choose units from the same category."
+            "Choose units from the same category.".localizedInterfaceText
         case .invalidValue:
-            "Enter a finite number."
+            "Enter a finite number.".localizedInterfaceText
         case .zeroFuelEfficiency:
-            "Fuel economy must be greater than zero."
+            "Fuel economy must be greater than zero.".localizedInterfaceText
         }
     }
 }

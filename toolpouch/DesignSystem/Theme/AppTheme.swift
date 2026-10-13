@@ -37,10 +37,16 @@ struct AppThemeColors: Codable, Hashable, Sendable {
     let primaryText: ThemeColor
     let secondaryText: ThemeColor
     let primaryAccent: ThemeColor
+    let accentButtonBackground: ThemeColor
     let secondaryAccent: ThemeColor
     let success: ThemeColor
     let warning: ThemeColor
     let danger: ThemeColor
+
+    /// The two surface levels used by solid themes. Feature views should use
+    /// the shared surface modifiers instead of selecting raw theme roles.
+    var recessedSurface: ThemeColor { surface }
+    var panelSurface: ThemeColor { elevatedSurface }
 }
 
 struct ThemeColor: Codable, Hashable, Sendable {
@@ -97,11 +103,12 @@ extension AppTheme {
             background: ThemeColor(hex: "282A36"),
             surface: ThemeColor(hex: "343442"),
             elevatedSurface: ThemeColor(hex: "3C3B4D"),
-            interactiveSurface: ThemeColor(hex: "494659"),
+            interactiveSurface: ThemeColor(hex: "343442"),
             border: ThemeColor(hex: "625D73"),
             primaryText: ThemeColor(hex: "F8F8F2"),
             secondaryText: ThemeColor(hex: "B9B5C4"),
             primaryAccent: ThemeColor(hex: "FF79C6"),
+            accentButtonBackground: ThemeColor(hex: "5B3B55"),
             secondaryAccent: ThemeColor(hex: "8BE9FD"),
             success: ThemeColor(hex: "50FA7B"),
             warning: ThemeColor(hex: "F1FA8C"),

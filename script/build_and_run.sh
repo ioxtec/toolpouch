@@ -11,7 +11,9 @@ DERIVED_DATA_PATH="$ROOT_DIR/.build/DerivedData"
 APP_BUNDLE="$DERIVED_DATA_PATH/Build/Products/Debug/$APP_NAME.app"
 APP_BINARY="$APP_BUNDLE/Contents/MacOS/$APP_NAME"
 
-if [[ -z "${DEVELOPER_DIR:-}" && -d "/Applications/Xcode-beta.app/Contents/Developer" ]]; then
+if [[ -z "${DEVELOPER_DIR:-}" && -d "/Applications/Xcode.app/Contents/Developer" ]]; then
+    export DEVELOPER_DIR="/Applications/Xcode.app/Contents/Developer"
+elif [[ -z "${DEVELOPER_DIR:-}" && -d "/Applications/Xcode-beta.app/Contents/Developer" ]]; then
     export DEVELOPER_DIR="/Applications/Xcode-beta.app/Contents/Developer"
 fi
 

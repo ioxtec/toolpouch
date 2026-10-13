@@ -19,6 +19,7 @@ struct ToolPouchApp: App {
         Settings {
             SettingsView()
                 .environmentObject(dependencies.themeStore)
+                .appLanguage(dependencies.languageStore, rebuildOnChange: false)
                 .toolPouchTheme(dependencies.themeStore)
         }
         .modelContainer(modelContainer)

@@ -5,15 +5,15 @@ import SwiftUI
 struct SystemStatsPlugin: ToolPlugin {
     let definition = ToolDefinition(
         id: .systemStats,
-        categoryID: .system,
+        categoryID: .device,
         title: "System Stats",
-        description: "CPU, memory, storage, battery, thermal state, and uptime.",
+        description: "CPU, memory, storage, battery, and thermal state.",
         systemImage: "cpu",
         supportedPlatforms: Set(ToolPlatform.allCases),
         executionBackend: .nativeSwift
     )
 
     func makeDestination(dependencies: AppDependencies) -> AnyView {
-        AnyView(SystemStatsView())
+        AnyView(SystemStatsView(monitor: dependencies.systemStatsMonitor))
     }
 }

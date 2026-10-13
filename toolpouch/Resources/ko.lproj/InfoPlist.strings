@@ -1,0 +1,2 @@
+"NSLocationUsageDescription" = "ToolPouch는 주변 Wi-Fi 네트워크를 식별하는 데만 위치 정보를 사용합니다.";
+"NSScreenCaptureUsageDescription" = "ToolPouch는 색상을 선택하는 동안에만 포인터 주변의 작은 영역을 캡처합니다.";

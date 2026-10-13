@@ -3,7 +3,7 @@ import SwiftUI
 struct MediaFileInfoPlugin: ToolPlugin {
     let definition = ToolDefinition(
         id: .mediaFileInfo,
-        categoryID: .visual,
+        categoryID: .files,
         title: "Media File Info",
         description: "Inspect image, audio, and video metadata, codecs, and tracks.",
         systemImage: "play.rectangle.on.rectangle",

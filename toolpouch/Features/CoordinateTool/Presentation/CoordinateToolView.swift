@@ -18,7 +18,7 @@ struct CoordinateToolView: View {
 
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: ToolPouchLayout.Content.spacing) {
+            ToolContentLayout {
                 ScreenHeader(
                     title: "Map Coordinates",
                     subtitle: "Search for a place or click the map to read and convert its coordinates."
@@ -27,15 +27,16 @@ struct CoordinateToolView: View {
                 mapCard
                 conversionsCard
             }
-            .padding(ToolPouchLayout.Content.padding)
         }
         .scrollIndicators(.never)
     }
 
     private var searchCard: some View {
-        VStack(alignment: .leading, spacing: 10) {
+        ToolSectionCard("Find a place") {
             HStack(spacing: 8) {
                 TextField("Place or coordinates", text: $query)
+                    .textFieldStyle(.plain)
+                    .toolPouchControlSurface()
                     #if os(iOS)
                     .textInputAutocapitalization(.words)
                     .submitLabel(.search)
@@ -51,7 +52,7 @@ struct CoordinateToolView: View {
                             .toolPouchIcon(.small)
                     }
                 }
-                .buttonStyle(.glassProminent)
+                .toolPouchPrimaryAction()
                 .disabled(query.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || isSearching)
                 .accessibilityLabel("Search")
             }
@@ -88,11 +89,9 @@ struct CoordinateToolView: View {
             }
 
             Text("You can also paste DD, DDM, or DMS coordinates.")
-                .font(.caption)
+                .font(ToolPouchLayout.Typography.supporting)
                 .foregroundStyle(.secondary)
         }
-        .padding(14)
-        .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 14))
     }
 
     private var mapCard: some View {
@@ -117,11 +116,11 @@ struct CoordinateToolView: View {
                 }
             )
         }
-        .frame(minHeight: 320)
-        .clipShape(RoundedRectangle(cornerRadius: 14))
+        .frame(minHeight: 210, idealHeight: 240, maxHeight: 300)
+        .clipShape(RoundedRectangle(cornerRadius: ToolPouchLayout.Radius.card))
         .overlay(alignment: .topLeading) {
             Label("Click or tap to select a point", systemImage: "hand.tap")
-                .font(.caption.weight(.medium))
+                .font(ToolPouchLayout.Typography.supporting.weight(.medium))
                 .padding(.horizontal, 10)
                 .padding(.vertical, 7)
                 .background(.regularMaterial, in: .capsule)
@@ -132,18 +131,15 @@ struct CoordinateToolView: View {
     }
 
     private var conversionsCard: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            Text("Coordinate formats")
-                .font(.headline)
-
+        ToolSectionCard("Coordinate formats") {
             ForEach(CoordinateDisplayFormat.allCases) { format in
                 HStack(alignment: .firstTextBaseline, spacing: 10) {
                     VStack(alignment: .leading, spacing: 3) {
-                        Text(format.title)
-                            .font(.caption)
+                        Text(format.title.localizedInterfaceText)
+                            .font(ToolPouchLayout.Typography.supporting)
                             .foregroundStyle(.secondary)
                         Text(format.string(for: selectedCoordinate))
-                            .font(.body.monospaced())
+                            .font(ToolPouchLayout.Typography.value.monospaced())
                             .textSelection(.enabled)
                     }
                     Spacer(minLength: 8)
@@ -155,9 +151,6 @@ struct CoordinateToolView: View {
                 }
             }
         }
-        .padding(14)
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 14))
     }
 
     private func search() {
@@ -194,12 +187,12 @@ struct CoordinateToolView: View {
                 if let first = results.first {
                     select(first.coordinate)
                 } else {
-                    errorMessage = "No matching places were found."
+                    errorMessage = "No matching places were found.".localizedInterfaceText
                 }
             } catch is CancellationError {
                 return
             } catch {
-                errorMessage = "The place search could not be completed."
+                errorMessage = "The place search could not be completed.".localizedInterfaceText
             }
         }
     }

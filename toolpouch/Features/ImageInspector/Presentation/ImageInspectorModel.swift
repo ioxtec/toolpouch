@@ -74,7 +74,7 @@ final class ImageInspectorModel {
                 options: options
             )
             transformedFileURL = outputURL
-            transformMessage = "Image saved successfully."
+            transformMessage = "Image saved successfully.".localizedInterfaceText
         } catch {
             transformMessage = error.localizedDescription
         }

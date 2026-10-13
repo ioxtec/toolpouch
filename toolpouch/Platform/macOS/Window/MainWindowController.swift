@@ -4,10 +4,19 @@ import SwiftUI
 
 @MainActor
 final class MainWindowController: NSWindowController {
+    private let navigationModel: ToolWindowNavigationModel
+
     init(dependencies: AppDependencies) {
-        let rootView = ThreeColumnToolNavigationView(dependencies: dependencies)
+        let navigationModel = ToolWindowNavigationModel()
+        self.navigationModel = navigationModel
+        let rootView = ThreeColumnToolNavigationView(
+            dependencies: dependencies,
+            navigationModel: navigationModel
+        )
             .frame(minWidth: 900, minHeight: 560)
+            .environment(\.toolPouchPresentationMode, .expandedWindow)
             .environmentObject(dependencies.themeStore)
+            .appLanguage(dependencies.languageStore)
             .toolPouchTheme(dependencies.themeStore)
             .modelContainer(dependencies.modelContainer)
 
@@ -31,7 +40,10 @@ final class MainWindowController: NSWindowController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func present() {
+    func present(toolID: ToolDefinition.ID? = nil) {
+        if let toolID {
+            navigationModel.request(toolID)
+        }
         NSApp.setActivationPolicy(.regular)
         NSApp.activate(ignoringOtherApps: true)
         showWindow(nil)

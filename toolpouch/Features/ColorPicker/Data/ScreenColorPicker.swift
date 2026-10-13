@@ -35,7 +35,7 @@ final class ScreenColorPicker {
 
         guard ScreenCapturePermissionManager.shared.isGranted else {
             onError(
-                "Screen Recording access is required. You can manage it in ToolPouch Settings."
+                "Screen Recording access is required. You can manage it in ToolPouch Settings.".localizedInterfaceText
             )
             return
         }
@@ -270,7 +270,7 @@ final class ScreenColorPicker {
                 guard let image, error == nil,
                       let color = Self.centerColor(in: image) else {
                     if self.shouldCompleteOnNextCapture {
-                        self.onError?("ToolPouch could not sample this part of the screen.")
+                        self.onError?("ToolPouch could not sample this part of the screen.".localizedInterfaceText)
                         self.cleanUp(notifyCancellation: false)
                     }
                     return
@@ -464,7 +464,7 @@ private final class PickerInstructionView: NSVisualEffectView {
         icon.contentTintColor = .secondaryLabelColor
         icon.translatesAutoresizingMaskIntoConstraints = false
 
-        let label = NSTextField(labelWithString: "Press Esc to exit Color Picking")
+        let label = NSTextField(labelWithString: "Press Esc to exit Color Picking".localizedInterfaceText)
         label.font = .systemFont(ofSize: 14, weight: .semibold)
         label.textColor = .labelColor
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -521,7 +521,7 @@ private final class PixelMagnifierView: NSView {
             drawGrid(in: imageRect, columns: image.width, rows: image.height)
         }
 
-        let value = color?.hex ?? "Move the pointer"
+        let value = color?.hex ?? "Move the pointer".localizedInterfaceText
         let attributes: [NSAttributedString.Key: Any] = [
             .font: NSFont.monospacedSystemFont(ofSize: 15, weight: .semibold),
             .foregroundColor: NSColor.labelColor,

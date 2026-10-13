@@ -44,17 +44,22 @@ struct AppDependencies {
     let toolRegistry: ToolRegistry
     let quickAccessPreferences: QuickAccessPreferences
     let themeStore: AppThemeStore
+    let languageStore: AppLanguageStore
     let currentDeviceProvider: any CurrentDeviceProviding
     let deviceStore: any DeviceStoring
     let networkCollector: any NetworkInfoCollecting
     let networkSnapshotStore: any NetworkSnapshotStoring
     let wiFiScanner: any WiFiScanning
     let wiFiScanAuthorizer: any WiFiScanAuthorizing
+    let systemStatsMonitor: SystemStatsMonitor
 
     /// Assembles production implementations around the supplied SwiftData container.
     static func live(modelContainer: ModelContainer) -> AppDependencies {
         let toolRegistry = ToolRegistry.live()
         let platform = ToolPlatform.current
+
+        let systemStatsMonitor = SystemStatsMonitor()
+        systemStatsMonitor.start()
 
         return AppDependencies(
             modelContainer: modelContainer,
@@ -66,6 +71,7 @@ struct AppDependencies {
                 maximumCount: toolRegistry.quickAccessMaximumCount
             ),
             themeStore: AppThemeStore(),
+            languageStore: AppLanguageStore(),
             currentDeviceProvider: SystemDeviceProvider(),
             deviceStore: DeviceRepository(modelContext: modelContainer.mainContext),
             networkCollector: NetworkInfoCollector(),
@@ -73,7 +79,8 @@ struct AppDependencies {
                 modelContext: modelContainer.mainContext
             ),
             wiFiScanner: makeWiFiScanner(),
-            wiFiScanAuthorizer: makeWiFiScanAuthorizer()
+            wiFiScanAuthorizer: makeWiFiScanAuthorizer(),
+            systemStatsMonitor: systemStatsMonitor
         )
     }
 

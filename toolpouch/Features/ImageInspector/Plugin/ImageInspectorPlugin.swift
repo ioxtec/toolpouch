@@ -3,7 +3,7 @@ import SwiftUI
 struct ImageInspectorPlugin: ToolPlugin {
     let definition = ToolDefinition(
         id: .imageInspector,
-        categoryID: .visual,
+        categoryID: .graphics,
         title: "Image Toolkit",
         description: "Inspect metadata, resize images, and convert formats.",
         systemImage: "photo.badge.magnifyingglass",

@@ -90,7 +90,7 @@ struct QuickCopyFolderEditor: View {
             try modelContext.save()
             dismiss()
         } catch {
-            errorMessage = "The folder could not be saved."
+            errorMessage = "The folder could not be saved.".localizedInterfaceText
         }
     }
 }
@@ -176,7 +176,7 @@ struct QuickCopyCollectionEditor: View {
             try modelContext.save()
             dismiss()
         } catch {
-            errorMessage = "The collection could not be saved."
+            errorMessage = "The collection could not be saved.".localizedInterfaceText
         }
     }
 }
@@ -242,10 +242,7 @@ struct QuickCopySnippetEditor: View {
                 #else
                 TextEditor(text: $content)
                     .font(.body.monospaced())
-                    .frame(minHeight: 130)
-                    .scrollContentBackground(.hidden)
-                    .padding(8)
-                    .quickCopyInputSurface()
+                    .toolPouchEditorSurface(minimumHeight: 124)
                 #endif
 
                 QuickCopyContextRow(
@@ -298,7 +295,7 @@ struct QuickCopySnippetEditor: View {
             try modelContext.save()
             dismiss()
         } catch {
-            errorMessage = "The note could not be saved."
+            errorMessage = "The note could not be saved.".localizedInterfaceText
         }
     }
 }
@@ -333,8 +330,8 @@ private struct QuickCopyEditorForm<Content: View>: View {
     var body: some View {
         VStack(spacing: 0) {
             HStack(spacing: 10) {
-                Text(title)
-                    .font(.title3.weight(.semibold))
+                Text(title.localizedInterfaceText)
+                    .font(ToolPouchLayout.Typography.sectionTitle)
                 Spacer()
                 Button {
                     dismiss()
@@ -346,21 +343,21 @@ private struct QuickCopyEditorForm<Content: View>: View {
                 .help("Cancel")
                 .accessibilityLabel("Cancel")
             }
-            .padding(.horizontal, 18)
-            .padding(.vertical, 14)
+            .padding(.horizontal, ToolPouchLayout.Spacing.xLarge)
+            .padding(.vertical, ToolPouchLayout.Spacing.large)
 
             Divider()
 
             ScrollView {
                 content
-                    .padding(18)
+                    .padding(ToolPouchLayout.Spacing.xLarge)
 
                 if let errorMessage {
                     Label(errorMessage, systemImage: "exclamationmark.triangle.fill")
                         .font(.caption)
                         .foregroundStyle(.orange)
                         .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.horizontal, 18)
+                        .padding(.horizontal, ToolPouchLayout.Spacing.xLarge)
                         .padding(.bottom, 12)
                 }
             }
@@ -370,13 +367,13 @@ private struct QuickCopyEditorForm<Content: View>: View {
             HStack(spacing: 10) {
                 Spacer()
                 Button("Cancel") { dismiss() }
-                    .buttonStyle(.glass)
+                    .toolPouchSecondaryAction()
                 Button("Save", action: save)
-                    .buttonStyle(.glassProminent)
+                    .toolPouchPrimaryAction()
                     .disabled(saveDisabled)
             }
-            .padding(.horizontal, 18)
-            .padding(.vertical, 12)
+            .padding(.horizontal, ToolPouchLayout.Spacing.xLarge)
+            .padding(.vertical, ToolPouchLayout.Spacing.large)
         }
         .foregroundStyle(theme.colors.primaryText.color)
         .tint(theme.colors.primaryAccent.color)
@@ -398,16 +395,14 @@ private struct QuickCopyLabeledTextField: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
-            Text(label)
-                .font(.caption.weight(.semibold))
+            Text(label.localizedInterfaceText)
+                .font(ToolPouchLayout.Typography.supporting.weight(.semibold))
                 .foregroundStyle(.secondary)
 
-            TextField(placeholder, text: $text, axis: .vertical)
+            TextField(placeholder.localizedInterfaceText, text: $text, axis: .vertical)
                 .textFieldStyle(.plain)
                 .lineLimit(lineLimit)
-                .padding(.horizontal, 10)
-                .padding(.vertical, 9)
-                .quickCopyInputSurface()
+                .toolPouchControlSurface()
         }
     }
 }
@@ -418,38 +413,14 @@ private struct QuickCopyContextRow: View {
 
     var body: some View {
         HStack(spacing: 10) {
-            Text(label)
+            Text(label.localizedInterfaceText)
                 .foregroundStyle(.secondary)
             Spacer()
             Text(value)
                 .lineLimit(1)
                 .truncationMode(.middle)
         }
-        .font(.caption)
-        .padding(.horizontal, 10)
-        .padding(.vertical, 8)
-        .quickCopyInputSurface()
-    }
-}
-
-private extension View {
-    func quickCopyInputSurface() -> some View {
-        modifier(QuickCopyInputSurfaceModifier())
-    }
-}
-
-private struct QuickCopyInputSurfaceModifier: ViewModifier {
-    @Environment(\.appTheme) private var theme
-
-    func body(content: Content) -> some View {
-        content
-            .background(
-                theme.colors.interactiveSurface.color,
-                in: RoundedRectangle(cornerRadius: 9)
-            )
-            .overlay {
-                RoundedRectangle(cornerRadius: 9)
-                    .stroke(theme.colors.border.color.opacity(0.8), lineWidth: 1)
-            }
+        .font(ToolPouchLayout.Typography.supporting)
+        .toolPouchControlSurface()
     }
 }

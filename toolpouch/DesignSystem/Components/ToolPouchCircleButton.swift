@@ -47,7 +47,7 @@ struct ToolPouchCircleButton: View {
         .contentShape(Circle())
         .disabled(!isEnabled)
         .opacity(isEnabled ? 1 : 0.3)
-        .help(help)
-        .accessibilityLabel(accessibilityLabel)
+        .help(help.localizedInterfaceText)
+        .accessibilityLabel(accessibilityLabel.localizedInterfaceText)
     }
 }

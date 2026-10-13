@@ -19,11 +19,11 @@ nonisolated enum WiFiScannerError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .interfaceUnavailable:
-            "No Wi-Fi interface is available."
+            "No Wi-Fi interface is available.".localizedInterfaceText
         case .locationPermissionRequired:
-            "Location access is required to identify nearby Wi-Fi networks."
+            "Location access is required to identify nearby Wi-Fi networks.".localizedInterfaceText
         case .unsupportedPlatform:
-            "Nearby Wi-Fi scanning is not available on this platform."
+            "Nearby Wi-Fi scanning is not available on this platform.".localizedInterfaceText
         }
     }
 }

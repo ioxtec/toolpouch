@@ -2,6 +2,7 @@
 import SwiftUI
 
 struct SSHKeysView: View {
+    @Environment(\.appTheme) private var theme
     @State private var model: SSHKeysViewModel
     @State private var isShowingGenerator = false
     @State private var keyPendingPrivateCopy: SSHKeyPair?
@@ -20,11 +21,14 @@ struct SSHKeysView: View {
     }
 
     var body: some View {
-        VStack(spacing: 0) {
-            header
-            Divider()
-            content
+        ScrollView {
+            ToolContentLayout {
+                header
+                folderControl
+                content
+            }
         }
+        .scrollIndicators(.never)
         .task { await model.load() }
         .sheet(isPresented: $isShowingGenerator) {
             SSHKeyGeneratorView(model: model)
@@ -62,44 +66,44 @@ struct SSHKeysView: View {
     }
 
     private var header: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            HStack {
-                VStack(alignment: .leading, spacing: 3) {
-                    Text("SSH Keys")
-                        .font(.headline)
-                    Text("Manage key pairs stored in your SSH folder.")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                }
+        HStack(alignment: .top, spacing: ToolPouchLayout.Spacing.large) {
+            ScreenHeader(
+                title: "SSH Keys",
+                subtitle: "Manage key pairs stored in your SSH folder."
+            )
 
-                Spacer()
-
-                Button {
-                    isShowingGenerator = true
-                } label: {
-                    Image(systemName: "plus")
-                        .toolPouchIcon(.medium)
-                }
-                .buttonStyle(.glass)
-                .disabled(model.folderURL == nil || model.isLoading)
-                .help("Generate SSH Key")
+            Button {
+                isShowingGenerator = true
+            } label: {
+                Label("Generate", systemImage: "plus")
             }
-
-            HStack(spacing: 8) {
-                Image(systemName: "folder")
-                    .toolPouchIcon(.small)
-                    .foregroundStyle(.secondary)
-                Text(model.folderURL?.path(percentEncoded: false) ?? "No folder selected")
-                    .font(.caption.monospaced())
-                    .lineLimit(1)
-                    .truncationMode(.middle)
-                Spacer()
-                Button(model.folderURL == nil ? "Choose Folder" : "Change") {
-                    Task { await model.chooseFolder() }
-                }
-            }
+            .toolPouchPrimaryAction()
+            .disabled(model.folderURL == nil || model.isLoading)
+            .help("Generate SSH Key")
         }
-        .padding(ToolPouchLayout.Content.padding)
+    }
+
+    private var folderControl: some View {
+        HStack(spacing: ToolPouchLayout.Spacing.medium) {
+            Image(systemName: "folder")
+                .toolPouchIcon(.small, weight: .medium)
+                .foregroundStyle(theme.colors.primaryAccent.color)
+
+            Text(model.folderURL?.path(percentEncoded: false) ?? "No folder selected".localizedInterfaceText)
+                .font(ToolPouchLayout.Typography.supporting.monospaced())
+                .lineLimit(1)
+                .truncationMode(.middle)
+
+            Spacer(minLength: ToolPouchLayout.Spacing.medium)
+
+            Button(model.folderURL == nil ? "Choose Folder" : "Change") {
+                Task { await model.chooseFolder() }
+            }
+            .toolPouchSecondaryAction()
+        }
+        .padding(.horizontal, ToolPouchLayout.Spacing.large)
+        .frame(minHeight: ToolPouchLayout.Control.regularHeight)
+        .toolPouchSurface(interactive: true, cornerRadius: ToolPouchLayout.Radius.control)
     }
 
     @ViewBuilder
@@ -113,11 +117,12 @@ struct SSHKeysView: View {
                 Button("Choose Folder") {
                     Task { await model.chooseFolder() }
                 }
+                .toolPouchPrimaryAction()
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .frame(maxWidth: .infinity, minHeight: 150)
         } else if model.isLoading, model.keys.isEmpty {
             ProgressView("Reading SSH keys…")
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .frame(maxWidth: .infinity, minHeight: 150)
         } else if model.keys.isEmpty {
             ContentUnavailableView {
                 Label("No SSH Keys", systemImage: "key.horizontal")
@@ -125,12 +130,13 @@ struct SSHKeysView: View {
                 Text("Generate a key pair or choose a different folder.")
             } actions: {
                 Button("Generate Key") { isShowingGenerator = true }
+                    .toolPouchPrimaryAction()
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .frame(maxWidth: .infinity, minHeight: 150)
         } else {
-            List {
-                Section {
-                    ForEach(model.keys) { key in
+            ToolSectionCard("Key pairs") {
+                LazyVStack(spacing: 0) {
+                    ForEach(Array(model.keys.enumerated()), id: \.element.id) { index, key in
                         SSHKeyRow(
                             key: key,
                             publicKeyWasCopied: model.copiedKey
@@ -147,25 +153,24 @@ struct SSHKeysView: View {
                                 keyPendingDeletion = key
                             }
                         )
+                        if index < model.keys.count - 1 {
+                            Divider()
+                        }
                     }
-                } header: {
-                    SSHKeyActionsHeader()
                 }
             }
-            .listStyle(.inset)
         }
 
         if let errorMessage = model.errorMessage {
             Label(errorMessage, systemImage: "exclamationmark.triangle")
-                .font(.caption)
-                .foregroundStyle(.secondary)
-                .padding(.horizontal)
-                .padding(.bottom, 8)
+                .font(ToolPouchLayout.Typography.supporting)
+                .foregroundStyle(theme.colors.danger.color)
         }
     }
 }
 
 private struct SSHKeyRow: View {
+    @Environment(\.appTheme) private var theme
     let key: SSHKeyPair
     let publicKeyWasCopied: Bool
     let privateKeyWasCopied: Bool
@@ -177,11 +182,12 @@ private struct SSHKeyRow: View {
         HStack(spacing: 12) {
             Image(systemName: "key.horizontal")
                 .toolPouchIcon(.medium)
-                .frame(width: 28)
+                .foregroundStyle(theme.colors.primaryAccent.color)
+                .frame(width: 24)
 
             VStack(alignment: .leading, spacing: 3) {
                 Text(key.name)
-                    .font(.headline)
+                    .font(ToolPouchLayout.Typography.body.weight(.semibold))
                 HStack(spacing: 8) {
                     if let algorithm = key.algorithm {
                         Text(algorithm)
@@ -207,7 +213,7 @@ private struct SSHKeyRow: View {
                     .contentTransition(.symbolEffect(.replace))
             }
             .buttonStyle(.borderless)
-            .frame(width: SSHKeyActionColumn.width)
+            .frame(width: SSHKeyActionColumn.width, height: 28)
             .disabled(key.publicKeyURL == nil)
             .help(
                 publicKeyWasCopied ? "Public Key Copied" : "Copy Public Key"
@@ -226,7 +232,7 @@ private struct SSHKeyRow: View {
                     .contentTransition(.symbolEffect(.replace))
             }
             .buttonStyle(.borderless)
-            .frame(width: SSHKeyActionColumn.width)
+            .frame(width: SSHKeyActionColumn.width, height: 28)
             .help(
                 privateKeyWasCopied ? "Private Key Copied" : "Copy Private Key"
             )
@@ -237,56 +243,18 @@ private struct SSHKeyRow: View {
             Button(action: deleteKeyPair) {
                 Image(systemName: "xmark.circle.fill")
                     .toolPouchIcon(.medium)
-                    .foregroundStyle(.red)
+                    .foregroundStyle(theme.colors.danger.color)
             }
             .buttonStyle(.borderless)
-            .frame(width: SSHKeyActionColumn.width)
+            .frame(width: SSHKeyActionColumn.width, height: 28)
             .help("Move Key Pair to Trash")
             .accessibilityLabel("Move Key Pair to Trash")
         }
-        .padding(.vertical, 5)
-    }
-}
-
-private struct SSHKeyActionsHeader: View {
-    var body: some View {
-        HStack(spacing: 12) {
-            Text("Key Pair")
-            Spacer()
-            SSHKeyActionColumnHeader(
-                title: "PUB",
-                systemImage: "doc.text"
-            )
-            SSHKeyActionColumnHeader(
-                title: "PRV",
-                systemImage: "lock.doc"
-            )
-            SSHKeyActionColumnHeader(
-                title: "DEL",
-                systemImage: "trash"
-            )
-        }
-        .textCase(nil)
-    }
-}
-
-private struct SSHKeyActionColumnHeader: View {
-    let title: String
-    let systemImage: String
-
-    var body: some View {
-        VStack(spacing: 2) {
-            Image(systemName: systemImage)
-                .toolPouchIcon(.small)
-            Text(title)
-                .font(.caption2.weight(.semibold))
-        }
-        .frame(width: SSHKeyActionColumn.width)
-        .accessibilityElement(children: .combine)
+        .padding(.vertical, ToolPouchLayout.Spacing.small)
     }
 }
 
 private enum SSHKeyActionColumn {
-    static let width: CGFloat = 38
+    static let width: CGFloat = 30
 }
 #endif

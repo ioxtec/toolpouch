@@ -3,7 +3,7 @@ import SwiftUI
 struct UnitConverterPlugin: ToolPlugin {
     let definition = ToolDefinition(
         id: .unitConverter,
-        categoryID: .everyday,
+        categoryID: .calculations,
         title: "Unit Converter",
         description: "Convert metric, imperial, cooking, and data units.",
         systemImage: "arrow.left.arrow.right",

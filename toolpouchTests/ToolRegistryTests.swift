@@ -88,7 +88,7 @@ struct ToolRegistryTests {
             registry.tool(id: .systemStats)?.supportedPlatforms
                 == Set(ToolPlatform.allCases)
         )
-        #expect(registry.tools(in: .system, for: .watchOS).map(\.id) == [.systemStats])
+        #expect(registry.tools(in: .device, for: .watchOS).map(\.id) == [.systemStats])
     }
 
     @Test
@@ -97,6 +97,20 @@ struct ToolRegistryTests {
             registry.tool(id: .unitConverter)?.supportedPlatforms
                 == Set(ToolPlatform.allCases)
         )
+    }
+
+    @Test
+    func scientificCalculatorIsAvailableOnMacOSAndIOS() {
+        #expect(
+            registry.tool(id: .scientificCalculator)?.supportedPlatforms
+                == [.macOS, .iOS]
+        )
+        #expect(
+            registry.tools(in: .science, for: .macOS).map(\.id)
+                == [.scientificCalculator, .functionGraphs]
+        )
+        #expect(registry.tool(id: .functionGraphs)?.supportedPlatforms == [.macOS, .iOS])
+        #expect(!registry.categories(for: .watchOS).contains { $0.id == .science })
     }
 
     @Test
@@ -138,7 +152,7 @@ struct ToolRegistryTests {
                 == [.macOS, .iOS]
         )
         #expect(
-            !registry.tools(in: .everyday, for: .watchOS)
+            !registry.tools(in: .files, for: .watchOS)
                 .contains { $0.id == .archiveTool }
         )
     }
@@ -150,7 +164,7 @@ struct ToolRegistryTests {
                 == [.macOS, .iOS]
         )
         #expect(
-            !registry.tools(in: .everyday, for: .watchOS)
+            !registry.tools(in: .location, for: .watchOS)
                 .contains { $0.id == .coordinateTool }
         )
     }
@@ -221,16 +235,20 @@ struct ToolRegistryTests {
         #expect(!iOSTools.contains { $0.id == .wiFiScanner })
         #expect(iOSTools.contains { $0.id == .networkInfo })
 
-        let iOSDeveloperTools = registry.tools(in: .developer, for: .iOS)
-        #expect(!iOSDeveloperTools.contains { $0.id == .sshKeys })
+        let iOSCredentialTools = registry.tools(in: .credentials, for: .iOS)
+        #expect(!iOSCredentialTools.contains { $0.id == .sshKeys })
+        #expect(iOSCredentialTools.contains { $0.id == .passwordGenerator })
     }
 
     @Test
     func platformCategoriesHideEmptyAndUnsupportedSections() {
         let watchCategories = registry.categories(for: .watchOS)
 
-        #expect(!watchCategories.contains { $0.id == .visual })
-        #expect(!watchCategories.contains { $0.id == .developer })
+        #expect(!watchCategories.contains { $0.id == .graphics })
+        #expect(!watchCategories.contains { $0.id == .files })
+        #expect(!watchCategories.contains { $0.id == .location })
+        #expect(!watchCategories.contains { $0.id == .science })
+        #expect(watchCategories.contains { $0.id == .credentials })
         #expect(watchCategories.contains { $0.id == .network })
     }
 

@@ -10,12 +10,12 @@ struct NetworkInfoRow: View {
                 .foregroundStyle(.secondary)
                 .frame(width: 16)
 
-            Text(field.title)
+            Text(field.title.localizedInterfaceText)
                 .font(.caption)
                 .foregroundStyle(.secondary)
                 .frame(width: 72, alignment: .leading)
 
-            Text(field.value)
+            Text(field.value == "Unavailable" ? field.value.localizedInterfaceText : field.value)
                 .font(.caption.monospaced())
                 .lineLimit(2)
                 #if !os(watchOS)

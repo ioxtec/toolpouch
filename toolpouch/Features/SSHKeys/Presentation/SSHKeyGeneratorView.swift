@@ -5,6 +5,7 @@ struct SSHKeyGeneratorView: View {
     let model: SSHKeysViewModel
 
     @Environment(\.dismiss) private var dismiss
+    @EnvironmentObject private var languageStore: AppLanguageStore
     @State private var algorithm: SSHKeyAlgorithm = .ed25519
     @State private var bitSize = 4096
     @State private var fileName = SSHKeyAlgorithm.ed25519.defaultFileName
@@ -17,28 +18,32 @@ struct SSHKeyGeneratorView: View {
     var body: some View {
         VStack(spacing: 0) {
             Form {
-                Picker("Key Type", selection: $algorithm) {
+                Picker(selection: $algorithm) {
                     ForEach(SSHKeyAlgorithm.allCases) { algorithm in
-                        Text(algorithm.title).tag(algorithm)
+                        Text(algorithm.title.localizedInterfaceText).tag(algorithm)
                     }
+                } label: {
+                    Text("Key Type".localizedInterfaceText)
                 }
 
                 if !algorithm.supportedBitSizes.isEmpty {
-                    Picker("Key Size", selection: $bitSize) {
+                    Picker(selection: $bitSize) {
                         ForEach(algorithm.supportedBitSizes, id: \.self) { size in
                             Text("\(size) bits").tag(size)
                         }
+                    } label: {
+                        Text("Key Size".localizedInterfaceText)
                     }
                 }
 
-                TextField("File Name", text: $fileName)
+                TextField("File Name".localizedInterfaceText, text: $fileName)
                     .textContentType(.none)
 
-                TextField("Email or Comment", text: $comment)
+                TextField("Email or Comment".localizedInterfaceText, text: $comment)
                     .textContentType(.emailAddress)
 
-                SecureField("Passphrase (Optional)", text: $passphrase)
-                SecureField("Confirm Passphrase", text: $confirmedPassphrase)
+                SecureField("Passphrase (Optional)".localizedInterfaceText, text: $passphrase)
+                SecureField("Confirm Passphrase".localizedInterfaceText, text: $confirmedPassphrase)
 
                 if let validationMessage {
                     Label(validationMessage, systemImage: "exclamationmark.triangle")
@@ -57,12 +62,12 @@ struct SSHKeyGeneratorView: View {
             Divider()
 
             HStack {
-                Button("Cancel", role: .cancel) { dismiss() }
+                Button("Cancel".localizedInterfaceText, role: .cancel) { dismiss() }
                     .keyboardShortcut(.cancelAction)
 
                 Spacer()
 
-                Button("Generate Key") {
+                Button("Generate Key".localizedInterfaceText) {
                     generate()
                 }
                 .keyboardShortcut(.defaultAction)
@@ -71,7 +76,8 @@ struct SSHKeyGeneratorView: View {
             .padding()
         }
         .frame(width: 420, height: 390)
-        .navigationTitle("Generate SSH Key")
+        .navigationTitle("Generate SSH Key".localizedInterfaceText)
+        .id(languageStore.selection)
         .onChange(of: algorithm) { oldValue, newValue in
             if fileName == oldValue.defaultFileName {
                 fileName = newValue.defaultFileName

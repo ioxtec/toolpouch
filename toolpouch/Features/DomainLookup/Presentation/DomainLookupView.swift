@@ -12,7 +12,7 @@ struct DomainLookupView: View {
 
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: ToolPouchLayout.Content.spacing) {
+            ToolContentLayout {
                 ScreenHeader(
                     title: "Whois",
                     subtitle: "Check public registration details for a domain."
@@ -20,27 +20,28 @@ struct DomainLookupView: View {
                 searchPanel
                 content
             }
-            .padding(ToolPouchLayout.Content.padding)
         }
         .scrollIndicators(.never)
     }
 
     private var searchPanel: some View {
-        VStack(alignment: .leading, spacing: 10) {
+        ToolSectionCard("Domain") {
             domainTextField
 
             lookupButton
         }
-        .padding(14)
-        .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 14))
     }
 
     @ViewBuilder
     private var domainTextField: some View {
         #if os(macOS)
         TextField("example.com", text: $model.query)
+            .textFieldStyle(.plain)
+            .toolPouchControlSurface()
         #else
         TextField("example.com", text: $model.query)
+            .textFieldStyle(.plain)
+            .toolPouchControlSurface()
             .textInputAutocapitalization(.never)
             .autocorrectionDisabled()
             .submitLabel(.search)
@@ -68,11 +69,11 @@ struct DomainLookupView: View {
                     Image(systemName: "magnifyingglass")
                         .toolPouchIcon(.small)
                 }
-                Text(model.isLoading ? "Looking Up…" : "Look Up Domain")
+                Text((model.isLoading ? "Looking Up…" : "Look Up Domain").localizedInterfaceText)
             }
             .frame(maxWidth: .infinity)
         }
-        .buttonStyle(.glassProminent)
+        .toolPouchPrimaryAction()
         .disabled(!model.canLookup)
     }
 
@@ -140,7 +141,7 @@ private struct DomainRegistrationView: View {
         .alert("Unable to Save Response", isPresented: $isShowingExportError) {
             Button("OK", role: .cancel) {}
         } message: {
-            Text(exportErrorMessage ?? "The RDAP response could not be saved.")
+            Text(exportErrorMessage ?? "The RDAP response could not be saved.".localizedInterfaceText)
         }
         #endif
     }
@@ -153,7 +154,7 @@ private struct DomainRegistrationView: View {
 
                 VStack(alignment: .leading, spacing: 2) {
                     Text(registration.unicodeName ?? registration.name)
-                        .font(.headline)
+                        .font(ToolPouchLayout.Typography.sectionTitle)
                         .selectableText()
                     if let unicodeName = registration.unicodeName,
                        unicodeName.caseInsensitiveCompare(registration.name) != .orderedSame {
@@ -286,9 +287,9 @@ private struct DomainRegistrationView: View {
 
     private var dnssecTitle: String {
         switch registration.isDNSSECSigned {
-        case true: "Signed"
-        case false: "Not Signed"
-        case nil: "Not Reported"
+        case true: "Signed".localizedInterfaceText
+        case false: "Not Signed".localizedInterfaceText
+        case nil: "Not Reported".localizedInterfaceText
         }
     }
 
@@ -348,16 +349,9 @@ private struct DomainLookupCard<Content: View>: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 11) {
-            if let title {
-                Text(title)
-                    .font(.headline)
-            }
+        ToolSectionCard(title) {
             content
         }
-        .padding(14)
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 14))
     }
 }
 
@@ -374,11 +368,11 @@ private struct DomainInfoRow: View {
                 .frame(width: 20)
 
             VStack(alignment: .leading, spacing: 2) {
-                Text(title)
-                    .font(.caption)
+                Text(title.localizedInterfaceText)
+                    .font(ToolPouchLayout.Typography.supporting)
                     .foregroundStyle(.secondary)
                 Text(value)
-                    .font(.subheadline)
+                    .font(ToolPouchLayout.Typography.body)
                     .selectableText()
             }
 

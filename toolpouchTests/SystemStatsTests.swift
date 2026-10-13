@@ -10,7 +10,6 @@ struct SystemStatsTests {
 
         #expect(snapshot.memoryTotal > 0)
         #expect(snapshot.processorCount > 0)
-        #expect(snapshot.systemUptime > 0)
         #expect(snapshot.cpuUsage.map { (0...1).contains($0) } ?? false)
     }
 
@@ -40,7 +39,6 @@ struct SystemStatsTests {
             battery: SystemBatterySnapshot(level: 1.2, state: .full),
             thermalState: .nominal,
             isLowPowerModeEnabled: false,
-            systemUptime: 60,
             processorCount: 8,
             operatingSystem: "Test OS"
         )
@@ -48,6 +46,35 @@ struct SystemStatsTests {
         #expect(snapshot.memoryUsage == 1)
         #expect(snapshot.storageUsage == 0.7)
         #expect(snapshot.battery?.level == 1)
+    }
+
+    @Test
+    func diskUsageIsDerivedFromAvailableCapacity() {
+        let disk = SystemDiskSnapshot(
+            id: "/",
+            name: "Macintosh HD",
+            available: 25,
+            total: 100,
+            format: "APFS",
+            isInternal: true,
+            isRemovable: false
+        )
+
+        #expect(disk.usage == 0.75)
+    }
+
+    @Test
+    func savedHistorySurvivesCreatingANewStore() throws {
+        let fileURL = FileManager.default.temporaryDirectory
+            .appendingPathComponent("SystemStatsTests.\(UUID().uuidString).jsonl")
+        defer { try? FileManager.default.removeItem(at: fileURL) }
+        let snapshot = SequenceSystemStatsCollector(cpuValues: [0.42]).collect()
+        let sample = SystemStatsSample(snapshot: snapshot)
+
+        SystemStatsHistoryStore(fileURL: fileURL).append(sample)
+        let restored = SystemStatsHistoryStore(fileURL: fileURL).load()
+
+        #expect(restored == [sample])
     }
 
     @Test
@@ -82,7 +109,6 @@ private final class SequenceSystemStatsCollector: SystemStatsCollecting {
             battery: nil,
             thermalState: .nominal,
             isLowPowerModeEnabled: false,
-            systemUptime: 60,
             processorCount: 1,
             operatingSystem: "Test OS"
         )

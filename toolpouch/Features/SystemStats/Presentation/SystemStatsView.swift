@@ -2,37 +2,34 @@ import SwiftUI
 
 struct SystemStatsView: View {
     @Environment(\.appTheme) private var theme
-    @State private var model = SystemStatsViewModel()
+    @Bindable var monitor: SystemStatsMonitor
+    @State private var selection = SystemStatsSection.cpu
 
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: contentSpacing) {
+            ToolContentLayout {
                 header
 
-                if let snapshot = model.snapshot {
-                    summary(snapshot)
-                    resources(snapshot)
-                    powerAndDevice(snapshot)
+                if let snapshot = monitor.snapshot {
+                    SystemStatsTabBar(selection: $selection)
+                    selectedPanel(snapshot)
                 } else {
                     ProgressView("Reading system information…")
                         .frame(maxWidth: .infinity, minHeight: 180)
                 }
             }
-            .padding(contentPadding)
         }
         .scrollIndicators(.never)
-        .task { await model.monitor() }
     }
 
     private var header: some View {
         HStack(alignment: .top, spacing: 12) {
             ScreenHeader(
                 title: "System Stats",
-                subtitle: "Live health and resource information",
+                subtitle: "Live health and saved history",
                 density: isWatch ? .compact : .regular
             )
-
-            Button(action: model.refresh) {
+            Button(action: monitor.refresh) {
                 Image(systemName: "arrow.clockwise")
                     .frame(width: 28, height: 28)
             }
@@ -42,114 +39,89 @@ struct SystemStatsView: View {
         }
     }
 
-    private func summary(_ snapshot: SystemStatsSnapshot) -> some View {
-        LazyVGrid(columns: summaryColumns, spacing: 8) {
-            SystemSummaryTile(
+    @ViewBuilder
+    private func selectedPanel(_ snapshot: SystemStatsSnapshot) -> some View {
+        switch selection {
+        case .power:
+            powerPanel(snapshot)
+        case .cpu:
+            metricPanel(
                 title: "CPU",
-                value: snapshot.cpuUsage.percentText,
-                systemImage: "cpu",
-                color: theme.colors.primaryAccent.color
-            )
-            SystemSummaryTile(
-                title: "Memory",
-                value: snapshot.memoryUsage.percentText,
-                systemImage: "memorychip",
-                color: theme.colors.secondaryAccent.color
-            )
-            SystemSummaryTile(
-                title: "Thermal",
-                value: snapshot.thermalState.title,
-                systemImage: "thermometer.medium",
-                color: thermalColor(snapshot.thermalState)
-            )
-            if let battery = snapshot.battery {
-                SystemSummaryTile(
-                    title: "Battery",
-                    value: battery.level.percentText,
-                    systemImage: "battery.75percent",
-                    color: .green
-                )
-            }
-        }
-    }
-
-    private func resources(_ snapshot: SystemStatsSnapshot) -> some View {
-        VStack(alignment: .leading, spacing: 12) {
-            Text("Resources")
-                .font(.headline)
-
-            SystemMetricRow(
-                title: "CPU",
-                detail: "\(snapshot.processorCount) active cores",
                 value: snapshot.cpuUsage,
-                history: model.cpuHistory,
+                detail: "\(snapshot.processorCount) active cores",
+                history: monitor.cpuHistory,
                 color: theme.colors.primaryAccent.color,
                 systemImage: "cpu"
             )
-
-            Divider()
-
-            SystemMetricRow(
+        case .memory:
+            metricPanel(
                 title: "Memory",
-                detail: byteDetail(used: snapshot.memoryUsed, total: snapshot.memoryTotal),
                 value: snapshot.memoryUsage,
-                history: model.memoryHistory,
+                detail: byteDetail(used: snapshot.memoryUsed, total: snapshot.memoryTotal),
+                history: monitor.memoryHistory,
                 color: theme.colors.secondaryAccent.color,
                 systemImage: "memorychip"
             )
+        case .storage:
+            storagePanel(snapshot)
+        case .thermal:
+            thermalPanel(snapshot)
+        }
+    }
 
-            if let storageUsage = snapshot.storageUsage {
-                Divider()
-                SystemMetricRow(
-                    title: "Storage",
-                    detail: storageDetail(snapshot),
-                    value: storageUsage,
-                    history: [],
-                    color: .orange,
-                    systemImage: "internaldrive"
-                )
+    private func metricPanel(
+        title: String,
+        value: Double?,
+        detail: String,
+        history: [Double],
+        color: Color,
+        systemImage: String
+    ) -> some View {
+        VStack(alignment: .leading, spacing: ToolPouchLayout.Spacing.large) {
+            HStack {
+                Label(title.localizedInterfaceText, systemImage: systemImage)
+                    .font(ToolPouchLayout.Typography.sectionTitle)
+                Spacer()
+                Text(value.percentText)
+                    .font(.title3.weight(.semibold).monospacedDigit())
+                    .foregroundStyle(color)
             }
+            SystemProgressBar(value: value, color: color)
+            HStack {
+                Text(detail)
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                Spacer()
+                Text("Last \(monitor.historyDuration.title.lowercased())")
+                    .font(.caption2)
+                    .foregroundStyle(.secondary)
+            }
+            historyChart(values: history, color: color)
         }
         .padding(cardPadding)
         .toolPouchSurface(elevated: true)
     }
 
-    private func powerAndDevice(_ snapshot: SystemStatsSnapshot) -> some View {
-        VStack(alignment: .leading, spacing: 12) {
+    private func powerPanel(_ snapshot: SystemStatsSnapshot) -> some View {
+        VStack(alignment: .leading, spacing: ToolPouchLayout.Spacing.medium) {
             Text("Power & Device")
-                .font(.headline)
-
+                .font(ToolPouchLayout.Typography.sectionTitle)
             if let battery = snapshot.battery {
-                SystemMetricRow(
+                SystemInfoRow(
                     title: "Battery",
-                    detail: battery.state.title,
-                    value: battery.level,
-                    history: model.batteryHistory,
-                    color: .green,
-                    systemImage: "battery.75percent"
+                    value: "\(battery.level.percentText) · \(battery.state.title.localizedInterfaceText)",
+                    systemImage: "battery.75percent",
+                    valueColor: .green
                 )
+                SystemProgressBar(value: battery.level, color: .green)
+                historyChart(values: monitor.batteryHistory, color: .green)
                 Divider()
             }
-
-            SystemInfoRow(
-                title: "Thermal state",
-                value: snapshot.thermalState.title,
-                systemImage: "thermometer.medium",
-                valueColor: thermalColor(snapshot.thermalState)
-            )
-            Divider()
             SystemInfoRow(
                 title: "Low Power Mode",
-                value: snapshot.isLowPowerModeEnabled ? "On" : "Off",
+                value: (snapshot.isLowPowerModeEnabled ? "On" : "Off").localizedInterfaceText,
                 systemImage: "leaf",
                 valueColor: snapshot.isLowPowerModeEnabled ? .yellow : .secondary
-            )
-            Divider()
-            SystemInfoRow(
-                title: "Uptime",
-                value: Duration.seconds(snapshot.systemUptime).formatted(.units(allowed: [.days, .hours, .minutes], width: .abbreviated, maximumUnitCount: 2)),
-                systemImage: "clock",
-                valueColor: .secondary
             )
             Divider()
             SystemInfoRow(
@@ -158,8 +130,104 @@ struct SystemStatsView: View {
                 systemImage: ToolPlatform.current.systemImage,
                 valueColor: .secondary
             )
+        }
+        .padding(cardPadding)
+        .toolPouchSurface(elevated: true)
+    }
 
-            Text("Exact component temperatures are unavailable through public Apple APIs. Thermal state is the App Store-safe system signal.")
+    private func storagePanel(_ snapshot: SystemStatsSnapshot) -> some View {
+        VStack(alignment: .leading, spacing: ToolPouchLayout.Spacing.large) {
+            Text("Storage")
+                .font(ToolPouchLayout.Typography.sectionTitle)
+            if snapshot.disks.isEmpty {
+                if let usage = snapshot.storageUsage {
+                    diskFallback(snapshot, usage: usage)
+                } else {
+                    ContentUnavailableView("Storage unavailable", systemImage: "internaldrive")
+                }
+            } else {
+                ForEach(Array(snapshot.disks.enumerated()), id: \.element.id) { index, disk in
+                    if index > 0 { Divider() }
+                    diskView(disk)
+                }
+            }
+            if monitor.storageHistory.count > 1 {
+                Divider()
+                Text("Usage history · Last \(monitor.historyDuration.title.lowercased())")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                historyChart(values: monitor.storageHistory, color: .orange)
+            }
+        }
+        .padding(cardPadding)
+        .toolPouchSurface(elevated: true)
+    }
+
+    private func diskView(_ disk: SystemDiskSnapshot) -> some View {
+        VStack(alignment: .leading, spacing: ToolPouchLayout.Spacing.small) {
+            HStack {
+                Label(disk.name, systemImage: "internaldrive")
+                    .font(.subheadline.weight(.semibold))
+                    .lineLimit(1)
+                Spacer()
+                Text(disk.usage.percentText)
+                    .font(.subheadline.weight(.semibold).monospacedDigit())
+            }
+            SystemProgressBar(value: disk.usage, color: .orange)
+            HStack {
+                Text("\(bytes(disk.available)) available")
+                Spacer()
+                Text(diskMetadata(disk))
+            }
+            .font(.caption)
+            .foregroundStyle(.secondary)
+        }
+    }
+
+    private func diskFallback(_ snapshot: SystemStatsSnapshot, usage: Double) -> some View {
+        VStack(alignment: .leading, spacing: ToolPouchLayout.Spacing.small) {
+            HStack {
+                Label("Device storage", systemImage: "internaldrive")
+                Spacer()
+                Text(usage.percentText)
+            }
+            .font(.subheadline.weight(.semibold))
+            SystemProgressBar(value: usage, color: .orange)
+            Text(storageDetail(snapshot))
+                .font(.caption)
+                .foregroundStyle(.secondary)
+        }
+    }
+
+    private func thermalPanel(_ snapshot: SystemStatsSnapshot) -> some View {
+        VStack(alignment: .leading, spacing: ToolPouchLayout.Spacing.medium) {
+            HStack {
+                Label("Thermal state", systemImage: "thermometer.medium")
+                    .font(ToolPouchLayout.Typography.sectionTitle)
+                Spacer()
+                Text(snapshot.thermalState.title.localizedInterfaceText)
+                    .font(.headline)
+                    .foregroundStyle(thermalColor(snapshot.thermalState))
+            }
+            Text(snapshot.thermalState.explanation.localizedInterfaceText)
+                .font(.subheadline)
+                .foregroundStyle(.secondary)
+                .fixedSize(horizontal: false, vertical: true)
+            Divider()
+            SystemInfoRow(
+                title: "CPU temperature",
+                value: "Not available",
+                systemImage: "cpu",
+                valueColor: .secondary
+            )
+            Divider()
+            SystemInfoRow(
+                title: "Battery temperature",
+                value: "Not available",
+                systemImage: "battery.75percent",
+                valueColor: .secondary
+            )
+            Text("Apple does not expose exact component temperatures through public APIs. Using private sensor access would conflict with App Store distribution, so ToolPouch reports the system thermal state instead.")
                 .font(.caption)
                 .foregroundStyle(.secondary)
                 .fixedSize(horizontal: false, vertical: true)
@@ -169,13 +237,20 @@ struct SystemStatsView: View {
         .toolPouchSurface(elevated: true)
     }
 
-    private var summaryColumns: [GridItem] {
-        [GridItem(.adaptive(minimum: isWatch ? 68 : 118), spacing: 8)]
+    @ViewBuilder
+    private func historyChart(values: [Double], color: Color) -> some View {
+        if values.count > 1 {
+            SystemSparkline(values: values, color: color)
+                .frame(maxWidth: .infinity, minHeight: 38, maxHeight: 38)
+        } else {
+            Text("Collecting history…")
+                .font(.caption)
+                .foregroundStyle(.secondary)
+                .frame(maxWidth: .infinity, minHeight: 38, alignment: .center)
+        }
     }
 
-    private var contentPadding: CGFloat { isWatch ? 8 : ToolPouchLayout.Content.padding }
-    private var contentSpacing: CGFloat { isWatch ? 10 : ToolPouchLayout.Content.spacing }
-    private var cardPadding: CGFloat { isWatch ? 10 : ToolPouchLayout.Tile.padding }
+    private var cardPadding: CGFloat { isWatch ? 8 : ToolPouchLayout.Spacing.large }
 
     private var isWatch: Bool {
         #if os(watchOS)
@@ -196,73 +271,113 @@ struct SystemStatsView: View {
     }
 
     private func byteDetail(used: UInt64?, total: UInt64) -> String {
-        guard let used else { return ByteCountFormatter.string(fromByteCount: Int64(total), countStyle: .memory) }
-        return "\(ByteCountFormatter.string(fromByteCount: Int64(used), countStyle: .memory)) / \(ByteCountFormatter.string(fromByteCount: Int64(total), countStyle: .memory))"
+        guard let used else { return bytes(total) }
+        return "\(bytes(used)) / \(bytes(total))"
     }
 
     private func storageDetail(_ snapshot: SystemStatsSnapshot) -> String {
         guard let available = snapshot.storageAvailable else { return "Unavailable" }
-        return "\(ByteCountFormatter.string(fromByteCount: Int64(available), countStyle: .file)) available"
+        return "\(bytes(available)) available"
+    }
+
+    private func bytes(_ value: UInt64) -> String {
+        ByteCountFormatter.string(fromByteCount: Int64(value), countStyle: .file)
+    }
+
+    private func diskMetadata(_ disk: SystemDiskSnapshot) -> String {
+        let location = disk.isInternal == true ? "Internal" : (disk.isRemovable == true ? "External" : nil)
+        return [disk.format, location, bytes(disk.total)]
+            .compactMap { $0 }
+            .joined(separator: " · ")
     }
 }
 
-private struct SystemSummaryTile: View {
-    let title: String
-    let value: String
-    let systemImage: String
-    let color: Color
+private enum SystemStatsSection: String, CaseIterable, Identifiable {
+    case power
+    case cpu
+    case memory
+    case storage
+    case thermal
 
-    var body: some View {
-        VStack(spacing: 5) {
-            Label(title, systemImage: systemImage)
-                .font(.caption.weight(.medium))
-                .foregroundStyle(.secondary)
-                .lineLimit(1)
-            Text(value)
-                .font(.headline.monospacedDigit())
-                .foregroundStyle(color)
-                .lineLimit(1)
-                .minimumScaleFactor(0.7)
+    var id: String { rawValue }
+
+    var title: String {
+        switch self {
+        case .power: "Power"
+        case .cpu: "CPU"
+        case .memory: "Memory"
+        case .storage: "Storage"
+        case .thermal: "Thermal"
         }
-        .frame(maxWidth: .infinity, minHeight: 64)
-        .padding(.horizontal, 8)
-        .toolPouchSurface()
-        .accessibilityElement(children: .combine)
+    }
+
+    var systemImage: String {
+        switch self {
+        case .power: "bolt"
+        case .cpu: "cpu"
+        case .memory: "memorychip"
+        case .storage: "internaldrive"
+        case .thermal: "thermometer.medium"
+        }
     }
 }
 
-private struct SystemMetricRow: View {
-    let title: String
-    let detail: String
-    let value: Double?
-    let history: [Double]
-    let color: Color
-    let systemImage: String
+private struct SystemStatsTabBar: View {
+    @Environment(\.appTheme) private var theme
+    @Binding var selection: SystemStatsSection
 
     var body: some View {
-        VStack(spacing: 8) {
-            HStack {
-                Label(title, systemImage: systemImage)
-                    .font(.subheadline.weight(.semibold))
-                Spacer()
-                Text(value.percentText)
-                    .font(.subheadline.weight(.semibold).monospacedDigit())
-            }
-            ProgressView(value: value ?? 0)
-                .tint(color)
-            HStack(alignment: .bottom) {
-                Text(detail)
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-                    .lineLimit(2)
-                Spacer(minLength: 8)
-                if history.count > 1 {
-                    SystemSparkline(values: history, color: color)
-                        .frame(width: 88, height: 24)
+        ScrollView(.horizontal) {
+            HStack(spacing: ToolPouchLayout.Spacing.small) {
+                ForEach(SystemStatsSection.allCases) { section in
+                    Button { selection = section } label: {
+                        VStack(spacing: 3) {
+                            Image(systemName: section.systemImage)
+                                .toolPouchIcon(.small, weight: .medium)
+                            Text(section.title.localizedInterfaceText)
+                                .font(.caption2.weight(.semibold))
+                                .lineLimit(1)
+                        }
+                        .foregroundStyle(
+                            selection == section
+                                ? theme.colors.primaryAccent.color
+                                : Color.secondary
+                        )
+                        .frame(minWidth: 58, minHeight: 46)
+                        .padding(.horizontal, 2)
+                        .contentShape(.rect)
+                        .background(
+                            selection == section
+                                ? theme.colors.accentButtonBackground.color
+                                : theme.colors.recessedSurface.color,
+                            in: RoundedRectangle(cornerRadius: ToolPouchLayout.Radius.control)
+                        )
+                    }
+                    .buttonStyle(.plain)
+                    .accessibilityLabel(section.title.localizedInterfaceText)
+                    .accessibilityAddTraits(selection == section ? .isSelected : [])
                 }
             }
         }
-        .accessibilityElement(children: .combine)
+        .scrollIndicators(.never)
+    }
+}
+
+private struct SystemProgressBar: View {
+    let value: Double?
+    let color: Color
+
+    var body: some View {
+        GeometryReader { geometry in
+            ZStack(alignment: .leading) {
+                Capsule().fill(.secondary.opacity(0.18))
+                Capsule()
+                    .fill(color)
+                    .frame(width: geometry.size.width * min(max(value ?? 0, 0), 1))
+            }
+        }
+        .frame(height: 4)
+        .accessibilityValue(value.percentText)
     }
 }
 
@@ -274,7 +389,7 @@ private struct SystemInfoRow: View {
 
     var body: some View {
         HStack(alignment: .firstTextBaseline, spacing: 8) {
-            Label(title, systemImage: systemImage)
+            Label(title.localizedInterfaceText, systemImage: systemImage)
                 .font(.subheadline)
             Spacer(minLength: 8)
             Text(value)
@@ -297,5 +412,22 @@ private extension Optional where Wrapped == Double {
 private extension Double {
     var percentText: String {
         formatted(.percent.precision(.fractionLength(0)))
+    }
+}
+
+private extension SystemThermalState {
+    var explanation: String {
+        switch self {
+        case .nominal:
+            "The system is operating normally and is not reducing performance because of heat."
+        case .fair:
+            "The device is warmer than usual and may begin reducing background work."
+        case .serious:
+            "Thermal pressure is high. The system may reduce performance to cool down."
+        case .critical:
+            "Thermal pressure is critical. Stop demanding work and allow the device to cool."
+        case .unknown:
+            "The operating system did not provide a thermal-pressure reading."
+        }
     }
 }

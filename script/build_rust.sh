@@ -8,7 +8,9 @@ HEADERS_PATH="$ROOT_DIR/Rust/Bindings/include"
 OUTPUT_DIR="$ROOT_DIR/.build/Rust"
 XCFRAMEWORK_PATH="$OUTPUT_DIR/ToolPouchRust.xcframework"
 
-if [[ -z "${DEVELOPER_DIR:-}" && -d "/Applications/Xcode-beta.app/Contents/Developer" ]]; then
+if [[ -z "${DEVELOPER_DIR:-}" && -d "/Applications/Xcode.app/Contents/Developer" ]]; then
+    export DEVELOPER_DIR="/Applications/Xcode.app/Contents/Developer"
+elif [[ -z "${DEVELOPER_DIR:-}" && -d "/Applications/Xcode-beta.app/Contents/Developer" ]]; then
     export DEVELOPER_DIR="/Applications/Xcode-beta.app/Contents/Developer"
 fi
 

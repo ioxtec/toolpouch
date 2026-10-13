@@ -7,9 +7,9 @@ nonisolated enum TextEncodingConversionError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case let .invalidEncodedValue(encoding):
-            "The input is not valid \(encoding.title)."
+            String(format: "The input is not valid %@.".localizedInterfaceText, encoding.title)
         case .invalidUTF8:
-            "The decoded data is not valid UTF-8 text."
+            "The decoded data is not valid UTF-8 text.".localizedInterfaceText
         }
     }
 }

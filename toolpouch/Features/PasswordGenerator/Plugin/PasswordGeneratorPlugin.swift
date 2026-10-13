@@ -3,7 +3,7 @@ import SwiftUI
 struct PasswordGeneratorPlugin: ToolPlugin {
     let definition = ToolDefinition(
         id: .passwordGenerator,
-        categoryID: .passwords,
+        categoryID: .credentials,
         title: "Password Generator",
         description: "Random passwords and memorable passphrases.",
         systemImage: "key.horizontal.fill",

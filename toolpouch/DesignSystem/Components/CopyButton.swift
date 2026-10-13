@@ -15,8 +15,8 @@ struct CopyButton: View {
                 .contentTransition(.symbolEffect(.replace))
         }
         .buttonStyle(.borderless)
-        .help(isShowingConfirmation ? "Copied" : "Copy to Clipboard")
-        .accessibilityLabel(isShowingConfirmation ? "Copied" : "Copy to Clipboard")
+        .help((isShowingConfirmation ? "Copied" : "Copy to Clipboard").localizedInterfaceText)
+        .accessibilityLabel((isShowingConfirmation ? "Copied" : "Copy to Clipboard").localizedInterfaceText)
     }
 
     private func showConfirmation() {

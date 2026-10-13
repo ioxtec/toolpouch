@@ -52,9 +52,9 @@ struct ToolSearchResultsView: View {
         return tools.filter { tool in
             let category = categories.first { $0.id == tool.categoryID }
             let searchableText = [
-                tool.title,
-                tool.description,
-                category?.title ?? "",
+                tool.localizedTitle,
+                tool.localizedDescription,
+                category?.localizedTitle ?? "",
             ].joined(separator: " ")
 
             return terms.allSatisfy {
@@ -81,7 +81,7 @@ struct ToolSearchResultsView: View {
                                     .frame(width: 24)
 
                                 VStack(alignment: .leading, spacing: 1) {
-                                    Text(tool.title)
+                                    Text(tool.localizedTitle)
                                         .font(.subheadline.weight(.semibold))
                                         .foregroundStyle(theme.colors.primaryText.color)
 
@@ -103,19 +103,20 @@ struct ToolSearchResultsView: View {
                             .toolPouchSurface(interactive: true, cornerRadius: 999)
                         }
                         .buttonStyle(.plain)
-                        .accessibilityHint(tool.description)
+                        .accessibilityHint(tool.localizedDescription)
                     }
                 }
             }
             .padding(.horizontal, ToolPouchLayout.MenuBar.contentPadding)
             .padding(.vertical, 5)
+            .reportToolContentHeight()
         }
         .scrollIndicators(.never)
     }
 
     private func resultSubtitle(for tool: ToolDefinition) -> String {
-        let categoryName = categories.first { $0.id == tool.categoryID }?.title
-        return [categoryName, tool.description]
+        let categoryName = categories.first { $0.id == tool.categoryID }?.localizedTitle
+        return [categoryName, tool.localizedDescription]
             .compactMap { $0 }
             .joined(separator: " · ")
     }

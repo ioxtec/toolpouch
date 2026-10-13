@@ -76,11 +76,11 @@ struct QuickAccessBar: View {
                         }
                         #endif
                     }
-                    .padding(.top, isEditing ? 9 : 2)
-                    .padding(.bottom, 6)
+                    .padding(.vertical, density == .compact ? 3 : (isEditing ? 9 : 4))
                     .padding(.horizontal, 2)
                 }
                 .scrollIndicators(.never)
+                .scrollClipDisabled()
             }
 
             if density == .regular || isEditing {
@@ -144,7 +144,7 @@ struct QuickAccessBar: View {
                 .offset(x: 7, y: -7)
                 .zIndex(2)
                 .help("Remove from Quick Access")
-                .accessibilityLabel("Remove \(tool.title) from Quick Access")
+                .accessibilityLabel("Remove \(tool.localizedTitle) from Quick Access")
             }
         }
         .zIndex(isEditing ? 1 : 0)
@@ -224,36 +224,49 @@ struct QuickAccessBar: View {
     }
 
     private var editButton: some View {
-        Button {
+        Group {
             if isEditing {
-                save(draftToolIDs)
+                ToolPouchCircleButton(
+                    systemImage: "checkmark",
+                    accessibilityLabel: "Save Quick Access",
+                    diameter: 24,
+                    iconSize: .small,
+                    action: finishEditing
+                )
+                .foregroundStyle(theme.colors.primaryAccent.color)
             } else {
-                draftToolIDs = savedToolIDs
+                ToolPouchActionMenu(
+                    accessibilityLabel: "Quick Access actions",
+                    actions: [
+                        ToolPouchMenuAction(
+                            "Edit Quick Access",
+                            systemImage: "pencil",
+                            action: beginEditing
+                        )
+                    ]
+                )
+                .foregroundStyle(theme.colors.secondaryText.color)
             }
-            withAnimation(.snappy(duration: 0.22)) {
-                isEditing.toggle()
-            }
-            draggingToolID = nil
-            settlingToolID = nil
-            lastDropDestinationID = nil
-        } label: {
-            Image(systemName: isEditing ? "checkmark" : "pencil")
-                .toolPouchIcon(.medium, weight: .medium)
-                .contentTransition(.symbolEffect(.replace))
-                .frame(width: 24, height: 24)
-                .padding(7)
-                .contentShape(.circle)
         }
-        .buttonStyle(.plain)
-        .foregroundStyle(
-            isEditing
-                ? theme.colors.primaryAccent.color
-                : theme.colors.secondaryText.color
-        )
-        .help(isEditing ? "Save Quick Access" : "Edit Quick Access")
-        .accessibilityLabel(
-            isEditing ? "Save Quick Access" : "Edit Quick Access"
-        )
+    }
+
+    private func beginEditing() {
+        draftToolIDs = savedToolIDs
+        setEditing(true)
+    }
+
+    private func finishEditing() {
+        save(draftToolIDs)
+        setEditing(false)
+    }
+
+    private func setEditing(_ value: Bool) {
+        withAnimation(.snappy(duration: 0.22)) {
+            isEditing = value
+        }
+        draggingToolID = nil
+        settlingToolID = nil
+        lastDropDestinationID = nil
     }
     #endif
 
@@ -330,7 +343,7 @@ private struct QuickAccessToolButton: View {
     var body: some View {
         if isDragging {
             Color.clear
-                .frame(width: 38, height: 38)
+                .frame(width: 34, height: 34)
                 .contentShape(.circle)
                 .accessibilityHidden(true)
         } else {
@@ -339,11 +352,15 @@ private struct QuickAccessToolButton: View {
                     action()
                 }
             } label: {
-                Image(systemName: tool.systemImage)
-                    .toolPouchIcon(.medium, weight: .medium)
-                    .frame(width: 24, height: 24)
-                    .padding(7)
-                    .contentShape(.circle)
+                ZStack {
+                    Circle().fill(.clear)
+
+                    Image(systemName: tool.systemImage)
+                        .toolPouchIcon(.medium, weight: .medium)
+                        .offset(y: -1)
+                }
+                .frame(width: 34, height: 34)
+                .contentShape(.circle)
             }
             .buttonStyle(.plain)
             .toolPouchCircleSurface()
@@ -378,9 +395,9 @@ private struct QuickAccessToolButton: View {
                 isHovering = false
                 hoverChanged(false)
             }
-            .help(tool.description)
-            .accessibilityLabel(tool.title)
-            .accessibilityHint(tool.description)
+            .help(tool.localizedDescription)
+            .accessibilityLabel(tool.localizedTitle)
+            .accessibilityHint(tool.localizedDescription)
         }
     }
 }
@@ -475,9 +492,9 @@ private struct QuickAccessToolPicker: View {
                                         .frame(width: 24)
 
                                     VStack(alignment: .leading, spacing: 2) {
-                                        Text(tool.title)
+                                        Text(tool.localizedTitle)
                                             .font(.headline)
-                                        Text(tool.description)
+                                        Text(tool.localizedDescription)
                                             .font(.caption)
                                             .foregroundStyle(.secondary)
                                             .lineLimit(2)

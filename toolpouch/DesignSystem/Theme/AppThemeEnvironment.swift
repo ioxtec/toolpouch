@@ -78,9 +78,8 @@ private struct AppThemeSurfaceModifier: ViewModifier {
     }
 
     private var surfaceColor: Color {
-        if interactive { return theme.colors.interactiveSurface.color }
-        if elevated { return theme.colors.elevatedSurface.color }
-        return theme.colors.surface.color
+        if elevated { return theme.colors.panelSurface.color }
+        return theme.colors.recessedSurface.color
     }
 }
 
@@ -97,7 +96,7 @@ private struct AppThemeCircleSurfaceModifier: ViewModifier {
             )
         } else {
             content
-                .background(theme.colors.interactiveSurface.color, in: .circle)
+                .background(theme.colors.recessedSurface.color, in: .circle)
                 .overlay {
                     Circle()
                         .stroke(theme.colors.border.color.opacity(0.72), lineWidth: 1)

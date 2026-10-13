@@ -35,6 +35,9 @@ nonisolated struct ToolDefinition: Hashable, Identifiable, Sendable {
     /// Defaults to an empty set (available wherever the platform matches).
     let requiredCapabilities: Set<ToolCapability>
 
+    var localizedTitle: String { title.localizedInterfaceText }
+    var localizedDescription: String { description.localizedInterfaceText }
+
     init(
         id: ID,
         categoryID: ToolCategory.ID,
@@ -75,6 +78,8 @@ extension ToolDefinition.ID {
     static let coordinateTool = Self(rawValue: "com.toolpouch.coordinate-tool")
     static let mediaFileInfo = Self(rawValue: "com.toolpouch.media-file-info")
     static let systemStats = Self(rawValue: "com.toolpouch.system-stats")
+    static let scientificCalculator = Self(rawValue: "com.toolpouch.scientific-calculator")
+    static let functionGraphs = Self(rawValue: "com.toolpouch.function-graphs")
 
     /// Decodes identifiers persisted by versions released before tools used
     /// reverse-DNS identifiers. Unknown values remain decodable so removing a
@@ -103,5 +108,7 @@ extension ToolDefinition.ID {
         "coordinateTool": .coordinateTool,
         "mediaFileInfo": .mediaFileInfo,
         "systemStats": .systemStats,
+        "scientificCalculator": .scientificCalculator,
+        "functionGraphs": .functionGraphs,
     ]
 }

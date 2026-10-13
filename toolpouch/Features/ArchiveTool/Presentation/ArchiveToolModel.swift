@@ -1,5 +1,8 @@
 import Foundation
 import Observation
+#if os(macOS)
+import AppKit
+#endif
 
 @MainActor
 @Observable
@@ -42,49 +45,77 @@ final class ArchiveToolModel {
 
     func compress(folderURL: URL) {
         guard !isWorking else { return }
-        state = .working
         let format = selectedFormat
+        #if os(macOS)
+        guard let destination = ArchiveFilePanels.saveArchive(source: folderURL, format: format) else { return }
+        #else
+        let destination = destinationURL(for: folderURL, format: format)
+        #endif
+        state = .working
 
         Task {
-            let result = await compressAsync(folderURL: folderURL, format: format)
+            let sourceAccess = folderURL.startAccessingSecurityScopedResource()
+            let destinationAccess = destination.startAccessingSecurityScopedResource()
+            defer {
+                if sourceAccess { folderURL.stopAccessingSecurityScopedResource() }
+                if destinationAccess { destination.stopAccessingSecurityScopedResource() }
+            }
+            let result = await compressAsync(folderURL: folderURL, destination: destination, format: format)
             state = result
         }
     }
 
     func decompress(archiveURL: URL) {
         guard !isWorking else { return }
+        #if os(macOS)
+        guard let directory = ArchiveFilePanels.extractionDirectory() else { return }
+        // The user grants access to the parent directory. Never extract into
+        // an existing tree or silently merge it with their files.
+        let destination = directory.appendingPathComponent(
+            archiveURL.deletingPathExtension().lastPathComponent + "-" + UUID().uuidString.prefix(8)
+        )
+        #else
+        let directory = archiveURL.deletingLastPathComponent()
+        let destination = archiveURL.deletingPathExtension()
+        #endif
         state = .working
 
         Task {
-            let result = await decompressAsync(archiveURL: archiveURL)
+            let sourceAccess = archiveURL.startAccessingSecurityScopedResource()
+            let destinationAccess = directory.startAccessingSecurityScopedResource()
+            defer {
+                if sourceAccess { archiveURL.stopAccessingSecurityScopedResource() }
+                if destinationAccess { directory.stopAccessingSecurityScopedResource() }
+            }
+            let result = await decompressAsync(archiveURL: archiveURL, destination: destination)
             state = result
         }
     }
 
     private func compressAsync(
         folderURL: URL,
+        destination: URL,
         format: ArchiveFormat
     ) async -> State {
         do {
-            let destination = destinationURL(for: folderURL, format: format)
             try await archiveManager.compress(
                 sourceURL: folderURL,
                 destinationURL: destination,
                 format: format
             )
             return .succeeded(
-                "Compressed to \(destination.lastPathComponent) next to the source."
+                String(format: "Saved archive: %@".localizedInterfaceText, destination.lastPathComponent)
             )
         } catch {
             return .failed(error.localizedDescription)
         }
     }
 
-    private func decompressAsync(archiveURL: URL) async -> State {
+    private func decompressAsync(archiveURL: URL, destination: URL) async -> State {
         do {
-            let output = try await archiveManager.decompress(archiveURL: archiveURL)
+            let output = try await archiveManager.decompress(archiveURL: archiveURL, destinationURL: destination)
             return .succeeded(
-                "Extracted \(archiveURL.lastPathComponent) into \(output.lastPathComponent)."
+                String(format: "Extracted to: %@".localizedInterfaceText, output.lastPathComponent)
             )
         } catch {
             return .failed(error.localizedDescription)
@@ -96,4 +127,45 @@ final class ArchiveToolModel {
         let name = sourceURL.deletingPathExtension().lastPathComponent
         return directory.appendingPathComponent("\(name).\(format.fileExtension)")
     }
+
+    #if os(macOS)
+    func chooseSource(compress: Bool) {
+        guard !isWorking, let source = ArchiveFilePanels.source(compress: compress) else { return }
+        if compress { self.compress(folderURL: source) }
+        else { decompress(archiveURL: source) }
+    }
+    #endif
 }
+
+#if os(macOS)
+@MainActor
+private enum ArchiveFilePanels {
+    static func source(compress: Bool) -> URL? {
+        let panel = NSOpenPanel()
+        panel.canChooseFiles = true
+        panel.canChooseDirectories = compress
+        panel.allowsMultipleSelection = false
+        NSApp.activate(ignoringOtherApps: true)
+        return panel.runModal() == .OK ? panel.url : nil
+    }
+
+    static func saveArchive(source: URL, format: ArchiveFormat) -> URL? {
+        let panel = NSSavePanel()
+        panel.nameFieldStringValue = source.lastPathComponent + "." + format.fileExtension
+        panel.allowedContentTypes = [format.contentType]
+        NSApp.activate(ignoringOtherApps: true)
+        return panel.runModal() == .OK ? panel.url : nil
+    }
+
+    static func extractionDirectory() -> URL? {
+        let panel = NSOpenPanel()
+        panel.canChooseFiles = false
+        panel.canChooseDirectories = true
+        panel.canCreateDirectories = true
+        panel.allowsMultipleSelection = false
+        panel.message = "Choose where to extract the archive.".localizedInterfaceText
+        NSApp.activate(ignoringOtherApps: true)
+        return panel.runModal() == .OK ? panel.url : nil
+    }
+}
+#endif

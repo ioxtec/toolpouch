@@ -148,6 +148,8 @@ extension ToolRegistry {
             SystemStatsPlugin(),
         ]
         #if !os(watchOS)
+        plugins.append(ScientificCalculatorPlugin())
+        plugins.append(FunctionGraphsPlugin())
         plugins.append(CoordinateToolPlugin())
         plugins.append(NetworkCheckPlugin())
         plugins.append(JSONToolkitPlugin())

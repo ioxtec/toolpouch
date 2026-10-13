@@ -64,6 +64,7 @@ struct ToolCategoryView: View {
                     ? ToolPouchLayout.MenuBar.contentPadding
                     : ToolPouchLayout.Content.padding
             )
+            .reportToolContentHeight()
         }
         .scrollIndicators(.never)
     }

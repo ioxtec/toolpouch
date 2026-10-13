@@ -3,25 +3,29 @@ import SwiftUI
 
 struct QuickCopyNotesView: View {
     private enum Screen: Equatable {
-        case folders
-        case collections(folderID: UUID)
+        case collections
         case snippets(folderID: UUID, collectionID: UUID)
     }
 
     @Environment(\.modelContext) private var modelContext
     @Query private var folders: [QuickCopyFolderRecord]
 
-    @State private var screen = Screen.folders
+    @AppStorage(AppPreferenceKey.quickCopySelectedFolderID)
+    private var storedFolderID = ""
+
+    @State private var screen = Screen.collections
     @State private var editorRequest: QuickCopyEditorRequest?
     @State private var deletionRequest: QuickCopyDeletionRequest?
     @State private var errorMessage: String?
+    @State private var expandedFolderIDs: Set<UUID> = []
+    @State private var knownFolderIDs: Set<UUID> = []
 
     var body: some View {
         VStack(spacing: 0) {
-            if !breadcrumbTrail.isEmpty {
-                breadcrumb
-            }
             header
+            if case .snippets = screen {
+                collectionContext
+            }
             Divider()
             content
         }
@@ -45,6 +49,11 @@ struct QuickCopyNotesView: View {
         }
         .onChange(of: folders.count) {
             repairNavigationIfNeeded()
+            synchronizeExpandedFolders()
+        }
+        .onAppear {
+            repairNavigationIfNeeded()
+            synchronizeExpandedFolders()
         }
     }
 
@@ -53,14 +62,16 @@ struct QuickCopyNotesView: View {
     }
 
     private var selectedFolder: QuickCopyFolderRecord? {
-        let folderID: UUID
         switch screen {
-        case .folders:
-            return nil
-        case let .collections(id), let .snippets(id, _):
-            folderID = id
+        case .collections:
+            if let folderID = UUID(uuidString: storedFolderID),
+               let folder = folders.first(where: { $0.id == folderID }) {
+                return folder
+            }
+            return sortedFolders.first
+        case let .snippets(id, _):
+            return folders.first { $0.id == id }
         }
-        return folders.first { $0.id == folderID }
     }
 
     private var selectedCollection: QuickCopyCollectionRecord? {
@@ -68,95 +79,46 @@ struct QuickCopyNotesView: View {
         return selectedFolder?.collections?.first { $0.id == collectionID }
     }
 
-    private struct BreadcrumbItem {
-        let title: String
-        let action: (() -> Void)?
-    }
-
-    private var breadcrumbTrail: [BreadcrumbItem] {
-        switch screen {
-        case .folders:
-            return []
-        case .collections:
-            return [
-                BreadcrumbItem(title: "Quick Copy Notes", action: { screen = .folders }),
-                BreadcrumbItem(title: selectedFolder?.title ?? "Folder", action: nil)
-            ]
-        case let .snippets(folderID, _):
-            return [
-                BreadcrumbItem(title: "Quick Copy Notes", action: { screen = .folders }),
-                BreadcrumbItem(
-                    title: selectedFolder?.title ?? "Folder",
-                    action: { screen = .collections(folderID: folderID) }
-                ),
-                BreadcrumbItem(title: selectedCollection?.title ?? "Collection", action: nil)
-            ]
-        }
-    }
-
-    private var breadcrumb: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 4) {
-                ForEach(Array(breadcrumbTrail.enumerated()), id: \.offset) { index, item in
-                    if index > 0 {
-                        Image(systemName: "chevron.right")
-                            .font(.caption2)
-                            .foregroundStyle(.tertiary)
-                    }
-                    if let action = item.action {
-                        Button(action: action) {
-                            Text(item.title)
-                                .font(.caption)
-                                .foregroundStyle(.secondary)
-                                .lineLimit(1)
-                        }
-                        .buttonStyle(.plain)
-                    } else {
-                        Text(item.title)
-                            .font(.caption.weight(.medium))
-                            .foregroundStyle(.primary)
-                            .lineLimit(1)
-                    }
-                }
-            }
-            .padding(.horizontal, ToolPouchLayout.Content.padding)
-        }
-        .padding(.top, 8)
-    }
-
     private var header: some View {
-        HStack(spacing: 10) {
-            if screen != .folders {
+        ScreenHeader(title: headerTitle, subtitle: headerSubtitle)
+            .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(ToolPouchLayout.Content.padding)
+    }
+
+    @ViewBuilder
+    private var collectionContext: some View {
+        if let folder = selectedFolder, let collection = selectedCollection {
+            HStack(spacing: 10) {
                 Button(action: goBack) {
                     Image(systemName: "chevron.left")
                         .toolPouchIcon(.medium, weight: .semibold)
+                        .frame(width: 28, height: 28)
                 }
-                .buttonStyle(.borderless)
-                .help("Back")
-                .accessibilityLabel("Back")
-            }
+                .buttonStyle(.plain)
+                .toolPouchCircleSurface()
+                .help("Back to Collections")
+                .accessibilityLabel("Back to Collections")
 
-            VStack(alignment: .leading, spacing: 2) {
-                Text(headerTitle)
-                    .font(.headline)
-                    .lineLimit(1)
-                Text(headerSubtitle)
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-                    .lineLimit(2)
-            }
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(collection.title)
+                        .font(ToolPouchLayout.Typography.sectionTitle)
+                        .lineLimit(1)
+                    Label(folder.title, systemImage: "folder")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                        .lineLimit(1)
+                }
 
-            Spacer(minLength: 8)
+                Spacer(minLength: 8)
 
-            Button(action: presentNewEditor) {
-                Image(systemName: "plus")
-                    .toolPouchIcon(.medium, weight: .semibold)
+                ToolPouchActionMenu(
+                    accessibilityLabel: "Collection actions",
+                    actions: collectionActions(collection, in: folder)
+                )
             }
-            .buttonStyle(.glassProminent)
-            .help(addButtonLabel)
-            .accessibilityLabel(addButtonLabel)
+            .padding(.horizontal, ToolPouchLayout.Content.padding)
+            .padding(.bottom, ToolPouchLayout.Content.padding)
         }
-        .padding(ToolPouchLayout.Content.padding)
     }
 
     @ViewBuilder
@@ -174,8 +136,6 @@ struct QuickCopyNotesView: View {
         }
 
         switch screen {
-        case .folders:
-            foldersContent
         case .collections:
             collectionsContent
         case .snippets:
@@ -184,99 +144,55 @@ struct QuickCopyNotesView: View {
     }
 
     @ViewBuilder
-    private var foldersContent: some View {
+    private var collectionsContent: some View {
         if sortedFolders.isEmpty {
             QuickCopyEmptyView(
                 title: "No Folders",
                 description: "Create a folder such as Work, Personal, or Servers.",
                 systemImage: "folder.badge.plus",
-                buttonTitle: "Create Folder",
-                action: presentNewEditor
+                buttonTitle: "Add Folder",
+                action: {
+                    editorRequest = QuickCopyEditorRequest(content: .folder(nil))
+                }
             )
         } else {
             ScrollView {
-                LazyVStack(spacing: 8) {
+                LazyVStack(spacing: ToolPouchLayout.Spacing.small) {
                     ForEach(sortedFolders) { folder in
-                        QuickCopyNavigationCard(
-                            title: folder.title,
-                            details: folder.details,
-                            countText: itemCount(
-                                folder.collections?.count ?? 0,
-                                singular: "collection",
-                                plural: "collections"
+                        QuickCopyFolderTreeSection(
+                            folder: folder,
+                            isExpanded: Binding(
+                                get: { expandedFolderIDs.contains(folder.id) },
+                                set: { isExpanded in
+                                    if isExpanded {
+                                        expandedFolderIDs.insert(folder.id)
+                                    } else {
+                                        expandedFolderIDs.remove(folder.id)
+                                    }
+                                }
                             ),
-                            systemImage: "folder.fill",
-                            open: {
-                                screen = .collections(folderID: folder.id)
-                            },
-                            edit: {
-                                editorRequest = QuickCopyEditorRequest(
-                                    content: .folder(folder)
+                            openCollection: { collection in
+                                storedFolderID = folder.id.uuidString
+                                screen = .snippets(
+                                    folderID: folder.id,
+                                    collectionID: collection.id
                                 )
                             },
-                            delete: {
-                                deletionRequest = .folder(folder)
+                            folderActions: folderActions(folder),
+                            collectionActions: { collection in
+                                collectionActions(collection, in: folder)
+                            },
+                            addCollection: {
+                                editorRequest = QuickCopyEditorRequest(
+                                    content: .collection(folder: folder, collection: nil)
+                                )
                             }
                         )
                     }
                 }
                 .padding(ToolPouchLayout.Content.padding)
+                .reportToolContentHeight(additionalHeight: 102)
             }
-        }
-    }
-
-    @ViewBuilder
-    private var collectionsContent: some View {
-        if let folder = selectedFolder {
-            let collections = (folder.collections ?? []).sorted(
-                by: quickCopyCollectionComesBefore
-            )
-            if collections.isEmpty {
-                QuickCopyEmptyView(
-                    title: "No Collections",
-                    description: "Collections keep related notes together inside this folder.",
-                    systemImage: "rectangle.stack.badge.plus",
-                    buttonTitle: "Create Collection",
-                    action: presentNewEditor
-                )
-            } else {
-                ScrollView {
-                    LazyVStack(spacing: 8) {
-                        ForEach(collections) { collection in
-                            QuickCopyNavigationCard(
-                                title: collection.title,
-                                details: collection.details,
-                                countText: itemCount(
-                                    collection.snippets?.count ?? 0,
-                                    singular: "note",
-                                    plural: "notes"
-                                ),
-                                systemImage: "rectangle.stack.fill",
-                                open: {
-                                    screen = .snippets(
-                                        folderID: folder.id,
-                                        collectionID: collection.id
-                                    )
-                                },
-                                edit: {
-                                    editorRequest = QuickCopyEditorRequest(
-                                        content: .collection(
-                                            folder: folder,
-                                            collection: collection
-                                        )
-                                    )
-                                },
-                                delete: {
-                                    deletionRequest = .collection(collection)
-                                }
-                            )
-                        }
-                    }
-                    .padding(ToolPouchLayout.Content.padding)
-                }
-            }
-        } else {
-            missingSelectionView
         }
     }
 
@@ -299,9 +215,9 @@ struct QuickCopyNotesView: View {
                 )
             } else {
                 ScrollView {
-                    LazyVStack(spacing: 8) {
-                        ForEach(snippets) { snippet in
-                            QuickCopySnippetCard(
+                    LazyVStack(spacing: 0) {
+                        ForEach(Array(snippets.enumerated()), id: \.element.id) { index, snippet in
+                            QuickCopySnippetRow(
                                 snippet: snippet,
                                 toggleFavorite: { toggleFavorite(snippet) },
                                 edit: {
@@ -316,9 +232,19 @@ struct QuickCopyNotesView: View {
                                     deletionRequest = .snippet(snippet)
                                 }
                             )
+
+                            if index < snippets.count - 1 {
+                                Divider()
+                                    .padding(.horizontal, ToolPouchLayout.Spacing.xLarge)
+                            }
                         }
                     }
+                    .toolPouchSurface(
+                        elevated: true,
+                        cornerRadius: ToolPouchLayout.Radius.card
+                    )
                     .padding(ToolPouchLayout.Content.padding)
+                    .reportToolContentHeight(additionalHeight: 102)
                 }
             }
         } else {
@@ -359,41 +285,25 @@ struct QuickCopyNotesView: View {
     }
 
     private var headerTitle: String {
-        switch screen {
-        case .folders:
-            "Quick Copy Notes"
-        case .collections:
-            selectedFolder?.title ?? "Folder"
-        case .snippets:
-            selectedCollection?.title ?? "Collection"
-        }
+        "Quick Copy Notes"
     }
 
     private var headerSubtitle: String {
         switch screen {
-        case .folders:
-            "Keep frequently copied text organized and ready."
         case .collections:
-            "Choose a collection or create a new one."
+            "Choose a folder and open a collection."
         case .snippets:
             "Copy a complete note with one click."
         }
     }
 
-    private var addButtonLabel: String {
-        switch screen {
-        case .folders: "Add Folder"
-        case .collections: "Add Collection"
-        case .snippets: "Add Note"
-        }
-    }
-
     private func presentNewEditor() {
         switch screen {
-        case .folders:
-            editorRequest = QuickCopyEditorRequest(content: .folder(nil))
         case .collections:
-            guard let selectedFolder else { return }
+            guard let selectedFolder else {
+                editorRequest = QuickCopyEditorRequest(content: .folder(nil))
+                return
+            }
             editorRequest = QuickCopyEditorRequest(
                 content: .collection(folder: selectedFolder, collection: nil)
             )
@@ -407,12 +317,11 @@ struct QuickCopyNotesView: View {
 
     private func goBack() {
         switch screen {
-        case .folders:
-            break
         case .collections:
-            screen = .folders
+            break
         case let .snippets(folderID, _):
-            screen = .collections(folderID: folderID)
+            storedFolderID = folderID.uuidString
+            screen = .collections
         }
     }
 
@@ -425,15 +334,18 @@ struct QuickCopyNotesView: View {
     private func delete(_ request: QuickCopyDeletionRequest) {
         switch request.target {
         case let .folder(folder):
+            let replacement = sortedFolders.first { $0.id != folder.id }
             modelContext.delete(folder)
-            screen = .folders
+            storedFolderID = replacement?.id.uuidString ?? ""
+            screen = .collections
         case let .collection(collection):
             let folderID = collection.folder?.id
             modelContext.delete(collection)
             if let folderID {
-                screen = .collections(folderID: folderID)
+                storedFolderID = folderID.uuidString
+                screen = .collections
             } else {
-                screen = .folders
+                screen = .collections
             }
         case let .snippet(snippet):
             modelContext.delete(snippet)
@@ -452,25 +364,88 @@ struct QuickCopyNotesView: View {
 
     private func repairNavigationIfNeeded() {
         switch screen {
-        case .folders:
-            break
         case .collections:
-            if selectedFolder == nil { screen = .folders }
+            if let selectedFolder {
+                let folderID = selectedFolder.id.uuidString
+                if storedFolderID != folderID {
+                    storedFolderID = folderID
+                }
+            } else if !storedFolderID.isEmpty {
+                storedFolderID = ""
+            }
         case let .snippets(folderID, _):
             if selectedFolder == nil {
-                screen = .folders
+                storedFolderID = sortedFolders.first?.id.uuidString ?? ""
+                screen = .collections
             } else if selectedCollection == nil {
-                screen = .collections(folderID: folderID)
+                storedFolderID = folderID.uuidString
+                screen = .collections
             }
         }
     }
 
-    private func itemCount(
-        _ count: Int,
-        singular: String,
-        plural: String
-    ) -> String {
-        "\(count) \(count == 1 ? singular : plural)"
+    /// New folders open automatically, while the user remains free to collapse
+    /// any existing group. This keeps the tree useful without resetting their
+    /// current navigation whenever SwiftData refreshes the query.
+    private func synchronizeExpandedFolders() {
+        let currentIDs = Set(folders.map(\.id))
+        if knownFolderIDs.isEmpty {
+            expandedFolderIDs = currentIDs
+        } else {
+            expandedFolderIDs.formUnion(currentIDs.subtracting(knownFolderIDs))
+            expandedFolderIDs.formIntersection(currentIDs)
+        }
+        knownFolderIDs = currentIDs
+    }
+
+    private func folderActions(
+        _ folder: QuickCopyFolderRecord
+    ) -> [ToolPouchMenuAction] {
+        [
+            ToolPouchMenuAction("New Folder", systemImage: "folder.badge.plus") {
+                editorRequest = QuickCopyEditorRequest(content: .folder(nil))
+            },
+            ToolPouchMenuAction("New Collection", systemImage: "rectangle.stack.badge.plus") {
+                editorRequest = QuickCopyEditorRequest(
+                    content: .collection(folder: folder, collection: nil)
+                )
+            },
+            ToolPouchMenuAction("Edit Folder", systemImage: "pencil") {
+                editorRequest = QuickCopyEditorRequest(content: .folder(folder))
+            },
+            ToolPouchMenuAction(
+                "Delete Folder",
+                systemImage: "trash",
+                role: .destructive
+            ) {
+                deletionRequest = .folder(folder)
+            }
+        ]
+    }
+
+    private func collectionActions(
+        _ collection: QuickCopyCollectionRecord,
+        in folder: QuickCopyFolderRecord
+    ) -> [ToolPouchMenuAction] {
+        [
+            ToolPouchMenuAction("New Note", systemImage: "doc.badge.plus") {
+                editorRequest = QuickCopyEditorRequest(
+                    content: .snippet(collection: collection, snippet: nil)
+                )
+            },
+            ToolPouchMenuAction("Edit Collection", systemImage: "pencil") {
+                editorRequest = QuickCopyEditorRequest(
+                    content: .collection(folder: folder, collection: collection)
+                )
+            },
+            ToolPouchMenuAction(
+                "Delete Collection",
+                systemImage: "trash",
+                role: .destructive
+            ) {
+                deletionRequest = .collection(collection)
+            }
+        ]
     }
 
     private var nextFolderSortOrder: Int {
@@ -490,94 +465,208 @@ struct QuickCopyNotesView: View {
     }
 }
 
-private struct QuickCopyNavigationCard: View {
+private struct QuickCopyFolderTreeSection: View {
     @Environment(\.appTheme) private var theme
 
-    let title: String
-    let details: String
-    let countText: String
-    let systemImage: String
-    let open: () -> Void
-    let edit: () -> Void
-    let delete: () -> Void
+    let folder: QuickCopyFolderRecord
+    @Binding var isExpanded: Bool
+    let openCollection: (QuickCopyCollectionRecord) -> Void
+    let folderActions: [ToolPouchMenuAction]
+    let collectionActions: (QuickCopyCollectionRecord) -> [ToolPouchMenuAction]
+    let addCollection: () -> Void
+
+    @State private var isHovering = false
+
+    private var collections: [QuickCopyCollectionRecord] {
+        (folder.collections ?? []).sorted(by: quickCopyCollectionComesBefore)
+    }
 
     var body: some View {
-        HStack(spacing: 10) {
+        VStack(alignment: .leading, spacing: 2) {
+            interactiveFolderHeader
+
+            if isExpanded {
+                if collections.isEmpty {
+                    QuickCopyTreeAddRow(
+                        title: "Add Collection",
+                        action: addCollection
+                    )
+                } else {
+                    ForEach(collections) { collection in
+                        QuickCopyCollectionTreeRow(
+                            collection: collection,
+                            open: { openCollection(collection) },
+                            actions: collectionActions(collection)
+                        )
+                    }
+                }
+            }
+        }
+    }
+
+    @ViewBuilder
+    private var interactiveFolderHeader: some View {
+#if os(macOS)
+        folderHeader.onHover { isHovering = $0 }
+#else
+        folderHeader
+#endif
+    }
+
+    private var folderHeader: some View {
+        HStack(spacing: ToolPouchLayout.Spacing.medium) {
+            Button(action: toggleExpansion) {
+                Text(folder.title)
+                    .font(ToolPouchLayout.Typography.supporting.weight(.semibold))
+                    .foregroundStyle(.secondary)
+                    .lineLimit(1)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                .contentShape(.rect)
+            }
+            .buttonStyle(.plain)
+
+            Text("\(collections.count)")
+                .font(.caption2.monospacedDigit())
+                .foregroundStyle(.tertiary)
+
+            ToolPouchActionMenu(
+                accessibilityLabel: String(format: "Actions for %@".localizedInterfaceText, folder.title),
+                actions: folderActions
+            )
+            .opacity(showsActions ? 1 : 0)
+            .allowsHitTesting(showsActions)
+
+            Button(action: toggleExpansion) {
+                Image(systemName: isExpanded ? "chevron.down" : "chevron.right")
+                    .toolPouchIcon(.small, weight: .semibold)
+                    .foregroundStyle(.secondary)
+                    .frame(width: 18, height: 24)
+                    .contentShape(.rect)
+            }
+            .buttonStyle(.plain)
+            .accessibilityLabel(String(format: (isExpanded ? "Collapse %@" : "Expand %@").localizedInterfaceText, folder.title))
+        }
+        .padding(.leading, 0)
+        .padding(.trailing, 6)
+        .frame(minHeight: 28)
+        .background(
+            theme.colors.recessedSurface.color.opacity(isHovering ? 0.7 : 0),
+            in: RoundedRectangle(cornerRadius: ToolPouchLayout.Radius.control)
+        )
+    }
+
+    private func toggleExpansion() {
+        withAnimation(.snappy(duration: 0.18)) {
+            isExpanded.toggle()
+        }
+    }
+
+    private var showsActions: Bool {
+#if os(macOS)
+        isHovering
+#else
+        true
+#endif
+    }
+}
+
+private struct QuickCopyCollectionTreeRow: View {
+    @Environment(\.appTheme) private var theme
+
+    let collection: QuickCopyCollectionRecord
+    let open: () -> Void
+    let actions: [ToolPouchMenuAction]
+
+    @State private var isHovering = false
+
+    var body: some View {
+        interactiveRow
+    }
+
+    @ViewBuilder
+    private var interactiveRow: some View {
+#if os(macOS)
+        row.onHover { isHovering = $0 }
+#else
+        row
+#endif
+    }
+
+    private var row: some View {
+        HStack(spacing: ToolPouchLayout.Spacing.medium) {
             Button(action: open) {
-                HStack(spacing: 10) {
-                    Image(systemName: systemImage)
+                HStack(spacing: ToolPouchLayout.Spacing.medium) {
+                    Image(systemName: "rectangle.stack")
                         .toolPouchIcon(.medium)
                         .foregroundStyle(Color.accentColor)
-                        .frame(width: 22)
+                        .frame(width: 20)
 
-                    VStack(alignment: .leading, spacing: 1) {
-                        HStack(spacing: 6) {
-                            Text(title)
-                                .font(.subheadline.weight(.medium))
-                                .foregroundStyle(.primary)
-                                .lineLimit(1)
-                            Text(countText)
-                                .font(.caption2)
-                                .foregroundStyle(.secondary)
-                        }
-                        if !details.isEmpty {
-                            Text(details)
-                                .font(.caption2)
-                                .foregroundStyle(.secondary)
-                                .lineLimit(1)
-                        }
-                    }
+                    Text(collection.title)
+                        .font(ToolPouchLayout.Typography.body.weight(.medium))
+                        .foregroundStyle(.primary)
+                        .lineLimit(1)
 
                     Spacer(minLength: 8)
-                    Image(systemName: "chevron.right")
-                        .toolPouchIcon(.small, weight: .semibold)
-                        .foregroundStyle(.tertiary)
                 }
                 .contentShape(.rect)
             }
             .buttonStyle(.plain)
 
-            #if os(watchOS)
-            Button(action: edit) {
-                Image(systemName: "pencil")
-                    .toolPouchIcon(.small)
-            }
-            .buttonStyle(.borderless)
-            .accessibilityLabel("Edit \(title)")
-            Button(role: .destructive, action: delete) {
-                Image(systemName: "trash")
-                    .toolPouchIcon(.small)
-            }
-            .buttonStyle(.borderless)
-            .accessibilityLabel("Delete \(title)")
-            #else
-            Menu {
-                Button("Edit", systemImage: "pencil", action: edit)
-                Divider()
-                Button("Delete", systemImage: "trash", role: .destructive, action: delete)
-            } label: {
-                Image(systemName: "ellipsis.circle")
-                    .toolPouchIcon(.medium)
-            }
-            .accessibilityLabel("Actions for \(title)")
-            #endif
+            Text("\(collection.snippets?.count ?? 0)")
+                .font(.caption.monospacedDigit())
+                .foregroundStyle(.secondary)
+
+            ToolPouchActionMenu(
+                accessibilityLabel: String(format: "Actions for %@".localizedInterfaceText, collection.title),
+                actions: actions
+            )
+            .opacity(showsActions ? 1 : 0)
+            .allowsHitTesting(showsActions)
         }
-        .padding(.horizontal, 12)
-        .padding(.vertical, 10)
-        .background(theme.colors.interactiveSurface.color, in: RoundedRectangle(cornerRadius: 12))
+        .padding(.leading, 4)
+        .padding(.trailing, 6)
+        .frame(minHeight: 34)
+        .background(
+            theme.colors.interactiveSurface.color.opacity(isHovering ? 0.72 : 0),
+            in: RoundedRectangle(cornerRadius: ToolPouchLayout.Radius.control)
+        )
+    }
+
+    private var showsActions: Bool {
+#if os(macOS)
+        isHovering
+#else
+        true
+#endif
     }
 }
 
-private struct QuickCopySnippetCard: View {
-    @Environment(\.appTheme) private var theme
+private struct QuickCopyTreeAddRow: View {
+    let title: String
+    let action: () -> Void
 
+    var body: some View {
+        Button(action: action) {
+            Label(title.localizedInterfaceText, systemImage: "plus.circle")
+                .font(ToolPouchLayout.Typography.supporting.weight(.medium))
+                .foregroundStyle(Color.accentColor)
+                .frame(maxWidth: .infinity, minHeight: 32, alignment: .leading)
+                .contentShape(.rect)
+        }
+        .buttonStyle(.plain)
+        .padding(.leading, 8)
+        .accessibilityLabel(title.localizedInterfaceText)
+    }
+}
+
+private struct QuickCopySnippetRow: View {
     let snippet: QuickCopySnippetRecord
     let toggleFavorite: () -> Void
     let edit: () -> Void
     let delete: () -> Void
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 6) {
+        VStack(alignment: .leading, spacing: ToolPouchLayout.Spacing.small) {
             HStack(alignment: .firstTextBaseline, spacing: 8) {
                 Text(snippet.title)
                     .font(.subheadline.weight(.medium))
@@ -597,41 +686,33 @@ private struct QuickCopySnippetCard: View {
                         .foregroundStyle(snippet.isFavorite ? Color.yellow : Color.secondary)
                 }
                 .buttonStyle(.borderless)
-                .help(snippet.isFavorite ? "Remove from Favorites" : "Add to Favorites")
-                .accessibilityLabel(snippet.isFavorite ? "Remove from Favorites" : "Add to Favorites")
+                .help((snippet.isFavorite ? "Remove from Favorites" : "Add to Favorites").localizedInterfaceText)
+                .accessibilityLabel((snippet.isFavorite ? "Remove from Favorites" : "Add to Favorites").localizedInterfaceText)
 
-                #if os(watchOS)
-                Button(action: edit) {
-                    Image(systemName: "pencil")
-                        .toolPouchIcon(.small)
-                }
-                .buttonStyle(.borderless)
-                .accessibilityLabel("Edit \(snippet.title)")
-                Button(role: .destructive, action: delete) {
-                    Image(systemName: "trash")
-                        .toolPouchIcon(.small)
-                }
-                .buttonStyle(.borderless)
-                .accessibilityLabel("Delete \(snippet.title)")
-                #else
-                Menu {
-                    Button("Edit", systemImage: "pencil", action: edit)
-                    Divider()
-                    Button("Delete", systemImage: "trash", role: .destructive, action: delete)
-                } label: {
-                    Image(systemName: "ellipsis.circle")
-                        .toolPouchIcon(.small)
-                }
-                .accessibilityLabel("Actions for \(snippet.title)")
-                #endif
+                ToolPouchActionMenu(
+                    accessibilityLabel: String(format: "Actions for %@".localizedInterfaceText, snippet.title),
+                    actions: [
+                        ToolPouchMenuAction("Edit", systemImage: "pencil", action: edit),
+                        ToolPouchMenuAction(
+                            "Delete",
+                            systemImage: "trash",
+                            role: .destructive,
+                            action: delete
+                        )
+                    ]
+                )
             }
 
-            HStack(alignment: .top, spacing: 8) {
+            // Center the complete text block rather than its first baseline.
+            // One-line snippets then sit optically in the middle, while multiline
+            // snippets retain identical padding above and below.
+            HStack(alignment: .center, spacing: 8) {
                 Text(snippet.content)
                     .font(.system(.footnote, design: .monospaced))
                     .lineLimit(4)
                     .truncationMode(.tail)
-                    .frame(maxWidth: .infinity, alignment: .topLeading)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                     #if !os(watchOS)
                     .textSelection(.enabled)
                     #endif
@@ -640,8 +721,9 @@ private struct QuickCopySnippetCard: View {
                 CopyButton(value: snippet.content)
                 #endif
             }
-            .padding(8)
-            .background(theme.colors.elevatedSurface.color, in: RoundedRectangle(cornerRadius: 8))
+            .padding(.horizontal, ToolPouchLayout.Spacing.medium)
+            .padding(.vertical, ToolPouchLayout.Spacing.small)
+            .toolPouchSurface(cornerRadius: ToolPouchLayout.Radius.control)
 
             #if os(watchOS)
             Text("Open this note on iPhone or Mac to copy it.")
@@ -649,10 +731,9 @@ private struct QuickCopySnippetCard: View {
                 .foregroundStyle(.secondary)
             #endif
         }
-        .padding(.horizontal, 12)
-        .padding(.vertical, 10)
+        .padding(.horizontal, ToolPouchLayout.Spacing.xLarge)
+        .padding(.vertical, ToolPouchLayout.Spacing.medium)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .background(theme.colors.interactiveSurface.color, in: RoundedRectangle(cornerRadius: 12))
     }
 }
 
@@ -665,15 +746,18 @@ private struct QuickCopyEmptyView: View {
 
     var body: some View {
         ContentUnavailableView {
-            Label(title, systemImage: systemImage)
+            Label(title.localizedInterfaceText, systemImage: systemImage)
         } description: {
-            Text(description)
+            Text(description.localizedInterfaceText)
         } actions: {
-            Button(buttonTitle, action: action)
-                .buttonStyle(.glassProminent)
+            Button(action: action) {
+                Label(buttonTitle.localizedInterfaceText, systemImage: "plus")
+            }
+                .toolPouchPrimaryAction()
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .frame(maxWidth: .infinity, minHeight: 150)
         .padding()
+        .reportToolContentHeight(additionalHeight: 102)
     }
 }
 

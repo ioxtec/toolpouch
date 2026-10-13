@@ -14,7 +14,7 @@ struct ClipboardInspectorView: View {
 
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: ToolPouchLayout.Content.spacing) {
+            ToolContentLayout {
                 ScreenHeader(
                     title: "Clipboard Inspector",
                     subtitle: "Preview the current clipboard content and its available formats."
@@ -23,8 +23,8 @@ struct ClipboardInspectorView: View {
                 content
                 privacyNotice
             }
-            .padding(ToolPouchLayout.Content.padding)
         }
+        .scrollIndicators(.never)
         .task { await model.monitor() }
         .alert("Clear Clipboard?", isPresented: $isConfirmingClear) {
             Button("Cancel", role: .cancel) {}
@@ -72,7 +72,7 @@ struct ClipboardInspectorView: View {
                 Text("Copy text, an image, or a file to inspect it here.")
             }
             .frame(maxWidth: .infinity, minHeight: 220)
-            .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 14))
+            .toolPouchSurface(elevated: true)
         } else {
             LazyVStack(spacing: 12) {
                 ForEach(model.snapshot.items) { item in
@@ -101,7 +101,7 @@ private struct ClipboardItemCard: View {
     let item: ClipboardItemSnapshot
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
+        ToolSectionCard {
             header
             preview
 
@@ -110,9 +110,6 @@ private struct ClipboardItemCard: View {
                 representations
             }
         }
-        .padding(14)
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 14))
     }
 
     private var header: some View {
@@ -121,8 +118,8 @@ private struct ClipboardItemCard: View {
                 .toolPouchIcon(.medium)
                 .frame(width: 24)
 
-            Text(item.kind.title)
-                .font(.headline)
+            Text(item.kind.title.localizedInterfaceText)
+                .font(ToolPouchLayout.Typography.sectionTitle)
 
             Spacer()
 
@@ -171,8 +168,8 @@ private struct ClipboardItemCard: View {
                 CopyButton(value: text)
             }
         }
-        .padding(12)
-        .background(.quaternary, in: RoundedRectangle(cornerRadius: 10))
+        .padding(ToolPouchLayout.Spacing.xLarge)
+        .toolPouchSurface(interactive: true, cornerRadius: ToolPouchLayout.Radius.control)
     }
 
     @ViewBuilder
@@ -183,7 +180,7 @@ private struct ClipboardItemCard: View {
                 .scaledToFit()
                 .frame(maxWidth: .infinity, maxHeight: 260)
                 .padding(10)
-                .background(.quaternary, in: RoundedRectangle(cornerRadius: 10))
+                .toolPouchSurface(cornerRadius: ToolPouchLayout.Radius.control)
         } else {
             Label("The image preview is unavailable.", systemImage: "photo.badge.exclamationmark")
                 .foregroundStyle(.secondary)
@@ -199,7 +196,7 @@ private struct ClipboardItemCard: View {
 
                 VStack(alignment: .leading, spacing: 3) {
                     Text(fileURL.lastPathComponent)
-                        .font(.headline)
+                        .font(ToolPouchLayout.Typography.sectionTitle)
                     Text(fileURL.deletingLastPathComponent().path(percentEncoded: false))
                         .font(.caption.monospaced())
                         .foregroundStyle(.secondary)

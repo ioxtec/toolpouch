@@ -5,7 +5,7 @@ import SwiftUI
 struct CoordinateToolPlugin: ToolPlugin {
     let definition = ToolDefinition(
         id: .coordinateTool,
-        categoryID: .everyday,
+        categoryID: .location,
         title: "Map Coordinates",
         description: "Find a place, pick a point on the map, and convert its coordinates.",
         systemImage: "mappin.and.ellipse",

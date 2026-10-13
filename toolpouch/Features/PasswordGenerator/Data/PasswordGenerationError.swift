@@ -8,11 +8,11 @@ nonisolated enum PasswordGenerationError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .invalidLength:
-            "The requested length is too short for the selected options."
+            "The requested length is too short for the selected options.".localizedInterfaceText
         case .noCharacterSetSelected:
-            "Select at least one character set."
+            "Select at least one character set.".localizedInterfaceText
         case .wordListUnavailable:
-            "The passphrase word list is unavailable."
+            "The passphrase word list is unavailable.".localizedInterfaceText
         }
     }
 }

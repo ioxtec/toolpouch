@@ -172,7 +172,7 @@ nonisolated enum ZipArchive {
         archive.append(localHeaders)
         archive.append(centralDirectory)
         archive.append(endRecord)
-        try archive.write(to: destinationURL, options: [.atomic])
+        try archive.write(to: destinationURL, options: [.withoutOverwriting])
     }
 
     static func extract(

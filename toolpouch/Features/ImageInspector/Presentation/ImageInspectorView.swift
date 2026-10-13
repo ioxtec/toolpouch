@@ -1,6 +1,12 @@
 import SwiftUI
 import UniformTypeIdentifiers
 
+#if os(macOS)
+import AppKit
+#elseif os(iOS)
+import UIKit
+#endif
+
 struct ImageInspectorView: View {
     @Environment(\.openURL) private var openURL
     @State private var model: ImageInspectorModel
@@ -19,15 +25,15 @@ struct ImageInspectorView: View {
 
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: ToolPouchLayout.Content.spacing) {
+            ToolContentLayout {
                 ScreenHeader(
                     title: "Image Toolkit",
                     subtitle: "Inspect metadata, resize, and convert images locally with Rust."
                 )
                 contentPanel
             }
-            .padding(ToolPouchLayout.Content.padding)
         }
+        .scrollIndicators(.never)
         #if os(iOS)
         .fileImporter(
             isPresented: $isSelectingFile,
@@ -52,7 +58,7 @@ struct ImageInspectorView: View {
     }
 
     private var contentPanel: some View {
-        VStack(alignment: .leading, spacing: 14) {
+        ToolSectionCard {
             filePicker
 
             if model.selectedFileURL != nil || model.errorMessage != nil {
@@ -60,9 +66,6 @@ struct ImageInspectorView: View {
                 resultContent
             }
         }
-        .padding(14)
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 14))
     }
 
     private var filePicker: some View {
@@ -70,13 +73,18 @@ struct ImageInspectorView: View {
             chooseImage()
         } label: {
             VStack(spacing: 10) {
-                Image(systemName: isDropTargeted ? "arrow.down.circle.fill" : "photo.badge.plus")
-                    .toolPouchIcon(.large, weight: .medium)
-                    .foregroundStyle(isDropTargeted ? Color.accentColor : Color.primary)
-                    .contentTransition(.symbolEffect(.replace))
+                if let selectedFileURL = model.selectedFileURL,
+                   !isDropTargeted {
+                    selectedImageThumbnail(for: selectedFileURL)
+                } else {
+                    Image(systemName: isDropTargeted ? "arrow.down.circle.fill" : "photo.badge.plus")
+                        .toolPouchIcon(.large, weight: .medium)
+                        .foregroundStyle(isDropTargeted ? Color.accentColor : Color.primary)
+                        .contentTransition(.symbolEffect(.replace))
+                }
 
                 Text(dropZoneTitle)
-                    .font(.headline)
+                    .font(ToolPouchLayout.Typography.sectionTitle)
                     .lineLimit(2)
                     .multilineTextAlignment(.center)
 
@@ -90,15 +98,15 @@ struct ImageInspectorView: View {
                     .lineLimit(2)
                     .multilineTextAlignment(.center)
             }
-            .padding(18)
-            .frame(maxWidth: .infinity, minHeight: 150)
+            .padding(ToolPouchLayout.Spacing.xLarge)
+            .frame(maxWidth: .infinity, minHeight: 118)
             .contentShape(.rect)
             .background(
                 isDropTargeted ? Color.accentColor.opacity(0.12) : Color.primary.opacity(0.035),
-                in: RoundedRectangle(cornerRadius: 12)
+                in: RoundedRectangle(cornerRadius: ToolPouchLayout.Radius.card)
             )
             .overlay {
-                RoundedRectangle(cornerRadius: 12)
+                RoundedRectangle(cornerRadius: ToolPouchLayout.Radius.card)
                     .strokeBorder(
                         isDropTargeted ? Color.accentColor : Color.secondary.opacity(0.45),
                         style: StrokeStyle(lineWidth: isDropTargeted ? 2 : 1, dash: [7, 5])
@@ -112,6 +120,49 @@ struct ImageInspectorView: View {
             isTargeted: { isDropTargeted = $0 }
         )
         .accessibilityLabel("Choose an image to inspect")
+    }
+
+    @ViewBuilder
+    private func selectedImageThumbnail(for url: URL) -> some View {
+        #if os(macOS)
+        if let image = NSImage(contentsOf: url) {
+            thumbnail(Image(nsImage: image))
+        } else {
+            thumbnailPlaceholder
+        }
+        #elseif os(iOS)
+        if let image = UIImage(contentsOfFile: url.path) {
+            thumbnail(Image(uiImage: image))
+        } else {
+            thumbnailPlaceholder
+        }
+        #else
+        thumbnailPlaceholder
+        #endif
+    }
+
+    private func thumbnail(_ image: Image) -> some View {
+        image
+            .resizable()
+            .scaledToFit()
+            .frame(width: 112, height: 76)
+            .background(Color.black.opacity(0.12))
+            .clipShape(RoundedRectangle(cornerRadius: 8))
+            .overlay {
+                RoundedRectangle(cornerRadius: 8)
+                    .strokeBorder(Color.secondary.opacity(0.35))
+            }
+            .accessibilityLabel("Selected image preview")
+    }
+
+    private var thumbnailPlaceholder: some View {
+        Image(systemName: "photo")
+            .toolPouchIcon(.large, weight: .medium)
+            .frame(width: 112, height: 76)
+            .foregroundStyle(.secondary)
+            .background(Color.primary.opacity(0.04))
+            .clipShape(RoundedRectangle(cornerRadius: 8))
+            .accessibilityLabel("Selected image preview unavailable")
     }
 
     @ViewBuilder
@@ -135,7 +186,7 @@ struct ImageInspectorView: View {
         VStack(alignment: .leading, spacing: 12) {
             HStack {
                 Text("Image details")
-                    .font(.headline)
+                    .font(ToolPouchLayout.Typography.sectionTitle)
                 Spacer()
                 Button("Clear") { model.clear() }
                     .buttonStyle(.borderless)
@@ -179,7 +230,7 @@ struct ImageInspectorView: View {
 
             VStack(alignment: .leading, spacing: 10) {
                 Text("Metadata")
-                    .font(.headline)
+                    .font(ToolPouchLayout.Typography.sectionTitle)
 
                 if metadata.hasExifValues {
                     LazyVGrid(
@@ -221,8 +272,7 @@ struct ImageInspectorView: View {
                             .help("Open in Maps")
                         }
                     }
-                    .padding(10)
-                    .background(.quaternary, in: RoundedRectangle(cornerRadius: 10))
+                    .toolPouchControlSurface()
                 }
             }
         }
@@ -231,11 +281,11 @@ struct ImageInspectorView: View {
     private var transformSection: some View {
         VStack(alignment: .leading, spacing: 12) {
             Text("Resize & Convert")
-                .font(.headline)
+                .font(ToolPouchLayout.Typography.sectionTitle)
 
             Picker("Output format", selection: $outputFormat) {
                 ForEach(ImageOutputFormat.allCases) { format in
-                    Text(format.title).tag(format)
+                    Text(format.title.localizedInterfaceText).tag(format)
                 }
             }
 
@@ -290,7 +340,7 @@ struct ImageInspectorView: View {
                         Label("Save Converted Image", systemImage: "square.and.arrow.down")
                     }
                 }
-                .buttonStyle(.borderedProminent)
+                .toolPouchPrimaryAction()
                 .disabled(model.isTransforming || transformOptions == nil)
 
                 #if os(iOS)
@@ -326,11 +376,12 @@ struct ImageInspectorView: View {
         dimension: ImageDimension
     ) -> some View {
         VStack(alignment: .leading, spacing: 4) {
-            Text(title)
+            Text(title.localizedInterfaceText)
                 .font(.caption)
                 .foregroundStyle(.secondary)
             TextField("Pixels", text: text)
-                .textFieldStyle(.roundedBorder)
+                .textFieldStyle(.plain)
+                .toolPouchControlSurface()
                 .focused($focusedDimension, equals: dimension)
             #if os(iOS)
                 .keyboardType(.numberPad)
@@ -404,7 +455,7 @@ struct ImageInspectorView: View {
 
     private func detail(_ title: String, _ value: String, icon: String) -> some View {
         VStack(alignment: .leading, spacing: 5) {
-            Label(title, systemImage: icon)
+            Label(title.localizedInterfaceText, systemImage: icon)
                 .font(.caption)
                 .foregroundStyle(.secondary)
             Text(value)
@@ -413,7 +464,7 @@ struct ImageInspectorView: View {
         }
         .padding(10)
         .frame(maxWidth: .infinity, minHeight: 66, alignment: .leading)
-        .background(.quaternary, in: RoundedRectangle(cornerRadius: 10))
+        .toolPouchSurface(cornerRadius: ToolPouchLayout.Radius.control)
     }
 
     private func handleFileSelection(_ result: Result<[URL], Error>) {

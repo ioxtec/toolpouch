@@ -99,7 +99,7 @@ struct CompactToolNavigationView: View {
                     ),
                     density: density
                 )
-                .navigationTitle(category.title)
+                .navigationTitle(category.localizedTitle)
             }
         case let .tool(toolID):
             if let destination = dependencies.toolRegistry.destination(
@@ -108,7 +108,8 @@ struct CompactToolNavigationView: View {
             ) {
                 destination
                     .navigationTitle(
-                        dependencies.toolRegistry.tool(id: toolID)?.title ?? "Tool"
+                        dependencies.toolRegistry.tool(id: toolID)?.localizedTitle
+                            ?? "Tool".localizedInterfaceText
                     )
             }
         }

@@ -1,0 +1,2 @@
+"NSLocationUsageDescription" = "O ToolPouch usa o acesso à localização apenas para identificar redes Wi-Fi próximas.";
+"NSScreenCaptureUsageDescription" = "O ToolPouch captura uma pequena área ao redor do cursor somente durante a seleção de uma cor.";

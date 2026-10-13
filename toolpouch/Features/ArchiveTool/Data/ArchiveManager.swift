@@ -25,9 +25,9 @@ nonisolated struct ArchiveManager: ArchiveManaging {
         }.value
     }
 
-    func decompress(archiveURL: URL) async throws -> URL {
+    func decompress(archiveURL: URL, destinationURL: URL? = nil) async throws -> URL {
         try await Task.detached(priority: .userInitiated) {
-            try self.decompressSynchronously(archiveURL: archiveURL)
+            try self.decompressSynchronously(archiveURL: archiveURL, destinationURL: destinationURL)
         }.value
     }
 
@@ -39,6 +39,7 @@ nonisolated struct ArchiveManager: ArchiveManaging {
         guard FileManager.default.fileExists(atPath: sourceURL.path) else {
             throw ArchiveOperationError.sourceMissing
         }
+        try validateDestination(destinationURL, sourceURL: sourceURL)
         guard FileManager.default.fileExists(
             atPath: destinationURL.deletingLastPathComponent().path
         ) else {
@@ -86,7 +87,7 @@ nonisolated struct ArchiveManager: ArchiveManaging {
 
         let data = try Data(contentsOf: sourceURL, options: [.mappedIfSafe])
         let compressed = try gzipCodec.compress(data: data)
-        try compressed.write(to: destinationURL, options: [.atomic])
+        try compressed.write(to: destinationURL, options: [.withoutOverwriting])
     }
 
     private func compressWithCodec(
@@ -107,7 +108,7 @@ nonisolated struct ArchiveManager: ArchiveManaging {
 
         let data = try Data(contentsOf: sourceURL, options: [.mappedIfSafe])
         let compressed = try encode(data)
-        try compressed.write(to: destinationURL, options: [.atomic])
+        try compressed.write(to: destinationURL, options: [.withoutOverwriting])
     }
 
     private func compressToTar(sourceURL: URL, destinationURL: URL) throws {
@@ -179,16 +180,17 @@ nonisolated struct ArchiveManager: ArchiveManaging {
         }
 
         output.append(Data(repeating: 0, count: blockSize * 2)) // end marker
-        try output.write(to: destinationURL, options: [.atomic])
+        try output.write(to: destinationURL, options: [.withoutOverwriting])
     }
 
-    private func decompressSynchronously(archiveURL: URL) throws -> URL {
+    private func decompressSynchronously(archiveURL: URL, destinationURL: URL?) throws -> URL {
         guard FileManager.default.fileExists(atPath: archiveURL.path) else {
             throw ArchiveOperationError.sourceMissing
         }
 
         let fileExtension = archiveURL.pathExtension.lowercased()
-        let outputDirectory = archiveURL.deletingPathExtension()
+        let outputDirectory = destinationURL ?? archiveURL.deletingPathExtension()
+        try validateDestination(outputDirectory, sourceURL: archiveURL)
 
         switch fileExtension {
         case "zip":
@@ -199,15 +201,15 @@ nonisolated struct ArchiveManager: ArchiveManaging {
         case "gz", "gzip":
             let data = try Data(contentsOf: archiveURL, options: [.mappedIfSafe])
             let decompressed = try gzipCodec.decompress(data: data)
-            try decompressed.write(to: outputDirectory, options: [.atomic])
+            try decompressed.write(to: outputDirectory, options: [.withoutOverwriting])
         case "bz2":
             let data = try Data(contentsOf: archiveURL, options: [.mappedIfSafe])
             let decompressed = try Bzip2Codec.decompress(data: data)
-            try decompressed.write(to: outputDirectory, options: [.atomic])
+            try decompressed.write(to: outputDirectory, options: [.withoutOverwriting])
         case "xz":
             let data = try Data(contentsOf: archiveURL, options: [.mappedIfSafe])
             let decompressed = try XZCodec.decompress(data: data)
-            try decompressed.write(to: outputDirectory, options: [.atomic])
+            try decompressed.write(to: outputDirectory, options: [.withoutOverwriting])
         case "tar":
             let data = try Data(contentsOf: archiveURL, options: [.mappedIfSafe])
             try extractTar(data: data, outputDirectory: outputDirectory)
@@ -220,6 +222,20 @@ nonisolated struct ArchiveManager: ArchiveManaging {
         }
 
         return outputDirectory
+    }
+
+    private func validateDestination(_ destination: URL, sourceURL: URL) throws {
+        let source = sourceURL.resolvingSymlinksInPath().standardizedFileURL
+        let target = destination.resolvingSymlinksInPath().standardizedFileURL
+        guard source != target else { throw ArchiveOperationError.sourceIsDestination }
+        guard !FileManager.default.fileExists(atPath: destination.path) else {
+            throw ArchiveOperationError.destinationExists
+        }
+        // Writing an archive into the folder being archived can include its
+        // own output or mutate the user's source tree.
+        if target.path.hasPrefix(source.path + "/") {
+            throw ArchiveOperationError.sourceIsDestination
+        }
     }
 
     // MARK: - TAR
@@ -304,9 +320,9 @@ nonisolated struct ArchiveManager: ArchiveManaging {
                     let content = data.subdata(
                         in: (offset + 512)..<(offset + 512 + size)
                     )
-                    try content.write(to: filePath, options: [.atomic])
+                    try content.write(to: filePath, options: [.withoutOverwriting])
                 } else {
-                    try Data().write(to: filePath)
+                    try Data().write(to: filePath, options: [.withoutOverwriting])
                 }
             }
 

@@ -2,32 +2,40 @@ import SwiftUI
 
 struct MenuBarFooter: View {
     let openMainWindow: () -> Void
+    let openSettings: () -> Void
 
     var body: some View {
-        Button(action: openMainWindow) {
-            HStack(spacing: 7) {
-                Image(systemName: "macwindow")
-                    .toolPouchIcon(.small, weight: .medium)
-
-                Text("Open in Window")
-                    .font(.caption.weight(.semibold))
-
-                Spacer()
-
-                Image(systemName: "arrow.up.right")
-                    .toolPouchIcon(.small, weight: .semibold)
-                    .foregroundStyle(.secondary)
-            }
-            .padding(.horizontal, 12)
-            .frame(
-                maxWidth: .infinity,
-                minHeight: ToolPouchLayout.MenuBar.footerHeight
+        HStack(spacing: ToolPouchLayout.Spacing.medium) {
+            footerButton(
+                "Open in Window",
+                systemImage: "macwindow",
+                action: openMainWindow
             )
-            .contentShape(.rect)
+            footerButton(
+                "Settings",
+                systemImage: "gearshape",
+                action: openSettings
+            )
+        }
+        .padding(.horizontal, ToolPouchLayout.MenuBar.contentPadding)
+        .frame(maxWidth: .infinity, minHeight: ToolPouchLayout.MenuBar.footerHeight)
+        .background(.ultraThinMaterial)
+    }
+
+    private func footerButton(
+        _ title: String,
+        systemImage: String,
+        action: @escaping () -> Void
+    ) -> some View {
+        Button(action: action) {
+            Label(title.localizedInterfaceText, systemImage: systemImage)
+                .font(.caption.weight(.semibold))
+                .frame(maxWidth: .infinity, minHeight: 32)
+                .contentShape(.rect)
         }
         .buttonStyle(.plain)
-        .help("Open ToolPouch in a Window")
-        .accessibilityLabel("Open ToolPouch in a Window")
-        .background(.ultraThinMaterial)
+        .toolPouchSurface(interactive: true)
+        .help(title.localizedInterfaceText)
+        .accessibilityLabel(title.localizedInterfaceText)
     }
 }

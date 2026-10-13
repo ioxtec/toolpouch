@@ -7,13 +7,13 @@ struct ColorPickerView: View {
 
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: ToolPouchLayout.Content.spacing) {
+            ToolContentLayout {
                 ScreenHeader(
                     title: "Color Picker",
                     subtitle: "Magnify the area around the pointer and select an exact pixel."
                 )
 
-                VStack(alignment: .leading, spacing: 14) {
+                ToolSectionCard {
                     colorPreview
                     Button {
                         startPicking()
@@ -24,8 +24,7 @@ struct ColorPickerView: View {
                         )
                             .frame(maxWidth: .infinity)
                     }
-                    .buttonStyle(.borderedProminent)
-                    .controlSize(.large)
+                    .toolPouchPrimaryAction()
                     .disabled(session.isPicking)
 
                     if let errorMessage = session.errorMessage {
@@ -46,20 +45,17 @@ struct ColorPickerView: View {
                     .font(.caption)
                     .foregroundStyle(.secondary)
                 }
-                .padding(14)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 14))
             }
-            .padding(ToolPouchLayout.Content.padding)
         }
+        .scrollIndicators(.never)
         .onAppear { permission.refresh() }
     }
 
     @ViewBuilder
     private var colorPreview: some View {
         if let selectedColor = session.selectedColor {
-            HStack(spacing: 14) {
-                RoundedRectangle(cornerRadius: 12)
+            HStack(spacing: ToolPouchLayout.Spacing.xLarge) {
+                RoundedRectangle(cornerRadius: ToolPouchLayout.Radius.card)
                     .fill(
                         Color(
                             red: Double(selectedColor.red) / 255,
@@ -68,7 +64,7 @@ struct ColorPickerView: View {
                         )
                     )
                     .frame(width: 86, height: 86)
-                    .overlay { RoundedRectangle(cornerRadius: 12).stroke(.white.opacity(0.2)) }
+                    .overlay { RoundedRectangle(cornerRadius: ToolPouchLayout.Radius.card).stroke(.white.opacity(0.2)) }
 
                 VStack(alignment: .leading, spacing: 8) {
                     colorValue("HEX", selectedColor.hex)
@@ -81,7 +77,7 @@ struct ColorPickerView: View {
                 Image(systemName: "eyedropper.halffull")
                     .toolPouchIcon(.large, weight: .medium)
                 Text("No color selected")
-                    .font(.headline)
+                    .font(ToolPouchLayout.Typography.sectionTitle)
                 Text("The selected color and its values will appear here.")
                     .font(.caption)
                     .foregroundStyle(.secondary)
@@ -92,7 +88,7 @@ struct ColorPickerView: View {
 
     private func colorValue(_ label: String, _ value: String) -> some View {
         HStack {
-            Text(label)
+            Text(label.localizedInterfaceText)
                 .font(.caption.weight(.semibold))
                 .foregroundStyle(.secondary)
                 .frame(width: 34, alignment: .leading)

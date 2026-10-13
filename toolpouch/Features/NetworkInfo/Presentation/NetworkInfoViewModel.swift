@@ -34,7 +34,7 @@ final class NetworkInfoViewModel {
             selectedSnapshot = recentSnapshots.first
             errorMessage = nil
         } catch {
-            errorMessage = "Saved network information could not be loaded."
+            errorMessage = "Saved network information could not be loaded.".localizedInterfaceText
         }
     }
 
@@ -55,7 +55,7 @@ final class NetworkInfoViewModel {
             selectedSnapshot = snapshot
         } catch {
             selectedSnapshot = snapshot
-            errorMessage = "Network information was refreshed but could not be saved."
+            errorMessage = "Network information was refreshed but could not be saved.".localizedInterfaceText
         }
     }
 

@@ -3,7 +3,7 @@ import SwiftUI
 struct HashChecksumPlugin: ToolPlugin {
     let definition = ToolDefinition(
         id: .hashChecksum,
-        categoryID: .text,
+        categoryID: .calculations,
         title: "Hash & Checksum",
         description: "Calculate and compare hashes for text or files.",
         systemImage: "number",

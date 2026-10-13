@@ -23,12 +23,12 @@ struct PasswordGeneratorView: View {
 
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: ToolPouchLayout.Content.spacing) {
+            ToolContentLayout {
                 header
                 generatorPanel
             }
-            .padding(ToolPouchLayout.Content.padding)
         }
+        .scrollIndicators(.never)
         .task {
             if generatedPassword == nil {
                 generate()
@@ -40,32 +40,32 @@ struct PasswordGeneratorView: View {
     }
 
     private var header: some View {
-        VStack(alignment: .leading, spacing: 3) {
-            Text("Password Generator")
-                .font(.headline)
-            #if !os(watchOS)
-            Text("Create secure random passwords and memorable passphrases.")
-                .font(.caption)
-                .foregroundStyle(.secondary)
-            #endif
-        }
+        ScreenHeader(
+            title: "Password Generator",
+            subtitle: "Create secure random passwords and memorable passphrases.",
+            density: isWatch ? .compact : .regular
+        )
     }
 
     private var modePicker: some View {
+        #if os(watchOS)
         Picker("Generator Mode", selection: $mode) {
             ForEach(PasswordGenerationMode.allCases) { mode in
-                Text(mode.title).tag(mode)
+                Text(mode.title.localizedInterfaceText).tag(mode)
             }
         }
-        #if !os(watchOS)
-        .pickerStyle(.segmented)
-        .labelsHidden()
+        #else
+        ToolPouchSegmentedControl(
+            PasswordGenerationMode.allCases,
+            selection: $mode,
+            title: \.title
+        )
         #endif
     }
 
     @ViewBuilder
     private var generatorPanel: some View {
-        VStack(alignment: .leading, spacing: 16) {
+        ToolSectionCard {
             modePicker
             Divider()
 
@@ -78,7 +78,7 @@ struct PasswordGeneratorView: View {
             Divider()
 
             Text("Options")
-                .font(.headline)
+                .font(ToolPouchLayout.Typography.sectionTitle)
 
             if mode == .random {
                 randomOptions
@@ -86,9 +86,14 @@ struct PasswordGeneratorView: View {
                 passphraseOptions
             }
         }
-        .padding(14)
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 14))
+    }
+
+    private var isWatch: Bool {
+        #if os(watchOS)
+        true
+        #else
+        false
+        #endif
     }
 
     private var randomOptions: some View {
@@ -112,7 +117,7 @@ struct PasswordGeneratorView: View {
 
             Picker("Separator", selection: $separator) {
                 ForEach(PassphraseSeparator.allCases) { separator in
-                    Text(separator.title).tag(separator)
+                    Text(separator.title.localizedInterfaceText).tag(separator)
                 }
             }
 

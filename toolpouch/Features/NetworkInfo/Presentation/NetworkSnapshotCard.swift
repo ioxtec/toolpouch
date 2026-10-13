@@ -34,7 +34,7 @@ struct NetworkSnapshotCard: View {
         HStack(alignment: .firstTextBaseline) {
             VStack(alignment: .leading, spacing: 2) {
                 Text(snapshot.deviceName)
-                    .font(.headline)
+                    .font(ToolPouchLayout.Typography.sectionTitle)
                     .lineLimit(1)
 
                 Text(snapshot.capturedAt.formatted(date: .abbreviated, time: .shortened))
@@ -47,7 +47,7 @@ struct NetworkSnapshotCard: View {
             Image(systemName: snapshot.isConnected ? "checkmark.circle.fill" : "xmark.circle.fill")
                 .toolPouchIcon(.medium)
                 .foregroundStyle(snapshot.isConnected ? .green : .secondary)
-                .accessibilityLabel(snapshot.isConnected ? "Connected" : "Disconnected")
+                .accessibilityLabel((snapshot.isConnected ? "Connected" : "Disconnected").localizedInterfaceText)
         }
     }
 }

@@ -29,9 +29,9 @@ final class SystemStatsCollector: SystemStatsCollecting {
             battery: batterySnapshot(),
             thermalState: SystemThermalState(processInfo.thermalState),
             isLowPowerModeEnabled: processInfo.isLowPowerModeEnabled,
-            systemUptime: processInfo.systemUptime,
             processorCount: processInfo.activeProcessorCount,
-            operatingSystem: processInfo.operatingSystemVersionString
+            operatingSystem: processInfo.operatingSystemVersionString,
+            disks: diskSnapshots()
         )
     }
 
@@ -90,6 +90,50 @@ final class SystemStatsCollector: SystemStatsCollecting {
             return nil
         }
         return (available.uint64Value, total.uint64Value)
+    }
+
+    private func diskSnapshots() -> [SystemDiskSnapshot] {
+        #if os(watchOS)
+        // watchOS exposes the app container's overall file-system capacity,
+        // but not the richer mounted-volume capacity keys used on macOS/iOS.
+        // The Storage tab falls back to storageCapacity() on the watch.
+        return []
+        #else
+        let keys: Set<URLResourceKey> = [
+            .volumeNameKey,
+            .volumeTotalCapacityKey,
+            .volumeAvailableCapacityForImportantUsageKey,
+            .volumeLocalizedFormatDescriptionKey,
+            .volumeIsInternalKey,
+            .volumeIsRemovableKey,
+        ]
+        let volumes = FileManager.default.mountedVolumeURLs(
+            includingResourceValuesForKeys: Array(keys),
+            options: [.skipHiddenVolumes]
+        ) ?? []
+
+        return volumes.compactMap { url in
+            guard let values = try? url.resourceValues(forKeys: keys),
+                  let totalValue = values.volumeTotalCapacity,
+                  totalValue > 0 else {
+                return nil
+            }
+            let availableValue = values.volumeAvailableCapacityForImportantUsage ?? 0
+            return SystemDiskSnapshot(
+                id: url.standardizedFileURL.path,
+                name: values.volumeName ?? url.lastPathComponent,
+                available: UInt64(max(availableValue, 0)),
+                total: UInt64(totalValue),
+                format: values.volumeLocalizedFormatDescription,
+                isInternal: values.volumeIsInternal,
+                isRemovable: values.volumeIsRemovable
+            )
+        }
+        .sorted { lhs, rhs in
+            if lhs.isInternal == rhs.isInternal { return lhs.name < rhs.name }
+            return lhs.isInternal == true
+        }
+        #endif
     }
 
     private func batterySnapshot() -> SystemBatterySnapshot? {

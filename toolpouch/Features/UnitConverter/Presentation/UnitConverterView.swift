@@ -23,7 +23,7 @@ struct UnitConverterView: View {
 
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: ToolPouchLayout.Content.spacing) {
+            ToolContentLayout {
                 #if os(watchOS)
                 watchHeader
                 #else
@@ -35,8 +35,8 @@ struct UnitConverterView: View {
 
                 converterPanel
             }
-            .padding(ToolPouchLayout.Content.padding)
         }
+        .scrollIndicators(.never)
         .task {
             recalculate(from: .left)
         }
@@ -45,12 +45,12 @@ struct UnitConverterView: View {
     #if os(watchOS)
     private var watchHeader: some View {
         Text("Unit Converter")
-            .font(.headline)
+            .font(ToolPouchLayout.Typography.sectionTitle)
     }
     #endif
 
     private var converterPanel: some View {
-        VStack(alignment: .leading, spacing: 10) {
+        ToolSectionCard {
             categoryPicker
             Divider()
             conversionFields
@@ -61,24 +61,30 @@ struct UnitConverterView: View {
                     .foregroundStyle(.orange)
             }
         }
-        .padding(10)
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 12))
     }
 
     private var categoryPicker: some View {
-        Picker("Category", selection: categoryBinding) {
-            ForEach(UnitConversionCategory.allCases) { category in
-                Label(category.title, systemImage: category.systemImage)
-                    .tag(category)
+        HStack(spacing: ToolPouchLayout.Spacing.medium) {
+            ToolFieldLabel(
+                "Category",
+                helpText: "Edit either value to convert in both directions."
+            )
+            Spacer()
+            Picker("Category", selection: categoryBinding) {
+                ForEach(UnitConversionCategory.allCases) { category in
+                    Label(category.title.localizedInterfaceText, systemImage: category.systemImage)
+                        .tag(category)
+                }
             }
+            .labelsHidden()
+            .font(ToolPouchLayout.Typography.body)
+            #if os(watchOS)
+            .pickerStyle(.navigationLink)
+            #else
+            .pickerStyle(.menu)
+            #endif
+            .toolPouchControlSurface(minimumHeight: ToolPouchLayout.Control.compactHeight)
         }
-        .font(.subheadline)
-        #if os(watchOS)
-        .pickerStyle(.navigationLink)
-        #else
-        .pickerStyle(.menu)
-        #endif
     }
 
     @ViewBuilder
@@ -111,29 +117,30 @@ struct UnitConverterView: View {
     private func valuePanel(side: Side) -> some View {
         let unit = side == .left ? leftUnit : rightUnit
 
-        return VStack(alignment: .leading, spacing: 6) {
+        return VStack(alignment: .leading, spacing: ToolPouchLayout.Spacing.small) {
             Picker(
                 side == .left ? "From" : "To",
                 selection: unitBinding(for: side)
             ) {
                 ForEach(category.units) { unit in
-                    Text("\(unit.title) (\(unit.symbol))")
+                    Text("\(unit.title.localizedInterfaceText) (\(unit.symbol))")
                         .tag(unit)
                 }
             }
             .labelsHidden()
-            .font(.subheadline)
+            .font(ToolPouchLayout.Typography.body)
+            .toolPouchControlSurface(minimumHeight: ToolPouchLayout.Control.compactHeight)
 
             HStack(alignment: .firstTextBaseline, spacing: 6) {
                 TextField("0", text: valueBinding(for: side))
-                    .font(.system(.body, design: .rounded, weight: .medium))
+                    .font(ToolPouchLayout.Typography.value.weight(.medium))
                     .textFieldStyle(.plain)
                     #if os(iOS)
                     .keyboardType(.decimalPad)
                     #endif
 
                 Text(unit.symbol)
-                    .font(.subheadline)
+                    .font(ToolPouchLayout.Typography.body)
                     .foregroundStyle(.secondary)
 
                 #if !os(watchOS)
@@ -142,19 +149,18 @@ struct UnitConverterView: View {
                 }
                 #endif
             }
-            .padding(8)
-            .background(.quaternary, in: RoundedRectangle(cornerRadius: 8))
+            .toolPouchControlSurface()
 
             if let alternative = alternativeRepresentation(for: side) {
                 Text(alternative)
-                    .font(.caption2.monospacedDigit())
+                    .font(ToolPouchLayout.Typography.compactSupporting.monospacedDigit())
                     .foregroundStyle(.secondary)
                     .fixedSize(horizontal: false, vertical: true)
                     .accessibilityLabel("Convenient equivalent: \(alternative)")
             }
         }
-        .padding(8)
-        .background(.quinary, in: RoundedRectangle(cornerRadius: 10))
+        .padding(ToolPouchLayout.Spacing.medium)
+        .toolPouchSurface(cornerRadius: ToolPouchLayout.Radius.control)
     }
 
     private func swapButton(vertical: Bool) -> some View {
@@ -166,6 +172,7 @@ struct UnitConverterView: View {
                 .frame(width: 26, height: 26)
         }
         .buttonStyle(.borderless)
+        .toolPouchCircleSurface()
         .help("Swap units")
         .accessibilityLabel("Swap units")
     }
@@ -234,7 +241,7 @@ struct UnitConverterView: View {
 
         guard let value = numberFormatter.number(from: sourceText)?.doubleValue else {
             clearDestination(for: side)
-            errorMessage = "Enter a valid number."
+            errorMessage = "Enter a valid number.".localizedInterfaceText
             return
         }
 

@@ -7,9 +7,9 @@ nonisolated enum HashCalculationError: LocalizedError, Equatable, Sendable {
     var errorDescription: String? {
         switch self {
         case .fileAccessDenied:
-            "ToolPouch could not access the selected file."
+            "ToolPouch could not access the selected file.".localizedInterfaceText
         case let .fileReadFailed(details):
-            "The file could not be read. \(details)"
+            String(format: "The file could not be read. %@".localizedInterfaceText, details)
         }
     }
 }

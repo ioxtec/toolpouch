@@ -59,6 +59,7 @@ struct DashboardView: View {
                     ? ToolPouchLayout.MenuBar.contentPadding
                     : ToolPouchLayout.Content.padding
             )
+            .reportToolContentHeight()
         }
         .scrollIndicators(.never)
     }
@@ -91,7 +92,7 @@ private struct DashboardSectionTitle: View {
 
     var body: some View {
         HStack(spacing: 10) {
-            Text(title)
+            Text(title.localizedInterfaceText)
                 .font(density == .compact ? .subheadline.weight(.semibold) : .headline)
 
             Rectangle()

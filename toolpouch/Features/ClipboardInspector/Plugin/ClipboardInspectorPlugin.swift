@@ -4,7 +4,7 @@ import SwiftUI
 struct ClipboardInspectorPlugin: ToolPlugin {
     let definition = ToolDefinition(
         id: .clipboardInspector,
-        categoryID: .clipboard,
+        categoryID: .device,
         title: "Clipboard Inspector",
         description: "Preview formats and clear the current clipboard.",
         systemImage: "clipboard.fill",

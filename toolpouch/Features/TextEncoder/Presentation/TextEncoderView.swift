@@ -15,60 +15,57 @@ struct TextEncoderView: View {
 
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: ToolPouchLayout.Content.spacing) {
+            ToolContentLayout {
                 header
                 converterPanel
             }
-            .padding(ToolPouchLayout.Content.padding)
         }
+        .scrollIndicators(.never)
         .task { convert() }
         .onChange(of: request) { convert() }
     }
 
     private var header: some View {
-        VStack(alignment: .leading, spacing: 3) {
-            Text("Text Encoder")
-                .font(.headline)
-            #if !os(watchOS)
-            Text("Convert UTF-8 text using common binary-to-text formats.")
-                .font(.caption)
-                .foregroundStyle(.secondary)
-            #endif
-        }
+        ScreenHeader(
+            title: "Text Encoder",
+            subtitle: "Convert UTF-8 text using common binary-to-text formats.",
+            density: isWatch ? .compact : .regular
+        )
     }
 
     private var converterPanel: some View {
-        VStack(alignment: .leading, spacing: 14) {
+        ToolSectionCard {
             controls
             Divider()
             inputSection
             swapButton
             outputSection
         }
-        .padding(14)
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 14))
     }
 
     private var controls: some View {
         VStack(alignment: .leading, spacing: 10) {
             Picker("Format", selection: $encoding) {
                 ForEach(BinaryTextEncoding.allCases) { encoding in
-                    Text(encoding.title).tag(encoding)
+                    Text(encoding.title.localizedInterfaceText).tag(encoding)
                 }
             }
 
+            #if os(watchOS)
             Picker("Direction", selection: directionSelection) {
                 ForEach(TextConversionDirection.allCases) { direction in
-                    Text(direction.title).tag(direction)
+                    Text(direction.title.localizedInterfaceText).tag(direction)
                 }
             }
-            #if !os(watchOS)
-            .pickerStyle(.segmented)
-            .labelsHidden()
+            #else
+            ToolPouchSegmentedControl(
+                TextConversionDirection.allCases,
+                selection: directionSelection,
+                title: \.title
+            )
             #endif
 
-            Text(encoding.description)
+            Text(encoding.description.localizedInterfaceText)
                 .font(.caption)
                 .foregroundStyle(.secondary)
         }
@@ -78,7 +75,7 @@ struct TextEncoderView: View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
                 Text(direction.inputTitle)
-                    .font(.headline)
+                    .font(ToolPouchLayout.Typography.sectionTitle)
                 Spacer()
                 if !input.isEmpty {
                     Button("Clear") { input = "" }
@@ -89,23 +86,13 @@ struct TextEncoderView: View {
             #if os(watchOS)
             TextField(direction.inputTitle, text: $input, axis: .vertical)
                 .font(.system(.body, design: .monospaced))
-                .padding(8)
                 .lineLimit(3...8)
-                .background(
-                    .quaternary,
-                    in: RoundedRectangle(cornerRadius: 10)
-                )
+                .toolPouchControlSurface()
                 .accessibilityLabel(direction.inputTitle)
             #else
             TextEditor(text: $input)
                 .font(.system(.body, design: .monospaced))
-                .scrollContentBackground(.hidden)
-                .padding(8)
-                .frame(minHeight: 96)
-                .background(
-                    .quaternary,
-                    in: RoundedRectangle(cornerRadius: 10)
-                )
+                .toolPouchEditorSurface(minimumHeight: 92)
                 .accessibilityLabel(direction.inputTitle)
             #endif
         }
@@ -125,7 +112,7 @@ struct TextEncoderView: View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
                 Text(direction.outputTitle)
-                    .font(.headline)
+                    .font(ToolPouchLayout.Typography.sectionTitle)
                 Spacer()
                 #if !os(watchOS)
                 if errorMessage == nil, !output.isEmpty {
@@ -134,29 +121,34 @@ struct TextEncoderView: View {
                 #endif
             }
 
-            Group {
-                if let errorMessage {
-                    Label(errorMessage, systemImage: "exclamationmark.triangle")
-                        .foregroundStyle(.secondary)
-                } else if output.isEmpty {
-                    Text("The result appears here.")
-                        .foregroundStyle(.tertiary)
-                } else {
-                    Text(output)
-                        .font(.system(.body, design: .monospaced))
-                        .fixedSize(horizontal: false, vertical: true)
-                        #if !os(watchOS)
-                        .textSelection(.enabled)
-                        #endif
+            ScrollView([.horizontal, .vertical]) {
+                Group {
+                    if let errorMessage {
+                        Label(errorMessage, systemImage: "exclamationmark.triangle")
+                            .foregroundStyle(.secondary)
+                    } else if output.isEmpty {
+                        Text("The result appears here.")
+                            .foregroundStyle(.tertiary)
+                    } else {
+                        Text(output)
+                            .font(.system(.body, design: .monospaced))
+                            #if !os(watchOS)
+                            .textSelection(.enabled)
+                            #endif
+                    }
                 }
+                .frame(maxWidth: .infinity, alignment: .topLeading)
             }
-            .frame(maxWidth: .infinity, minHeight: 76, alignment: .topLeading)
-            .padding(12)
-            .background(
-                .quaternary,
-                in: RoundedRectangle(cornerRadius: 10)
-            )
+            .toolPouchEditorSurface(minimumHeight: 72)
         }
+    }
+
+    private var isWatch: Bool {
+        #if os(watchOS)
+        true
+        #else
+        false
+        #endif
     }
 
     private var request: ConversionRequest {

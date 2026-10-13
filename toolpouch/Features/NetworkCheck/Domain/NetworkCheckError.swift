@@ -9,13 +9,13 @@ nonisolated enum NetworkCheckError: LocalizedError, Equatable, Sendable {
     var errorDescription: String? {
         switch self {
         case .invalidHost:
-            "Enter a valid hostname or IP address."
+            "Enter a valid hostname or IP address.".localizedInterfaceText
         case .invalidPort:
-            "The port must be between 1 and 65535."
+            "The port must be between 1 and 65535.".localizedInterfaceText
         case .hostNotFound:
-            "The host could not be resolved."
+            "The host could not be resolved.".localizedInterfaceText
         case let .lookupFailed(reason):
-            "DNS lookup failed: \(reason)"
+            String(format: "DNS lookup failed: %@".localizedInterfaceText, reason)
         }
     }
 }

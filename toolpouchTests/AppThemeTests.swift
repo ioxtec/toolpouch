@@ -3,6 +3,13 @@ import Testing
 @testable import toolpouch
 
 struct AppThemeTests {
+    @Test func fallbackUsesOnlyTwoSolidContentSurfaceColors() {
+        let colors = AppTheme.draculaFallback.colors
+
+        #expect(colors.interactiveSurface == colors.recessedSurface)
+        #expect(colors.panelSurface != colors.recessedSurface)
+    }
+
     @Test func decodesThemeCatalog() throws {
         let data = try #require(
             """
@@ -24,6 +31,7 @@ struct AppThemeTests {
                   "primaryText": { "hex": "FFFFFF" },
                   "secondaryText": { "hex": "AAAAAA" },
                   "primaryAccent": { "hex": "FF79C6" },
+                  "accentButtonBackground": { "hex": "663355" },
                   "secondaryAccent": { "hex": "8BE9FD" },
                   "success": { "hex": "50FA7B" },
                   "warning": { "hex": "F1FA8C" },
@@ -39,6 +47,7 @@ struct AppThemeTests {
         #expect(catalog.defaultThemeID == "test")
         #expect(catalog.themes.first?.renderingStyle == .solid)
         #expect(catalog.themes.first?.colors.primaryAccent.hex == "FF79C6")
+        #expect(catalog.themes.first?.colors.accentButtonBackground.hex == "663355")
     }
 
     @Test func themeStorePersistsAValidSelection() {

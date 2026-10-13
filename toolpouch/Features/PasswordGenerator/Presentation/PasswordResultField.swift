@@ -49,13 +49,10 @@ struct PasswordResultField: View {
                 #endif
             }
             .padding(.horizontal, 12)
-            .padding(.vertical, 10)
-            .background(
-                .quaternary,
-                in: RoundedRectangle(cornerRadius: 10)
-            )
+            .padding(.vertical, ToolPouchLayout.Spacing.medium)
+            .toolPouchSurface(interactive: true, cornerRadius: ToolPouchLayout.Radius.control)
             .overlay {
-                RoundedRectangle(cornerRadius: 10)
+                RoundedRectangle(cornerRadius: ToolPouchLayout.Radius.control)
                     .stroke(
                         isHoveringPassword
                             ? Color.secondary.opacity(0.35)
@@ -114,11 +111,8 @@ struct PasswordResultField: View {
     private func errorField(message: String) -> some View {
         Label(message, systemImage: "exclamationmark.triangle")
             .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(12)
-            .background(
-                .quaternary,
-                in: RoundedRectangle(cornerRadius: 10)
-            )
+            .padding(ToolPouchLayout.Spacing.xLarge)
+            .toolPouchSurface(interactive: true, cornerRadius: ToolPouchLayout.Radius.control)
     }
 
     private func metadata(for password: GeneratedPassword) -> some View {

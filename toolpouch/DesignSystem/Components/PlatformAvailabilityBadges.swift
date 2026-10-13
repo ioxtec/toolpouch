@@ -50,6 +50,6 @@ struct PlatformAvailabilityBadges: View {
     }
 
     private var accessibilityDescription: String {
-        "Available on " + sortedPlatforms.map(\.displayName).joined(separator: ", ")
+        String(format: "Available on %@".localizedInterfaceText, sortedPlatforms.map(\.displayName).joined(separator: ", "))
     }
 }

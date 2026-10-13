@@ -6,6 +6,45 @@ struct ArchiveManagerTests {
     private let manager = ArchiveManager()
 
     @Test
+    func neverOverwritesSourceOrExistingDestination() async throws {
+        let root = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+        try FileManager.default.createDirectory(at: root, withIntermediateDirectories: true)
+        defer { try? FileManager.default.removeItem(at: root) }
+        let source = root.appendingPathComponent("original.gz")
+        let destination = root.appendingPathComponent("existing.gz")
+        let original = Data("original bytes".utf8)
+        try original.write(to: source)
+        try original.write(to: destination)
+        await #expect(throws: ArchiveOperationError.sourceIsDestination) {
+            try await manager.compress(sourceURL: source, destinationURL: source, format: .gzip)
+        }
+        await #expect(throws: ArchiveOperationError.destinationExists) {
+            try await manager.compress(sourceURL: source, destinationURL: destination, format: .gzip)
+        }
+        #expect(try Data(contentsOf: source) == original)
+        #expect(try Data(contentsOf: destination) == original)
+    }
+
+    @Test
+    func extractionUsesChosenDestinationAndRefusesExistingFiles() async throws {
+        let root = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+        try FileManager.default.createDirectory(at: root, withIntermediateDirectories: true)
+        defer { try? FileManager.default.removeItem(at: root) }
+        let source = root.appendingPathComponent("data.txt")
+        try Data("content".utf8).write(to: source)
+        let archive = root.appendingPathComponent("data.gz")
+        try await manager.compress(sourceURL: source, destinationURL: archive, format: .gzip)
+        let target = root.appendingPathComponent("chosen.txt")
+        let result = try await manager.decompress(archiveURL: archive, destinationURL: target)
+        #expect(result == target)
+        #expect(try String(contentsOf: target, encoding: .utf8) == "content")
+        await #expect(throws: ArchiveOperationError.destinationExists) {
+            try await manager.decompress(archiveURL: archive, destinationURL: source)
+        }
+        #expect(try String(contentsOf: source, encoding: .utf8) == "content")
+    }
+
+    @Test
     func zipRoundTripsFolder() async throws {
         let (source, temporaryRoot) = try makeSourceFolder()
         defer { try? FileManager.default.removeItem(at: temporaryRoot) }
@@ -175,7 +214,7 @@ struct ArchiveManagerTests {
             format: .tar
         )
 
-        let output = try await manager.decompress(archiveURL: tarURL)
+        let output = try await manager.decompress(archiveURL: tarURL, destinationURL: temporaryRoot.appendingPathComponent("extracted"))
 
         #expect(
             FileManager.default.fileExists(
@@ -205,7 +244,7 @@ struct ArchiveManagerTests {
         let gzData = try GzipCodec().compress(data: tarData)
         try gzData.write(to: tgzURL)
 
-        let output = try await manager.decompress(archiveURL: tgzURL)
+        let output = try await manager.decompress(archiveURL: tgzURL, destinationURL: temporaryRoot.appendingPathComponent("extracted"))
 
         #expect(
             FileManager.default.fileExists(

@@ -14,22 +14,22 @@ struct JSONToolkitView: View {
 
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: ToolPouchLayout.Content.spacing) {
+            ToolContentLayout {
                 ScreenHeader(
                     title: "JSON Toolkit",
                     subtitle: "Format, compact, and validate JSON without uploading it."
                 )
                 editorPanel
             }
-            .padding(ToolPouchLayout.Content.padding)
         }
+        .scrollIndicators(.never)
         .onChange(of: request, initial: true) {
             updateOutput()
         }
     }
 
     private var editorPanel: some View {
-        VStack(alignment: .leading, spacing: 14) {
+        ToolSectionCard {
             stylePicker
             Divider()
             inputSection
@@ -37,26 +37,29 @@ struct JSONToolkitView: View {
             Divider()
             outputSection
         }
-        .padding(14)
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 14))
     }
 
     private var stylePicker: some View {
+        #if os(watchOS)
         Picker("Output Style", selection: $style) {
             ForEach(JSONFormattingStyle.allCases) { style in
-                Text(style.title).tag(style)
+                Text(style.title.localizedInterfaceText).tag(style)
             }
         }
-        .pickerStyle(.segmented)
-        .labelsHidden()
+        #else
+        ToolPouchSegmentedControl(
+            JSONFormattingStyle.allCases,
+            selection: $style,
+            title: \.title
+        )
+        #endif
     }
 
     private var inputSection: some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
                 Text("Input")
-                    .font(.headline)
+                    .font(ToolPouchLayout.Typography.sectionTitle)
                 Spacer()
                 if !input.isEmpty {
                     Button("Clear") { input = "" }
@@ -66,13 +69,7 @@ struct JSONToolkitView: View {
 
             TextEditor(text: $input)
                 .font(.system(.body, design: .monospaced))
-                .scrollContentBackground(.hidden)
-                .padding(8)
-                .frame(minHeight: 120)
-                .background(
-                    .quaternary,
-                    in: RoundedRectangle(cornerRadius: 10)
-                )
+                .toolPouchEditorSurface(minimumHeight: 110)
                 .accessibilityLabel("JSON input")
         }
     }
@@ -96,7 +93,7 @@ struct JSONToolkitView: View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
                 Text("Output")
-                    .font(.headline)
+                    .font(ToolPouchLayout.Typography.sectionTitle)
                 Spacer()
                 if errorMessage == nil, !output.isEmpty {
                     CopyButton(value: output)
@@ -104,7 +101,7 @@ struct JSONToolkitView: View {
             }
 
             ScrollView([.horizontal, .vertical]) {
-                Text(output.isEmpty ? "The formatted JSON appears here." : output)
+                Text(output.isEmpty ? "The formatted JSON appears here.".localizedInterfaceText : output)
                     .font(.system(.body, design: .monospaced))
                     .foregroundStyle(
                         output.isEmpty
@@ -114,12 +111,7 @@ struct JSONToolkitView: View {
                     .textSelection(.enabled)
                     .frame(maxWidth: .infinity, alignment: .topLeading)
             }
-            .frame(minHeight: 100, idealHeight: 160, maxHeight: 260)
-            .padding(12)
-            .background(
-                .quaternary,
-                in: RoundedRectangle(cornerRadius: 10)
-            )
+            .toolPouchEditorSurface(minimumHeight: 100, maximumHeight: 260)
             .accessibilityLabel("Formatted JSON output")
         }
     }

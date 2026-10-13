@@ -103,7 +103,7 @@ nonisolated private final class TCPConnectionAttempt: @unchecked Sendable {
         var errorDescription: String? {
             switch self {
             case let .unavailable(reason): reason
-            case .timedOut: "The connection timed out."
+            case .timedOut: "The connection timed out.".localizedInterfaceText
             }
         }
     }

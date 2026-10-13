@@ -4,12 +4,21 @@ struct ThreeColumnToolNavigationView: View {
     @Environment(\.appTheme) private var theme
 
     let dependencies: AppDependencies
+    let navigationModel: ToolWindowNavigationModel?
 
     @State private var selectedCategoryID: ToolCategory.ID?
     @State private var selectedToolID: ToolDefinition.ID?
     @State private var columnVisibility: NavigationSplitViewVisibility = .all
 
-    private let quickAccessHeaderHeight: CGFloat = 45
+    private let quickAccessHeaderHeight: CGFloat = 55
+
+    init(
+        dependencies: AppDependencies,
+        navigationModel: ToolWindowNavigationModel? = nil
+    ) {
+        self.dependencies = dependencies
+        self.navigationModel = navigationModel
+    }
 
     private var categories: [ToolCategory] {
         dependencies.toolRegistry.categories(for: .current)
@@ -41,7 +50,7 @@ struct ThreeColumnToolNavigationView: View {
                 density: .compact
             )
             .padding(.horizontal, ToolPouchLayout.Content.padding)
-            .padding(.vertical, 5)
+            .padding(.vertical, 7)
             .background(theme.colors.elevatedSurface.color)
 
             Divider()
@@ -54,13 +63,13 @@ struct ThreeColumnToolNavigationView: View {
             List(selection: $selectedCategoryID) {
                 Section("Sections") {
                     ForEach(categories) { category in
-                        Label(category.title, systemImage: category.systemImage)
+                        Label(category.localizedTitle, systemImage: category.systemImage)
                             .tag(category.id)
                     }
                 }
             }
             .navigationTitle("ToolPouch")
-            .navigationSplitViewColumnWidth(min: 190, ideal: 220)
+            .navigationSplitViewColumnWidth(min: 190, ideal: 220, max: 270)
             .padding(.top, quickAccessHeaderHeight)
             .scrollContentBackground(.hidden)
             .background(theme.colors.surface.color)
@@ -87,7 +96,7 @@ struct ThreeColumnToolNavigationView: View {
                         }
                         .padding(10)
                     }
-                    .navigationTitle(category.title)
+                    .navigationTitle(category.localizedTitle)
                     .background(theme.colors.elevatedSurface.color)
                 } else {
                     ContentUnavailableView(
@@ -97,10 +106,15 @@ struct ThreeColumnToolNavigationView: View {
                 }
             }
             .padding(.top, quickAccessHeaderHeight)
-            .navigationSplitViewColumnWidth(min: 230, ideal: 290)
+            .navigationSplitViewColumnWidth(min: 230, ideal: 290, max: 360)
         } detail: {
             detail
                 .padding(.top, quickAccessHeaderHeight)
+                .frame(
+                    maxWidth: .infinity,
+                    maxHeight: .infinity,
+                    alignment: .topLeading
+                )
                 .background(theme.colors.background.color)
         }
         .onChange(of: selectedCategoryID) {
@@ -113,6 +127,13 @@ struct ThreeColumnToolNavigationView: View {
                 selectedCategoryID = categories.first?.id
                 selectedToolID = tools.first?.id
             }
+        }
+        .onChange(of: navigationModel?.requestID, initial: true) {
+            guard let toolID = navigationModel?.requestedToolID,
+                  let tool = dependencies.toolRegistry.tool(id: toolID) else {
+                return
+            }
+            select(tool)
         }
     }
 

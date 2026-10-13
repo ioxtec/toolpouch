@@ -29,7 +29,7 @@ struct NetworkCheckView: View {
 
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: ToolPouchLayout.Content.spacing) {
+            ToolContentLayout {
                 ScreenHeader(
                     title: "Network Check",
                     subtitle: "Resolve a host and test a TCP port without using a website."
@@ -39,29 +39,29 @@ struct NetworkCheckView: View {
                     resultPanel
                 }
             }
-            .padding(ToolPouchLayout.Content.padding)
         }
+        .scrollIndicators(.never)
     }
 
     private var inputPanel: some View {
-        VStack(alignment: .leading, spacing: 14) {
-            Text("Destination")
-                .font(.headline)
+        ToolSectionCard("Destination") {
+            ToolFieldLabel("Host", systemImage: "network")
 
             TextField("example.com or 192.168.1.1", text: $host)
-                .textFieldStyle(.roundedBorder)
+                .textFieldStyle(.plain)
+                .toolPouchControlSurface()
                 #if os(iOS)
                 .textInputAutocapitalization(.never)
                 .autocorrectionDisabled()
                 .keyboardType(.URL)
                 #endif
 
-            HStack {
-                Text("Port")
-                    .foregroundStyle(.secondary)
+            HStack(spacing: ToolPouchLayout.Spacing.medium) {
+                ToolFieldLabel("Port")
                 TextField("Port", value: $port, format: .number.grouping(.never))
-                    .textFieldStyle(.roundedBorder)
-                    .frame(width: 92)
+                    .textFieldStyle(.plain)
+                    .toolPouchControlSurface()
+                    .frame(width: 84)
                 Spacer()
                 Button {
                     Task { await performCheck() }
@@ -73,33 +73,27 @@ struct NetworkCheckView: View {
                         Label("Check", systemImage: "play.fill")
                     }
                 }
-                .buttonStyle(.borderedProminent)
+                .toolPouchPrimaryAction()
                 .disabled(isChecking || host.trimmingCharacters(in: .whitespaces).isEmpty)
             }
 
             ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 8) {
+                HStack(spacing: ToolPouchLayout.Spacing.small) {
                     ForEach(Self.commonPorts) { item in
                         Button("\(item.name) · \(item.port)") {
                             port = item.port
                         }
-                        .buttonStyle(.bordered)
-                        .controlSize(.small)
+                        .toolPouchSecondaryAction()
                         .tint(port == item.port ? .accentColor : nil)
                     }
                 }
             }
         }
-        .padding(14)
-        .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 14))
     }
 
     @ViewBuilder
     private var resultPanel: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            Text("Result")
-                .font(.headline)
-
+        ToolSectionCard("Result") {
             if isChecking {
                 Label("Resolving host and checking the connection…", systemImage: "network")
                     .foregroundStyle(.secondary)
@@ -115,9 +109,6 @@ struct NetworkCheckView: View {
                     .foregroundStyle(.secondary)
             }
         }
-        .padding(14)
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 14))
     }
 
     private func addressRows(_ result: NetworkCheckResult) -> some View {

@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="Privacy Policy, Support, and Terms of Use for ToolPouch for macOS.">
+  <title>ToolPouch — Privacy Policy</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --page: #202027;
+      --surface: #2d2d35;
+      --surface-strong: #373641;
+      --border: #54515f;
+      --text: #f6f4f7;
+      --muted: #bbb7c2;
+      --accent: #ff70c6;
+      --accent-soft: #613752;
+      --max: 850px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--text);
+      background: var(--page);
+      font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    a { color: var(--accent); text-underline-offset: 3px; }
+    a:hover { text-decoration-thickness: 2px; }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid var(--border);
+      background: color-mix(in srgb, var(--page) 92%, transparent);
+      backdrop-filter: blur(18px);
+    }
+    .bar, main, footer { width: min(calc(100% - 36px), var(--max)); margin-inline: auto; }
+    .bar {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+    .brand { margin-right: auto; color: var(--text); font-size: 20px; font-weight: 750; text-decoration: none; }
+    nav { display: flex; gap: 6px; }
+    nav a, .language button {
+      border: 1px solid transparent;
+      border-radius: 10px;
+      padding: 7px 10px;
+      color: var(--muted);
+      background: transparent;
+      font: inherit;
+      font-size: 14px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    nav a[aria-current="page"], .language button[aria-pressed="true"] {
+      border-color: #8e4e76;
+      color: var(--accent);
+      background: var(--accent-soft);
+    }
+    .language { display: flex; gap: 2px; padding-left: 8px; border-left: 1px solid var(--border); }
+    main { padding-block: 64px 80px; }
+    article { display: none; }
+    body[data-page="privacy"] article[data-page="privacy"],
+    body[data-page="support"] article[data-page="support"],
+    body[data-page="terms"] article[data-page="terms"] { display: block; }
+    [data-lang] { display: none; }
+    html[lang="pl"] [data-lang="pl"], html[lang="en"] [data-lang="en"] { display: block; }
+    .eyebrow { margin: 0 0 10px; color: var(--accent); font-size: 14px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+    h1 { margin: 0; font-size: clamp(36px, 7vw, 60px); line-height: 1.05; letter-spacing: -.035em; }
+    .lead { max-width: 700px; margin: 22px 0 44px; color: var(--muted); font-size: 19px; }
+    .meta { margin: -26px 0 42px; color: #96919c; font-size: 14px; }
+    .card { margin: 18px 0; padding: 26px 28px; border: 1px solid var(--border); border-radius: 18px; background: var(--surface); }
+    h2 { margin: 46px 0 14px; font-size: 25px; line-height: 1.25; }
+    .card h2 { margin-top: 0; }
+    h3 { margin: 26px 0 8px; font-size: 18px; }
+    p, li { color: #dedbe1; }
+    ul { padding-left: 23px; }
+    li + li { margin-top: 8px; }
+    .contact { display: inline-flex; align-items: center; gap: 8px; margin-top: 8px; padding: 10px 14px; border-radius: 11px; background: var(--accent-soft); font-weight: 700; text-decoration: none; }
+    footer { padding: 24px 0 42px; border-top: 1px solid var(--border); color: #918c97; font-size: 13px; }
+    @media (max-width: 720px) {
+      .bar { min-height: auto; flex-wrap: wrap; padding-block: 15px; gap: 10px; }
+      .brand { width: 100%; }
+      nav { order: 2; width: calc(100% - 82px); overflow-x: auto; }
+      .language { margin-left: auto; }
+      main { padding-top: 44px; }
+      .card { padding: 21px; }
+    }
+  </style>
+  <script>
+    (() => {
+      const page = location.pathname.match(/\/(privacy|support|terms)\/?$/)?.[1] || "privacy";
+      const stored = localStorage.getItem("toolpouch-policy-language");
+      const language = stored === "pl" || stored === "en"
+        ? stored
+        : (navigator.language.toLowerCase().startsWith("pl") ? "pl" : "en");
+      document.documentElement.lang = language;
+      document.addEventListener("DOMContentLoaded", () => {
+        document.body.dataset.page = page;
+        updateInterface(language, page);
+      });
+      window.setPolicyLanguage = (language) => {
+        localStorage.setItem("toolpouch-policy-language", language);
+        document.documentElement.lang = language;
+        updateInterface(language, document.body.dataset.page);
+      };
+      function updateInterface(language, page) {
+        const labels = {
+          en: { privacy: "Privacy", support: "Support", terms: "Terms", titles: { privacy: "Privacy Policy", support: "Support", terms: "Terms of Use" } },
+          pl: { privacy: "Prywatność", support: "Pomoc", terms: "Warunki", titles: { privacy: "Polityka prywatności", support: "Pomoc", terms: "Warunki korzystania" } }
+        }[language];
+        document.title = `ToolPouch — ${labels.titles[page]}`;
+        document.querySelectorAll("nav a").forEach(link => {
+          link.textContent = labels[link.dataset.target];
+          link.toggleAttribute("aria-current", link.dataset.target === page);
+          if (link.dataset.target === page) link.setAttribute("aria-current", "page");
+        });
+        document.querySelectorAll(".language button").forEach(button => button.setAttribute("aria-pressed", String(button.dataset.language === language)));
+      }
+    })();
+  </script>
+</head>
+<body data-page="privacy">
+  <header>
+    <div class="bar">
+      <a class="brand" href="/policies/toolpouch/privacy">ToolPouch</a>
+      <nav aria-label="ToolPouch documents">
+        <a data-target="privacy" href="/policies/toolpouch/privacy" aria-current="page">Privacy</a>
+        <a data-target="support" href="/policies/toolpouch/support">Support</a>
+        <a data-target="terms" href="/policies/toolpouch/terms">Terms</a>
+      </nav>
+      <div class="language" aria-label="Language">
+        <button type="button" data-language="pl" onclick="setPolicyLanguage('pl')" aria-pressed="false">PL</button>
+        <button type="button" data-language="en" onclick="setPolicyLanguage('en')" aria-pressed="true">EN</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <article data-page="privacy">
+      <div data-lang="en">
+        <p class="eyebrow">ToolPouch for macOS</p>
+        <h1>Privacy Policy</h1>
+        <p class="lead">ToolPouch is a collection of utilities for macOS. Most processing happens on your Mac. ToolPouch contains no advertising, does not use its own tracking analytics, and does not require a ToolPouch account.</p>
+        <p class="meta">Effective date: October 12, 2026</p>
+
+        <h2>Local processing</h2>
+        <p>Text encoding, JSON formatting, checksums, unit conversion, scientific calculations, and function graphs run locally. Image processing, metadata inspection, media inspection, hashing, and archive operations apply only to files you select.</p>
+        <p>Generated passwords and passphrases are not stored in the app database. Clipboard Inspector reads the macOS pasteboard while you use the tool; it does not save clipboard contents to the app database or iCloud. Copy actions place results on the system pasteboard, which is managed by macOS.</p>
+        <p>The SSH tool reads a folder you select and may remember access using a macOS security-scoped bookmark. Keys remain in your files and are not synchronized with Quick Copy Notes. Copying a private key requires confirmation.</p>
+        <p>System statistics samples are stored locally for the retention period you choose, from one to 24 hours. Network snapshots and device metadata are also local; up to 100 recent network snapshots are retained per device.</p>
+
+        <h2>Quick Copy Notes and iCloud</h2>
+        <p>Quick Copy Notes stores folder and collection names, note titles, descriptions and contents, favorites, ordering, and modification dates. When synchronization is available, this information is stored in the app's private CloudKit database associated with your Apple Account. Apple provides and operates iCloud. If synchronization is unavailable, the app can use a local-only store.</p>
+        <p>Quick Copy Notes is not a password manager and should not be used for passwords, private keys, or access tokens. You can delete notes and folders in the app. When iCloud synchronization is working, those changes propagate between your devices according to iCloud availability.</p>
+
+        <h2>Network requests</h2>
+        <p>Only tools that need external information make network requests:</p>
+        <ul>
+          <li>Network Info contacts ipify to obtain your public IP address. The service necessarily receives the IP address of the connection.</li>
+          <li>Domain Lookup downloads the RDAP bootstrap registry from IANA and sends the domain you enter to the relevant secure RDAP service.</li>
+          <li>Network Check performs the DNS or connection check you request against the host and port you enter.</li>
+          <li>Maps and place-related actions use Apple services.</li>
+          <li>Quick Copy Notes synchronization uses Apple CloudKit.</li>
+        </ul>
+        <p>External services may process connection information under their own policies. ToolPouch does not send text being transformed, generated passwords, SSH keys, clipboard contents, or selected local files to these services as part of local tools.</p>
+
+        <h2>Permissions</h2>
+        <ul>
+          <li><strong>Location:</strong> used by macOS to authorize nearby Wi-Fi discovery. ToolPouch does not upload Wi-Fi scan results.</li>
+          <li><strong>Screen recording:</strong> used by Color Picker to inspect a small area around the pointer while picking. Captured pixels are not saved or uploaded by ToolPouch.</li>
+          <li><strong>Selected files and folders:</strong> used only for the file operation you initiate and, where requested, to remember access to your SSH folder.</li>
+        </ul>
+        <p>You can change permissions in macOS System Settings. Denying a permission limits only the tool that needs it.</p>
+
+        <h2>Storage and deletion</h2>
+        <p>You can delete Quick Copy Notes in the app. Files created in locations you select remain there and are not removed when the app is uninstalled. Local app data is stored in the macOS app container; deleting the app may not delete that container. Synced data can also be managed through your iCloud settings.</p>
+
+        <h2>Children, advertising, and tracking</h2>
+        <p>ToolPouch is a general-purpose utility and is not directed to children. It contains no advertising SDK and does not track users across apps or websites.</p>
+
+        <div class="card">
+          <h2>Contact</h2>
+          <p>ToolPouch is published by IOXTEC. For privacy questions or requests, contact us through the ToolPouch support address.</p>
+          <a class="contact" href="mailto:support@ioxtec.com">support@ioxtec.com</a>
+        </div>
+      </div>
+
+      <div data-lang="pl">
+        <p class="eyebrow">ToolPouch dla macOS</p>
+        <h1>Polityka prywatności</h1>
+        <p class="lead">ToolPouch to zestaw narzędzi dla macOS. Większość operacji odbywa się na Twoim Macu. Aplikacja nie zawiera reklam, nie używa własnej analityki śledzącej i nie wymaga konta ToolPouch.</p>
+        <p class="meta">Data wejścia w życie: 12 października 2026 r.</p>
+
+        <h2>Przetwarzanie lokalne</h2>
+        <p>Kodowanie tekstu, formatowanie JSON, sumy kontrolne, konwersje jednostek, obliczenia naukowe i wykresy funkcji działają lokalnie. Obróbka obrazów, odczyt metadanych i multimediów, hashowanie oraz archiwizacja dotyczą wyłącznie plików wybranych przez użytkownika.</p>
+        <p>Wygenerowane hasła i frazy nie są zapisywane w bazie aplikacji. Inspektor schowka odczytuje schowek macOS podczas korzystania z narzędzia; nie zapisuje jego treści do bazy ani do iCloud. Kopiowanie umieszcza wynik w schowku systemowym zarządzanym przez macOS.</p>
+        <p>Narzędzie SSH odczytuje wybrany folder i może zapamiętać dostęp za pomocą mechanizmu security-scoped bookmark systemu macOS. Klucze pozostają w plikach użytkownika i nie są synchronizowane z Quick Copy Notes. Skopiowanie klucza prywatnego wymaga potwierdzenia.</p>
+        <p>Próbki statystyk systemowych są przechowywane lokalnie przez wybrany okres od jednej do 24 godzin. Migawki sieci i metadane urządzenia również pozostają lokalne; aplikacja przechowuje do 100 ostatnich migawek sieciowych na urządzenie.</p>
+
+        <h2>Quick Copy Notes i iCloud</h2>
+        <p>Quick Copy Notes zapisuje nazwy folderów i kolekcji, tytuły, opisy i treść notatek, ulubione, kolejność oraz daty modyfikacji. Gdy synchronizacja jest dostępna, informacje są przechowywane w prywatnej bazie CloudKit aplikacji powiązanej z kontem Apple użytkownika. iCloud jest dostarczany i obsługiwany przez Apple. Jeśli synchronizacja nie jest dostępna, aplikacja może korzystać wyłącznie z magazynu lokalnego.</p>
+        <p>Quick Copy Notes nie jest menedżerem haseł i nie powinno służyć do przechowywania haseł, kluczy prywatnych ani tokenów. Notatki i foldery można usuwać w aplikacji. Przy działającej synchronizacji zmiany są przenoszone między urządzeniami zgodnie z dostępnością iCloud.</p>
+
+        <h2>Połączenia sieciowe</h2>
+        <p>Żądania sieciowe wykonują tylko narzędzia potrzebujące danych zewnętrznych:</p>
+        <ul>
+          <li>Network Info kontaktuje ipify w celu uzyskania publicznego adresu IP. Usługa otrzymuje adres IP połączenia.</li>
+          <li>Domain Lookup pobiera rejestr RDAP z IANA i wysyła wpisaną domenę do właściwej bezpiecznej usługi RDAP.</li>
+          <li>Network Check wykonuje wybrane sprawdzenie DNS lub połączenia z podanym hostem i portem.</li>
+          <li>Mapy i działania związane z miejscami korzystają z usług Apple.</li>
+          <li>Synchronizacja Quick Copy Notes korzysta z Apple CloudKit.</li>
+        </ul>
+        <p>Usługi zewnętrzne mogą przetwarzać informacje o połączeniu zgodnie z własnymi zasadami. ToolPouch nie wysyła do nich tekstu poddawanego przekształceniom, wygenerowanych haseł, kluczy SSH, treści schowka ani wybranych lokalnych plików w ramach narzędzi działających lokalnie.</p>
+
+        <h2>Uprawnienia</h2>
+        <ul>
+          <li><strong>Lokalizacja:</strong> używana przez macOS do autoryzacji wykrywania pobliskich sieci Wi-Fi. ToolPouch nie przesyła wyników skanowania.</li>
+          <li><strong>Nagrywanie ekranu:</strong> używane przez próbnik koloru do odczytu niewielkiego obszaru wokół wskaźnika. Przechwycone piksele nie są zapisywane ani przesyłane przez ToolPouch.</li>
+          <li><strong>Wybrane pliki i foldery:</strong> używane tylko do operacji zleconej przez użytkownika oraz — na żądanie — do zapamiętania dostępu do folderu SSH.</li>
+        </ul>
+        <p>Uprawnienia można zmienić w Ustawieniach systemowych macOS. Odmowa ogranicza tylko narzędzie, które potrzebuje danego dostępu.</p>
+
+        <h2>Przechowywanie i usuwanie</h2>
+        <p>Notatki Quick Copy Notes można usuwać w aplikacji. Pliki utworzone w wybranych miejscach pozostają tam i nie są usuwane wraz z aplikacją. Dane lokalne znajdują się w kontenerze aplikacji macOS; usunięcie aplikacji może nie usunąć kontenera. Dane synchronizowane można także kontrolować w ustawieniach iCloud.</p>
+
+        <h2>Dzieci, reklamy i śledzenie</h2>
+        <p>ToolPouch jest narzędziem ogólnego przeznaczenia i nie jest kierowane do dzieci. Nie zawiera reklam ani mechanizmów śledzących użytkowników między aplikacjami lub witrynami.</p>
+
+        <div class="card">
+          <h2>Kontakt</h2>
+          <p>Wydawcą ToolPouch jest IOXTEC. Pytania i żądania dotyczące prywatności można kierować na adres pomocy ToolPouch.</p>
+          <a class="contact" href="mailto:support@ioxtec.com">support@ioxtec.com</a>
+        </div>
+      </div>
+    </article>
+
+    <article data-page="support">
+      <div data-lang="en">
+        <p class="eyebrow">ToolPouch for macOS</p>
+        <h1>Support</h1>
+        <p class="lead">Help with installation, permissions, synchronization, or any ToolPouch utility.</p>
+        <p class="meta">ToolPouch 1.0 · Apple silicon · macOS 26 or later</p>
+        <div class="card">
+          <h2>Contact support</h2>
+          <p>Describe what you expected, what happened, your macOS version, and the ToolPouch version shown in Settings. Do not send passwords, private keys, clipboard contents, personal notes, or confidential files.</p>
+          <a class="contact" href="mailto:support@ioxtec.com?subject=ToolPouch%20Support">support@ioxtec.com</a>
+        </div>
+        <h2>Before contacting us</h2>
+        <ul>
+          <li>Install the latest ToolPouch update available for your Mac.</li>
+          <li>Quit ToolPouch from its menu and open it again.</li>
+          <li>For Wi-Fi Scanner or Color Picker, verify the requested permission in System Settings → Privacy &amp; Security.</li>
+          <li>For file tools, select the file or destination again so macOS can grant access.</li>
+          <li>For Quick Copy Notes sync, confirm that iCloud Drive is enabled and that the same Apple Account is used on both Macs.</li>
+        </ul>
+        <h2>Purchases and refunds</h2>
+        <p>Purchases, billing, and refunds are handled by Apple through the Mac App Store. Use Apple's purchase support for billing or refund requests.</p>
+        <p><a href="https://support.apple.com/billing">Apple billing and purchase support</a></p>
+      </div>
+
+      <div data-lang="pl">
+        <p class="eyebrow">ToolPouch dla macOS</p>
+        <h1>Pomoc</h1>
+        <p class="lead">Pomoc dotycząca instalacji, uprawnień, synchronizacji i narzędzi ToolPouch.</p>
+        <p class="meta">ToolPouch 1.0 · Apple silicon · macOS 26 lub nowszy</p>
+        <div class="card">
+          <h2>Kontakt z pomocą</h2>
+          <p>Opisz oczekiwany rezultat, napotkany problem, wersję macOS i wersję ToolPouch widoczną w Ustawieniach. Nie przesyłaj haseł, kluczy prywatnych, treści schowka, osobistych notatek ani poufnych plików.</p>
+          <a class="contact" href="mailto:support@ioxtec.com?subject=ToolPouch%20Support">support@ioxtec.com</a>
+        </div>
+        <h2>Zanim napiszesz</h2>
+        <ul>
+          <li>Zainstaluj najnowszą wersję ToolPouch dostępną dla Twojego Maca.</li>
+          <li>Zamknij ToolPouch z jego menu i uruchom ponownie.</li>
+          <li>Dla skanera Wi-Fi i próbnika koloru sprawdź wymagane uprawnienie w Ustawieniach systemowych → Prywatność i ochrona.</li>
+          <li>Dla narzędzi plikowych ponownie wybierz plik lub miejsce docelowe, aby macOS mógł udzielić dostępu.</li>
+          <li>Dla synchronizacji Quick Copy Notes sprawdź, czy iCloud Drive jest aktywny i na obu Macach używasz tego samego konta Apple.</li>
+        </ul>
+        <h2>Zakupy i zwroty</h2>
+        <p>Zakupy, płatności i zwroty są obsługiwane przez Apple w Mac App Store. W sprawach płatności i zwrotów skorzystaj z pomocy Apple.</p>
+        <p><a href="https://support.apple.com/pl-pl/billing">Pomoc Apple dotycząca zakupów i płatności</a></p>
+      </div>
+    </article>
+
+    <article data-page="terms">
+      <div data-lang="en">
+        <p class="eyebrow">ToolPouch for macOS</p>
+        <h1>Terms of Use</h1>
+        <p class="lead">These terms describe your use of ToolPouch. Your purchase and download through the Mac App Store are also governed by the applicable Apple terms.</p>
+        <p class="meta">Effective date: October 12, 2026</p>
+        <h2>License and permitted use</h2>
+        <p>Subject to these terms and the applicable App Store rules, IOXTEC grants you a limited, non-exclusive, non-transferable license to install and use ToolPouch on compatible Apple devices associated with your App Store account. You may use the app for personal or professional work.</p>
+        <p>You must not reverse engineer or redistribute ToolPouch except where applicable law expressly permits it, interfere with the app or related services, use it to violate the rights of others, or use network and file tools without authorization.</p>
+        <h2>Your content and responsibility</h2>
+        <p>You retain responsibility for text, notes, files, domains, hosts, keys, and other material you process. Review generated output before relying on it and maintain appropriate backups. ToolPouch is a utility, not a password manager, security audit, legal opinion, or professional scientific or engineering certification.</p>
+        <h2>External services</h2>
+        <p>Some features use Apple services, CloudKit, ipify, IANA, RDAP registry operators, or hosts you specify. Availability and processing by those services are governed by their respective terms and policies. IOXTEC does not control their availability.</p>
+        <h2>Updates and compatibility</h2>
+        <p>Features and system requirements may change through updates. The current release supports Apple silicon Macs running macOS 26 or later. Continued compatibility with every future operating-system or third-party service version is not guaranteed.</p>
+        <h2>Purchases and refunds</h2>
+        <p>The Mac App Store processes purchases, taxes, billing, and refunds. Refund eligibility is determined by Apple and applicable law.</p>
+        <h2>Availability and liability</h2>
+        <p>ToolPouch is provided with the level of care required by applicable law. Software and network services may nevertheless contain errors or become temporarily unavailable. To the maximum extent permitted by law, IOXTEC is not responsible for indirect or consequential losses resulting from use of the app. Nothing in these terms excludes rights or remedies that cannot legally be excluded, including mandatory consumer rights.</p>
+        <h2>Changes</h2>
+        <p>These terms may be updated when the app, applicable law, or supporting services change. The effective date above identifies the current version.</p>
+        <div class="card">
+          <h2>Contact</h2>
+          <p>Questions about these terms can be sent to IOXTEC support.</p>
+          <a class="contact" href="mailto:support@ioxtec.com">support@ioxtec.com</a>
+        </div>
+      </div>
+
+      <div data-lang="pl">
+        <p class="eyebrow">ToolPouch dla macOS</p>
+        <h1>Warunki korzystania</h1>
+        <p class="lead">Warunki opisują korzystanie z ToolPouch. Zakup i pobranie aplikacji w Mac App Store podlegają również odpowiednim warunkom Apple.</p>
+        <p class="meta">Data wejścia w życie: 12 października 2026 r.</p>
+        <h2>Licencja i dozwolone użycie</h2>
+        <p>Z zastrzeżeniem tych warunków oraz zasad App Store IOXTEC udziela ograniczonej, niewyłącznej i nieprzenoszalnej licencji na instalowanie i używanie ToolPouch na zgodnych urządzeniach Apple powiązanych z kontem App Store użytkownika. Aplikacji można używać prywatnie i zawodowo.</p>
+        <p>Nie wolno odtwarzać kodu źródłowego ani rozpowszechniać ToolPouch, chyba że obowiązujące prawo wyraźnie na to zezwala, zakłócać działania aplikacji lub usług, naruszać praw innych osób ani używać narzędzi sieciowych i plikowych bez upoważnienia.</p>
+        <h2>Treści i odpowiedzialność użytkownika</h2>
+        <p>Użytkownik odpowiada za tekst, notatki, pliki, domeny, hosty, klucze i inne materiały, które przetwarza. Przed wykorzystaniem wyników należy je sprawdzić i wykonywać odpowiednie kopie zapasowe. ToolPouch jest narzędziem użytkowym, a nie menedżerem haseł, audytem bezpieczeństwa, opinią prawną ani profesjonalnym certyfikatem naukowym lub inżynierskim.</p>
+        <h2>Usługi zewnętrzne</h2>
+        <p>Niektóre funkcje używają usług Apple, CloudKit, ipify, IANA, operatorów rejestrów RDAP lub hostów wskazanych przez użytkownika. Dostępność i przetwarzanie przez te usługi podlegają ich zasadom. IOXTEC nie kontroluje ich dostępności.</p>
+        <h2>Aktualizacje i zgodność</h2>
+        <p>Funkcje i wymagania systemowe mogą zmieniać się wraz z aktualizacjami. Obecne wydanie obsługuje Maki z Apple silicon i systemem macOS 26 lub nowszym. Nie gwarantujemy zgodności z każdą przyszłą wersją systemu lub usługi zewnętrznej.</p>
+        <h2>Zakupy i zwroty</h2>
+        <p>Mac App Store obsługuje zakupy, podatki, płatności i zwroty. Możliwość zwrotu określa Apple oraz obowiązujące prawo.</p>
+        <h2>Dostępność i odpowiedzialność</h2>
+        <p>ToolPouch jest dostarczany z zachowaniem staranności wymaganej przez obowiązujące prawo. Oprogramowanie i usługi sieciowe mogą jednak zawierać błędy lub być czasowo niedostępne. W maksymalnym zakresie dozwolonym przez prawo IOXTEC nie odpowiada za pośrednie lub następcze straty wynikające z używania aplikacji. Warunki nie ograniczają praw ani środków ochrony, których nie można zgodnie z prawem wyłączyć, w tym obowiązkowych praw konsumenta.</p>
+        <h2>Zmiany</h2>
+        <p>Warunki mogą być aktualizowane, gdy zmienia się aplikacja, prawo lub używane usługi. Data powyżej wskazuje aktualną wersję.</p>
+        <div class="card">
+          <h2>Kontakt</h2>
+          <p>Pytania dotyczące warunków można kierować do pomocy IOXTEC.</p>
+          <a class="contact" href="mailto:support@ioxtec.com">support@ioxtec.com</a>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer>
+    <span>© 2026 IOXTEC · ToolPouch</span>
+  </footer>
+</body>
+</html>

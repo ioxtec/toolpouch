@@ -10,28 +10,24 @@ struct ArchiveToolView: View {
 
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: ToolPouchLayout.Content.spacing) {
+            ToolContentLayout {
                 header
                 archivePanel
             }
-            .padding(ToolPouchLayout.Content.padding)
         }
+        .scrollIndicators(.never)
     }
 
     private var header: some View {
-        VStack(alignment: .leading, spacing: 3) {
-            Text("Archive Tool")
-                .font(.headline)
-            #if !os(watchOS)
-            Text("Compress files and folders, or extract ZIP, GZIP, BZIP2, XZ, TAR, and TGZ archives.")
-                .font(.caption)
-                .foregroundStyle(.secondary)
-            #endif
-        }
+        ScreenHeader(
+            title: "Archive Tool",
+            subtitle: "Compress files and folders, or extract common archive formats.",
+            density: isWatch ? .compact : .regular
+        )
     }
 
     private var archivePanel: some View {
-        VStack(alignment: .leading, spacing: 14) {
+        ToolSectionCard {
             controls
             Divider()
             compressSection
@@ -39,25 +35,26 @@ struct ArchiveToolView: View {
             decompressSection
             statusSection
         }
-        .padding(14)
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 14))
     }
 
     private var controls: some View {
         VStack(alignment: .leading, spacing: 10) {
+            #if os(watchOS)
             Picker("Format", selection: $model.selectedFormat) {
                 ForEach(ArchiveFormat.supportedCompressionFormats) { format in
-                    Text(format.title).tag(format)
+                    Text(format.title.localizedInterfaceText).tag(format)
                 }
             }
-            #if !os(watchOS)
-            .pickerStyle(.segmented)
-            .labelsHidden()
+            #else
+            ToolPouchSegmentedControl(
+                ArchiveFormat.supportedCompressionFormats,
+                selection: $model.selectedFormat,
+                title: \.title
+            )
             #endif
 
-            Text(model.selectedFormat.description)
-                .font(.caption)
+            Text(model.selectedFormat.description.localizedInterfaceText)
+                .font(ToolPouchLayout.Typography.supporting)
                 .foregroundStyle(.secondary)
         }
     }
@@ -65,9 +62,9 @@ struct ArchiveToolView: View {
     private var compressSection: some View {
         VStack(alignment: .leading, spacing: 8) {
             Text("Compress")
-                .font(.headline)
+                .font(ToolPouchLayout.Typography.sectionTitle)
 
-            Text("Drag a folder or file here to create a \(model.selectedFormat.title) archive next to it.")
+            Text("Choose or drop a file or folder, then choose where to save the archive.")
                 .font(.caption)
                 .foregroundStyle(.secondary)
 
@@ -78,15 +75,19 @@ struct ArchiveToolView: View {
                 guard let url = urls.first else { return }
                 model.compress(folderURL: url)
             }
+            #if os(macOS)
+            Button("Choose File or Folder…") { model.chooseSource(compress: true) }
+                .disabled(model.isWorking)
+            #endif
         }
     }
 
     private var decompressSection: some View {
         VStack(alignment: .leading, spacing: 8) {
             Text("Decompress")
-                .font(.headline)
+                .font(ToolPouchLayout.Typography.sectionTitle)
 
-            Text("Drop a .zip, .gz, .bz2, .xz, .tar, or .tgz archive to extract it next to the original.")
+            Text("Choose or drop a ZIP, GZIP, BZIP2, XZ, TAR, or TGZ archive, then choose its destination.")
                 .font(.caption)
                 .foregroundStyle(.secondary)
 
@@ -97,6 +98,10 @@ struct ArchiveToolView: View {
                 guard let url = urls.first else { return }
                 model.decompress(archiveURL: url)
             }
+            #if os(macOS)
+            Button("Choose Archive…") { model.chooseSource(compress: false) }
+                .disabled(model.isWorking)
+            #endif
         }
     }
 
@@ -105,31 +110,32 @@ struct ArchiveToolView: View {
         hint: String,
         onDrop: @escaping ([URL]) -> Void
     ) -> some View {
-        let surface = RoundedRectangle(cornerRadius: 10)
-            .fill(.quaternary.opacity(isDropTargeted ? 0.9 : 0.6))
+        let surface = RoundedRectangle(cornerRadius: ToolPouchLayout.Radius.control)
+            .fill(.clear)
             .frame(maxWidth: .infinity, minHeight: 96)
             .overlay {
                 VStack(spacing: 8) {
                     Image(systemName: icon)
                         .font(.system(size: 28))
                         .foregroundStyle(.secondary)
-                    Text(hint)
+                    Text(hint.localizedInterfaceText)
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
                 }
             }
             .overlay {
-                RoundedRectangle(cornerRadius: 10)
+                RoundedRectangle(cornerRadius: ToolPouchLayout.Radius.control)
                     .strokeBorder(
                         isDropTargeted ? Color.accentColor : Color.clear,
                         lineWidth: 2
                     )
             }
-            .contentShape(RoundedRectangle(cornerRadius: 10))
+            .contentShape(RoundedRectangle(cornerRadius: ToolPouchLayout.Radius.control))
+            .toolPouchSurface(interactive: true, cornerRadius: ToolPouchLayout.Radius.control)
 
         #if os(watchOS)
         return surface
-            .accessibilityLabel(hint)
+            .accessibilityLabel(hint.localizedInterfaceText)
         #else
         return surface
             .dropDestination(for: URL.self) { urls, _ in
@@ -138,7 +144,7 @@ struct ArchiveToolView: View {
             } isTargeted: { targeted in
                 isDropTargeted = targeted
             }
-            .accessibilityLabel(hint)
+            .accessibilityLabel(hint.localizedInterfaceText)
         #endif
     }
 
@@ -167,5 +173,13 @@ struct ArchiveToolView: View {
                     .foregroundStyle(.secondary)
             }
         }
+    }
+
+    private var isWatch: Bool {
+        #if os(watchOS)
+        true
+        #else
+        false
+        #endif
     }
 }

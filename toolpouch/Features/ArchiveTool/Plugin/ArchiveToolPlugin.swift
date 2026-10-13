@@ -3,7 +3,7 @@ import SwiftUI
 struct ArchiveToolPlugin: ToolPlugin {
     let definition = ToolDefinition(
         id: .archiveTool,
-        categoryID: .everyday,
+        categoryID: .files,
         title: "Archive Tool",
         description: "Compress folders and files, or extract ZIP, GZIP, BZIP2, XZ, TAR and TGZ archives.",
         systemImage: "shippingbox",

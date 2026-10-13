@@ -4,7 +4,7 @@ import SwiftUI
 struct ColorPickerPlugin: ToolPlugin {
     let definition = ToolDefinition(
         id: .colorPicker,
-        categoryID: .visual,
+        categoryID: .graphics,
         title: "Color Picker",
         description: "Pick an exact pixel color anywhere on your screens.",
         systemImage: "eyedropper.halffull",

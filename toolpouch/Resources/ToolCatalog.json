@@ -13,68 +13,76 @@
   },
   "sections": [
     {
-      "id": "everyday",
-      "title": "Everyday",
-      "description": "Useful tools for daily tasks",
-      "systemImage": "sparkles",
-      "supportedPlatforms": ["macOS", "iOS", "watchOS"],
-      "toolOrder": ["com.toolpouch.quick-copy-notes", "com.toolpouch.unit-converter", "com.toolpouch.coordinate-tool", "com.toolpouch.archive-tool"]
-    },
-    {
-      "id": "system",
-      "title": "System",
-      "description": "Live health, resource, storage, and power information",
+      "id": "device",
+      "title": "Device & System",
+      "description": "System information and utilities for this device",
       "systemImage": "cpu",
       "supportedPlatforms": ["macOS", "iOS", "watchOS"],
-      "toolOrder": ["com.toolpouch.system-stats"]
+      "toolOrder": ["com.toolpouch.system-stats", "com.toolpouch.clipboard-inspector"]
     },
     {
       "id": "network",
-      "title": "Network",
-      "description": "Connection details, Wi-Fi, and domains",
+      "title": "Network & Internet",
+      "description": "Connection details, Wi-Fi, and internet domains",
       "systemImage": "network",
       "supportedPlatforms": ["macOS", "iOS", "watchOS"],
       "toolOrder": ["com.toolpouch.network-info", "com.toolpouch.network-check", "com.toolpouch.wifi-scanner", "com.toolpouch.domain-lookup"]
     },
     {
-      "id": "passwords",
-      "title": "Passwords",
-      "description": "Create secure and memorable passwords",
+      "id": "credentials",
+      "title": "Passwords & Keys",
+      "description": "Generate passwords and manage access keys",
       "systemImage": "key.fill",
       "supportedPlatforms": ["macOS", "iOS", "watchOS"],
-      "toolOrder": ["com.toolpouch.password-generator"]
-    },
-    {
-      "id": "clipboard",
-      "title": "Clipboard",
-      "description": "Inspect and work with copied content",
-      "systemImage": "clipboard",
-      "supportedPlatforms": ["macOS"],
-      "toolOrder": ["com.toolpouch.clipboard-inspector"]
+      "toolOrder": ["com.toolpouch.password-generator", "com.toolpouch.ssh-keys"]
     },
     {
       "id": "text",
-      "title": "Text & Files",
-      "description": "Convert and clean up text and data",
+      "title": "Text & Data",
+      "description": "Reusable notes and tools for structured text",
       "systemImage": "textformat",
       "supportedPlatforms": ["macOS", "iOS", "watchOS"],
-      "toolOrder": ["com.toolpouch.text-encoder", "com.toolpouch.json-toolkit", "com.toolpouch.hash-checksum"]
+      "toolOrder": ["com.toolpouch.quick-copy-notes", "com.toolpouch.text-encoder", "com.toolpouch.json-toolkit"]
     },
     {
-      "id": "developer",
-      "title": "Developer",
-      "description": "Keys and advanced technical tools",
-      "systemImage": "chevron.left.forwardslash.chevron.right",
+      "id": "calculations",
+      "title": "Calculations & Conversions",
+      "description": "Calculate hashes and convert common units",
+      "systemImage": "arrow.left.arrow.right",
       "supportedPlatforms": ["macOS", "iOS", "watchOS"],
-      "toolOrder": ["com.toolpouch.ssh-keys"]
+      "toolOrder": ["com.toolpouch.unit-converter", "com.toolpouch.hash-checksum"]
     },
     {
-      "id": "visual",
-      "title": "Media & Colors",
-      "description": "Images, audio, video, and color utilities",
-      "systemImage": "play.rectangle.on.rectangle",
+      "id": "science",
+      "title": "Science & Math",
+      "description": "Calculators, graphs, and data analysis",
+      "systemImage": "function",
       "supportedPlatforms": ["macOS", "iOS"],
-      "toolOrder": ["com.toolpouch.image-inspector", "com.toolpouch.media-file-info", "com.toolpouch.color-picker"]
+      "toolOrder": ["com.toolpouch.scientific-calculator", "com.toolpouch.function-graphs"]
+    },
+    {
+      "id": "files",
+      "title": "Files & Archives",
+      "description": "Compress, extract, and inspect files",
+      "systemImage": "archivebox.fill",
+      "supportedPlatforms": ["macOS", "iOS"],
+      "toolOrder": ["com.toolpouch.archive-tool", "com.toolpouch.media-file-info"]
+    },
+    {
+      "id": "graphics",
+      "title": "Graphics",
+      "description": "Inspect images and work with colors",
+      "systemImage": "paintpalette.fill",
+      "supportedPlatforms": ["macOS", "iOS"],
+      "toolOrder": ["com.toolpouch.image-inspector", "com.toolpouch.color-picker"]
+    },
+    {
+      "id": "location",
+      "title": "Maps & Coordinates",
+      "description": "Find places and convert coordinates",
+      "systemImage": "map.fill",
+      "supportedPlatforms": ["macOS", "iOS"],
+      "toolOrder": ["com.toolpouch.coordinate-tool"]
     }
   ]
 }

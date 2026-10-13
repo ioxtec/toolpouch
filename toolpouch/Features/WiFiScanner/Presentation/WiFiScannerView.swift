@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct WiFiScannerView: View {
+    @Environment(\.appTheme) private var theme
     @State private var model: WiFiScannerViewModel
 
     init(
@@ -16,23 +17,23 @@ struct WiFiScannerView: View {
     }
 
     var body: some View {
-        VStack(spacing: 0) {
-            header
-            Divider()
-            content
+        ScrollView {
+            ToolContentLayout {
+                header
+                content
+            }
         }
+        .scrollIndicators(.never)
         .task { await model.scan() }
     }
 
     private var header: some View {
-        HStack(spacing: 12) {
-            VStack(alignment: .leading, spacing: 3) {
-                Text("Wi-Fi Scanner")
-                    .font(.headline)
-                Text("Nearby networks ordered by signal strength.")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-            }
+        HStack(alignment: .top, spacing: ToolPouchLayout.Spacing.large) {
+            ScreenHeader(
+                title: "Wi-Fi Scanner",
+                subtitle: "Nearby networks ordered by signal strength.",
+                density: isWatch ? .compact : .regular
+            )
 
             Spacer()
 
@@ -46,9 +47,9 @@ struct WiFiScannerView: View {
                     Label("Scan", systemImage: "arrow.clockwise")
                 }
             }
+            .toolPouchPrimaryAction()
             .disabled(model.isScanning)
         }
-        .padding(ToolPouchLayout.Content.padding)
     }
 
     @ViewBuilder
@@ -59,42 +60,56 @@ struct WiFiScannerView: View {
                 systemImage: "wifi.exclamationmark",
                 description: Text(errorMessage)
             )
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .frame(maxWidth: .infinity, minHeight: 150)
         } else if model.networks.isEmpty, model.isScanning {
             ProgressView("Scanning nearby networks…")
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .frame(maxWidth: .infinity, minHeight: 150)
         } else if model.networks.isEmpty {
             ContentUnavailableView(
                 "No Networks Found",
                 systemImage: "wifi.slash",
                 description: Text("Try scanning again closer to a Wi-Fi access point.")
             )
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .frame(maxWidth: .infinity, minHeight: 150)
         } else {
-            List(model.networks) { network in
-                WiFiNetworkRow(network: network)
+            ToolSectionCard("Nearby networks") {
+                LazyVStack(spacing: 0) {
+                    ForEach(Array(model.networks.enumerated()), id: \.element.id) { index, network in
+                        WiFiNetworkRow(network: network)
+                        if index < model.networks.count - 1 {
+                            Divider()
+                        }
+                    }
+                }
             }
-            #if !os(watchOS)
-            .listStyle(.inset)
-            #endif
         }
+    }
+
+    private var isWatch: Bool {
+        #if os(watchOS)
+        true
+        #else
+        false
+        #endif
     }
 }
 
 private struct WiFiNetworkRow: View {
+    @Environment(\.appTheme) private var theme
     let network: WiFiNetwork
 
     var body: some View {
-        HStack(spacing: 12) {
+        HStack(spacing: ToolPouchLayout.Spacing.large) {
             Image(systemName: network.signalSystemImage)
                 .toolPouchIcon(.medium)
                 .foregroundStyle(signalColor)
                 .frame(width: 26)
 
-            VStack(alignment: .leading, spacing: 3) {
+            VStack(alignment: .leading, spacing: ToolPouchLayout.Spacing.xSmall) {
                 HStack(spacing: 6) {
                     Text(network.name)
-                        .font(.headline)
+                        .font(ToolPouchLayout.Typography.body.weight(.semibold))
+                        .lineLimit(1)
                     if network.isSecure {
                         Image(systemName: "lock.fill")
                             .toolPouchIcon(.small)
@@ -110,24 +125,25 @@ private struct WiFiNetworkRow: View {
                         Text(bssid)
                     }
                 }
-                .font(.caption.monospaced())
+                .font(ToolPouchLayout.Typography.supporting.monospaced())
                 .foregroundStyle(.secondary)
+                .lineLimit(1)
             }
 
             Spacer()
 
             Text("\(network.rssi) dBm")
-                .font(.body.monospaced().weight(.medium))
+                .font(ToolPouchLayout.Typography.body.monospaced().weight(.medium))
                 .foregroundStyle(signalColor)
         }
-        .padding(.vertical, 5)
+        .padding(.vertical, ToolPouchLayout.Spacing.medium)
     }
 
     private var signalColor: Color {
         switch network.signalQuality {
-        case 0.7...: .green
-        case 0.4...: .yellow
-        default: .red
+        case 0.7...: theme.colors.success.color
+        case 0.4...: theme.colors.warning.color
+        default: theme.colors.danger.color
         }
     }
 }

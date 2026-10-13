@@ -12,19 +12,19 @@ nonisolated enum DomainLookupError: LocalizedError, Equatable, Sendable {
     var errorDescription: String? {
         switch self {
         case .invalidDomain:
-            "Enter a valid domain name, for example example.com."
+            "Enter a valid domain name, for example example.com.".localizedInterfaceText
         case let .unsupportedTopLevelDomain(tld):
-            "No RDAP service is registered for .\(tld)."
+            String(format: "No RDAP service is registered for .%@.".localizedInterfaceText, tld)
         case .insecureService:
-            "The registry does not provide a secure RDAP endpoint."
+            "The registry does not provide a secure RDAP endpoint.".localizedInterfaceText
         case .notFound:
-            "The domain was not found in the registry."
+            "The domain was not found in the registry.".localizedInterfaceText
         case .rateLimited:
-            "The registry is receiving too many requests. Try again later."
+            "The registry is receiving too many requests. Try again later.".localizedInterfaceText
         case .invalidResponse:
-            "The registry returned an unsupported response."
+            "The registry returned an unsupported response.".localizedInterfaceText
         case let .serverError(statusCode):
-            "The registry returned HTTP status \(statusCode)."
+            String(format: "The registry returned HTTP status %lld.".localizedInterfaceText, Int64(statusCode))
         }
     }
 }

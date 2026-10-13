@@ -19,20 +19,23 @@ struct ScreenHeader: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 2) {
-            Text(title)
-                .font(
-                    density == .compact
-                        ? .subheadline.weight(.semibold)
-                        : .headline
-                )
-                .foregroundStyle(theme.colors.primaryText.color)
+            HStack(alignment: .firstTextBaseline, spacing: ToolPouchLayout.Spacing.small) {
+                Text(title.localizedInterfaceText)
+                    .font(
+                        density == .compact
+                            ? .subheadline.weight(.semibold)
+                            : ToolPouchLayout.Typography.screenTitle
+                    )
+                    .foregroundStyle(theme.colors.primaryText.color)
 
-            Text(subtitle)
-                .font(.caption)
+                ToolHelpButton(text: subtitle)
+            }
+
+            Text(subtitle.localizedInterfaceText)
+                .font(ToolPouchLayout.Typography.supporting)
                 .foregroundStyle(theme.colors.secondaryText.color)
                 .fixedSize(horizontal: false, vertical: true)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
-        .accessibilityElement(children: .combine)
     }
 }

@@ -34,15 +34,15 @@ struct HashChecksumView: View {
 
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: ToolPouchLayout.Content.spacing) {
+            ToolContentLayout {
                 ScreenHeader(
                     title: "Hash & Checksum",
                     subtitle: "Calculate and compare hashes locally for text or files."
                 )
                 hashPanel
             }
-            .padding(ToolPouchLayout.Content.padding)
         }
+        .scrollIndicators(.never)
         .task(id: request) {
             await calculateHash()
         }
@@ -57,7 +57,7 @@ struct HashChecksumView: View {
     }
 
     private var hashPanel: some View {
-        VStack(alignment: .leading, spacing: 14) {
+        ToolSectionCard {
             controls
             Divider()
             inputSection
@@ -65,24 +65,27 @@ struct HashChecksumView: View {
             resultSection
             comparisonSection
         }
-        .padding(14)
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 14))
     }
 
     private var controls: some View {
         VStack(alignment: .leading, spacing: 10) {
+            #if os(watchOS)
             Picker("Input", selection: $inputMode) {
                 ForEach(InputMode.allCases) { mode in
-                    Text(mode.title).tag(mode)
+                    Text(mode.title.localizedInterfaceText).tag(mode)
                 }
             }
-            .pickerStyle(.segmented)
-            .labelsHidden()
+            #else
+            ToolPouchSegmentedControl(
+                InputMode.allCases,
+                selection: $inputMode,
+                title: \.title
+            )
+            #endif
 
             Picker("Algorithm", selection: $algorithm) {
                 ForEach(HashAlgorithm.allCases) { algorithm in
-                    Text(algorithm.title).tag(algorithm)
+                    Text(algorithm.title.localizedInterfaceText).tag(algorithm)
                 }
             }
 
@@ -110,7 +113,7 @@ struct HashChecksumView: View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
                 Text("Text")
-                    .font(.headline)
+                    .font(ToolPouchLayout.Typography.sectionTitle)
                 Spacer()
                 if !textInput.isEmpty {
                     Button("Clear") { textInput = "" }
@@ -120,13 +123,7 @@ struct HashChecksumView: View {
 
             TextEditor(text: $textInput)
                 .font(.system(.body, design: .monospaced))
-                .scrollContentBackground(.hidden)
-                .padding(8)
-                .frame(minHeight: 110)
-                .background(
-                    .quaternary,
-                    in: RoundedRectangle(cornerRadius: 10)
-                )
+                .toolPouchEditorSurface(minimumHeight: 104)
                 .accessibilityLabel("Text to hash")
         }
     }
@@ -148,8 +145,8 @@ struct HashChecksumView: View {
                 Image(systemName: selectedFileURL == nil ? "doc.badge.plus" : "doc")
                     .toolPouchIcon(.large, weight: .medium)
 
-                Text(selectedFileURL?.lastPathComponent ?? "Choose or drop a file")
-                    .font(.headline)
+                Text(selectedFileURL?.lastPathComponent ?? "Choose or drop a file".localizedInterfaceText)
+                    .font(ToolPouchLayout.Typography.sectionTitle)
                     .lineLimit(2)
                     .multilineTextAlignment(.center)
 
@@ -158,12 +155,9 @@ struct HashChecksumView: View {
                     .foregroundStyle(.secondary)
             }
             .frame(maxWidth: .infinity, minHeight: 112)
-            .padding(12)
+            .padding(ToolPouchLayout.Spacing.xLarge)
             .contentShape(.rect)
-            .background(
-                .quaternary,
-                in: RoundedRectangle(cornerRadius: 10)
-            )
+            .toolPouchSurface(interactive: true, cornerRadius: ToolPouchLayout.Radius.control)
         }
         .buttonStyle(.plain)
         .dropDestination(for: URL.self) { urls, _ in
@@ -177,8 +171,8 @@ struct HashChecksumView: View {
     private var resultSection: some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
-                Text(algorithm.title)
-                    .font(.headline)
+                Text(algorithm.title.localizedInterfaceText)
+                    .font(ToolPouchLayout.Typography.sectionTitle)
                 Spacer()
                 if let digest {
                     CopyButton(value: digest.value)
@@ -202,22 +196,20 @@ struct HashChecksumView: View {
             .font(.system(.body, design: .monospaced))
             .textSelection(.enabled)
             .frame(maxWidth: .infinity, minHeight: 54, alignment: .topLeading)
-            .padding(12)
-            .background(
-                .quaternary,
-                in: RoundedRectangle(cornerRadius: 10)
-            )
+            .padding(ToolPouchLayout.Spacing.xLarge)
+            .toolPouchSurface(interactive: true, cornerRadius: ToolPouchLayout.Radius.control)
         }
     }
 
     private var comparisonSection: some View {
         VStack(alignment: .leading, spacing: 8) {
             Text("Compare")
-                .font(.headline)
+                .font(ToolPouchLayout.Typography.sectionTitle)
 
             TextField("Paste an expected checksum", text: $expectedChecksum)
                 .font(.system(.body, design: .monospaced))
-                .textFieldStyle(.roundedBorder)
+                .textFieldStyle(.plain)
+                .toolPouchControlSurface()
 
             if !expectedChecksum.isEmpty, let digest {
                 if digest.matches(expectedChecksum) {

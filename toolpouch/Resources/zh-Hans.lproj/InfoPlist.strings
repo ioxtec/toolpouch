@@ -1,0 +1,2 @@
+"NSLocationUsageDescription" = "ToolPouch 仅使用位置信息来识别附近的 Wi-Fi 网络。";
+"NSScreenCaptureUsageDescription" = "ToolPouch 仅在选取颜色时捕获指针周围的一小块区域。";

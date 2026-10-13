@@ -94,11 +94,11 @@ nonisolated enum MediaFileInspectionError: LocalizedError, Sendable {
     var errorDescription: String? {
         switch self {
         case .unsupportedFile:
-            "Choose an image, audio file, or video file."
+            "Choose an image, audio file, or video file.".localizedInterfaceText
         case .unreadableFile:
-            "The selected file could not be read."
+            "The selected file could not be read.".localizedInterfaceText
         case .noMediaTracks:
-            "No supported media tracks were found in this file."
+            "No supported media tracks were found in this file.".localizedInterfaceText
         case let .unsupportedContainer(container, _):
             "macOS cannot inspect this \(container) container with its built-in media framework. The file may still be valid."
         case let .assetReadFailed(stage, _, _):

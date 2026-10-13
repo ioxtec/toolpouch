@@ -86,13 +86,13 @@ nonisolated enum ImageInspectionError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .fileUnavailable:
-            "ToolPouch could not read this file."
+            "ToolPouch could not read this file.".localizedInterfaceText
         case .unsupportedFormat:
-            "This image format is not supported yet."
+            "This image format is not supported yet.".localizedInterfaceText
         case .invalidImage:
-            "The file does not contain a valid image."
+            "The file does not contain a valid image.".localizedInterfaceText
         case .inspectionFailed:
-            "The image could not be inspected."
+            "The image could not be inspected.".localizedInterfaceText
         }
     }
 }

@@ -8,7 +8,7 @@ struct RecentDevicesCard: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             Text("Recent Devices")
-                .font(.headline)
+                .font(ToolPouchLayout.Typography.sectionTitle)
 
             ForEach(snapshots) { snapshot in
                 Button {

@@ -69,25 +69,17 @@ private extension ToolCatalogConfiguration {
         ),
         sections: [
             Section(
-                id: .everyday,
-                title: "Everyday",
-                description: "Useful tools for daily tasks",
-                systemImage: "sparkles",
-                supportedPlatforms: Set(ToolPlatform.allCases),
-                toolOrder: [.quickCopyNotes, .unitConverter, .archiveTool]
-            ),
-            Section(
-                id: .system,
-                title: "System",
-                description: "Live health, resource, storage, and power information",
+                id: .device,
+                title: "Device & System",
+                description: "System information and utilities for this device",
                 systemImage: "cpu",
                 supportedPlatforms: Set(ToolPlatform.allCases),
-                toolOrder: [.systemStats]
+                toolOrder: [.systemStats, .clipboardInspector]
             ),
             Section(
                 id: .network,
-                title: "Network",
-                description: "Connection details, Wi-Fi, and domains",
+                title: "Network & Internet",
+                description: "Connection details, Wi-Fi, and internet domains",
                 systemImage: "network",
                 supportedPlatforms: Set(ToolPlatform.allCases),
                 toolOrder: [
@@ -98,44 +90,60 @@ private extension ToolCatalogConfiguration {
                 ]
             ),
             Section(
-                id: .passwords,
-                title: "Passwords",
-                description: "Create secure and memorable passwords",
+                id: .credentials,
+                title: "Passwords & Keys",
+                description: "Generate passwords and manage access keys",
                 systemImage: "key.fill",
                 supportedPlatforms: Set(ToolPlatform.allCases),
-                toolOrder: [.passwordGenerator]
-            ),
-            Section(
-                id: .clipboard,
-                title: "Clipboard",
-                description: "Inspect and work with copied content",
-                systemImage: "clipboard",
-                supportedPlatforms: [.macOS],
-                toolOrder: [.clipboardInspector]
+                toolOrder: [.passwordGenerator, .sshKeys]
             ),
             Section(
                 id: .text,
-                title: "Text & Files",
-                description: "Convert and clean up text and data",
+                title: "Text & Data",
+                description: "Reusable notes and tools for structured text",
                 systemImage: "textformat",
                 supportedPlatforms: Set(ToolPlatform.allCases),
-                toolOrder: [.textEncoder, .jsonToolkit, .hashChecksum]
+                toolOrder: [.quickCopyNotes, .textEncoder, .jsonToolkit]
             ),
             Section(
-                id: .developer,
-                title: "Developer",
-                description: "Keys and advanced technical tools",
-                systemImage: "chevron.left.forwardslash.chevron.right",
+                id: .calculations,
+                title: "Calculations & Conversions",
+                description: "Calculate hashes and convert common units",
+                systemImage: "arrow.left.arrow.right",
                 supportedPlatforms: Set(ToolPlatform.allCases),
-                toolOrder: [.sshKeys]
+                toolOrder: [.unitConverter, .hashChecksum]
             ),
             Section(
-                id: .visual,
-                title: "Images & Colors",
-                description: "Images, colors, and visual utilities",
-                systemImage: "photo.on.rectangle.angled",
+                id: .science,
+                title: "Science & Math",
+                description: "Calculators, graphs, and data analysis",
+                systemImage: "function",
+                supportedPlatforms: [.iOS, .macOS],
+                toolOrder: [.scientificCalculator, .functionGraphs]
+            ),
+            Section(
+                id: .files,
+                title: "Files & Archives",
+                description: "Compress, extract, and inspect files",
+                systemImage: "archivebox.fill",
+                supportedPlatforms: [.iOS, .macOS],
+                toolOrder: [.archiveTool, .mediaFileInfo]
+            ),
+            Section(
+                id: .graphics,
+                title: "Graphics",
+                description: "Inspect images and work with colors",
+                systemImage: "paintpalette.fill",
                 supportedPlatforms: [.iOS, .macOS],
                 toolOrder: [.imageInspector, .colorPicker]
+            ),
+            Section(
+                id: .location,
+                title: "Maps & Coordinates",
+                description: "Find places and convert coordinates",
+                systemImage: "map.fill",
+                supportedPlatforms: [.iOS, .macOS],
+                toolOrder: [.coordinateTool]
             ),
         ]
     )

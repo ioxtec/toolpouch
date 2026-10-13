@@ -24,6 +24,9 @@ nonisolated struct ToolCategory: Hashable, Identifiable, Sendable {
     let systemImage: String
     let supportedPlatforms: Set<ToolPlatform>
 
+    var localizedTitle: String { title.localizedInterfaceText }
+    var localizedDescription: String { description.localizedInterfaceText }
+
     init(
         id: ID,
         title: String,
@@ -40,12 +43,13 @@ nonisolated struct ToolCategory: Hashable, Identifiable, Sendable {
 }
 
 extension ToolCategory.ID {
-    static let everyday = Self(rawValue: "everyday")
-    static let system = Self(rawValue: "system")
+    static let device = Self(rawValue: "device")
     static let network = Self(rawValue: "network")
-    static let passwords = Self(rawValue: "passwords")
-    static let clipboard = Self(rawValue: "clipboard")
+    static let credentials = Self(rawValue: "credentials")
     static let text = Self(rawValue: "text")
-    static let developer = Self(rawValue: "developer")
-    static let visual = Self(rawValue: "visual")
+    static let calculations = Self(rawValue: "calculations")
+    static let science = Self(rawValue: "science")
+    static let files = Self(rawValue: "files")
+    static let graphics = Self(rawValue: "graphics")
+    static let location = Self(rawValue: "location")
 }
