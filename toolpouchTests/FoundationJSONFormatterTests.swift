@@ -47,11 +47,11 @@ struct FoundationJSONFormatterTests {
     @Test
     func unicodeAndSlashesRemainReadable() throws {
         let result = try formatter.format(
-            #"{"message":"zażółć 🧰","url":"https://example.com"}"#,
+            #"{"message":"café 日本語 🧰","url":"https://example.com"}"#,
             style: .compact
         )
 
-        #expect(result.contains("zażółć 🧰"))
+        #expect(result.contains("café 日本語 🧰"))
         #expect(result.contains("https://example.com"))
     }
 

@@ -26,6 +26,8 @@ SCREENSHOTS = {
     "theme_mint": ROOT / "SourceScreenshots/2026-10-13/04-menu-slate-mint.png",
     "theme_orange": ROOT / "SourceScreenshots/2026-10-13/05-menu-graphite-orange.png",
     "theme_lime": ROOT / "SourceScreenshots/2026-10-13/07-menu-graphite-lime.png",
+    "quick_notes_compact": ROOT / "SourceScreenshots/2026-10-13/11-menu-quick-copy-notes.png",
+    "quick_notes_full": ROOT / "SourceScreenshots/2026-10-13/12-window-quick-copy-notes.png",
 }
 
 APP_ICON = ROOT.parent / "design/icon-concepts/toolpouch-app-icon-coyote.png"
@@ -221,6 +223,24 @@ def slide_themes() -> Path:
     return output
 
 
+def slide_quick_copy_notes() -> Path:
+    canvas = backdrop("toolpouch-gradient-v1.png")
+    add_copy(
+        canvas,
+        "Keep frequently used\ntext organized and\ncopy it in one click.",
+        accent=(255, 207, 76, 255),
+    )
+    full = scaled_screenshot("quick_notes_full", 1500)
+    compact = scaled_screenshot("quick_notes_compact", 650)
+    baseline = 1570
+    place_window(canvas, full, (1260, baseline - full.height), opacity=195)
+    place_window(canvas, compact, (970, baseline - compact.height), opacity=220)
+    add_brand(canvas)
+    output = RC / "07-toolpouch-quick-copy-notes.png"
+    canvas.convert("RGB").save(output, quality=95, optimize=True)
+    return output
+
+
 if __name__ == "__main__":
     RC.mkdir(parents=True, exist_ok=True)
     for result in (
@@ -230,5 +250,6 @@ if __name__ == "__main__":
         slide_everyday(),
         slide_files_and_security(),
         slide_themes(),
+        slide_quick_copy_notes(),
     ):
         print(result)

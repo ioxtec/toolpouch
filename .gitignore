@@ -22,8 +22,10 @@ Rust/target/
 timeline.xctimeline
 playground.xcworkspace
 
-# Abacus AI agent config
+# Local development-tool settings
 .abacusai/
+.codex/
+.agents/
 
 # App Store screenshots, compositions, previews and source photography
 AppStoreAssets/**/*.png

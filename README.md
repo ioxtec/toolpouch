@@ -32,7 +32,7 @@ The first user-facing Rust tool reads image and EXIF metadata, resizes images, a
 
 ## Requirements
 
-- macOS 27, iOS 27, or watchOS 27
+- macOS 26, iOS 27, or watchOS 27
 - Xcode 27 or later
 - Swift 6
 - XcodeGen when changing targets or project settings
@@ -83,7 +83,5 @@ xcodegen generate
 ## Documentation
 
 - [Architecture](docs/Architecture.md)
-- [Development guide](docs/Development.md)
-- [Adding a tool](docs/AddingATool.md)
 - [Rust integration](docs/RustIntegration.md)
 - [Privacy and data](docs/PrivacyAndData.md)

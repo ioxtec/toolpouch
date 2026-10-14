@@ -2,9 +2,10 @@ from pathlib import Path
 from PIL import Image, ImageDraw
 
 root = Path(__file__).resolve().parent
-sheet = Image.new("RGB", (1240, 1230), "#e5e8e4")
+paths = sorted((root / "RC").glob("*.png"))
+sheet = Image.new("RGB", (1240, ((len(paths) + 1) // 2) * 410), "#e5e8e4")
 draw = ImageDraw.Draw(sheet)
-for index, path in enumerate(sorted((root / "RC").glob("*.png"))):
+for index, path in enumerate(paths):
     thumbnail = Image.open(path).convert("RGB").resize((600, 375), Image.Resampling.LANCZOS)
     x = 10 + (index % 2) * 620
     y = 10 + (index // 2) * 410

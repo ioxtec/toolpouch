@@ -13,7 +13,7 @@ struct BinaryTextConverterTests {
         ]
     )
     func unicodeTextRoundTrips(encoding: BinaryTextEncoding) throws {
-        let original = "ToolPouch — zażółć 🧰"
+        let original = "ToolPouch — café 日本語 🧰"
         let encoded = try converter.convert(
             original,
             using: encoding,

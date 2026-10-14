@@ -13,7 +13,7 @@ struct GzipCodecTests {
 
     @Test
     func roundTripsUnicodeData() throws {
-        let original = Data("ToolPouch — zażółć 🧰 gzip test".utf8)
+        let original = Data("ToolPouch — café 日本語 🧰 gzip test".utf8)
         let compressed = try codec.compress(data: original)
         let decompressed = try codec.decompress(data: compressed)
 
